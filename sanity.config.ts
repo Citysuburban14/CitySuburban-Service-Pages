@@ -1,0 +1,29 @@
+'use client'
+
+import {visionTool} from '@sanity/vision'
+import {defineConfig} from 'sanity'
+import {presentationTool} from 'sanity/presentation'
+import {structureTool} from 'sanity/structure'
+import {resolve} from './src/sanity/presentation'
+import {schemaTypes} from './src/sanity/schemaTypes'
+import {structure} from './src/sanity/structure'
+
+const projectId = process.env.NEXT_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'q0tvhxym'
+const dataset = process.env.NEXT_SANITY_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+
+export default defineConfig({
+  name: 'default',
+  title: 'City & Suburban Service Pages',
+  projectId,
+  dataset,
+  basePath: '/services/studio',
+  plugins: [
+    structureTool({structure}),
+    presentationTool({
+      resolve,
+      previewUrl: {previewMode: {enable: '/services/api/draft-mode/enable'}},
+    }),
+    visionTool(),
+  ],
+  schema: {types: schemaTypes},
+})
