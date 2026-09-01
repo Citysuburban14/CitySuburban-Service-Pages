@@ -36,7 +36,7 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
       title,
       serviceId,
       seo,
-      reviews,
+      reviews[]{_key, quote, summary, author, date, location, sourceUrl, sourceId, verifiedAt},
       trustMetrics,
       coverImage{..., "resolvedUrl": coalesce(image.asset->url, externalUrl)},
       gallery[]{..., "resolvedUrl": coalesce(image.asset->url, externalUrl)},

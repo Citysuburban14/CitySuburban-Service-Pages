@@ -41,7 +41,7 @@ if ([...inheritedCompanies].some((company) => /Highlights Chicago/i.test(company
 }
 const decodeRows = (rows: Row[]) => rows.map((row) => Object.fromEntries(Object.entries(row).map(([field, value]) => [field, typeof value === 'string' ? decode(value) : value])) as Row)
 const source: Source = {equip: decodeRows(rawSource.equip), area: decodeRows(rawSource.area), page: decodeRows(rawSource.page)}
-const fullReviews = JSON.parse(fs.readFileSync(path.resolve('data/full-reviews.json'), 'utf8')) as Record<string, string>
+const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
 const client = createClient({projectId, dataset, apiVersion: '2026-03-01', token, useCdn: false})
 const key = (prefix: string, index: number) => `${prefix}-${index + 1}`
 const strings = (raw = '') => raw.split('||').map((item) => item.trim()).filter(Boolean)
@@ -92,7 +92,7 @@ const siteSettings = {
   trustMetrics: [1, 2, 4, 5].map((cell, index) => ({_key: key('metric', index), _type: 'trustMetric', value: firstPage[`trust_cell_${cell}_value`], label: firstPage[`trust_cell_${cell}_label`]})),
   trustCards: objects(firstPage.trust_cards, ['title', 'body'], 'trust-card').map((item) => ({...item, _type: 'titledBody'})),
   reviewsHeading: firstPage.reviews_heading,
-  reviewsDisclaimer: firstPage.reviews_disclaimer,
+  reviewsDisclaimer: 'Each card uses a short verbatim excerpt from the linked Google review, followed by a service-specific summary. Reviews were verified 31 August 2026.',
   formSubtitle: firstPage.form_subtitle,
   formNote: firstPage.form_note,
 }
@@ -163,7 +163,12 @@ const buildPages = (assetRefs: Record<string, string>) => source.page.map((row) 
     canonicalUrl: row.canonical_url,
   },
   trustMetrics: [1, 2, 4, 5].map((cell, index) => ({_key: key(`page-${row.service_id}-metric`, index), _type: 'trustMetric', value: row[`trust_cell_${cell}_value`], label: row[`trust_cell_${cell}_label`]})),
-  reviews: objects(row.reviews, ['quote', 'author', 'location', 'sourceUrl', 'sourceId'], `review-${row.service_id}`).map((item) => ({...item, quote: fullReviews[item.sourceId] || item.quote, _type: 'review', verifiedAt: '2026-08-31'})),
+  reviews: objects(row.reviews, ['quote', 'author', 'date', 'sourceUrl', 'sourceId'], `review-${row.service_id}`).map((item) => ({
+    ...item,
+    summary: reviewContexts[String(row.service_id)]?.[item.sourceId],
+    _type: 'review',
+    verifiedAt: '2026-08-31',
+  })),
   coverImage: plannedMedia ? plannedImage(plannedMedia.cover, `cover-${row.service_id}`, assetRefs) : undefined,
   gallery: plannedMedia
     ? plannedMedia.gallery.map((assetKey, index) => plannedImage(assetKey, key(`gallery-${row.service_id}`, index), assetRefs))

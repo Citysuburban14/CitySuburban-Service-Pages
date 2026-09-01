@@ -6,7 +6,7 @@ type Source = {equip: Row[]; area: Row[]; page: Row[]}
 
 const baseUrl = (process.argv[2] || process.env.SMOKE_BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
 const source = JSON.parse(fs.readFileSync(path.resolve('data/source-content.json'), 'utf8')) as Source
-const fullReviews = JSON.parse(fs.readFileSync(path.resolve('data/full-reviews.json'), 'utf8')) as Record<string, string>
+const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
 const serviceBySlug = new Map(source.equip.map((row) => [row.slug, row]))
 const areaBySlug = new Map(source.area.map((row) => [row.slug, row]))
 const validServicePaths = new Set(['/services', ...source.page.map((row) => `/services/${row.equipment_slug}/${row.area_slug}`)])
@@ -24,8 +24,11 @@ async function request(pathname: string, init?: RequestInit) {
   return {response, text}
 }
 
-function reviewIds(raw = '') {
-  return raw.split('||').map((entry) => entry.split('::').at(-1)?.trim()).filter(Boolean) as string[]
+function reviewEntries(raw = '') {
+  return raw.split('||').map((entry) => {
+    const [quote, author, date, sourceUrl, sourceId] = entry.split('::').map((value) => value.trim())
+    return {quote, author, date, sourceUrl, sourceId}
+  }).filter((entry) => entry.sourceId)
 }
 
 function brandLogoPath(brand: string) {
@@ -85,6 +88,7 @@ async function run() {
   expect(collection.includes('/services/images/city-suburban-logo.png'), 'Collection page is not using the City & Suburban logo')
   expect(collection.includes('class="collection-footer-title"'), 'Collection footer is missing the single-line quote heading')
   expect((collection.match(/class="collection-card"/g) || []).length >= source.page.length, 'Collection page does not render every Sanity service page')
+  expect(!collection.includes('/services/furnace/lincoln-park'), 'Collection page still renders the Lincoln Park sample')
   const cardImages = [...collection.matchAll(/data-card-image="([^"]+)"/g)].map((match) => match[1])
   expect(cardImages.length >= source.page.length, 'Every collection card must have a cover image')
   expect(new Set(cardImages).size === cardImages.length, 'Collection cards must use unique cover images')
@@ -133,9 +137,10 @@ async function run() {
     for (const id of ['quote', 'working-in-area']) {
       expect(text.includes(`id="${id}"`), `${pathname} is missing the #${id} target`)
     }
-    for (const sourceId of reviewIds(row.reviews)) {
-      const expected = fullReviews[sourceId] ? visibleText(fullReviews[sourceId]).slice(0, 80) : ''
-      if (expected) expect(renderedText.includes(expected), `${pathname} is missing full review ${sourceId}`)
+    for (const review of reviewEntries(row.reviews)) {
+      expect(renderedText.includes(review.quote), `${pathname} is missing review excerpt ${review.sourceId}`)
+      expect(renderedText.includes(reviewContexts[String(row.service_id)]?.[review.sourceId] || ''), `${pathname} is missing review summary ${row.service_id}/${review.sourceId}`)
+      expect(anchorHrefs(text).includes(review.sourceUrl), `${pathname} does not link review ${review.sourceId} to Google`)
     }
     expect((text.match(/class="rev-card"/g) || []).length === 4, `${pathname} does not render four review cards`)
     expect(text.includes('reviews-grid-equal'), `${pathname} does not use equal-height review cards`)
@@ -145,6 +150,9 @@ async function run() {
     expect(text.includes('class="brand-strip"'), `${pathname} does not use the shared horizontal brand marquee`)
     expect((text.match(/class="brand-sequence"/g) || []).length === 2, `${pathname} does not render two seamless brand-marquee sequences`)
     expect(text.includes('class="trust-cell google-proof-cell"'), `${pathname} is missing the normalized Google proof rating`)
+    expect(text.includes('class="google-review-total"'), `${pathname} is missing the linked total Google review count`)
+    const reviewTotalHref = text.match(/<a class="google-review-total" href="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
+    expect(reviewTotalHref === row.google_reviews_url, `${pathname} review count does not link to the configured Google review page`)
     expect(text.indexOf('>A+</b>') < text.indexOf('class="trust-cell google-proof-cell"'), `${pathname} does not place A+ before the final Google proof cell`)
     expect(text.indexOf('class="trust-cell google-proof-cell"') > text.lastIndexOf('class="trust-cell"'), `${pathname} does not render Google proof as the fifth trust cell`)
     expect(!text.includes('class="static-stars"'), `${pathname} still renders a duplicate row of Google stars`)

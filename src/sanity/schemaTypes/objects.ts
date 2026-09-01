@@ -82,9 +82,17 @@ export const review = defineType({
   title: 'Review',
   type: 'object',
   fields: [
-    defineField({name: 'quote', title: 'Quote', type: 'text', rows: 5, validation: (rule) => rule.required()}),
+    defineField({
+      name: 'quote',
+      title: 'Verbatim excerpt',
+      description: 'Copyright-safe excerpt from the linked review; maximum 14 words.',
+      type: 'text',
+      rows: 2,
+      validation: (rule) => rule.required().custom((value) => !value || value.trim().split(/\s+/).length <= 14 || 'Use at most 14 words.'),
+    }),
+    defineField({name: 'summary', title: 'Service-specific summary', type: 'text', rows: 4, validation: (rule) => rule.required()}),
     defineField({name: 'author', title: 'Author / attribution', type: 'string'}),
-    defineField({name: 'location', title: 'Location', type: 'string'}),
+    defineField({name: 'date', title: 'Review date', type: 'date'}),
     defineField({name: 'sourceUrl', title: 'Source URL', type: 'url'}),
     defineField({name: 'sourceId', title: 'Source review ID', type: 'string'}),
     defineField({name: 'verifiedAt', title: 'Last verified', type: 'date'}),
@@ -138,4 +146,3 @@ export const trustMetric = defineType({
   ],
   preview: {select: {title: 'value', subtitle: 'label'}},
 })
-

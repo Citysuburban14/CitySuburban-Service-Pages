@@ -7,7 +7,7 @@ type MediaPlan = {assets: Record<string, {path: string}>; services: Record<strin
 
 const source = JSON.parse(fs.readFileSync(path.resolve('data/source-content.json'), 'utf8')) as Source
 const mediaPlan = JSON.parse(fs.readFileSync(path.resolve('data/media-plan.json'), 'utf8')) as MediaPlan
-const fullReviews = JSON.parse(fs.readFileSync(path.resolve('data/full-reviews.json'), 'utf8')) as Record<string, string>
+const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
 const errors: string[] = []
 const warnings: string[] = []
 const unique = (values: string[]) => new Set(values).size === values.length
@@ -48,9 +48,12 @@ for (const row of source.page) {
   if (entries(row.guides).length < 1) errors.push(`Missing guides for ${row.equipment_slug}`)
   if (!row.form_subtitle || !row.form_note) errors.push(`Missing page-specific form copy for ${row.equipment_slug}`)
   for (const review of entries(row.reviews)) {
-    const [quote, , , sourceUrl, sourceId] = review.split('::').map((value) => value.trim())
+    const [quote, , date, sourceUrl, sourceId] = review.split('::').map((value) => value.trim())
     if (!sourceId) errors.push(`Missing review source ID for ${row.equipment_slug}`)
-    if (sourceId && fullReviews[sourceId] && fullReviews[sourceId].length < quote.length) errors.push(`Full review is shorter than excerpt ${sourceId}`)
+    if (quote.split(/\s+/).filter(Boolean).length > 14) errors.push(`Review excerpt exceeds 14 words for ${sourceId || row.equipment_slug}`)
+    if (sourceId && !reviewContexts[String(row.service_id)]?.[sourceId]) errors.push(`Missing review summary for ${row.service_id}/${sourceId}`)
+    if (sourceId && /Highlights Chicago|electric(?:al|ian)/i.test(reviewContexts[String(row.service_id)]?.[sourceId] || '')) errors.push(`Cross-client review content found for ${row.service_id}/${sourceId}`)
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) errors.push(`Invalid review date for ${sourceId || row.equipment_slug}`)
     if (!/^https:\/\/www\.google\.com\/maps\/reviews\//.test(sourceUrl || '')) errors.push(`Invalid Google review URL for ${sourceId || row.equipment_slug}`)
   }
 }
@@ -74,6 +77,6 @@ console.log(JSON.stringify({
   pages: source.page.length,
   pageJoins: pageKeys,
   monthlySearchVolumeTotal: source.equip.reduce((sum, row) => sum + Number((String(row.kw_volume).match(/[\d,]+/)?.[0] || '0').replace(/,/g, '')), 0),
-  fullReviewRecords: Object.keys(fullReviews).length,
+  reviewSummaryRecords: Object.values(reviewContexts).reduce((count, reviews) => count + Object.keys(reviews).length, 0),
   warnings,
 }, null, 2))
