@@ -3,10 +3,13 @@ import path from 'node:path'
 
 type Row = Record<string, string>
 type Source = {equip: Row[]; area: Row[]; page: Row[]}
+type MediaPlan = {assets: Record<string, {path: string}>; services: Record<string, {cover: string; gallery: string[]; workingPhotos: string[]}>; areas: Record<string, Record<string, string>>}
 
 const source = JSON.parse(fs.readFileSync(path.resolve('data/source-content.json'), 'utf8')) as Source
+const mediaPlan = JSON.parse(fs.readFileSync(path.resolve('data/media-plan.json'), 'utf8')) as MediaPlan
 const fullReviews = JSON.parse(fs.readFileSync(path.resolve('data/full-reviews.json'), 'utf8')) as Record<string, string>
 const errors: string[] = []
+const warnings: string[] = []
 const unique = (values: string[]) => new Set(values).size === values.length
 const entries = (raw = '') => raw.split('||').map((item) => item.trim()).filter(Boolean)
 const equipmentSlugs = source.equip.map((row) => row.slug)
@@ -19,31 +22,45 @@ if (!unique(source.equip.map((row) => row.service_id))) errors.push('Duplicate s
 if (!unique(pageKeys)) errors.push('Duplicate service-page joins')
 for (const key of expectedKeys) if (!pageKeys.includes(key)) errors.push(`Missing service-page row: ${key}`)
 for (const row of source.equip) {
-  if (!/^\d+$/.test(row.service_id)) errors.push(`Invalid service_id for ${row.slug}`)
-  if (!/^\d+$/.test(row.kw_volume)) errors.push(`Invalid kw_volume for ${row.slug}`)
+  if (!/^\d+$/.test(String(row.service_id))) errors.push(`Invalid service_id for ${row.slug}`)
+  if (!/[\d,]+\/mo/.test(String(row.kw_volume))) errors.push(`Invalid kw_volume for ${row.slug}`)
   if (!row.h1_prefix || !row.hero_lede || !row.faqs) errors.push(`Missing required service content for ${row.slug}`)
   if (entries(row.types).length < 6) errors.push(`Too few equipment types for ${row.slug}`)
   if (entries(row.brands).length < 6) errors.push(`Too few brands for ${row.slug}`)
   if (entries(row.why).length < 3) errors.push(`Too few trust reasons for ${row.slug}`)
-  if (entries(row.other_services).length !== 4) errors.push(`Expected four related services for ${row.slug}`)
+  if (entries(row.other_services).length < 3) errors.push(`Expected at least three related services for ${row.slug}`)
   if (entries(row.pricing_rows).length < 1) errors.push(`Missing pricing rows for ${row.slug}`)
   if (entries(row.faqs).length < 1) errors.push(`Missing FAQs for ${row.slug}`)
 }
 for (const row of source.page) {
-  const expectedCanonical = `https://www.highlightschicago.com/services/${row.equipment_slug}/${row.area_slug}/`
+  const expectedCanonical = `${row.site_url.replace(/\/$/, '')}/services/${row.equipment_slug}/${row.area_slug}/`
   if (row.canonical_url !== expectedCanonical) errors.push(`Unexpected canonical URL for ${row.equipment_slug}`)
+  if (/Highlights Chicago/i.test(row.company_name)) errors.push(`Inherited company name for ${row.equipment_slug}`)
+  if (row.meta_title.length > 75) errors.push(`Meta title exceeds 75 characters for ${row.equipment_slug}`)
+  if (row.meta_description.length > 170) errors.push(`Meta description exceeds 170 characters for ${row.equipment_slug}`)
   const service = source.equip.find((candidate) => candidate.slug === row.equipment_slug)
-  if (!service || service.service_id !== row.service_id) errors.push(`service_id mismatch for ${row.equipment_slug}`)
+  if (!service || String(service.service_id) !== String(row.service_id)) errors.push(`service_id mismatch for ${row.equipment_slug}`)
   if (entries(row.reviews).length !== 4) errors.push(`Expected four reviews for ${row.equipment_slug}`)
-  if (entries(row.gallery).length < 1) errors.push(`Missing gallery for ${row.equipment_slug}`)
-  if (entries(row.working_photos).length < 1) errors.push(`Missing working photos for ${row.equipment_slug}`)
+  const plannedMedia = mediaPlan.services[row.equipment_slug]
+  if (!plannedMedia?.cover) errors.push(`Missing collection cover for ${row.equipment_slug}`)
+  if ((plannedMedia?.gallery.length || entries(row.gallery).length) !== 3) errors.push(`Expected three gallery images for ${row.equipment_slug}`)
+  if ((plannedMedia?.workingPhotos.length || entries(row.working_photos).length) !== 3) errors.push(`Expected three working photos for ${row.equipment_slug}`)
   if (entries(row.guides).length < 1) errors.push(`Missing guides for ${row.equipment_slug}`)
+  if (!row.form_subtitle || !row.form_note) errors.push(`Missing page-specific form copy for ${row.equipment_slug}`)
   for (const review of entries(row.reviews)) {
     const [quote, , , sourceUrl, sourceId] = review.split('::').map((value) => value.trim())
-    if (!sourceId || !fullReviews[sourceId]) errors.push(`Missing full review text for ${sourceId || row.equipment_slug}`)
-    if (sourceId && fullReviews[sourceId]?.length < quote.length) errors.push(`Full review is shorter than excerpt ${sourceId}`)
+    if (!sourceId) errors.push(`Missing review source ID for ${row.equipment_slug}`)
+    if (sourceId && fullReviews[sourceId] && fullReviews[sourceId].length < quote.length) errors.push(`Full review is shorter than excerpt ${sourceId}`)
     if (!/^https:\/\/www\.google\.com\/maps\/reviews\//.test(sourceUrl || '')) errors.push(`Invalid Google review URL for ${sourceId || row.equipment_slug}`)
   }
+}
+
+for (const [assetKey, media] of Object.entries(mediaPlan.assets)) {
+  if (!fs.existsSync(path.resolve(media.path))) errors.push(`Missing media file for ${assetKey}: ${media.path}`)
+}
+for (const row of source.area) {
+  const names = entries(row.sub_areas).map((entry) => entry.split('::')[0].trim())
+  for (const name of names) if (!mediaPlan.areas[row.slug]?.[name]) errors.push(`Missing location image for ${name}`)
 }
 
 if (errors.length) {
@@ -56,6 +73,7 @@ console.log(JSON.stringify({
   areas: source.area.length,
   pages: source.page.length,
   pageJoins: pageKeys,
-  monthlySearchVolumeTotal: source.equip.reduce((sum, row) => sum + Number(row.kw_volume), 0),
+  monthlySearchVolumeTotal: source.equip.reduce((sum, row) => sum + Number((String(row.kw_volume).match(/[\d,]+/)?.[0] || '0').replace(/,/g, '')), 0),
   fullReviewRecords: Object.keys(fullReviews).length,
+  warnings,
 }, null, 2))

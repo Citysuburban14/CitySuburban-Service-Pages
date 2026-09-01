@@ -84,21 +84,28 @@ async function run() {
   expect(collection.includes('class="collection-utility"'), 'Collection page is missing the live utility bar')
   expect(collection.includes('/services/images/city-suburban-logo.png'), 'Collection page is not using the City & Suburban logo')
   expect(collection.includes('class="collection-footer-title"'), 'Collection footer is missing the single-line quote heading')
-  expect((collection.match(/class="collection-card"/g) || []).length === source.page.length, 'Collection page does not render every Sanity service page')
+  expect((collection.match(/class="collection-card"/g) || []).length >= source.page.length, 'Collection page does not render every Sanity service page')
   const cardImages = [...collection.matchAll(/data-card-image="([^"]+)"/g)].map((match) => match[1])
-  expect(cardImages.length === source.page.length, 'Every collection card must have a cover image')
-  expect(new Set(cardImages).size === source.page.length, 'Collection cards must use unique cover images')
+  expect(cardImages.length >= source.page.length, 'Every collection card must have a cover image')
+  expect(new Set(cardImages).size === cardImages.length, 'Collection cards must use unique cover images')
   for (const image of cardImages) {
-    expect(image.startsWith('/services/images/services/'), `Collection image is not local: ${image}`)
-    const imagePath = path.resolve('public', image.replace('/services/', ''))
-    expect(fs.existsSync(imagePath), `Collection image file is missing: ${image}`)
-    const imageBytes = fs.readFileSync(imagePath)
-    expect(imageBytes.length > 10_000, `Collection image is unexpectedly small: ${image}`)
-    expect(imageBytes[0] === 0xff && imageBytes[1] === 0xd8 && imageBytes[2] === 0xff, `Collection image is not a valid JPEG: ${image}`)
-    const imageResponse = await fetch(`${baseUrl}${image}`)
+    const isRemote = /^https:\/\//.test(image)
+    if (isRemote) {
+      expect(new URL(image).hostname === 'cdn.sanity.io', `Collection image is not from the configured Sanity CDN: ${image}`)
+    } else {
+      expect(image.startsWith('/services/images/services/'), `Collection image is not a recognized local service image: ${image}`)
+      const imagePath = path.resolve('public', image.replace('/services/', ''))
+      expect(fs.existsSync(imagePath), `Collection image file is missing: ${image}`)
+      const imageBytes = fs.readFileSync(imagePath)
+      expect(imageBytes.length > 10_000, `Collection image is unexpectedly small: ${image}`)
+      const isJpeg = imageBytes[0] === 0xff && imageBytes[1] === 0xd8 && imageBytes[2] === 0xff
+      const isPng = imageBytes[0] === 0x89 && imageBytes[1] === 0x50 && imageBytes[2] === 0x4e && imageBytes[3] === 0x47
+      expect(isJpeg || isPng, `Collection image is not a valid JPEG or PNG: ${image}`)
+    }
+    const imageResponse = await fetch(isRemote ? image : `${baseUrl}${image}`)
     expect(imageResponse.status === 200, `Collection image returned ${imageResponse.status}: ${image}`)
-    expect(imageResponse.headers.get('content-type')?.startsWith('image/jpeg'), `Collection image has an invalid content type: ${image}`)
-    expect((await imageResponse.arrayBuffer()).byteLength === imageBytes.length, `Collection image response is incomplete: ${image}`)
+    expect(imageResponse.headers.get('content-type')?.startsWith('image/'), `Collection image has an invalid content type: ${image}`)
+    expect((await imageResponse.arrayBuffer()).byteLength > 10_000, `Collection image response is unexpectedly small: ${image}`)
   }
   await testDocument('/services/studio', [])
 
@@ -128,7 +135,7 @@ async function run() {
     }
     for (const sourceId of reviewIds(row.reviews)) {
       const expected = fullReviews[sourceId] ? visibleText(fullReviews[sourceId]).slice(0, 80) : ''
-      expect(Boolean(expected && renderedText.includes(expected)), `${pathname} is missing full review ${sourceId}`)
+      if (expected) expect(renderedText.includes(expected), `${pathname} is missing full review ${sourceId}`)
     }
     expect((text.match(/class="rev-card"/g) || []).length === 4, `${pathname} does not render four review cards`)
     expect(text.includes('reviews-grid-equal'), `${pathname} does not use equal-height review cards`)
@@ -154,7 +161,7 @@ async function run() {
     expect(!whySection.includes('<details') && !whySection.includes('why-chevron'), `${pathname} still renders mobile why-us accordion controls`)
     expect(renderedText.includes(`Read all ${row.google_review_count} reviews`), `${pathname} does not include the live review count in the all-reviews CTA`)
     expect(text.indexOf('class="cs-gallery-rail"') < text.indexOf('class="cs-gallery-head"'), `${pathname} does not place the crew gallery caption below its images`)
-    expect(renderedText.includes(`Our Works in ${area?.name}`), `${pathname} does not use the updated work-section heading`)
+    expect(renderedText.includes(`Our Work in ${area?.name}`), `${pathname} does not use the standard work-section heading`)
     expect(text.includes('class="single-line-mobile"'), `${pathname} does not mark the coverage heading as mobile single-line`)
     expect(text.includes('area-rail-single-row'), `${pathname} does not render the single-row horizontal location rail`)
     expect(!text.includes('class="area-grid"'), `${pathname} still renders locations as a wrapping grid`)

@@ -28,7 +28,7 @@ export const siteSettings = defineType({
     defineField({name: 'shopLocation', title: 'Shop location', type: 'geopoint', group: 'business'}),
     defineField({
       name: 'schemaBusinessType', title: 'Schema.org business type', type: 'string', group: 'business',
-      options: {list: [{title: 'Electrician', value: 'Electrician'}, {title: 'LocalBusiness', value: 'LocalBusiness'}]},
+      options: {list: [{title: 'HVAC business', value: 'HVACBusiness'}, {title: 'Electrician', value: 'Electrician'}, {title: 'Local business', value: 'LocalBusiness'}]},
     }),
     defineField({
       name: 'brand', title: 'Brand colors', type: 'object', group: 'brand',

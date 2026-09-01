@@ -20,6 +20,7 @@ export const serviceDefinition = defineType({
     defineField({name: 'hubUrl', title: 'Service hub URL', type: 'url', group: 'identity'}),
     defineField({name: 'primaryKeywords', title: 'Primary keywords', type: 'array', of: [defineArrayMember({type: 'string'})], group: 'seo'}),
     defineField({name: 'monthlySearchVolume', title: 'Monthly search volume', type: 'number', group: 'seo', validation: (rule) => rule.integer().min(0)}),
+    defineField({name: 'searchVolumeSummary', title: 'Search volume summary', type: 'string', group: 'seo', description: 'Exact research summary imported from the content sheet.'}),
     defineField({name: 'secondaryKeywords', title: 'Secondary keywords', type: 'array', of: [defineArrayMember({type: 'string'})], group: 'seo'}),
     defineField({name: 'h1Prefix', title: 'H1 prefix', type: 'string', group: 'hero', validation: (rule) => rule.required()}),
     defineField({name: 'heroLede', title: 'Hero introduction', type: 'text', rows: 5, group: 'hero'}),

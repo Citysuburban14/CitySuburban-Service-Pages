@@ -22,6 +22,7 @@ export type PreparedCollectionItem = Omit<CollectionItem, 'serviceSlug' | 'areaS
 }
 
 const serviceCardImages: Record<string, string> = {
+  'furnace': '/services/images/services/furnace-repair.png',
   'generator-installation': '/services/images/services/generator-installation.jpg',
   'solar-panel-installation': '/services/images/services/solar-panel-installation.jpg',
   'ceiling-fan-installation': '/services/images/services/ceiling-fan-installation.jpg',

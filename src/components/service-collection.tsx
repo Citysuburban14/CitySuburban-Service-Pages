@@ -53,7 +53,7 @@ export function ServiceCollection({pages}: {pages: CollectionItem[]}) {
                 <span className="collection-card-area">{page.areaName}</span>
                 <strong>{page.serviceName}</strong>
                 {page.metaDescription && <span className="collection-card-description">{page.metaDescription}</span>}
-                {page.monthlySearchVolume ? <span className="collection-card-volume">{page.monthlySearchVolume.toLocaleString()} monthly searches</span> : null}
+                {page.monthlySearchVolume ? <span className="collection-card-volume">{page.monthlySearchVolume.toLocaleString('en-US')} monthly searches</span> : null}
               </span>
             </Link>
           ))}

@@ -1,0 +1,118 @@
+{
+  "assets": {
+    "business-furnace-installation": {
+      "path": "public/images/services/city-suburban/furnace-installation.jpg",
+      "alt": "City & Suburban furnace installation in a Chicago mechanical room",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "business-furnace-closet": {
+      "path": "public/images/services/city-suburban/furnace-closet-installation.jpg",
+      "alt": "City & Suburban heating equipment installed in a compact utility closet",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "business-rooftop-ac": {
+      "path": "public/images/services/city-suburban/rooftop-ac-condensers.jpg",
+      "alt": "City & Suburban rooftop air-conditioning condenser installation",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "business-water-heater-room": {
+      "path": "public/images/services/city-suburban/furnace-water-heater-room.jpg",
+      "alt": "City & Suburban furnace and water-heater mechanical-room work",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "business-bosch-air-handler": {
+      "path": "public/images/services/city-suburban/bosch-air-handler-installation.jpg",
+      "alt": "City & Suburban Bosch air-handler and ductwork installation",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "business-basement-hvac": {
+      "path": "public/images/services/city-suburban/basement-hvac-system.jpg",
+      "alt": "City & Suburban basement heating and cooling equipment",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "business-service-vans": {
+      "path": "public/images/services/city-suburban/city-suburban-service-vans.jpg",
+      "alt": "City & Suburban Heating & Cooling service vehicles in Chicago",
+      "credit": "City & Suburban Heating & Cooling — Google Business Profile"
+    },
+    "area-wicker-park": {
+      "path": "public/images/areas/wicker-park-west-town.jpg",
+      "alt": "Flatiron Arts Building in Wicker Park, Chicago",
+      "credit": "Warren LeMay / Wikimedia Commons (CC BY-SA 2.0)"
+    },
+    "area-lakeview": {
+      "path": "public/images/areas/lakeview-wrigleyville.jpg",
+      "alt": "Lakeview neighborhood in Chicago",
+      "credit": "Wikimedia Commons"
+    },
+    "area-logan-square": {
+      "path": "public/images/areas/logan-square-humboldt-park.jpg",
+      "alt": "Illinois Centennial Monument in Logan Square, Chicago",
+      "credit": "Rjmorales3 / Wikimedia Commons"
+    },
+    "area-jefferson-park": {
+      "path": "public/images/areas/portage-jefferson-park.jpg",
+      "alt": "Jefferson Park station entrance in Chicago",
+      "credit": "Warren LeMay / Wikimedia Commons (CC BY-SA 2.0)"
+    },
+    "area-hyde-park": {
+      "path": "public/images/areas/hyde-park-kenwood.jpg",
+      "alt": "Promontory Point at sunrise in Hyde Park, Chicago",
+      "credit": "Don Burkett / Wikimedia Commons (CC BY-SA 2.0)"
+    },
+    "area-river-north": {
+      "path": "public/images/areas/near-north-river-north.jpg",
+      "alt": "River North neighborhood in Chicago",
+      "credit": "Matt Kieffer / Wikimedia Commons (CC BY-SA 2.0)"
+    },
+    "area-rogers-park": {
+      "path": "public/images/areas/rogers-park-edgewater.jpg",
+      "alt": "Rogers Park station in Chicago",
+      "credit": "Wikimedia Commons"
+    },
+    "area-south-side": {
+      "path": "public/images/areas/south-southwest-side.jpg",
+      "alt": "Chicago skyline viewed from the South Side lakefront",
+      "credit": "DimiTalen / Wikimedia Commons (CC BY-SA 4.0)"
+    }
+  },
+  "services": {
+    "water-heater-repair-installation": {
+      "cover": "business-water-heater-room",
+      "gallery": ["business-water-heater-room", "business-basement-hvac", "business-furnace-closet"],
+      "workingPhotos": ["business-water-heater-room", "business-basement-hvac", "business-furnace-closet"]
+    },
+    "air-conditioner-repair-installation": {
+      "cover": "business-rooftop-ac",
+      "gallery": ["business-rooftop-ac", "business-bosch-air-handler", "business-service-vans"],
+      "workingPhotos": ["business-rooftop-ac", "business-bosch-air-handler", "business-service-vans"]
+    },
+    "furnace-repair-installation": {
+      "cover": "business-furnace-installation",
+      "gallery": ["business-furnace-installation", "business-furnace-closet", "business-basement-hvac"],
+      "workingPhotos": ["business-furnace-installation", "business-furnace-closet", "business-basement-hvac"]
+    },
+    "hvac-repair-installation": {
+      "cover": "business-service-vans",
+      "gallery": ["business-service-vans", "business-bosch-air-handler", "business-rooftop-ac"],
+      "workingPhotos": ["business-bosch-air-handler", "business-rooftop-ac", "business-furnace-installation"]
+    },
+    "heat-pump-repair-installation": {
+      "cover": "business-bosch-air-handler",
+      "gallery": ["business-bosch-air-handler", "business-rooftop-ac", "business-service-vans"],
+      "workingPhotos": ["business-bosch-air-handler", "business-rooftop-ac", "business-basement-hvac"]
+    }
+  },
+  "areas": {
+    "chicago": {
+      "Wicker Park & West Town": "area-wicker-park",
+      "Lakeview & Wrigleyville": "area-lakeview",
+      "Logan Square & Humboldt Park": "area-logan-square",
+      "Portage Park & Jefferson Park": "area-jefferson-park",
+      "Hyde Park & Kenwood": "area-hyde-park",
+      "Near North & River North": "area-river-north",
+      "Rogers Park & Edgewater": "area-rogers-park",
+      "South & Southwest Side": "area-south-side"
+    }
+  }
+}

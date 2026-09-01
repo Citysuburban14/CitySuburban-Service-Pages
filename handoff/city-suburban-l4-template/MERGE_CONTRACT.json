@@ -1,0 +1,109 @@
+{
+  "contractVersion": "city-suburban-l4@1.0.0",
+  "routePattern": "/services/{equipment.slug}/{area.slug}",
+  "pageIdPattern": "servicePage.{equipment.slug}.{area.slug}",
+  "compositeSourceKey": ["equipment_slug", "area_slug"],
+  "sourceHeadersMustRemainUnchanged": true,
+  "sourceCollections": {
+    "equipment": {
+      "file": "sample_equipment_sheet.xlsx",
+      "primaryKey": ["slug"],
+      "headers": [
+        "slug", "display_name", "display_name_lower", "category_group", "category_slug", "symptom_word", "permit_fee", "price_min", "price_max", "seasonal_advice", "common_problems", "price_table", "faqs_generic", "contractor_questions"
+      ]
+    },
+    "area": {
+      "file": "sample_area_sheet.xlsx",
+      "primaryKey": ["slug"],
+      "headers": [
+        "slug", "display_name", "zip", "lat", "lon", "distance_minutes", "distance_miles", "example_cross_streets", "map_query", "housing_stock_paragraph_1", "housing_stock_paragraph_2", "landmark_note", "boundary_description", "parking_note", "population_note", "building_types", "subareas", "nearby_area_links", "faqs_generic"
+      ]
+    },
+    "page": {
+      "file": "sample_page_specific_sheet.xlsx",
+      "primaryKey": ["equipment_slug", "area_slug"],
+      "foreignKeys": {
+        "equipment_slug": "equipment.slug",
+        "area_slug": "area.slug"
+      },
+      "headers": [
+        "equipment_slug", "area_slug", "meta_description_hook", "opening_paragraph", "quick_answer", "typical_finds", "permit_total", "permit_equip_count", "permit_brands", "permit_commentary", "guide_intro", "contractor_question_custom_label", "contractor_question_custom", "photo_slots", "reviews", "faqs_custom", "subareas", "nearby_area_links", "faqs_generic"
+      ]
+    }
+  },
+  "parsing": {
+    "recordDelimiter": "||",
+    "fieldDelimiter": "::",
+    "trimTokens": true,
+    "removeBlankRecords": true,
+    "shapes": {
+      "common_problems": ["title", "summary", "detail"],
+      "price_table": ["repair", "range", "context"],
+      "faqs_generic": ["question", "answer"],
+      "faqs_custom": ["question", "answer"],
+      "contractor_questions": ["question", "answer"],
+      "subareas": ["name", "note"],
+      "nearby_area_links": ["slug", "label"],
+      "photo_slots": ["slotLabelOrAlt", "editorialNote"],
+      "reviews": ["quote", "author", "location", "date"]
+    },
+    "special": {
+      "permit_brands": "Split on comma, trim, remove blanks, preserve authored capitalization.",
+      "building_types": "Split records on ||. First token is name. Numeric final token is legacyMediaKey. Join all middle tokens as note.",
+      "zip": "Keep as string.",
+      "blankPageOverride": "Inherit the area value; do not clear it."
+    }
+  },
+  "overrideArrays": {
+    "page.subareas": "area.subareas",
+    "page.nearby_area_links": "area.nearby_area_links",
+    "page.faqs_generic": "area.faqs_generic"
+  },
+  "mergeOrder": [
+    "resolvePageRow",
+    "resolveEquipmentAndArea",
+    "loadSiteSettingsAndTemplate",
+    "parseDelimitedFields",
+    "applyPageOverrides",
+    "composeNormalizedPage",
+    "deriveIdentityAndRoute",
+    "buildSeo",
+    "mergeAndDedupeFaqs",
+    "mergeContractorGuidance",
+    "attachApprovedMedia",
+    "validateBatchThenPublish"
+  ],
+  "faqMerge": {
+    "order": ["equipment.faqs_generic", "effectiveArea.faqs_generic", "page.faqs_custom"],
+    "dedupeKey": "lowercase(trim(question))"
+  },
+  "sectionOrder": [
+    "hero", "types", "brands", "trust", "reviews", "why", "workingArea", "coverage", "otherServices", "pricing", "faq", "closingCta", "guides"
+  ],
+  "globalChrome": ["header", "breadcrumbs", "mobileFixedCallBar", "footer"],
+  "presentation": {
+    "primaryNavy": "#09263A",
+    "darkNavy": "#061B29",
+    "callRed": "#DD382B",
+    "callRedHover": "#B92E23",
+    "scheduleBlue": "#0A4265",
+    "lightSurface": "#EEF4F7",
+    "equalHeightReviewCards": true,
+    "ratingAfterReviewText": true,
+    "coverageMapFirst": true,
+    "neighborhoodGridWithoutScrollbar": true,
+    "pricingHeadingAsQuestion": true,
+    "accessibleBrandWordmarkFallback": true
+  },
+  "validation": {
+    "uniqueCompositePageKey": true,
+    "foreignKeysResolveExactlyOnce": true,
+    "priceMaxGtePriceMin": true,
+    "permitEquipmentCountLtePermitTotal": true,
+    "metaTitleMaxCharacters": 65,
+    "metaDescriptionMaxCharacters": 170,
+    "requireReviewSourceMetadataBeforePublish": true,
+    "requireApprovedImageAltAndCreditRecord": true,
+    "publishWholeValidatedBatchOnly": true
+  }
+}

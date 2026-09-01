@@ -19,15 +19,25 @@ export const servicePage = defineType({
     defineField({
       name: 'seo', title: 'SEO metadata', type: 'object', group: 'seo',
       fields: [
-        defineField({name: 'title', title: 'Meta title', type: 'string', validation: (rule) => rule.required().max(65)}),
+        defineField({name: 'title', title: 'Meta title', type: 'string', validation: (rule) => rule.required().max(75)}),
         defineField({name: 'description', title: 'Meta description', type: 'text', rows: 3, validation: (rule) => rule.required().max(170)}),
         defineField({name: 'canonicalUrl', title: 'Canonical URL', type: 'url', validation: (rule) => rule.required()}),
       ],
     }),
     defineField({name: 'reviews', title: 'Reviews', type: 'array', of: [defineArrayMember({type: 'review'})], group: 'proof'}),
+    defineField({name: 'trustMetrics', title: 'Page trust metrics', type: 'array', of: [defineArrayMember({type: 'trustMetric'})], group: 'proof'}),
+    defineField({
+      name: 'coverImage',
+      title: 'Collection card cover image',
+      description: 'Used on the service-page collection card. Keep this separate from the client-work gallery.',
+      type: 'externalImage',
+      group: 'proof',
+    }),
     defineField({name: 'gallery', title: 'Hero gallery', type: 'array', of: [defineArrayMember({type: 'externalImage'})], group: 'proof'}),
     defineField({name: 'workingPhotos', title: 'Working-in-area photos', type: 'array', of: [defineArrayMember({type: 'externalImage'})], group: 'proof'}),
     defineField({name: 'guides', title: 'Guides', type: 'array', of: [defineArrayMember({type: 'guide'})], group: 'content'}),
+    defineField({name: 'formSubtitle', title: 'Form subtitle', type: 'string', group: 'content'}),
+    defineField({name: 'formNote', title: 'Form note', type: 'text', group: 'content'}),
     defineField({name: 'localFaqOverrides', title: 'Local FAQ overrides', type: 'array', of: [defineArrayMember({type: 'faq'})], group: 'content'}),
   ],
   preview: {

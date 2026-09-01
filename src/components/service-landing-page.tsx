@@ -10,6 +10,17 @@ import {questionHeading} from '@/lib/headings'
 type Props = {data: ServicePageData}
 
 const LIGHT_MARK_ON_DARK_TILE = new Set(['eaton', 'generac', 'siemens', 'sma'])
+const AVAILABLE_BRAND_LOGOS = new Set([
+  'a-o-smith', 'amana', 'american-standard', 'bosch', 'bradford-white', 'bryant', 'carrier',
+  'comfortmaker', 'daikin', 'fujitsu', 'goodman', 'lennox', 'lochinvar', 'mitsubishi', 'navien',
+  'noritz', 'rheem', 'rinnai', 'state', 'takagi', 'trane', 'york',
+  'big-ass-fans', 'briggs-and-stratton', 'broan', 'canadian-solar', 'casablanca', 'challenger',
+  'champion', 'cummins', 'cutler-hammer', 'ditek', 'eaton', 'emerson', 'enphase', 'federal-pacific',
+  'fronius', 'ge', 'generac', 'hampton-bay', 'honeywell', 'hubbell', 'hunter', 'insinkerator',
+  'intermatic', 'kichler', 'kitchenaid', 'kohler', 'legrand', 'leviton', 'lg', 'lutron', 'milbank',
+  'minka-aire', 'moen', 'murray', 'pass-and-seymour', 'qcells', 'schneider', 'siemens', 'sma',
+  'solaredge', 'square-d', 'tesla', 'waste-king', 'zinsco',
+])
 
 function imageUrl(image?: ExternalImage): string | undefined {
   return image?.resolvedUrl || image?.externalUrl
@@ -35,6 +46,9 @@ function brandLogoPath(brand: string): string {
 
 function BrandMark({brand}: {brand: string}) {
   const slug = brandSlug(brand)
+  if (!AVAILABLE_BRAND_LOGOS.has(slug)) {
+    return <span className="brand-mark brand-wordmark" role="img" aria-label={`${brand} wordmark`}>{brand}</span>
+  }
   const filter = LIGHT_MARK_ON_DARK_TILE.has(slug) ? 'brand-light-on-dark-filter' : 'brand-dark-on-light-filter'
   return <span className={`brand-mark brand-mark--${slug}`} role="img" aria-label={`${brand} logo`}><svg viewBox="0 0 64 40" aria-hidden="true"><image href={brandLogoPath(brand)} x="0" y="0" width="64" height="40" preserveAspectRatio="xMidYMid meet" filter={`url(#${filter})`} /></svg></span>
 }
@@ -127,6 +141,10 @@ function EmptyImageIcon() {
   return <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="11" width="34" height="27" rx="3" /><circle cx="18" cy="21" r="4" /><path d="M9 34l10-8 7 6 5-4 8 6" /></svg>
 }
 
+function PhotoPlaceholder({image}: {image: ExternalImage}) {
+  return <><EmptyImageIcon />{image.alt && <span className="photo-slot-label">{image.alt}</span>}</>
+}
+
 function JsonLd({data}: Props) {
   const {page, settings} = data
   if (!page || !settings) return null
@@ -167,6 +185,8 @@ export function ServiceLandingPage({data}: Props) {
   const presentation = page.template?.presentation
   const coverageMapFirst = presentation?.coverageMapFirst !== false
   const equalHeightReviews = presentation?.equalHeightReviewCards !== false
+  const heroGalleryImageCount = presentation?.heroGalleryImageCount || 3
+  const workingPhotoCount = presentation?.workingPhotoCount || 3
   const footerColor = presentation?.footerColor || '#09263A'
   const accentColor = presentation?.accentColor || '#DD382B'
   const accentDarkColor = presentation?.accentDarkColor || '#B92E23'
@@ -182,7 +202,7 @@ export function ServiceLandingPage({data}: Props) {
   } as CSSProperties
   const equipment = service.types || []
   const brands = service.brands || []
-  const trustMetrics = settings.trustMetrics || []
+  const trustMetrics = page.trustMetrics?.length ? page.trustMetrics : settings.trustMetrics || []
   const aPlusIndex = trustMetrics.findIndex((metric) => metric.value.trim().toUpperCase() === 'A+' || /\bBBB\b/i.test(metric.label))
   const aPlusMetric = aPlusIndex >= 0 ? trustMetrics[aPlusIndex] : undefined
   const remainingTrustMetrics = trustMetrics.filter((_, index) => index !== aPlusIndex)
@@ -204,8 +224,8 @@ export function ServiceLandingPage({data}: Props) {
         <p className="eyebrow">{area.heroEyebrow}</p><h1>{questionHeading(`${service.h1Prefix} in ${area.name}`)}</h1><p className="lede">{service.heroLede}</p>
         <div className="trustbar">{settings.trustLines?.map((line) => <span className="trust-item" key={line}>◆ {line}</span>)}{rating && <Rating rating={rating} count={reviewCount} />}</div>
         <div className="btn-row"><a className="btn btn-primary" href={`tel:${settings.phoneE164}`}>Call {settings.phoneDisplay}</a><a className="btn btn-secondary" href="#quote">{service.secondaryCta || 'Request service'}</a></div>
-        <div className="cs-gallery"><div className="cs-gallery-rail">{page.gallery?.slice(0, 3).map((photo, index) => <a className="cs-shot" href="#working-in-area" key={photo._key || index} aria-label={photo.alt || `${service.name} project ${index + 1}`}><span className="cs-shot-img" style={imageStyle(photo)}>{!imageUrl(photo) && <EmptyImageIcon />}</span></a>)}</div><div className="cs-gallery-head"><p className="eyebrow">{area.galleryLabel}</p><a href="#working-in-area">See more →</a></div></div>
-      </div><LeadForm service={service.name} area={area.name} issueQuestion={service.issueQuestion} issueOptions={service.issueOptions} buildingTypes={area.buildingTypes} addressPlaceholder={area.addressPlaceholder} subtitle={settings.formSubtitle} note={settings.formNote} /></div></header>
+        <div className="cs-gallery"><div className="cs-gallery-rail">{page.gallery?.slice(0, heroGalleryImageCount).map((photo, index) => <a className="cs-shot" href="#working-in-area" key={photo._key || index} aria-label={photo.alt || `${service.name} project ${index + 1}`}><span className="cs-shot-img" style={imageStyle(photo)}>{!imageUrl(photo) && <PhotoPlaceholder image={photo} />}</span></a>)}</div><div className="cs-gallery-head"><p className="eyebrow">{area.galleryLabel}</p><a href="#working-in-area">See more →</a></div></div>
+      </div><LeadForm service={service.name} area={area.name} issueQuestion={service.issueQuestion} issueOptions={service.issueOptions} buildingTypes={area.buildingTypes} addressPlaceholder={area.addressPlaceholder} subtitle={page.formSubtitle || settings.formSubtitle} note={page.formNote || settings.formNote} /></div></header>
 
       <section className="wrap" id="equipment"><h2>{questionHeading(service.typesHeading)}</h2><p className="lede narrow">{service.typesLede}</p><div className="equip-strip" aria-label={service.typesHeading}><div className="equip-track">{[...equipment, ...equipment].map((item, index) => <div className="equip" key={`${item._key || item.name}-${index}`} aria-hidden={index >= equipment.length || undefined}><EquipmentIcon index={index} /><b>{item.name}</b><span>{item.description}</span></div>)}</div></div>{service.typesFootnote && <p className="small muted section-note">{service.typesFootnote}</p>}</section>
 
@@ -213,11 +233,11 @@ export function ServiceLandingPage({data}: Props) {
 
       <section className="wrap" id="trust"><h2>{questionHeading(settings.trustHeading)}</h2><p className="lede narrow">{settings.trustLede}</p><div className="trust-strip">{orderedTrustMetrics.map((metric) => <div className="trust-cell" key={metric._key || metric.label}><b>{metric.value}</b><span>{metric.label}</span></div>)}{rating && <div className="trust-cell google-proof-cell"><b><Rating rating={rating} largeMark /></b><span>{reviewCount} Google reviews</span></div>}</div><div className="grid grid-3 trust-cards">{settings.trustCards?.map((item) => <article className="card" key={item._key || item.title}><h3>{questionHeading(item.title)}</h3><p className="small">{item.body}</p></article>)}</div></section>
 
-      <section className="section-tint" id="reviews"><div className="wrap"><h2>{questionHeading(settings.reviewsHeading)}</h2><div className={`grid grid-2 reviews-grid${equalHeightReviews ? ' reviews-grid-equal' : ''}`}>{page.reviews?.map((review, index) => <a className="rev-card" href={review.sourceUrl} target="_blank" rel="noreferrer" key={review._key || index}><blockquote>{review.quote}</blockquote>{rating && <div className="rev-rating"><Rating rating={rating} compact /></div>}<footer className="rev-meta"><span><strong>{review.author}</strong>{review.location && <> · {review.location}</>}</span><span className="rev-src">View on Google →</span></footer></a>)}</div>{settings.google?.reviewsUrl && <div className="rev-cta"><a className="rev-cta-btn" href={settings.google.reviewsUrl}>Read all {reviewCount ? `${reviewCount} ` : ''}reviews →</a></div>}{settings.reviewsDisclaimer && <p className="small muted review-note">{settings.reviewsDisclaimer}</p>}</div></section>
+      <section className="section-tint" id="reviews"><div className="wrap"><h2>{questionHeading(settings.reviewsHeading)}</h2><div className={`grid grid-2 reviews-grid${equalHeightReviews ? ' reviews-grid-equal' : ''}`}>{page.reviews?.map((review, index) => { const body = <><blockquote>{review.quote}</blockquote>{rating && <div className="rev-rating"><Rating rating={rating} compact /></div>}<footer className="rev-meta"><span><strong>{review.author}</strong>{review.location && <> · {review.location}</>}</span><span className="rev-src">{review.sourceUrl ? 'View source →' : 'Content-sheet sample'}</span></footer></>; return review.sourceUrl ? <a className="rev-card" href={review.sourceUrl} target="_blank" rel="noreferrer" key={review._key || index}>{body}</a> : <article className="rev-card" key={review._key || index}>{body}</article> })}</div>{settings.google?.reviewsUrl && <div className="rev-cta"><a className="rev-cta-btn" href={settings.google.reviewsUrl}>Read all {reviewCount ? `${reviewCount} ` : ''}reviews →</a></div>}{settings.reviewsDisclaimer && <p className="small muted review-note">{settings.reviewsDisclaimer}</p>}</div></section>
 
       <section className="wrap" id="why-us"><h2>{questionHeading(service.whyHeading)}</h2><p className="lede narrow">{service.whyLede}</p><div className="why-grid">{service.whyItems?.map((item) => <article className="why-item" key={item._key || item.title}><h3 className="why-title">{questionHeading(item.title)}</h3><p className="why-body">{item.body}</p></article>)}</div></section>
 
-      <section className="section-tint" id="working-in-area"><div className="wrap"><h2>{questionHeading(`Our Works in ${area.name}`)}</h2><p className="lede narrow">{area.workingLede}</p><div className="photo-grid">{page.workingPhotos?.map((photo, index) => <div className="ph" key={photo._key || index} style={imageStyle(photo)} role="img" aria-label={photo.alt || `${service.name} work in ${area.name} ${index + 1}`}>{!imageUrl(photo) && <EmptyImageIcon />}</div>)}</div></div></section>
+      <section className="section-tint" id="working-in-area"><div className="wrap"><h2>{questionHeading(`Our Work in ${area.name}`)}</h2><p className="lede narrow">{area.workingLede}</p><div className="photo-grid">{page.workingPhotos?.slice(0, workingPhotoCount).map((photo, index) => <div className="ph" key={photo._key || index} style={imageStyle(photo)} role="img" aria-label={photo.alt || `${service.name} work in ${area.name} ${index + 1}`}>{!imageUrl(photo) && <PhotoPlaceholder image={photo} />}</div>)}</div></div></section>
 
       <section className="wrap" id="areas"><h2 className="single-line-mobile">{questionHeading(area.areasHeading)}</h2><p className="lede narrow">{area.areasLede}</p><div className="coverage-stack">{coverageMapFirst ? <>{coverageMap}{coverageAreas}</> : <>{coverageAreas}{coverageMap}</>}</div>{area.areasNote && <p className="small muted coverage-note">{area.areasNote}</p>}</section>
 

@@ -27,6 +27,10 @@ export const servicePageTemplate = defineType({
         defineField({name: 'neighborhoodGrid', title: 'Neighborhood grid without scrollbar', type: 'boolean', initialValue: true}),
         defineField({name: 'brandLogoCards', title: 'Equipment brand logo cards', type: 'boolean', initialValue: true}),
         defineField({name: 'pricingHeadingAsQuestion', title: 'Pricing heading ends with a question mark', type: 'boolean', initialValue: true}),
+        defineField({name: 'separateCollectionCover', title: 'Separate collection-card cover', type: 'boolean', initialValue: true}),
+        defineField({name: 'heroGalleryImageCount', title: 'Hero gallery image count', type: 'number', initialValue: 3, validation: (rule) => rule.required().integer().min(1).max(6)}),
+        defineField({name: 'workingPhotoCount', title: 'Working-area image count', type: 'number', initialValue: 3, validation: (rule) => rule.required().integer().min(1).max(6)}),
+        defineField({name: 'locationPhotoCards', title: 'Location cards include photos', type: 'boolean', initialValue: true}),
       ],
     }),
     defineField({

@@ -2,10 +2,30 @@
 
 Local brand marks are downloaded from Google's favicon service using each manufacturer's official domain. Brand names remain visible beside each mark for clarity and accessibility.
 
-The service-page renderer keeps each source mark's original silhouette, removes opaque light favicon backgrounds with a shared luminance filter, and presents every mark in the same off-white brand treatment. Brand names remain alongside the marks, so even low-resolution legacy favicons stay unambiguous without substituting generic letter icons.
-
 | Brand | Official domain | Local asset |
 | --- | --- | --- |
+| Rheem | https://rheem.com | rheem.png |
+| A.O. Smith | https://hotwater.com | a-o-smith.png |
+| Bradford White | https://bradfordwhite.com | bradford-white.png |
+| State | https://statewaterheaters.com | state.png |
+| Navien | https://navieninc.com | navien.png |
+| Rinnai | https://rinnai.us | rinnai.png |
+| Noritz | https://noritz.com | noritz.png |
+| Lochinvar | https://lochinvar.com | lochinvar.png |
+| Takagi | https://takagi.com | takagi.png |
+| American Standard | https://americanstandardair.com | american-standard.png |
+| Carrier | https://carrier.com | carrier.png |
+| Trane | https://trane.com | trane.png |
+| Lennox | https://lennox.com | lennox.png |
+| Goodman | https://goodmanmfg.com | goodman.png |
+| Bryant | https://bryant.com | bryant.png |
+| York | https://york.com | york.png |
+| Amana | https://amana-hac.com | amana.png |
+| Mitsubishi | https://mitsubishicomfort.com | mitsubishi.png |
+| Comfortmaker | https://comfortmaker.com | comfortmaker.png |
+| Daikin | https://daikincomfort.com | daikin.png |
+| Bosch | https://bosch-homecomfort.com | bosch.png |
+| Fujitsu | https://fujitsugeneral.com | fujitsu.png |
 | Generac | https://generac.com | generac.png |
 | Kohler | https://kohler.com | kohler.png |
 | Briggs & Stratton | https://briggsandstratton.com | briggs-and-stratton.png |

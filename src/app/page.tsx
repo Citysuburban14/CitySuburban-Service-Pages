@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import {CollectionFooter, CollectionHeader} from '@/components/collection-chrome'
 import {CollectionItem, ServiceCollection} from '@/components/service-collection'
+import {furnaceLincolnParkCollectionItem} from '@/data/furnace-lincoln-park-sample'
 import {sanityFetch} from '@/sanity/lib/live'
 import {SERVICE_INDEX_QUERY} from '@/sanity/lib/queries'
 
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const {data} = await sanityFetch({query: SERVICE_INDEX_QUERY, stega: false})
-  const pages = (data || []) as CollectionItem[]
+  const sanityPages = (data || []) as CollectionItem[]
+  const hasSampleRoute = sanityPages.some((page) => page.serviceSlug === furnaceLincolnParkCollectionItem.serviceSlug && page.areaSlug === furnaceLincolnParkCollectionItem.areaSlug)
+  const pages = hasSampleRoute ? sanityPages : [furnaceLincolnParkCollectionItem, ...sanityPages]
   return (
     <div className="collection-page">
       <CollectionHeader />

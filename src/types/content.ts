@@ -13,6 +13,7 @@ export type ServiceDefinition = {
   hubUrl?: string
   primaryKeywords?: string[]
   monthlySearchVolume?: number
+  searchVolumeSummary?: string
   secondaryKeywords?: string[]
   h1Prefix: string
   heroLede?: string
@@ -89,9 +90,13 @@ export type ServicePageData = {
     title: string
     seo: {title: string; description: string; canonicalUrl: string}
     reviews?: Review[]
+    trustMetrics?: Array<{_key?: string; value: string; label: string}>
+    coverImage?: ExternalImage
     gallery?: ExternalImage[]
     workingPhotos?: ExternalImage[]
     guides?: Guide[]
+    formSubtitle?: string
+    formNote?: string
     localFaqOverrides?: Faq[]
     template?: {
       name?: string
@@ -109,6 +114,10 @@ export type ServicePageData = {
         neighborhoodGrid?: boolean
         brandLogoCards?: boolean
         pricingHeadingAsQuestion?: boolean
+        separateCollectionCover?: boolean
+        heroGalleryImageCount?: number
+        workingPhotoCount?: number
+        locationPhotoCards?: boolean
       }
     }
     service: ServiceDefinition
