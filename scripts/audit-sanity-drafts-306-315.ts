@@ -37,6 +37,7 @@ const documents = await client.fetch(`*[_id in $ids]{
   _id, _type, _rev, serviceId, name, title,
   "slug": slug.current,
   "serviceRef": service._ref,
+  "serviceRefIsWeak": service._weak == true,
   "areaRef": area._ref,
   "templateRef": template._ref,
   "reviewCount": count(reviews),
@@ -53,6 +54,15 @@ const documents = await client.fetch(`*[_id in $ids]{
 const baseline = await client.fetch(`*[_id in $ids]{_id, _rev} | order(_id asc)`, {
   ids: Array.from({length: 5}, (_, index) => 301 + index).flatMap((id) => [`service-${id}`, `servicePage-${id}-chicago`]),
 })
+
+const serviceDefinitions = documents.filter((document: {_type: string}) => document._type === 'serviceDefinition')
+const servicePages = documents.filter((document: {_type: string}) => document._type === 'servicePage')
+if (serviceDefinitions.length !== 10 || serviceDefinitions.some((document: {_id: string}) => document._id.startsWith('drafts.'))) {
+  throw new Error('Expected ten published service definitions and no draft service-definition duplicates')
+}
+if (servicePages.length !== 10 || servicePages.some((document: {_id: string; serviceRefIsWeak: boolean}) => !document._id.startsWith('drafts.') || document.serviceRefIsWeak)) {
+  throw new Error('Expected ten draft service pages with strong service references')
+}
 
 console.log(JSON.stringify({projectId, dataset, documents, publishedBaseline301To305: baseline}, null, 2))
 }

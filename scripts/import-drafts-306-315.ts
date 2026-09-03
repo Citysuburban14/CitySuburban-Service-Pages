@@ -89,7 +89,7 @@ const plannedImage = (assetKey: string, useKey: string, assetRefs: Record<string
 const buildServices = (): ImportDocument[] => source.equip.map((row) => {
   const serviceId = value(row, 'service_id') || value(row, 'C')
   return {
-    _id: `drafts.service-${serviceId}`,
+    _id: `service-${serviceId}`,
     _type: 'serviceDefinition',
     serviceId: Number(serviceId),
     name: value(row, 'name'),
@@ -166,12 +166,7 @@ const buildPages = (assetRefs: Record<string, string>): ImportDocument[] => sour
     _type: 'servicePage',
     title: `${slug} — ${areaSlug}`,
     serviceId: Number(serviceId),
-    service: {
-      _type: 'reference',
-      _ref: `service-${serviceId}`,
-      _weak: true,
-      _strengthenOnPublish: {type: 'serviceDefinition'},
-    },
+    service: {_type: 'reference', _ref: `service-${serviceId}`},
     area: {_type: 'reference', _ref: `area-${areaSlug}`},
     template: {_type: 'reference', _ref: 'servicePageTemplate-standard-v1'},
     seo: {
@@ -249,7 +244,13 @@ async function main() {
   validateDocuments(services, pages)
   const documents = [...services, ...pages]
   const ids = documents.map((document) => document._id)
-  if (new Set(ids).size !== 20 || ids.some((id) => !id.startsWith('drafts.'))) throw new Error('Import must target exactly twenty draft IDs')
+  if (
+    new Set(ids).size !== 20
+    || services.some((service) => service._id.startsWith('drafts.'))
+    || pages.some((page) => !page._id.startsWith('drafts.'))
+  ) throw new Error('Import must target ten published service definitions and ten draft service pages')
+
+  const obsoleteServiceDraftIds = services.map((service) => `drafts.${service._id}`)
 
   if (dryRun) {
     console.log(JSON.stringify({
@@ -257,6 +258,9 @@ async function main() {
       projectId,
       dataset,
       documentCount: documents.length,
+      publishedServiceDefinitions: services.length,
+      draftServicePages: pages.length,
+      obsoleteServiceDraftsRemoved: obsoleteServiceDraftIds.length,
       documents: pages.map((page) => ({
         _id: page._id,
         title: (page.seo as {title: string}).title,
@@ -271,8 +275,9 @@ async function main() {
 
   let transaction = client.transaction()
   for (const document of documents) transaction = transaction.createOrReplace(document)
+  for (const draftId of obsoleteServiceDraftIds) transaction = transaction.delete(draftId)
   const result = await transaction.commit({visibility: 'sync'})
-  console.log(`Created or replaced ${documents.length} draft documents in transaction ${result.transactionId}`)
+  console.log(`Updated ${services.length} published service definitions and ${pages.length} draft service pages in transaction ${result.transactionId}`)
 }
 
 main().catch((error: unknown) => {
