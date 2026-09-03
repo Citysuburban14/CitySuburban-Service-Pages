@@ -13,7 +13,7 @@ export const servicePage = defineType({
   fields: [
     defineField({name: 'title', title: 'Internal title', type: 'string', group: 'page', validation: (rule) => rule.required()}),
     defineField({name: 'serviceId', title: 'Imported service ID', type: 'number', group: 'page', validation: (rule) => rule.required().integer().positive()}),
-    defineField({name: 'service', title: 'Service', type: 'reference', to: [{type: 'serviceDefinition'}], group: 'page', validation: (rule) => rule.required()}),
+    defineField({name: 'service', title: 'Service', type: 'reference', to: [{type: 'serviceDefinition'}], weak: true, group: 'page', validation: (rule) => rule.required()}),
     defineField({name: 'area', title: 'Area', type: 'reference', to: [{type: 'serviceArea'}], group: 'page', validation: (rule) => rule.required()}),
     defineField({name: 'template', title: 'Template', type: 'reference', to: [{type: 'servicePageTemplate'}], group: 'page', validation: (rule) => rule.required()}),
     defineField({
