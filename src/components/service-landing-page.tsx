@@ -31,6 +31,10 @@ function imageStyle(image?: ExternalImage): CSSProperties | undefined {
   return url ? {backgroundImage: `url(${JSON.stringify(url)})`} : undefined
 }
 
+function hasReferenceMedia(images?: ExternalImage[]): boolean {
+  return Boolean(images?.some((image) => !/^City & Suburban Heating & Cooling\b/i.test(image.credit || '')))
+}
+
 function brandSlug(brand: string): string {
   return brand
     .normalize('NFKD')
@@ -196,6 +200,8 @@ export function ServiceLandingPage({data}: Props) {
   const equalHeightReviews = presentation?.equalHeightReviewCards !== false
   const heroGalleryImageCount = presentation?.heroGalleryImageCount || 3
   const workingPhotoCount = presentation?.workingPhotoCount || 3
+  const heroGalleryHasReferenceMedia = hasReferenceMedia(page.gallery)
+  const workingPhotosHaveReferenceMedia = hasReferenceMedia(page.workingPhotos)
   const footerColor = presentation?.footerColor || '#09263A'
   const accentColor = presentation?.accentColor || '#DD382B'
   const accentDarkColor = presentation?.accentDarkColor || '#B92E23'
@@ -233,7 +239,7 @@ export function ServiceLandingPage({data}: Props) {
         <p className="eyebrow">{area.heroEyebrow}</p><h1>{questionHeading(`${service.h1Prefix} in ${area.name}`)}</h1><p className="lede">{service.heroLede}</p>
         <div className="trustbar">{settings.trustLines?.map((line) => <span className="trust-item" key={line}>◆ {line}</span>)}{rating && <Rating rating={rating} count={reviewCount} />}</div>
         <div className="btn-row"><a className="btn btn-primary" href={`tel:${settings.phoneE164}`}>Call {settings.phoneDisplay}</a><a className="btn btn-secondary" href="#quote">{service.secondaryCta || 'Request service'}</a></div>
-        <div className="cs-gallery"><div className="cs-gallery-rail">{page.gallery?.slice(0, heroGalleryImageCount).map((photo, index) => <a className="cs-shot" href="#working-in-area" key={photo._key || index} aria-label={photo.alt || `${service.name} project ${index + 1}`}><span className="cs-shot-img" style={imageStyle(photo)}>{!imageUrl(photo) && <PhotoPlaceholder image={photo} />}</span></a>)}</div><div className="cs-gallery-head"><p className="eyebrow">{area.galleryLabel}</p><a href="#working-in-area">See more →</a></div></div>
+        <div className="cs-gallery"><div className="cs-gallery-rail">{page.gallery?.slice(0, heroGalleryImageCount).map((photo, index) => <a className="cs-shot" href="#working-in-area" key={photo._key || index} aria-label={photo.alt || `${service.name} project ${index + 1}`}><span className="cs-shot-img" style={imageStyle(photo)}>{!imageUrl(photo) && <PhotoPlaceholder image={photo} />}</span></a>)}</div><div className="cs-gallery-head"><p className="eyebrow">{heroGalleryHasReferenceMedia ? `${service.name} reference images` : area.galleryLabel}</p><a href="#working-in-area">See more →</a></div></div>
       </div><LeadForm service={service.name} area={area.name} issueQuestion={service.issueQuestion} issueOptions={service.issueOptions} buildingTypes={area.buildingTypes} addressPlaceholder={area.addressPlaceholder} subtitle={page.formSubtitle || settings.formSubtitle} note={page.formNote || settings.formNote} /></div></header>
 
       <section className="wrap" id="equipment"><h2>{questionHeading(service.typesHeading)}</h2><p className="lede narrow">{service.typesLede}</p><div className="equip-strip" aria-label={service.typesHeading}><div className="equip-track">{[...equipment, ...equipment].map((item, index) => <div className="equip" key={`${item._key || item.name}-${index}`} aria-hidden={index >= equipment.length || undefined}><EquipmentIcon index={index} /><b>{item.name}</b><span>{item.description}</span></div>)}</div></div>{service.typesFootnote && <p className="small muted section-note">{service.typesFootnote}</p>}</section>
@@ -246,7 +252,7 @@ export function ServiceLandingPage({data}: Props) {
 
       <section className="wrap" id="why-us"><h2>{questionHeading(service.whyHeading)}</h2><p className="lede narrow">{service.whyLede}</p><div className="why-grid">{service.whyItems?.map((item) => <article className="why-item" key={item._key || item.title}><h3 className="why-title">{questionHeading(item.title)}</h3><p className="why-body">{item.body}</p></article>)}</div></section>
 
-      <section className="section-tint" id="working-in-area"><div className="wrap"><h2>{questionHeading(`Our Work in ${area.name}`)}</h2><p className="lede narrow">{area.workingLede}</p><div className="photo-grid">{page.workingPhotos?.slice(0, workingPhotoCount).map((photo, index) => <div className="ph" key={photo._key || index} style={imageStyle(photo)} role="img" aria-label={photo.alt || `${service.name} work in ${area.name} ${index + 1}`}>{!imageUrl(photo) && <PhotoPlaceholder image={photo} />}</div>)}</div></div></section>
+      <section className="section-tint" id="working-in-area"><div className="wrap"><h2>{questionHeading(workingPhotosHaveReferenceMedia ? `What Does ${service.name} Involve` : `Our Work in ${area.name}`)}</h2><p className="lede narrow">{workingPhotosHaveReferenceMedia ? 'These licensed reference images illustrate equipment and service scope; they are not represented as City & Suburban project photos.' : area.workingLede}</p><div className="photo-grid">{page.workingPhotos?.slice(0, workingPhotoCount).map((photo, index) => <div className="ph" key={photo._key || index} style={imageStyle(photo)} role="img" aria-label={photo.alt || `${service.name} work in ${area.name} ${index + 1}`}>{!imageUrl(photo) && <PhotoPlaceholder image={photo} />}</div>)}</div></div></section>
 
       <section className="wrap" id="areas"><h2 className="single-line-mobile">{questionHeading(area.areasHeading)}</h2><p className="lede narrow">{area.areasLede}</p><div className="coverage-stack">{coverageMapFirst ? <>{coverageMap}{coverageAreas}</> : <>{coverageAreas}{coverageMap}</>}</div>{area.areasNote && <p className="small muted coverage-note">{area.areasNote}</p>}</section>
 

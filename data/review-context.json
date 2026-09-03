@@ -28,5 +28,65 @@
     "R093": "This long-term customer praises Rob and the team for both repair and installation work. The review does not name heat-pump equipment, so it is presented only as general service proof.",
     "R130": "The customer says Robert takes time to explain the system, check it carefully, and address cleaning needs. The review does not identify a heat pump and supports service quality only.",
     "R122": "After four years with the company, the customer highlights thorough technicians, prompt visits, and easy maintenance scheduling. The review is general company evidence and does not mention a heat pump."
+  },
+  "306": {
+    "R119": "The customer describes scheduling as easy and the service as quick and friendly. The review is general company evidence and does not identify a space or unit heater.",
+    "R121": "The customer praises professional service and reasonable pricing. No equipment is named, so this is presented as general service proof rather than evidence of a space-heater job.",
+    "R034": "The customer records a pleasant service call and helpful answers to their questions. The review does not identify the equipment serviced.",
+    "R161": "The customer highlights responsive, timely service and recommends the company. It is general trust evidence and does not name a space or unit heater."
+  },
+  "307": {
+    "R050": "The customer says City & Suburban consistently fixes the problems they call about. The review does not mention duct cleaning, sealing, or repair and is used only as general service evidence.",
+    "R177": "On a second visit with the company, Rob arrived on time, fixed the issue quickly, and charged what the customer considered a fair price. The equipment is not identified.",
+    "R015": "The customer emphasizes clear communication, reasonable rates, dependable service, and quality workmanship on a major-appliance repair. The review does not identify ductwork.",
+    "R096": "Eddie reached the customer within about an hour during a holiday weekend and communicated clearly. The review supports responsiveness but does not name an air-duct service."
+  },
+  "308": {
+    "R183": "After a boiler failure, Rob arrived on time, completed the repair at a reasonable charge, and restored the customer's heat. This review directly identifies boiler service.",
+    "R127": "A multi-year customer says Rob has serviced their boiler for several years and describes him as knowledgeable and professional. This is direct boiler-maintenance evidence.",
+    "R112": "For an urgent rental-property issue, the company arrived quickly, reviewed repair and replacement options, and helped the customer decide. The review does not name a boiler and is general service proof.",
+    "R008": "After a Sunday message, the customer received a callback within minutes and a next-day visit that resolved the problem. The equipment is not identified."
+  },
+  "309": {
+    "R007": "On a first visit, Rob was prompt, professional, and thorough, explained the situation, and offered recommendations. The review does not identify a gas fireplace.",
+    "R185": "A long-term customer describes Rob as responsive, fair, friendly, and honest when giving recommendations. No fireplace or gas-log equipment is named.",
+    "R014": "The customer praises Rob's professionalism, kindness, responsiveness, and punctuality. This is general company evidence and does not document fireplace work.",
+    "R076": "The customer says Rob verified that everything was operating correctly before leaving and completed the visit quickly. The review does not identify the appliance."
+  },
+  "310": {
+    "R147": "Rob answered questions about a 30-year-old system, gave practical advice to keep it running, and responded quickly even though the request was not urgent. The review does not identify a mini-split.",
+    "R098": "After the customer's heater failed early in the morning, a technician diagnosed it, sourced the needed part, and restored heat before early afternoon. This supports repair responsiveness but not mini-split-specific work.",
+    "R162": "The customer highlights responsive communication, repair-first judgment, and good value. The review does not state what type of system was repaired.",
+    "R135": "The customer reports a positive service visit and enrollment in the annual maintenance program. It does not identify ductless equipment."
+  },
+  "311": {
+    "R139": "Eddie and Mike installed a two-stage furnace and thermostat in a challenging custom condo utility closet. The customer describes the installation as patient, professional, and expert; this directly supports thermostat installation.",
+    "R018": "After a late-Friday call, the company arrived about an hour later, fixed the problem, and cleaned the unit. The review does not identify the thermostat or control involved.",
+    "R094": "When the heater failed over Thanksgiving weekend, Rob located an open parts supplier and restored heat within half a day. The review supports urgent heating service but does not identify a thermostat repair.",
+    "R077": "Eddie arrived within an hour, identified a failed blower part, obtained it, and completed the repair. The review names the blower rather than thermostat equipment."
+  },
+  "312": {
+    "R148": "The customer received prompt responses and a quote they considered both exceptional and the most competitive among their options. No wood or pellet stove is identified.",
+    "R170": "The customer describes Rob as an honest professional who avoids recommending unnecessary purchases. The review is general evidence and does not document solid-fuel appliance work.",
+    "R017": "The customer praises clear communication, competitive pricing, and Rob's effort to secure a good outcome. The equipment is not identified.",
+    "R087": "Eddie explained the heating issue clearly and resolved it quickly so the customer had heat again. The review does not state that the equipment was a wood or pellet stove."
+  },
+  "313": {
+    "R081": "Rob identified the problem quickly and resolved it in a timely manner. The review does not identify chimney sweeping, inspection, or repair.",
+    "R125": "The customer describes Rob and the crew as friendly, fast, and fair and says they would hire the company again. No chimney service is named.",
+    "R056": "The customer praises the company's communication and overall business experience. The review is general trust evidence, not chimney-specific proof.",
+    "R095": "The customer describes the team as professional and honest and says they would use the company again. The work performed is not identified."
+  },
+  "314": {
+    "R105": "The customer reports fast, friendly service and recommends the company. The short review does not identify a window or portable air conditioner.",
+    "R123": "The customer describes the service as fast, honest, and high quality. No equipment or installation type is named.",
+    "R142": "The customer calls it the best service in town. Because the review contains no job detail, it is used only as general trust evidence.",
+    "R024": "The customer describes the service as cost-effective. The review does not identify a room-air-conditioner repair or installation."
+  },
+  "315": {
+    "R111": "The customer highlights on-time arrival, fair pricing, clean work, warranty coverage, and an accessible, responsive team. The review does not identify air-quality testing or purifier work.",
+    "R164": "A customer of more than nine years describes Rob as prompt, professional, reasonably priced, honest, and careful about costs. The review is strong general company evidence but does not identify IAQ equipment.",
+    "R115": "The customer describes Rob and Eddie as honest technicians who delivered great service at their home. No indoor-air-quality product or test is named.",
+    "R035": "A repeat commercial customer keeps City & Suburban on its vendor shortlist for prompt, courteous service at a fair price. The review does not identify an IAQ project."
   }
 }

@@ -1,0 +1,137 @@
+{
+  "assets": {
+    "licensed-unit-heater": {
+      "path": "public/images/services/city-suburban/306-315/hydronic-unit-heater.jpg",
+      "alt": "Hydronic fan unit heater used for fixed-space heating",
+      "credit": "SAF1999 / Wikimedia Commons (CC BY-SA 4.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hydronic_Unit_Heater.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
+    "licensed-ductwork": {
+      "path": "public/images/services/city-suburban/306-315/hvac-ductwork.jpg",
+      "alt": "Large sheet-metal HVAC ductwork and fittings",
+      "credit": "MTA Capital Construction Mega Projects / Wikimedia Commons (CC BY 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:HVAC_ductwork_in_the_chiller_plant_room_of_the_future_LIRR_passenger_concourse._(CM014B,_01-09-2019)_(31760231797).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    },
+    "licensed-boiler": {
+      "path": "public/images/services/city-suburban/306-315/gas-boiler.jpg",
+      "alt": "Wall-mounted gas boiler with visible service connections",
+      "credit": "Pavel Ševela / Wikimedia Commons (CC BY-SA 3.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gas_boiler_Junkers.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "licensed-radiator": {
+      "path": "public/images/services/city-suburban/306-315/hot-water-radiator.jpg",
+      "alt": "Hot-water radiator with a single-pipe connection",
+      "credit": "Cschirp / Wikimedia Commons (CC BY-SA 3.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Einrohrheizung.JPG",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "licensed-mechanical-room": {
+      "path": "public/images/services/city-suburban/306-315/mechanical-room.jpg",
+      "alt": "Heating and cooling equipment and piping in a mechanical room",
+      "credit": "P199 at English Wikipedia / Wikimedia Commons (CC BY 2.5)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mechanical_room.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+    },
+    "licensed-gas-fireplace": {
+      "path": "public/images/services/city-suburban/306-315/gas-log-fireplace.jpg",
+      "alt": "Gas-log fireplace appliance",
+      "credit": "Virginia State Parks staff / Wikimedia Commons (CC BY 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:NT_Typical_gas_log_fireplace_(5114230942).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    },
+    "licensed-fireplace-heater": {
+      "path": "public/images/services/city-suburban/306-315/fireplace-gas-heater.jpg",
+      "alt": "Gas heater installed in a residential fireplace",
+      "credit": "Infrogmation of New Orleans / Wikimedia Commons (CC BY 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gas_heater_at_fireplace_in_house_in_Carrollton_New_Orleans.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    },
+    "licensed-mini-split": {
+      "path": "public/images/services/city-suburban/306-315/mini-split-ac.jpg",
+      "alt": "Ductless mini-split air-conditioning unit",
+      "credit": "HelpAtMyHome / Wikimedia Commons (CC BY 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mini-Split_AC_(52120570875).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    },
+    "licensed-thermostat": {
+      "path": "public/images/services/city-suburban/306-315/smart-heating-control.jpg",
+      "alt": "Smart wall-mounted heating control in a home",
+      "credit": "Shixart1985 / Wikimedia Commons (CC BY 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Smart_heating_control_unit_displayed_on_a_wall_with_power_indicator_lights_showing_status_in_a_home_setting.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    },
+    "licensed-thermostat-wiring": {
+      "path": "public/images/services/city-suburban/306-315/digital-thermostat-wall-plate.jpg",
+      "alt": "Digital thermostat wall plate with its cover removed",
+      "credit": "Dvortygirl / Wikimedia Commons (CC BY-SA 3.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Digital_thermostat_wall.JPG",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "licensed-pellet-stove": {
+      "path": "public/images/services/city-suburban/306-315/pellet-stove.jpg",
+      "alt": "Freestanding pellet stove appliance",
+      "credit": "Hustvedt / Wikimedia Commons (CC BY-SA 3.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pellet_stove.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "licensed-pellet-heater": {
+      "path": "public/images/services/city-suburban/306-315/wood-pellet-heater-interior.jpg",
+      "alt": "Interior burn pot and mechanism of a wood-pellet heater",
+      "credit": "H. Raab ( User:Vesta ) / Wikimedia Commons (CC BY-SA 3.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wood-pellet_heater.jpg",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "licensed-chimney-sweep": {
+      "path": "public/images/services/city-suburban/306-315/modern-chimney-sweep.jpg",
+      "alt": "Modern chimney-sweeping equipment in use",
+      "credit": "Thunk at English Wikipedia / Wikimedia Commons (Public domain)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chimney_sweep_modern.jpg",
+      "licenseUrl": ""
+    },
+    "licensed-chimney-brushes": {
+      "path": "public/images/services/city-suburban/306-315/chimney-sweep-brushes.jpg",
+      "alt": "Illustrated chimney-sweeping brushes and tools",
+      "credit": "Wellcome Collection / Wikimedia Commons (CC BY 4.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Depictions_of_the_brushes_of_a_chimney_sweep._Coloured_engra_Wellcome_V0039426.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+    },
+    "licensed-window-ac": {
+      "path": "public/images/services/city-suburban/306-315/window-air-conditioner.jpg",
+      "alt": "Modern window-type air conditioner installed in an opening",
+      "credit": "Curpharar / Wikimedia Commons (CC BY-SA 4.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Modern_window-type_air_conditioner_at_a_school.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
+    "licensed-portable-ac": {
+      "path": "public/images/services/city-suburban/306-315/portable-ac-window-hoses.jpg",
+      "alt": "Portable air-conditioner exhaust hoses routed through a window",
+      "credit": "Tony Webster / Wikimedia Commons (CC BY 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Air_Conditioner_Hoses_in_Window_(54273679109).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    },
+    "licensed-air-purifier": {
+      "path": "public/images/services/city-suburban/306-315/air-purifier-hepa.jpg",
+      "alt": "Portable air purifier with its HEPA filter exposed",
+      "credit": "Home Air Quality Guides / Wikimedia Commons (CC BY-SA 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Air_Purifier_(Levoit_LV-H133)_(49318569587).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+    },
+    "licensed-hepa-filter": {
+      "path": "public/images/services/city-suburban/306-315/hepa-carbon-filter.jpg",
+      "alt": "Circular HEPA and activated-carbon air-purifier filter",
+      "credit": "Home Air Quality Guides / Wikimedia Commons (CC BY-SA 2.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Circular_HEPA_air_filter_%26_activated_carbon_filter_(1).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+    },
+    "licensed-smart-thermostat": {
+      "path": "public/images/services/city-suburban/306-315/smart-thermostat.jpg",
+      "alt": "Smart learning thermostat with a digital temperature display",
+      "credit": "Raysonho @ Open Grid Scheduler / Grid Engine / Wikimedia Commons (CC0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nest_Learning_Thermostat_(cropped).JPG",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "services": {
+    "space-heater-repair-installation": {
+      "cover": "licensed-unit-heater",
+      "gallery": ["licensed-unit-heater", "business-basement-hvac", "business-service-vans"],
+      "workingPhotos": ["business-basement-hvac", "business-furnace-installation", "business-service-vans"]
+    },
+    "air-duct-cleaning-repair": {
+      "cover": "licensed-ductwork",
+      "gallery": ["licensed-ductwork", "business-bosch-air-handler", "business-basement-hvac"],
+      "workingPhotos": ["business-bosch-air-handler", "business-basement-hvac", "business-furnace-installation"]
+    },
+    "boiler-repair-installation": {
+      "cover": "licensed-boiler",
+      "gallery": ["licensed-boiler", "licensed-radiator", "licensed-mechanical-room"],
+      "workingPhotos": ["business-service-vans", "business-basement-hvac", "business-water-heater-room"]
+    },
+    "gas-fireplace-repair-installation": {
+      "cover": "licensed-gas-fireplace",
+      "gallery": ["licensed-gas-fireplace", "licensed-fireplace-heater", "licensed-chimney-brushes"],
+      "workingPhotos": ["licensed-gas-fireplace", "licensed-fireplace-heater", "licensed-chimney-brushes"]
+    },
+    "ductless-mini-split-installation-repair": {
+      "cover": "licensed-mini-split",
+      "gallery": ["licensed-mini-split", "business-rooftop-ac", "business-bosch-air-handler"],
+      "workingPhotos": ["business-rooftop-ac", "business-bosch-air-handler", "business-service-vans"]
+    },
+    "smart-thermostat-installation-repair": {
+      "cover": "licensed-smart-thermostat",
+      "gallery": ["licensed-smart-thermostat", "licensed-thermostat-wiring", "licensed-thermostat"],
+      "workingPhotos": ["business-furnace-installation", "business-bosch-air-handler", "business-service-vans"]
+    },
+    "wood-pellet-stove-repair-installation": {
+      "cover": "licensed-pellet-stove",
+      "gallery": ["licensed-pellet-stove", "licensed-pellet-heater", "licensed-chimney-sweep"],
+      "workingPhotos": ["licensed-pellet-stove", "licensed-pellet-heater", "licensed-chimney-sweep"]
+    },
+    "chimney-sweeping-inspection-repair": {
+      "cover": "licensed-chimney-sweep",
+      "gallery": ["licensed-chimney-sweep", "licensed-chimney-brushes", "licensed-fireplace-heater"],
+      "workingPhotos": ["licensed-chimney-sweep", "licensed-chimney-brushes", "licensed-fireplace-heater"]
+    },
+    "window-portable-ac-installation-repair": {
+      "cover": "licensed-window-ac",
+      "gallery": ["licensed-window-ac", "licensed-portable-ac", "licensed-mini-split"],
+      "workingPhotos": ["business-rooftop-ac", "business-bosch-air-handler", "business-service-vans"]
+    },
+    "indoor-air-quality-testing-installation": {
+      "cover": "licensed-air-purifier",
+      "gallery": ["licensed-air-purifier", "licensed-hepa-filter", "licensed-ductwork"],
+      "workingPhotos": ["business-bosch-air-handler", "business-basement-hvac", "business-service-vans"]
+    }
+  }
+}
