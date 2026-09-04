@@ -31,25 +31,33 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="collection-hero-panel" aria-label={`${clusters.length} HVAC service clusters`}>
-              <svg className="collection-hero-svg" viewBox="0 0 360 220" aria-hidden="true">
+              <span className="collection-hero-panel-kicker">Whole-home comfort</span>
+              <div className="collection-hero-panel-count">
+                <strong>{clusters.length}</strong>
+                <span>service<br />systems</span>
+              </div>
+              <svg className="collection-hero-svg" viewBox="0 0 340 250" aria-hidden="true">
                 <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="164" y="18" width="166" height="126" rx="20" stroke="#fff" strokeWidth="5" />
-                  <circle cx="247" cy="72" r="37" stroke="#DD382B" strokeWidth="9" />
-                  <circle cx="247" cy="72" r="7" fill="#DD382B" stroke="#DD382B" />
-                  <path d="M247 42v23M247 79v23M221 57l20 11M253 76l20 11M221 87l20-11M253 68l20-11" stroke="#fff" strokeWidth="6" />
-                  <path d="M195 118h18M222 118h18M249 118h18M276 118h18" stroke="#DD382B" strokeWidth="5" />
-                  <path d="M119 34c-18 17 18 26 0 43s18 26 0 43M145 34c-18 17 18 26 0 43s18 26 0 43" stroke="#DD382B" strokeWidth="8" />
-                  <path d="M112 174h218M126 174v24M164 174v24M202 174v24M240 174v24M278 174v24M316 174v24" stroke="#fff" strokeWidth="4" />
-                  <circle cx="126" cy="202" r="7" fill="#DD382B" stroke="#DD382B" />
-                  <circle cx="164" cy="202" r="7" fill="#fff" stroke="#fff" />
-                  <circle cx="202" cy="202" r="7" fill="#DD382B" stroke="#DD382B" />
-                  <circle cx="240" cy="202" r="7" fill="#fff" stroke="#fff" />
-                  <circle cx="278" cy="202" r="7" fill="#DD382B" stroke="#DD382B" />
-                  <circle cx="316" cy="202" r="7" fill="#fff" stroke="#fff" />
+                  <circle className="collection-hero-orbit" cx="204" cy="124" r="91" />
+                  <circle className="collection-hero-orbit collection-hero-orbit-inner" cx="204" cy="124" r="68" />
+                  <path className="collection-hero-home" d="m151 116 53-43 53 43v62h-106Z" />
+                  <path className="collection-hero-roof" d="m141 119 63-51 63 51" />
+                  <path className="collection-hero-divider" d="M204 81v88" />
+                  <path className="collection-hero-flame" d="M182 151c-13-9-17-21-9-33 3 7 8 9 11 2 4-9-1-17-1-17 17 10 24 23 18 36-4 8-10 12-19 12Z" />
+                  <g className="collection-hero-snowflake">
+                    <path d="M229 105v47M209 117l40 23M209 140l40-23" />
+                    <path d="m229 105-6 8m6-8 6 8m-6 39-6-8m6 8 6-8M209 117l10 1m-10-1 4 9m36 14-10-1m10 1-4-9M209 140l4-9m-4 9 10-1m30-22-4 9m4-9-10 1" />
+                  </g>
+                  <g className="collection-hero-nodes">
+                    <circle cx="204" cy="24" r="8" />
+                    <circle cx="291" cy="74" r="8" />
+                    <circle cx="291" cy="174" r="8" />
+                    <circle cx="204" cy="224" r="8" />
+                    <circle cx="117" cy="174" r="8" />
+                    <circle cx="117" cy="74" r="8" />
+                  </g>
                 </g>
               </svg>
-              <span>Service clusters</span>
-              <strong>{clusters.length}</strong>
               <p>Heating · Cooling · Air quality</p>
               <a href="tel:+17732383838">Call (773) 238-3838 <span aria-hidden="true">→</span></a>
             </div>
