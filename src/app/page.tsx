@@ -31,17 +31,21 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="collection-hero-panel" aria-label={`${clusters.length} HVAC service clusters`}>
-              <svg className="collection-hero-svg" viewBox="0 0 360 260" aria-hidden="true">
+              <svg className="collection-hero-svg" viewBox="0 0 360 220" aria-hidden="true">
                 <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="264" cy="75" r="51" stroke="#DD382B" strokeWidth="11" />
-                  <path d="M264 42v66M235 58l58 34M235 92l58-34" stroke="#fff" strokeWidth="7" />
-                  <path d="M126 46c-20 20 20 30 0 50s20 30 0 50M164 46c-20 20 20 30 0 50s20 30 0 50" stroke="#DD382B" strokeWidth="8" />
-                  <path d="M61 192h238M78 192v25M126 192v25M174 192v25M222 192v25M282 192v25" stroke="#fff" strokeWidth="5" />
-                  <circle cx="78" cy="225" r="8" fill="#DD382B" stroke="#DD382B" />
-                  <circle cx="126" cy="225" r="8" fill="#fff" stroke="#fff" />
-                  <circle cx="174" cy="225" r="8" fill="#DD382B" stroke="#DD382B" />
-                  <circle cx="222" cy="225" r="8" fill="#fff" stroke="#fff" />
-                  <circle cx="282" cy="225" r="8" fill="#DD382B" stroke="#DD382B" />
+                  <rect x="164" y="18" width="166" height="126" rx="20" stroke="#fff" strokeWidth="5" />
+                  <circle cx="247" cy="72" r="37" stroke="#DD382B" strokeWidth="9" />
+                  <circle cx="247" cy="72" r="7" fill="#DD382B" stroke="#DD382B" />
+                  <path d="M247 42v23M247 79v23M221 57l20 11M253 76l20 11M221 87l20-11M253 68l20-11" stroke="#fff" strokeWidth="6" />
+                  <path d="M195 118h18M222 118h18M249 118h18M276 118h18" stroke="#DD382B" strokeWidth="5" />
+                  <path d="M119 34c-18 17 18 26 0 43s18 26 0 43M145 34c-18 17 18 26 0 43s18 26 0 43" stroke="#DD382B" strokeWidth="8" />
+                  <path d="M112 174h218M126 174v24M164 174v24M202 174v24M240 174v24M278 174v24M316 174v24" stroke="#fff" strokeWidth="4" />
+                  <circle cx="126" cy="202" r="7" fill="#DD382B" stroke="#DD382B" />
+                  <circle cx="164" cy="202" r="7" fill="#fff" stroke="#fff" />
+                  <circle cx="202" cy="202" r="7" fill="#DD382B" stroke="#DD382B" />
+                  <circle cx="240" cy="202" r="7" fill="#fff" stroke="#fff" />
+                  <circle cx="278" cy="202" r="7" fill="#DD382B" stroke="#DD382B" />
+                  <circle cx="316" cy="202" r="7" fill="#fff" stroke="#fff" />
                 </g>
               </svg>
               <span>Service clusters</span>
