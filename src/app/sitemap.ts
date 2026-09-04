@@ -1,30 +1,42 @@
 import type {MetadataRoute} from 'next'
 import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
-import {SERVICE_INDEX_QUERY} from '@/sanity/lib/queries'
+import {SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
+import {prepareServiceNavigation, type ServiceNavigationPayload} from '@/lib/service-navigation'
 
 // Next serves this at /services/sitemap.xml because basePath is applied to the
 // sitemap route automatically. Every <loc> is an absolute URL on the public
 // canonical host (NEXT_SITE_URL, e.g. https://www.highlightschicago.com).
 export const revalidate = 3600
 
-type Route = {serviceSlug?: string | null; areaSlug?: string | null}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl.replace(/\/+$/, '')
   const lastModified = new Date()
-  const pages = (await metadataClient.fetch<Route[]>(SERVICE_INDEX_QUERY)) || []
-  const servicePages = pages
-    .filter((page): page is {serviceSlug: string; areaSlug: string} => Boolean(page.serviceSlug && page.areaSlug))
-    .map((page) => ({
+  const data = await metadataClient.fetch(SERVICE_NAVIGATION_QUERY)
+  const clusters = prepareServiceNavigation((data || {}) as ServiceNavigationPayload)
+  const clusterPages = clusters.map((cluster) => ({
+    url: `${base}/services/${cluster.slug}`,
+    lastModified,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }))
+  const serviceCollections = clusters.flatMap((cluster) => cluster.services.map((service) => ({
+    url: `${base}/services/${service.slug}`,
+    lastModified,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  })))
+  const servicePages = clusters.flatMap((cluster) => cluster.pages.map((page) => ({
       url: `${base}/services/${page.serviceSlug}/${page.areaSlug}`,
       lastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-    }))
+    })))
 
   return [
     {url: `${base}/services`, lastModified, changeFrequency: 'weekly', priority: 1},
+    ...clusterPages,
+    ...serviceCollections,
     ...servicePages,
   ]
 }

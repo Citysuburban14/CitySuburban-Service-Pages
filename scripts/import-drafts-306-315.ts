@@ -28,12 +28,33 @@ const dataset = process.env.NEXT_SANITY_DATASET || process.env.NEXT_PUBLIC_SANIT
 const token = process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_AUTH_TOKEN
 if (!token || /^(PASTE_|your_)/i.test(token)) throw new Error('Add a Sanity Editor token to SANITY_API_WRITE_TOKEN in .env.local')
 
-const source = JSON.parse(fs.readFileSync(path.resolve('data/source-content-306-315.json'), 'utf8')) as Source
+const batch = process.argv.find((argument) => argument.startsWith('--batch='))?.split('=')[1] || '306-315'
+const batchConfig = {
+  '306-315': {
+    source: 'data/source-content-306-315.json',
+    mediaPlan: 'data/media-plan-306-315.json',
+    reviewContexts: 'data/review-context.json',
+    startId: 306,
+  },
+  '316-325': {
+    source: 'data/source-content-316-325.json',
+    mediaPlan: 'data/media-plan-316-325.json',
+    reviewContexts: 'data/review-context-316-325.json',
+    startId: 316,
+  },
+} as const
+const config = batchConfig[batch as keyof typeof batchConfig]
+if (!config) throw new Error(`Unsupported batch: ${batch}`)
+
+const source = JSON.parse(fs.readFileSync(path.resolve(config.source), 'utf8')) as Source
 const sharedMedia = JSON.parse(fs.readFileSync(path.resolve('data/media-plan.json'), 'utf8')) as {assets: Record<string, MediaAsset>}
-const licensedMedia = JSON.parse(fs.readFileSync(path.resolve('data/media-sources-306-315.json'), 'utf8')) as {assets: Record<string, MediaAsset>}
-const serviceMedia = JSON.parse(fs.readFileSync(path.resolve('data/media-plan-306-315.json'), 'utf8')) as {services: Record<string, ServiceMedia>}
-const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
-const mediaAssets = {...sharedMedia.assets, ...licensedMedia.assets}
+const licensedMedia306 = JSON.parse(fs.readFileSync(path.resolve('data/media-sources-306-315.json'), 'utf8')) as {assets: Record<string, MediaAsset>}
+const licensedMedia316 = JSON.parse(fs.readFileSync(path.resolve('data/media-sources-316-325.json'), 'utf8')) as {assets: Record<string, MediaAsset>}
+const serviceMedia = JSON.parse(fs.readFileSync(path.resolve(config.mediaPlan), 'utf8')) as {services: Record<string, ServiceMedia>}
+const reviewContexts = JSON.parse(fs.readFileSync(path.resolve(config.reviewContexts), 'utf8')) as Record<string, Record<string, string>>
+const taxonomy = JSON.parse(fs.readFileSync(path.resolve('data/service-taxonomy.json'), 'utf8')) as {services: Array<{serviceId: number; clusterSlug: string; scopeStatus: string; scopeNote: string}>}
+const taxonomyById = new Map(taxonomy.services.map((item) => [item.serviceId, item]))
+const mediaAssets = {...sharedMedia.assets, ...licensedMedia306.assets, ...licensedMedia316.assets}
 const client = createClient({projectId, dataset, apiVersion: '2026-03-01', token, useCdn: false, perspective: 'raw'})
 
 const value = (row: Row, field: string) => String(row[field] ?? '')
@@ -55,11 +76,11 @@ const blocksFromHtml = (html: string, prefix: string) => decode(html)
   .filter(Boolean)
   .map((text, index) => ({_key: key(`${prefix}-block`, index), _type: 'block', style: 'normal', markDefs: [], children: [{_key: key(`${prefix}-span`, index), _type: 'span', text, marks: []}]}))
 
-const expectedIds = Array.from({length: 10}, (_, index) => 306 + index)
+const expectedIds = Array.from({length: 10}, (_, index) => config.startId + index)
 const equipmentIds = source.equip.map((row) => Number(row.C || row.service_id))
 const pageIds = source.page.map((row) => Number(row.service_id))
-if (equipmentIds.join(',') !== expectedIds.join(',')) throw new Error(`Expected equipment IDs 306-315, received ${equipmentIds.join(',')}`)
-if (pageIds.join(',') !== expectedIds.join(',')) throw new Error(`Expected page IDs 306-315, received ${pageIds.join(',')}`)
+if (equipmentIds.join(',') !== expectedIds.join(',')) throw new Error(`Expected equipment IDs ${batch}, received ${equipmentIds.join(',')}`)
+if (pageIds.join(',') !== expectedIds.join(',')) throw new Error(`Expected page IDs ${batch}, received ${pageIds.join(',')}`)
 if (source.area.length !== 1 || value(source.area[0], 'slug') !== 'chicago') throw new Error('Expected one shared Chicago area row')
 
 const requiredAssetKeys = new Set<string>()
@@ -88,12 +109,17 @@ const plannedImage = (assetKey: string, useKey: string, assetRefs: Record<string
 
 const buildServices = (): ImportDocument[] => source.equip.map((row) => {
   const serviceId = value(row, 'service_id') || value(row, 'C')
+  const taxonomyItem = taxonomyById.get(Number(serviceId))
+  if (!taxonomyItem) throw new Error(`Missing service taxonomy for ${serviceId}`)
   return {
     _id: `service-${serviceId}`,
     _type: 'serviceDefinition',
     serviceId: Number(serviceId),
     name: value(row, 'name'),
     slug: {_type: 'slug', current: value(row, 'slug')},
+    cluster: {_type: 'reference', _ref: `cluster-${taxonomyItem.clusterSlug}`},
+    scopeStatus: taxonomyItem.scopeStatus,
+    scopeNote: taxonomyItem.scopeNote,
     parentName: value(row, 'parent_name'),
     parentUrl: value(row, 'parent_url'),
     hubUrl: value(row, 'hub_url'),

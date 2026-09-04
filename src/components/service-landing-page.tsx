@@ -66,16 +66,14 @@ function asQuestion(value: string | undefined, area: string): string {
   return heading.endsWith('?') ? heading : `${heading}?`
 }
 
-function serviceHref(url: string | undefined, routes: NonNullable<ServicePageData['serviceRoutes']>, areaSlug: string) {
+function serviceHref(url: string | undefined) {
   if (!url) return '/services'
   try {
-    const parsed = new URL(url, 'https://www.highlightschicago.com')
-    if (!/(^|\.)highlightschicago\.com$/i.test(parsed.hostname)) return url
+    const parsed = new URL(url, 'https://citysuburbanheating.com')
+    if (!/(^|\.)(citysuburbanheating|highlightschicago)\.com$/i.test(parsed.hostname)) return url
     const match = parsed.pathname.match(/^\/services\/([^/]+)\/?$/)
     if (!match) return url
-    const route = routes.find((item) => item.serviceSlug === match[1] && item.areaSlug === areaSlug)
-      || routes.find((item) => item.serviceSlug === match[1])
-    return route ? `/services/${route.serviceSlug}/${route.areaSlug}` : '/services'
+    return `/services/${match[1]}`
   } catch {
     return url
   }
@@ -179,8 +177,9 @@ function JsonLd({data}: Props) {
     {'@type': 'BreadcrumbList', itemListElement: [
       {'@type': 'ListItem', position: 1, name: 'Home', item: settings.siteUrl},
       {'@type': 'ListItem', position: 2, name: 'Services', item: `${settings.siteUrl}/services`},
-      {'@type': 'ListItem', position: 3, name: service.name, item: service.hubUrl},
-      {'@type': 'ListItem', position: 4, name: area.name, item: page.seo.canonicalUrl},
+      ...(service.cluster?.name && service.cluster?.slug ? [{'@type': 'ListItem', position: 3, name: service.cluster.name, item: `${settings.siteUrl}/services/${service.cluster.slug}`}] : []),
+      {'@type': 'ListItem', position: service.cluster?.slug ? 4 : 3, name: service.name, item: `${settings.siteUrl}/services/${service.slug}`},
+      {'@type': 'ListItem', position: service.cluster?.slug ? 5 : 4, name: area.name, item: page.seo.canonicalUrl},
     ]},
     ...(faqs.length ? [{'@type': 'FAQPage', mainEntity: faqs.map((faq) => ({'@type': 'Question', name: faq.question, acceptedAnswer: {'@type': 'Answer', text: faq.answer}}))}] : []),
   ]
@@ -225,7 +224,6 @@ export function ServiceLandingPage({data}: Props) {
     ? [...remainingTrustMetrics.slice(0, 2), aPlusMetric, ...remainingTrustMetrics.slice(2)]
     : trustMetrics
   const guideItems = (page.guides || []).map((guide) => ({title: guide.title, paragraphs: guideText(guide)}))
-  const serviceRoutes = data.serviceRoutes || []
   const coverageMap = area.mapQuery ? <div className="area-map"><iframe title={`${area.name} service area map`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${encodeURIComponent(area.mapQuery)}&output=embed`} /></div> : null
   const coverageAreas = <CenteredAreaRail label={`${area.name} service locations`}>{area.subAreas?.map((subArea) => <a className="area-chip" role="listitem" href="#quote" key={subArea._key || subArea.name}><span className="area-img" style={imageStyle(subArea.photo)}>{!imageUrl(subArea.photo) && <EmptyImageIcon />}</span><b>{subArea.name}</b><span>{subArea.note}</span></a>)}</CenteredAreaRail>
 
@@ -233,7 +231,7 @@ export function ServiceLandingPage({data}: Props) {
     <div className="site-chrome">
       <CollectionHeader />
       <main className="service-landing" style={brandStyle}>
-      <nav className="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href={settings.siteUrl}>Home</a></li><li><Link href="/">Services</Link></li>{service.parentUrl && <li><a href={serviceHref(service.parentUrl, serviceRoutes, area.slug)}>{service.parentName}</a></li>}{service.hubUrl && <li><a href={serviceHref(service.hubUrl, serviceRoutes, area.slug)}>{service.name}</a></li>}<li aria-current="page">{area.name}</li></ol></nav>
+      <nav className="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href={settings.siteUrl}>Home</a></li><li><Link href="/">Services</Link></li>{service.cluster?.slug && <li><Link href={`/${service.cluster.slug}`}>{service.cluster.name}</Link></li>}<li><Link href={`/${service.slug}`}>{service.name}</Link></li><li aria-current="page">{area.name}</li></ol></nav>
 
       <header className="hero"><div className="wrap hero-grid"><div>
         <p className="eyebrow">{area.heroEyebrow}</p><h1>{questionHeading(`${service.h1Prefix} in ${area.name}`)}</h1><p className="lede">{service.heroLede}</p>
@@ -256,7 +254,7 @@ export function ServiceLandingPage({data}: Props) {
 
       <section className="wrap" id="areas"><h2 className="single-line-mobile">{questionHeading(area.areasHeading)}</h2><p className="lede narrow">{area.areasLede}</p><div className="coverage-stack">{coverageMapFirst ? <>{coverageMap}{coverageAreas}</> : <>{coverageAreas}{coverageMap}</>}</div>{area.areasNote && <p className="small muted coverage-note">{area.areasNote}</p>}</section>
 
-      <section className="wrap" id="other-services"><h2>{questionHeading(`Our other services in ${area.name}`)}</h2><div className="svc-split">{service.featuredCategory?.title && <a className="svc-feature" href={serviceHref(service.featuredCategory.url, serviceRoutes, area.slug)}><span className="svc-feature-tag">{service.featuredCategory.tag}</span><h3>{questionHeading(service.featuredCategory.title)}</h3><p>{service.featuredCategory.description}</p><span className="svc-feature-tag">{service.featuredCategory.cta} →</span></a>}<div className="svc-four">{service.otherServices?.slice(0, 4).map((item) => <a className="svc-mini" href={serviceHref(item.url, serviceRoutes, area.slug)} key={item._key || item.name}><b>{item.name}</b><span>{item.description}</span></a>)}</div></div></section>
+      <section className="wrap" id="other-services"><h2>{questionHeading(`Our other services in ${area.name}`)}</h2><div className="svc-split">{service.featuredCategory?.title && <a className="svc-feature" href={serviceHref(service.featuredCategory.url)}><span className="svc-feature-tag">{service.featuredCategory.tag}</span><h3>{questionHeading(service.featuredCategory.title)}</h3><p>{service.featuredCategory.description}</p><span className="svc-feature-tag">{service.featuredCategory.cta} →</span></a>}<div className="svc-four">{service.otherServices?.slice(0, 4).map((item) => <a className="svc-mini" href={serviceHref(item.url)} key={item._key || item.name}><b>{item.name}</b><span>{item.description}</span></a>)}</div></div></section>
 
       <section className="section-tint" id="pricing"><div className="wrap"><h2>{questionHeading(presentation?.pricingHeadingAsQuestion === false ? `${service.pricing?.heading} in ${area.name}` : asQuestion(service.pricing?.heading, area.name))}</h2><p className="lede narrow">{service.pricing?.lede}</p><div className="table-wrap" tabIndex={0} aria-label={`${service.name} pricing table, scroll horizontally to view all columns`}><table><caption>{service.pricing?.caption}</caption><thead><tr><th>{service.pricing?.column1}</th><th>{service.pricing?.column2}</th><th>{service.pricing?.column3}</th></tr></thead><tbody>{service.pricing?.rows?.map((row) => <tr key={row._key || row.job}><td>{row.job}</td><td>{row.driver}</td><td>{row.permit}</td></tr>)}</tbody></table></div>{service.pricing?.note && <p className="small muted section-note">{service.pricing.note}</p>}</div></section>
 

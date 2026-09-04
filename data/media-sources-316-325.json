@@ -1,0 +1,52 @@
+{
+  "assets": {
+    "licensed-ceiling-fan": {
+      "path": "public/images/services/city-suburban/316-325/ceiling-fan.jpg",
+      "alt": "Ceiling fan mounted in a finished room",
+      "credit": "Hillebrand Steve / Wikimedia Commons (Public domain)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_ceiling_fan.jpg",
+      "downloadUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/A_ceiling_fan.jpg",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "licensed-exhaust-fan": {
+      "path": "public/images/services/city-suburban/316-325/industrial-exhaust-fan.jpg",
+      "alt": "Wall-mounted industrial exhaust fan and protective grille",
+      "credit": "Dineshraj111 / Wikimedia Commons (CC BY-SA 4.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Industrial_Exhaust_Fan.jpg",
+      "downloadUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Industrial_Exhaust_Fan.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
+    "licensed-dehumidifier": {
+      "path": "public/images/services/city-suburban/316-325/dehumidifier.jpg",
+      "alt": "Portable dehumidifier used to remove moisture from indoor air",
+      "credit": "Ralf Steinberger / Wikimedia Commons (CC BY-SA 4.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Dehumidifier.jpg",
+      "downloadUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/A_Dehumidifier.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
+    "licensed-oil-furnace": {
+      "path": "public/images/services/city-suburban/316-325/home-oil-furnace.jpg",
+      "alt": "Residential oil-fired furnace and burner assembly",
+      "credit": "SolarSurfer / Wikimedia Commons (CC BY 2.5)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Home_oil_furnace.jpg",
+      "downloadUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Home_oil_furnace.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+    },
+    "licensed-attic-fan": {
+      "path": "public/images/services/city-suburban/316-325/attic-fan.jpg",
+      "alt": "Powered attic fan installed beneath a roof opening",
+      "credit": "Wtshymanski / Wikimedia Commons (CC BY-SA 4.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Attic-fan-underneath-roof.jpg",
+      "downloadUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Attic-fan-underneath-roof.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
+    "licensed-standby-generator": {
+      "path": "public/images/services/city-suburban/316-325/emergency-generator.jpg",
+      "alt": "Permanently installed outdoor emergency generator",
+      "credit": "AJA1946 / Wikimedia Commons (CC0 1.0)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EmergencyPowerGenerator.jpg",
+      "downloadUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/EmergencyPowerGenerator.jpg",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  }
+}

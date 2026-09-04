@@ -1,0 +1,54 @@
+{
+  "services": {
+    "ceiling-fan-installation-repair": {
+      "cover": "licensed-ceiling-fan",
+      "gallery": ["licensed-ceiling-fan", "licensed-thermostat-wiring", "business-service-vans"],
+      "workingPhotos": ["licensed-ceiling-fan", "licensed-thermostat-wiring", "business-service-vans"]
+    },
+    "exhaust-fan-installation-repair": {
+      "cover": "licensed-exhaust-fan",
+      "gallery": ["licensed-exhaust-fan", "licensed-ductwork", "business-rooftop-ac"],
+      "workingPhotos": ["licensed-exhaust-fan", "licensed-ductwork", "business-service-vans"]
+    },
+    "commercial-refrigeration-repair-maintenance": {
+      "cover": "licensed-mechanical-room",
+      "gallery": ["licensed-mechanical-room", "business-rooftop-ac", "business-water-heater-room"],
+      "workingPhotos": ["licensed-mechanical-room", "business-rooftop-ac", "business-service-vans"]
+    },
+    "humidifier-installation-repair": {
+      "cover": "business-furnace-installation",
+      "gallery": ["business-furnace-installation", "business-basement-hvac", "licensed-air-purifier"],
+      "workingPhotos": ["business-furnace-installation", "business-basement-hvac", "business-service-vans"]
+    },
+    "dehumidifier-installation-repair": {
+      "cover": "licensed-dehumidifier",
+      "gallery": ["licensed-dehumidifier", "business-basement-hvac", "licensed-air-purifier"],
+      "workingPhotos": ["licensed-dehumidifier", "business-basement-hvac", "business-service-vans"]
+    },
+    "oil-propane-heating-repair-maintenance": {
+      "cover": "licensed-oil-furnace",
+      "gallery": ["licensed-oil-furnace", "licensed-boiler", "licensed-mechanical-room"],
+      "workingPhotos": ["licensed-oil-furnace", "business-furnace-installation", "business-service-vans"]
+    },
+    "dryer-vent-cleaning-repair": {
+      "cover": "licensed-ductwork",
+      "gallery": ["licensed-ductwork", "licensed-exhaust-fan", "business-basement-hvac"],
+      "workingPhotos": ["licensed-ductwork", "licensed-exhaust-fan", "business-service-vans"]
+    },
+    "attic-fan-installation-repair": {
+      "cover": "licensed-attic-fan",
+      "gallery": ["licensed-attic-fan", "licensed-exhaust-fan", "business-rooftop-ac"],
+      "workingPhotos": ["licensed-attic-fan", "licensed-exhaust-fan", "business-service-vans"]
+    },
+    "radiator-radiant-heat-repair-installation": {
+      "cover": "licensed-radiator",
+      "gallery": ["licensed-radiator", "licensed-boiler", "licensed-mechanical-room"],
+      "workingPhotos": ["licensed-radiator", "business-basement-hvac", "business-service-vans"]
+    },
+    "generator-installation-repair": {
+      "cover": "licensed-standby-generator",
+      "gallery": ["licensed-standby-generator", "licensed-mechanical-room", "business-service-vans"],
+      "workingPhotos": ["licensed-standby-generator", "licensed-mechanical-room", "business-service-vans"]
+    }
+  }
+}

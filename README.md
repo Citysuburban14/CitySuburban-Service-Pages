@@ -4,12 +4,15 @@ Next.js 16 and Sanity implementation for data-driven service × area landing pag
 
 ## Architecture
 
+- `serviceCluster`: workbook-defined group such as Heating, Cooling, or Indoor Air Quality.
 - `serviceDefinition`: reusable service content and SEO research.
 - `serviceArea`: Chicago/local content, coverage, map and neighborhood data.
 - `servicePage`: one service × area page with SEO, media, reviews and guides.
 - `servicePageTemplate`: singleton defining the standard page section order.
 - `siteSettings`: singleton for company, contact, brand, ratings, trust and form defaults.
 - Embedded Sanity Studio: `/studio`.
+
+Public navigation follows `/services` → `/services/{cluster}` → `/services/{service}` → `/services/{service}/{area}`. See `docs/CLUSTER_ARCHITECTURE.md` for the workbook mapping, scope rules, and publishing behavior.
 
 The original spreadsheet package is preserved locally but ignored by Git. The normalized import source is `data/source-content.json`.
 
@@ -19,7 +22,7 @@ The original spreadsheet package is preserved locally but ignored by Git. The no
 2. Create a Sanity Viewer token and Editor token in project `q0tvhxym` under organization `oj4qqrbea`.
 3. Install dependencies with `pnpm install`.
 4. Validate the normalized source with `pnpm source:validate`.
-5. Import content with `pnpm content:import`.
+5. Import content with `pnpm content:import`, then map the workbook taxonomy with `pnpm content:import-clusters`.
 6. Run the application with `pnpm dev` and open `http://localhost:3000`.
 7. Open the embedded Studio at `http://localhost:3000/studio`.
 

@@ -1,0 +1,38 @@
+{
+  "source": "HVAC_Keyword_Clusters.xlsx",
+  "sourceTab": "Listicle Titles",
+  "excludedTopics": [
+    {
+      "equipment": "Fans (General/Portable)",
+      "clusterSlug": "indoor-air-quality-ventilation",
+      "reason": "Retail purchase intent; no contractor service page is recommended. Whole-house fan terms belong under ventilation and exhaust fans."
+    }
+  ],
+  "services": [
+    {"serviceId": 301, "equipment": "Water Heater", "slug": "water-heater-repair-installation", "clusterSlug": "heating", "scopeStatus": "confirm", "scopeNote": "Plumbing trade; confirm that City & Suburban performs water-heater work."},
+    {"serviceId": 302, "equipment": "Air Conditioner (Central)", "slug": "air-conditioner-repair-installation", "clusterSlug": "cooling", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 303, "equipment": "Furnace", "slug": "furnace-repair-installation", "clusterSlug": "heating", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 304, "equipment": "HVAC (General/Whole-System)", "slug": "hvac-repair-installation", "clusterSlug": "hvac-systems", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 305, "equipment": "Heat Pump", "slug": "heat-pump-repair-installation", "clusterSlug": "hvac-systems", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 306, "equipment": "Heater (General/Space)", "slug": "space-heater-repair-installation", "clusterSlug": "heating", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 307, "equipment": "Air Duct / Ductwork", "slug": "air-duct-cleaning-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 308, "equipment": "Boiler", "slug": "boiler-repair-installation", "clusterSlug": "heating", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 309, "equipment": "Fireplace", "slug": "gas-fireplace-repair-installation", "clusterSlug": "fireplace-chimney", "scopeStatus": "confirm", "scopeNote": "Adjacent service; confirm gas-fireplace capability before publication."},
+    {"serviceId": 310, "equipment": "Ductless Mini-Split", "slug": "ductless-mini-split-installation-repair", "clusterSlug": "cooling", "scopeStatus": "core", "scopeNote": "Core service and the strongest growth opportunity in the source workbook."},
+    {"serviceId": 311, "equipment": "Thermostat", "slug": "smart-thermostat-installation-repair", "clusterSlug": "hvac-systems", "scopeStatus": "core", "scopeNote": "Core service; useful attachment to furnace and air-conditioning work."},
+    {"serviceId": 312, "equipment": "Wood & Pellet Stove", "slug": "wood-pellet-stove-repair-installation", "clusterSlug": "fireplace-chimney", "scopeStatus": "out-of-scope", "scopeNote": "Hearth trade rather than verified HVAC scope."},
+    {"serviceId": 313, "equipment": "Chimney", "slug": "chimney-sweeping-inspection-repair", "clusterSlug": "fireplace-chimney", "scopeStatus": "out-of-scope", "scopeNote": "Chimney-sweep trade rather than verified HVAC scope."},
+    {"serviceId": 314, "equipment": "Window/Portable AC & Evaporative Cooler", "slug": "window-portable-ac-installation-repair", "clusterSlug": "cooling", "scopeStatus": "low-value", "scopeNote": "Real demand but generally a small-ticket service."},
+    {"serviceId": 315, "equipment": "Indoor Air Quality / Purifier", "slug": "indoor-air-quality-testing-installation", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "core", "scopeNote": "Core service named in the market-mapping source."},
+    {"serviceId": 316, "equipment": "Ceiling Fan", "slug": "ceiling-fan-installation-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "confirm", "scopeNote": "Electrical trade; confirm company scope before publication."},
+    {"serviceId": 317, "equipment": "Ventilation & Exhaust Fans", "slug": "exhaust-fan-installation-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "core", "scopeNote": "Core service."},
+    {"serviceId": 318, "equipment": "Refrigeration / Ice Machine", "slug": "commercial-refrigeration-repair-maintenance", "clusterSlug": "commercial-specialty", "scopeStatus": "confirm", "scopeNote": "Light-commercial capability; confirm company scope before publication."},
+    {"serviceId": 319, "equipment": "Humidifier", "slug": "humidifier-installation-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "core", "scopeNote": "Core Chicago winter attachment service."},
+    {"serviceId": 320, "equipment": "Dehumidifier", "slug": "dehumidifier-installation-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "core", "scopeNote": "Core basement and crawl-space service."},
+    {"serviceId": 321, "equipment": "Oil & Propane Heat", "slug": "oil-propane-heating-repair-maintenance", "clusterSlug": "heating", "scopeStatus": "low-value", "scopeNote": "Low Chicago volume because few city properties use oil heat."},
+    {"serviceId": 322, "equipment": "Dryer Vent", "slug": "dryer-vent-cleaning-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "adjacent", "scopeNote": "Adjacent attachment service with a fire-safety angle."},
+    {"serviceId": 323, "equipment": "Attic Fan", "slug": "attic-fan-installation-repair", "clusterSlug": "indoor-air-quality-ventilation", "scopeStatus": "adjacent", "scopeNote": "Adjacent service; installation and repair only."},
+    {"serviceId": 324, "equipment": "Radiant Heating", "slug": "radiator-radiant-heat-repair-installation", "clusterSlug": "heating", "scopeStatus": "core", "scopeNote": "Core service aligned to Chicago's older housing stock."},
+    {"serviceId": 325, "equipment": "Generator", "slug": "generator-installation-repair", "clusterSlug": "commercial-specialty", "scopeStatus": "out-of-scope", "scopeNote": "Electrical trade rather than verified HVAC scope."}
+  ]
+}

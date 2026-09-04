@@ -1,0 +1,84 @@
+{
+  "source": "HVAC_Keyword_Clusters.xlsx",
+  "sourceTabs": ["Clusters", "Listicle Titles"],
+  "clusters": [
+    {
+      "id": "cluster-heating",
+      "name": "Heating & Hot Water",
+      "slug": "heating",
+      "description": "Heating and hot-water services for Chicago homes, from furnaces and boilers to space heaters and radiant systems.",
+      "displayOrder": 1,
+      "sourceServiceCount": 6,
+      "monthlySearchVolume": 1975350,
+      "chicagoSearchVolume": 5550,
+      "serviceIds": [301, 303, 306, 308, 321, 324],
+      "requiresScopeReview": false,
+      "buildNote": "Everything that makes heat or hot water. This is the largest cluster by demand and the company's core trade."
+    },
+    {
+      "id": "cluster-cooling",
+      "name": "Cooling",
+      "slug": "cooling",
+      "description": "Cooling options for Chicago buildings with and without existing ductwork, including central air, ductless and room units.",
+      "displayOrder": 2,
+      "sourceServiceCount": 3,
+      "monthlySearchVolume": 1003350,
+      "chicagoSearchVolume": 250,
+      "serviceIds": [302, 310, 314],
+      "requiresScopeReview": false,
+      "buildNote": "Everything that removes heat. Chicago's large stock without central air makes this cluster broader than central AC alone."
+    },
+    {
+      "id": "cluster-hvac-systems",
+      "name": "Whole-System HVAC & Controls",
+      "slug": "hvac-systems",
+      "description": "Whole-system repair, replacement and control upgrades that connect heating, cooling and comfort management.",
+      "displayOrder": 3,
+      "sourceServiceCount": 3,
+      "monthlySearchVolume": 702650,
+      "chicagoSearchVolume": 400,
+      "serviceIds": [304, 305, 311],
+      "requiresScopeReview": false,
+      "buildNote": "Whole-system jobs and the controls that run them, where the customer is replacing or upgrading rather than fixing one appliance."
+    },
+    {
+      "id": "cluster-indoor-air-quality-ventilation",
+      "name": "Indoor Air Quality & Ventilation",
+      "slug": "indoor-air-quality-ventilation",
+      "description": "Services that move, filter and condition indoor air, including ductwork, purification, humidity and exhaust ventilation.",
+      "displayOrder": 4,
+      "sourceServiceCount": 9,
+      "monthlySearchVolume": 218700,
+      "chicagoSearchVolume": 150,
+      "serviceIds": [307, 315, 316, 317, 319, 320, 322, 323],
+      "requiresScopeReview": false,
+      "buildNote": "The source cluster contains nine topics, but general and portable fans are retail-only and intentionally have no service page. Eight pages are buildable."
+    },
+    {
+      "id": "cluster-fireplace-chimney",
+      "name": "Fireplace, Chimney & Solid Fuel",
+      "slug": "fireplace-chimney",
+      "description": "Fireplace, chimney and solid-fuel topics grouped for navigation, with each service held for scope confirmation before publication.",
+      "displayOrder": 5,
+      "sourceServiceCount": 3,
+      "monthlySearchVolume": 105350,
+      "chicagoSearchVolume": 0,
+      "serviceIds": [309, 312, 313],
+      "requiresScopeReview": true,
+      "buildNote": "This entire cluster is scope-flagged in the source workbook. Confirm hearth and chimney capabilities before publishing its service pages."
+    },
+    {
+      "id": "cluster-commercial-specialty",
+      "name": "Commercial & Specialty",
+      "slug": "commercial-specialty",
+      "description": "Commercial refrigeration and specialty equipment topics that require confirmed company scope before they become public services.",
+      "displayOrder": 6,
+      "sourceServiceCount": 2,
+      "monthlySearchVolume": 11900,
+      "chicagoSearchVolume": 0,
+      "serviceIds": [318, 325],
+      "requiresScopeReview": true,
+      "buildNote": "Both services are scope-flagged. Refrigeration is light-commercial work and standby generators are normally an electrical trade."
+    }
+  ]
+}

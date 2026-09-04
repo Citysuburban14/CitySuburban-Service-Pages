@@ -22,7 +22,10 @@ const dataset = process.env.NEXT_SANITY_DATASET || process.env.NEXT_PUBLIC_SANIT
 const token = process.env.SANITY_API_READ_TOKEN || process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_AUTH_TOKEN
 if (!token) throw new Error('Sanity token is missing')
 
-const ids = Array.from({length: 10}, (_, index) => 306 + index)
+const batch = process.argv.find((argument) => argument.startsWith('--batch='))?.split('=')[1] || '306-315'
+const startId = batch === '316-325' ? 316 : batch === '306-315' ? 306 : Number.NaN
+if (!Number.isFinite(startId)) throw new Error(`Unsupported batch: ${batch}`)
+const ids = Array.from({length: 10}, (_, index) => startId + index)
 const existingIds = ids.flatMap((id) => [
   `service-${id}`,
   `drafts.service-${id}`,
@@ -36,6 +39,14 @@ async function main() {
 const documents = await client.fetch(`*[_id in $ids]{
   _id, _type, _rev, serviceId, name, title,
   "slug": slug.current,
+  scopeStatus, scopeNote,
+  "clusterRef": cluster._ref,
+  "heroLedeLength": length(heroLede),
+  "brandCount": count(brands),
+  "typeCount": count(types),
+  "whyItemCount": count(whyItems),
+  "pricingRowCount": count(pricing.rows),
+  "serviceFaqCount": count(faqs),
   "serviceRef": service._ref,
   "serviceRefIsWeak": service._weak == true,
   "areaRef": area._ref,
@@ -46,6 +57,9 @@ const documents = await client.fetch(`*[_id in $ids]{
   "galleryCount": count(gallery),
   "workingPhotoCount": count(workingPhotos),
   "hasCoverImage": defined(coverImage.image.asset) || defined(coverImage.externalUrl),
+  "coverAssetRef": coverImage.image.asset._ref,
+  "galleryAssetRefs": gallery[].image.asset._ref,
+  "workingPhotoAssetRefs": workingPhotos[].image.asset._ref,
   "hasFormCopy": defined(formSubtitle) && defined(formNote),
   "metaTitleLength": length(seo.title),
   "metaDescriptionLength": length(seo.description)
@@ -60,8 +74,30 @@ const servicePages = documents.filter((document: {_type: string}) => document._t
 if (serviceDefinitions.length !== 10 || serviceDefinitions.some((document: {_id: string}) => document._id.startsWith('drafts.'))) {
   throw new Error('Expected ten published service definitions and no draft service-definition duplicates')
 }
+if (serviceDefinitions.some((document: {clusterRef?: string; scopeStatus?: string}) => !document.clusterRef || !document.scopeStatus)) {
+  throw new Error('Expected every service definition to have a cluster and scope status')
+}
+if (serviceDefinitions.some((document: {heroLedeLength?: number; brandCount?: number; typeCount?: number; whyItemCount?: number; pricingRowCount?: number; serviceFaqCount?: number}) =>
+  !document.heroLedeLength || document.heroLedeLength < 150
+  || (document.brandCount || 0) < 6
+  || (document.typeCount || 0) < 6
+  || (document.whyItemCount || 0) < 6
+  || (document.pricingRowCount || 0) < 4
+  || (document.serviceFaqCount || 0) < 6
+)) {
+  throw new Error('One or more service definitions are missing mapped landing-page content')
+}
 if (servicePages.length !== 10 || servicePages.some((document: {_id: string; serviceRefIsWeak: boolean}) => !document._id.startsWith('drafts.') || document.serviceRefIsWeak)) {
   throw new Error('Expected ten draft service pages with strong service references')
+}
+if (servicePages.some((document: {coverAssetRef?: string; galleryAssetRefs?: string[]; workingPhotoAssetRefs?: string[]}) =>
+  !document.coverAssetRef
+  || document.galleryAssetRefs?.length !== 3
+  || document.galleryAssetRefs.some((asset) => !asset)
+  || document.workingPhotoAssetRefs?.length !== 3
+  || document.workingPhotoAssetRefs.some((asset) => !asset)
+)) {
+  throw new Error('One or more service pages are missing resolved Sanity image asset references')
 }
 
 console.log(JSON.stringify({projectId, dataset, documents, publishedBaseline301To305: baseline}, null, 2))

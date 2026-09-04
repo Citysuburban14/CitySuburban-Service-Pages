@@ -11,6 +11,7 @@ export const structure: StructureResolver = (S) =>
         .title('Service-page template')
         .child(S.document().schemaType('servicePageTemplate').documentId('servicePageTemplate-standard-v1')),
       S.divider(),
+      S.documentTypeListItem('serviceCluster').title('Service clusters'),
       S.documentTypeListItem('serviceDefinition').title('Service definitions'),
       S.documentTypeListItem('serviceArea').title('Service areas'),
       S.documentTypeListItem('servicePage').title('Service pages'),

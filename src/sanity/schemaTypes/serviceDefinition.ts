@@ -6,6 +6,7 @@ export const serviceDefinition = defineType({
   type: 'document',
   groups: [
     {name: 'identity', title: 'Identity & navigation', default: true},
+    {name: 'taxonomy', title: 'Cluster & scope'},
     {name: 'seo', title: 'SEO research'},
     {name: 'hero', title: 'Hero & intake'},
     {name: 'content', title: 'Service content'},
@@ -15,6 +16,24 @@ export const serviceDefinition = defineType({
     defineField({name: 'serviceId', title: 'Service ID', type: 'number', group: 'identity', validation: (rule) => rule.required().integer().positive()}),
     defineField({name: 'name', title: 'Service name', type: 'string', group: 'identity', validation: (rule) => rule.required()}),
     defineField({name: 'slug', title: 'Slug', type: 'slug', group: 'identity', options: {source: 'name', maxLength: 96}, validation: (rule) => rule.required()}),
+    defineField({name: 'cluster', title: 'Service cluster', type: 'reference', to: [{type: 'serviceCluster'}], group: 'taxonomy', validation: (rule) => rule.required()}),
+    defineField({
+      name: 'scopeStatus',
+      title: 'Scope status',
+      type: 'string',
+      group: 'taxonomy',
+      options: {
+        list: [
+          {title: 'Core service', value: 'core'},
+          {title: 'Adjacent service', value: 'adjacent'},
+          {title: 'Confirm before publishing', value: 'confirm'},
+          {title: 'Low-value service', value: 'low-value'},
+          {title: 'Out of scope', value: 'out-of-scope'},
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({name: 'scopeNote', title: 'Scope note', type: 'text', rows: 3, group: 'taxonomy'}),
     defineField({name: 'parentName', title: 'Parent category', type: 'string', group: 'identity'}),
     defineField({name: 'parentUrl', title: 'Parent URL', type: 'url', group: 'identity'}),
     defineField({name: 'hubUrl', title: 'Service hub URL', type: 'url', group: 'identity'}),

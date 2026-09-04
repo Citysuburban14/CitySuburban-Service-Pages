@@ -14,6 +14,10 @@ const siteUrl = (process.env.NEXT_SITE_URL || 'http://localhost:3000').replace(/
 
 async function resolveProductionUrl(previousUrl: string | undefined, context: ResolveProductionUrlContext) {
   const {document, getClient} = context
+  if (document._type === 'serviceCluster' || document._type === 'serviceDefinition') {
+    const slug = (document.slug as {current?: string} | undefined)?.current
+    return slug ? `${siteUrl}/services/${slug}` : previousUrl
+  }
   if (document._type !== 'servicePage') return previousUrl
 
   const serviceId = String((document.service as {_ref?: string} | undefined)?._ref || '').replace(/^drafts\./, '')

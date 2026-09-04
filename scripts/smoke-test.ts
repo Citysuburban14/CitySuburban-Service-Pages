@@ -6,10 +6,26 @@ type Source = {equip: Row[]; area: Row[]; page: Row[]}
 
 const baseUrl = (process.argv[2] || process.env.SMOKE_BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
 const source = JSON.parse(fs.readFileSync(path.resolve('data/source-content.json'), 'utf8')) as Source
+const navigationSources = [
+  source,
+  JSON.parse(fs.readFileSync(path.resolve('data/source-content-306-315.json'), 'utf8')) as Source,
+  JSON.parse(fs.readFileSync(path.resolve('data/source-content-316-325.json'), 'utf8')) as Source,
+]
+const navigationEquipment = navigationSources.flatMap((batch) => batch.equip)
+const navigationPages = navigationSources.flatMap((batch) => batch.page)
+const taxonomy = JSON.parse(fs.readFileSync(path.resolve('data/service-taxonomy.json'), 'utf8')) as {services: Array<{serviceId: number; clusterSlug: string}>}
+const clusters = JSON.parse(fs.readFileSync(path.resolve('data/service-clusters.json'), 'utf8')) as {clusters: Array<{slug: string}>}
 const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
 const serviceBySlug = new Map(source.equip.map((row) => [row.slug, row]))
 const areaBySlug = new Map(source.area.map((row) => [row.slug, row]))
-const validServicePaths = new Set(['/services', ...source.page.map((row) => `/services/${row.equipment_slug}/${row.area_slug}`)])
+const sourceIds = new Set(navigationPages.map((row) => Number(row.service_id)))
+const availableClusterSlugs = new Set(taxonomy.services.filter((item) => sourceIds.has(item.serviceId)).map((item) => item.clusterSlug))
+const validServicePaths = new Set([
+  '/services',
+  ...clusters.clusters.filter((cluster) => availableClusterSlugs.has(cluster.slug)).map((cluster) => `/services/${cluster.slug}`),
+  ...navigationEquipment.map((row) => `/services/${row.slug}`),
+  ...navigationPages.map((row) => `/services/${row.equipment_slug}/${row.area_slug}`),
+])
 const failures: string[] = []
 let assertions = 0
 
@@ -70,7 +86,7 @@ async function testDocument(pathname: string, requiredText: string[]) {
 }
 
 async function run() {
-  const collection = await testDocument('/services', ['Trusted HVAC experts from city to suburbs', 'Find the right HVAC service'])
+  const collection = await testDocument('/services', ['Trusted HVAC experts for Chicago homes', 'Browse HVAC service clusters'])
   for (const href of [
     'https://citysuburbanheating.com/',
     'https://citysuburbanheating.com/about-us',
@@ -83,15 +99,15 @@ async function run() {
     'mailto:service@citysuburbanheating.com',
   ]) expect(anchorHrefs(collection).includes(href), `Collection page is missing live destination ${href}`)
   expect(collection.includes('class="collection-footer-form"'), 'Collection page is missing the live-style footer quote form')
-  expect(collection.includes('serving Chicago and nearby suburbs'), 'Collection footer is missing the City & Suburban company summary')
+  expect(collection.includes('family-owned HVAC company serving Chicago'), 'Collection footer is missing the City & Suburban company summary')
+  expect(!collection.includes('nearby suburbs'), 'Collection page still makes the removed nearby-suburbs claim')
+  expect(!collection.includes('NATE'), 'Collection page still makes an unverified NATE certification claim')
   expect(collection.includes('class="collection-utility"'), 'Collection page is missing the live utility bar')
   expect(collection.includes('/services/images/city-suburban-logo.png'), 'Collection page is not using the City & Suburban logo')
   expect(collection.includes('class="collection-footer-title"'), 'Collection footer is missing the single-line quote heading')
-  expect((collection.match(/class="collection-card"/g) || []).length >= source.page.length, 'Collection page does not render every Sanity service page')
+  expect((collection.match(/class="cluster-card"/g) || []).length === availableClusterSlugs.size, 'Collection page does not render each available service cluster')
   expect(!collection.includes('/services/furnace/lincoln-park'), 'Collection page still renders the Lincoln Park sample')
-  const cardImages = [...collection.matchAll(/data-card-image="([^"]+)"/g)].map((match) => match[1])
-  expect(cardImages.length >= source.page.length, 'Every collection card must have a cover image')
-  expect(new Set(cardImages).size === cardImages.length, 'Collection cards must use unique cover images')
+  const cardImages = [...collection.matchAll(/class="cluster-card-media[^>]*style="[^"]*url\(&quot;([^&]+)&quot;\)/g)].map((match) => match[1])
   for (const image of cardImages) {
     const isRemote = /^https:\/\//.test(image)
     if (isRemote) {
@@ -111,7 +127,27 @@ async function run() {
     expect(imageResponse.headers.get('content-type')?.startsWith('image/'), `Collection image has an invalid content type: ${image}`)
     expect((await imageResponse.arrayBuffer()).byteLength > 10_000, `Collection image response is unexpectedly small: ${image}`)
   }
+  for (const clusterSlug of availableClusterSlugs) {
+    const clusterPage = await testDocument(`/services/${clusterSlug}`, ['HVAC service cluster', 'Service collection', 'Available services'])
+    const panelImage = clusterPage.match(/data-panel-image="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
+    expect(panelImage?.startsWith('https://cdn.sanity.io/'), `/services/${clusterSlug} is missing its Sanity image-backed count panel`)
+  }
+  for (const service of navigationEquipment) {
+    const serviceCollection = await testDocument(`/services/${service.slug}`, ['Service areas', 'Available service areas'])
+    expect(visibleText(serviceCollection).includes(service.name), `/services/${service.slug} is missing ${JSON.stringify(service.name)}`)
+    const panelImage = serviceCollection.match(/data-panel-image="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
+    expect(panelImage?.startsWith('https://cdn.sanity.io/'), `/services/${service.slug} is missing its Sanity image-backed count panel`)
+  }
   await testDocument('/services/studio', [])
+
+  for (const row of navigationPages.filter((candidate) => Number(candidate.service_id) > 305)) {
+    const pathname = `/services/${row.equipment_slug}/${row.area_slug}`
+    const service = navigationEquipment.find((candidate) => Number(candidate.C) === Number(row.service_id))
+    const text = await testDocument(pathname, ['id="quote"', 'id="reviews"', 'id="faq"', 'id="guides"'])
+    expect(visibleText(text).includes(`${service?.h1_prefix} in Chicago`), `${pathname} is missing its mapped Chicago H1`)
+    expect((text.match(/class="collection-header"/g) || []).length === 1, `${pathname} does not render exactly one shared header`)
+    expect((text.match(/class="collection-footer"/g) || []).length === 1, `${pathname} does not render exactly one shared footer`)
+  }
 
   for (const row of source.page) {
     const pathname = `/services/${row.equipment_slug}/${row.area_slug}`
@@ -187,6 +223,8 @@ async function run() {
 
   const missing = await fetch(`${baseUrl}/services/not-a-service/chicago`, {redirect: 'manual'})
   expect(missing.status === 404, `Unknown service returned ${missing.status} instead of 404`)
+  const removedLincolnPark = await fetch(`${baseUrl}/services/furnace-repair-installation/lincoln-park`, {redirect: 'manual'})
+  expect(removedLincolnPark.status === 404, `Removed Lincoln Park route returned ${removedLincolnPark.status} instead of 404`)
 
   const invalidLead = await request('/services/api/lead', {
     method: 'POST',
@@ -214,7 +252,7 @@ async function run() {
     process.exit(1)
   }
 
-  console.log(`Smoke test passed: ${assertions} assertions across ${source.page.length} service pages.`)
+  console.log(`Smoke test passed: ${assertions} assertions across ${navigationPages.length} service pages.`)
 }
 
 run().catch((error: unknown) => {

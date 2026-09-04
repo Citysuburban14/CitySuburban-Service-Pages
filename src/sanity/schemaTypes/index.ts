@@ -1,5 +1,6 @@
 import {externalImage, faq, guide, linkedService, pricingRow, review, serviceType, subArea, titledBody, trustMetric} from './objects'
 import {serviceArea} from './serviceArea'
+import {serviceCluster} from './serviceCluster'
 import {serviceDefinition} from './serviceDefinition'
 import {servicePage} from './servicePage'
 import {servicePageTemplate} from './servicePageTemplate'
@@ -18,6 +19,7 @@ export const schemaTypes = [
   trustMetric,
   siteSettings,
   servicePageTemplate,
+  serviceCluster,
   serviceDefinition,
   serviceArea,
   servicePage,

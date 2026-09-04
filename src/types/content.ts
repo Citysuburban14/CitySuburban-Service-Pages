@@ -8,6 +8,7 @@ export type ServiceDefinition = {
   serviceId: number
   name: string
   slug: string
+  cluster?: {name?: string; slug?: string}
   parentName?: string
   parentUrl?: string
   hubUrl?: string

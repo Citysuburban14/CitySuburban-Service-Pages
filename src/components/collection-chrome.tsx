@@ -73,7 +73,7 @@ export function CollectionFooter() {
           <a className="collection-footer-logo" href={`${LIVE_SITE}/`} aria-label="City & Suburban home">
             <img src={FOOTER_LOGO} alt="City & Suburban Heating & Cooling" />
           </a>
-          <p className="collection-footer-intro">City & Suburban Heating & Cooling is a family-owned HVAC company serving Chicago and nearby suburbs with reliable heating, cooling, and indoor-air-quality services since 1952.</p>
+          <p className="collection-footer-intro">City & Suburban Heating & Cooling is a family-owned HVAC company serving Chicago with reliable heating, cooling, and indoor-air-quality services since 1952.</p>
           <a className="collection-ai-link" href={`${LIVE_SITE}/`}>Learn about City & Suburban <span aria-hidden="true">→</span></a>
           <div className="collection-footer-rule" />
           <div className="collection-footer-links">

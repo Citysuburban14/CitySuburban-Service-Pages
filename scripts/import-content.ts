@@ -41,6 +41,8 @@ if ([...inheritedCompanies].some((company) => /Highlights Chicago/i.test(company
 }
 const decodeRows = (rows: Row[]) => rows.map((row) => Object.fromEntries(Object.entries(row).map(([field, value]) => [field, typeof value === 'string' ? decode(value) : value])) as Row)
 const source: Source = {equip: decodeRows(rawSource.equip), area: decodeRows(rawSource.area), page: decodeRows(rawSource.page)}
+const taxonomy = JSON.parse(fs.readFileSync(path.resolve('data/service-taxonomy.json'), 'utf8')) as {services: Array<{serviceId: number; clusterSlug: string; scopeStatus: string; scopeNote: string}>}
+const taxonomyById = new Map(taxonomy.services.map((item) => [item.serviceId, item]))
 const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
 const client = createClient({projectId, dataset, apiVersion: '2026-03-01', token, useCdn: false})
 const key = (prefix: string, index: number) => `${prefix}-${index + 1}`
@@ -120,8 +122,11 @@ const template = {
 
 const services = source.equip.map((row) => {
   const serviceId = row.service_id || row.C
+  const taxonomyItem = taxonomyById.get(Number(serviceId))
+  if (!taxonomyItem) throw new Error(`Missing service taxonomy for ${serviceId}`)
   return ({
   _id: `service-${serviceId}`, _type: 'serviceDefinition', serviceId: Number(serviceId), name: row.name, slug: {_type: 'slug', current: row.slug},
+  cluster: {_type: 'reference', _ref: `cluster-${taxonomyItem.clusterSlug}`}, scopeStatus: taxonomyItem.scopeStatus, scopeNote: taxonomyItem.scopeNote,
   parentName: row.parent_name, parentUrl: row.parent_url, hubUrl: row.hub_url,
   primaryKeywords: keywords(row.kw_primary), monthlySearchVolume: firstVolume(row.kw_volume), searchVolumeSummary: row.kw_volume, secondaryKeywords: keywords(row.kw_secondary),
   h1Prefix: row.h1_prefix, heroLede: row.hero_lede, secondaryCta: row.cta_secondary, issueQuestion: row.issue_question, issueOptions: strings(row.issue_options),

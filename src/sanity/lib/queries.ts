@@ -21,6 +21,45 @@ export const SERVICE_INDEX_QUERY = defineQuery(`
   }
 `)
 
+export const SERVICE_NAVIGATION_QUERY = defineQuery(`
+  {
+    "clusters": *[_type == "serviceCluster" && active != false] | order(displayOrder asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      description,
+      displayOrder,
+      sourceServiceCount,
+      monthlySearchVolume,
+      chicagoSearchVolume,
+      requiresScopeReview
+    },
+    "pages": *[_type == "servicePage" && defined(service->slug.current) && defined(area->slug.current)] | order(service->monthlySearchVolume desc) {
+      _id,
+      title,
+      "serviceSlug": service->slug.current,
+      "areaSlug": area->slug.current,
+      "serviceName": service->name,
+      "areaName": area->name,
+      "monthlySearchVolume": service->monthlySearchVolume,
+      "metaDescription": seo.description,
+      "clusterId": service->cluster._ref,
+      "clusterName": coalesce(service->cluster->name, service->parentName),
+      "clusterSlug": service->cluster->slug.current,
+      "scopeStatus": service->scopeStatus,
+      "scopeNote": service->scopeNote,
+      "cardImage": coalesce(
+        coverImage.image.asset->url,
+        coverImage.externalUrl,
+        gallery[0].image.asset->url,
+        gallery[0].externalUrl,
+        workingPhotos[0].image.asset->url,
+        workingPhotos[0].externalUrl
+      )
+    }
+  }
+`)
+
 export const SERVICE_PAGE_QUERY = defineQuery(`
   {
     "serviceRoutes": *[_type == "servicePage"] {
@@ -50,6 +89,7 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
         serviceId,
         name,
         "slug": slug.current,
+        cluster->{name, "slug": slug.current},
         parentName,
         parentUrl,
         hubUrl,

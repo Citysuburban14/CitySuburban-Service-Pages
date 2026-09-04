@@ -12,7 +12,7 @@ const inter = Inter({subsets: ['latin'], variable: '--font-inter', display: 'swa
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {default: 'City & Suburban Service Pages', template: '%s | City & Suburban Heating & Cooling'},
-  description: 'Heating, cooling, and indoor-air-quality services across Chicago and nearby suburbs.',
+  description: 'Heating, cooling, and indoor-air-quality services for Chicago homes and buildings.',
   icons: {
     icon: [{url: '/services/images/city-suburban-logo.png', type: 'image/png'}],
     apple: [{url: '/services/images/city-suburban-logo.png', type: 'image/png'}],
