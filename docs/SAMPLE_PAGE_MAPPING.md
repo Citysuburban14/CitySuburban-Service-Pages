@@ -1,6 +1,6 @@
 # Sample L4 page: Furnace Repair × Chicago
 
-Review route: `/services/heating/furnace-repair-installation/chicago`
+Review route: `/services/heating/furnace-repair-installation`
 
 This page follows the published Sanity content for the furnace service and Chicago area while using the shared standard template.
 

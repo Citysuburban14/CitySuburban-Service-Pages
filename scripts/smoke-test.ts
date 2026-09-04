@@ -25,7 +25,6 @@ const validServicePaths = new Set([
   '/services',
   ...clusters.clusters.filter((cluster) => availableClusterSlugs.has(cluster.slug)).map((cluster) => `/services/${cluster.slug}`),
   ...navigationEquipment.map((row) => `/services/${clusterByServiceId.get(Number(row.C))}/${row.slug}`),
-  ...navigationPages.map((row) => `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}/${row.area_slug}`),
 ])
 const failures: string[] = []
 let assertions = 0
@@ -136,23 +135,15 @@ async function run() {
     expect((await imageResponse.arrayBuffer()).byteLength > 10_000, `Collection image response is unexpectedly small: ${image}`)
   }
   for (const clusterSlug of availableClusterSlugs) {
-    const clusterPage = await testDocument(`/services/${clusterSlug}`, ['HVAC service cluster', 'Service collection', 'Available services'])
+    const clusterPage = await testDocument(`/services/${clusterSlug}`, ['HVAC service cluster', 'Available services'])
+    expect(!clusterPage.includes('Service landing page'), `/services/${clusterSlug} still renders the removed landing-page keyword card`)
     const panelImage = clusterPage.match(/data-panel-image="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
     expect(panelImage?.startsWith('https://cdn.sanity.io/'), `/services/${clusterSlug} is missing its Sanity image-backed count panel`)
-  }
-  for (const service of navigationEquipment) {
-    const clusterSlug = clusterByServiceId.get(Number(service.C))
-    const pathname = `/services/${clusterSlug}/${service.slug}`
-    const serviceCollection = await testDocument(pathname, ['Service landing page', 'Available page'])
-    expect(visibleText(serviceCollection).includes(service.name), `${pathname} is missing ${JSON.stringify(service.name)}`)
-    expect(serviceCollection.includes('class="collection-card-area">Service landing page'), `${pathname} exposes an area name in the service directory card`)
-    const panelImage = serviceCollection.match(/data-panel-image="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
-    expect(panelImage?.startsWith('https://cdn.sanity.io/'), `${pathname} is missing its Sanity image-backed count panel`)
   }
   await testDocument('/services/studio', [])
 
   for (const row of navigationPages.filter((candidate) => Number(candidate.service_id) > 305)) {
-    const pathname = `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}/${row.area_slug}`
+    const pathname = `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}`
     const service = navigationEquipment.find((candidate) => Number(candidate.C) === Number(row.service_id))
     const text = await testDocument(pathname, ['id="quote"', 'id="reviews"', 'id="faq"', 'id="guides"'])
     expect(visibleText(text).includes(`${service?.h1_prefix} in Chicago`), `${pathname} is missing its mapped Chicago H1`)
@@ -161,7 +152,7 @@ async function run() {
   }
 
   for (const row of source.page) {
-    const pathname = `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}/${row.area_slug}`
+    const pathname = `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}`
     const service = serviceBySlug.get(row.equipment_slug)
     const area = areaBySlug.get(row.area_slug)
     const heading = `${service?.h1_prefix} in ${area?.name}`
@@ -242,10 +233,13 @@ async function run() {
     const clusterSlug = clusterByServiceId.get(Number(row.service_id))
     const oldPage = await fetch(`${baseUrl}/services/${row.equipment_slug}/${row.area_slug}`, {redirect: 'manual'})
     expect(oldPage.status === 308, `Legacy page /services/${row.equipment_slug}/${row.area_slug} returned ${oldPage.status} instead of 308`)
-    expect(oldPage.headers.get('location') === `/services/${clusterSlug}/${row.equipment_slug}/${row.area_slug}`, `Legacy page /services/${row.equipment_slug}/${row.area_slug} redirects to the wrong hierarchy`)
+    expect(oldPage.headers.get('location') === `/services/${clusterSlug}/${row.equipment_slug}`, `Legacy page /services/${row.equipment_slug}/${row.area_slug} redirects to the wrong hierarchy`)
+    const oldNestedPage = await fetch(`${baseUrl}/services/${clusterSlug}/${row.equipment_slug}/${row.area_slug}`, {redirect: 'manual'})
+    expect(oldNestedPage.status === 308, `Area-suffixed page /services/${clusterSlug}/${row.equipment_slug}/${row.area_slug} returned ${oldNestedPage.status} instead of 308`)
+    expect(oldNestedPage.headers.get('location') === `/services/${clusterSlug}/${row.equipment_slug}`, `Area-suffixed page /services/${clusterSlug}/${row.equipment_slug}/${row.area_slug} redirects to the wrong hierarchy`)
   }
 
-  const missing = await fetch(`${baseUrl}/services/heating/not-a-service/chicago`, {redirect: 'manual'})
+  const missing = await fetch(`${baseUrl}/services/heating/not-a-service`, {redirect: 'manual'})
   expect(missing.status === 404, `Unknown service returned ${missing.status} instead of 404`)
   const removedLincolnPark = await fetch(`${baseUrl}/services/heating/furnace-repair-installation/lincoln-park`, {redirect: 'manual'})
   expect(removedLincolnPark.status === 404, `Removed Lincoln Park route returned ${removedLincolnPark.status} instead of 404`)

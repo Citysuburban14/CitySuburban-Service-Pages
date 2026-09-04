@@ -6,12 +6,11 @@ The public service library follows the taxonomy in `HVAC_Keyword_Clusters.xlsx`,
 
 1. `/services` — cluster collection
 2. `/services/{cluster-slug}` — services assigned to one cluster
-3. `/services/{cluster-slug}/{service-slug}` — the service-level collection
-4. `/services/{cluster-slug}/{service-slug}/{area-slug}` — the standard Sanity-driven service landing page
+3. `/services/{cluster-slug}/{service-slug}` — the standard Sanity-driven service landing page
 
-The earlier `/services/{service-slug}` and `/services/{service-slug}/{area-slug}` shapes remain as permanent redirects so existing bookmarks and indexed links resolve to the canonical nested URLs.
+There is no additional one-card area layer. Selecting a service from its cluster opens the complete landing page immediately. The earlier `/services/{service-slug}`, `/services/{service-slug}/{area-slug}`, and `/services/{cluster-slug}/{service-slug}/{area-slug}` shapes remain as permanent redirects so existing bookmarks and indexed links resolve to the canonical nested URL.
 
-The intermediate pages do not duplicate landing-page content. They organize the existing pages and derive their cards, images, descriptions, volumes, and availability from the same `servicePage`, `serviceDefinition`, and `serviceArea` records.
+The cluster pages organize the existing landing pages and derive their cards, images, descriptions, volumes, and availability from the same `servicePage`, `serviceDefinition`, and `serviceArea` records.
 
 ## Workbook mapping
 

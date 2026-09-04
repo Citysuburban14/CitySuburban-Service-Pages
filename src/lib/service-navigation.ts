@@ -131,7 +131,3 @@ export function clusterPath(clusterSlug: string): string {
 export function servicePath(clusterSlug: string, serviceSlug: string): string {
   return `/${clusterSlug}/${serviceSlug}`
 }
-
-export function landingPagePath(clusterSlug: string, serviceSlug: string, areaSlug: string): string {
-  return `/${clusterSlug}/${serviceSlug}/${areaSlug}`
-}

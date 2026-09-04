@@ -162,6 +162,9 @@ function JsonLd({data}: Props) {
   const {page, settings} = data
   if (!page || !settings) return null
   const {service, area} = page
+  const canonicalUrl = service.cluster?.slug
+    ? `${settings.siteUrl.replace(/\/+$/, '')}/services${servicePath(service.cluster.slug, service.slug)}`
+    : page.seo.canonicalUrl
   const faqs: Faq[] = [...(service.faqs || []), ...(page.localFaqOverrides?.length ? page.localFaqOverrides : area.localFaqs || [])]
   const graph = [
     {
@@ -175,13 +178,12 @@ function JsonLd({data}: Props) {
       geo: settings.shopLocation ? {'@type': 'GeoCoordinates', latitude: settings.shopLocation.lat, longitude: settings.shopLocation.lng} : undefined,
       aggregateRating: settings.google?.rating ? {'@type': 'AggregateRating', ratingValue: settings.google.rating, reviewCount: settings.google.reviewCount} : undefined,
     },
-    {'@type': 'Service', name: `${service.h1Prefix} in ${area.name}`, serviceType: service.name, provider: {'@id': `${settings.siteUrl}/#business`}, areaServed: {'@type': 'City', name: `${area.name}, ${area.state}`}},
+    {'@type': 'Service', name: `${service.h1Prefix} in ${area.name}`, url: canonicalUrl, serviceType: service.name, provider: {'@id': `${settings.siteUrl}/#business`}, areaServed: {'@type': 'City', name: `${area.name}, ${area.state}`}},
     {'@type': 'BreadcrumbList', itemListElement: [
       {'@type': 'ListItem', position: 1, name: 'Home', item: settings.siteUrl},
       {'@type': 'ListItem', position: 2, name: 'Services', item: `${settings.siteUrl}/services`},
       ...(service.cluster?.name && service.cluster?.slug ? [{'@type': 'ListItem', position: 3, name: service.cluster.name, item: `${settings.siteUrl}/services/${service.cluster.slug}`}] : []),
-      {'@type': 'ListItem', position: service.cluster?.slug ? 4 : 3, name: service.name, item: `${settings.siteUrl}/services/${service.slug}`},
-      {'@type': 'ListItem', position: service.cluster?.slug ? 5 : 4, name: area.name, item: page.seo.canonicalUrl},
+      {'@type': 'ListItem', position: service.cluster?.slug ? 4 : 3, name: `${service.name} in ${area.name}`, item: canonicalUrl},
     ]},
     ...(faqs.length ? [{'@type': 'FAQPage', mainEntity: faqs.map((faq) => ({'@type': 'Question', name: faq.question, acceptedAnswer: {'@type': 'Answer', text: faq.answer}}))}] : []),
   ]
@@ -233,7 +235,7 @@ export function ServiceLandingPage({data}: Props) {
     <div className="site-chrome">
       <CollectionHeader />
       <main className="service-landing" style={brandStyle}>
-      <nav className="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href={settings.siteUrl}>Home</a></li><li><Link href="/">Services</Link></li>{service.cluster?.slug && <li><Link href={clusterPath(service.cluster.slug)}>{service.cluster.name}</Link></li>}<li><Link href={service.cluster?.slug ? servicePath(service.cluster.slug, service.slug) : `/${service.slug}`}>{service.name}</Link></li><li aria-current="page">{area.name}</li></ol></nav>
+      <nav className="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href={settings.siteUrl}>Home</a></li><li><Link href="/">Services</Link></li>{service.cluster?.slug && <li><Link href={clusterPath(service.cluster.slug)}>{service.cluster.name}</Link></li>}<li aria-current="page">{service.name} in {area.name}</li></ol></nav>
 
       <header className="hero"><div className="wrap hero-grid"><div>
         <p className="eyebrow">{area.heroEyebrow}</p><h1>{questionHeading(`${service.h1Prefix} in ${area.name}`)}</h1><p className="lede">{service.heroLede}</p>

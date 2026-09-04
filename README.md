@@ -12,7 +12,7 @@ Next.js 16 and Sanity implementation for data-driven service × area landing pag
 - `siteSettings`: singleton for company, contact, brand, ratings, trust and form defaults.
 - Embedded Sanity Studio: `/studio`.
 
-Public navigation follows `/services` → `/services/{cluster}` → `/services/{cluster}/{service}` → `/services/{cluster}/{service}/{area}`. Legacy shorter URLs permanently redirect to this canonical hierarchy. See `docs/CLUSTER_ARCHITECTURE.md` for the workbook mapping, scope rules, and publishing behavior.
+Public navigation follows `/services` → `/services/{cluster}` → `/services/{cluster}/{service}`. The last URL renders the complete Sanity-driven service landing page directly. Legacy shorter and area-suffixed URLs permanently redirect to this canonical hierarchy. See `docs/CLUSTER_ARCHITECTURE.md` for the workbook mapping, scope rules, and publishing behavior.
 
 The original spreadsheet package is preserved locally but ignored by Git. The normalized import source is `data/source-content.json`.
 

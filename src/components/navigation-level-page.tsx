@@ -1,22 +1,12 @@
 import Link from 'next/link'
 import {CollectionFooter, CollectionHeader} from '@/components/collection-chrome'
 import {ServiceCollection} from '@/components/service-collection'
-import {clusterPath, type PreparedCluster, type PreparedService} from '@/lib/service-navigation'
+import type {PreparedCluster} from '@/lib/service-navigation'
 
-type Props = {
-  cluster: PreparedCluster
-  service?: PreparedService
-}
+type Props = {cluster: PreparedCluster}
 
-export function NavigationLevelPage({cluster, service}: Props) {
-  const isCluster = !service
-  const pages = service?.pages || cluster.pages
-  const title = service?.name || cluster.name
-  const lede = service
-    ? `Review ${service.name.toLowerCase()} information, project guidance, and scheduling options before opening the complete service page.`
-    : cluster.description
-  const count = service ? pages.length : cluster.services.length
-  const panelImage = service?.cardImage || cluster.cardImage
+export function NavigationLevelPage({cluster}: Props) {
+  const count = cluster.services.length
 
   return (
     <div className="collection-page">
@@ -26,42 +16,38 @@ export function NavigationLevelPage({cluster, service}: Props) {
           <ol>
             <li><a href="https://citysuburbanheating.com/">Home</a></li>
             <li><Link href="/">Services</Link></li>
-            {service && <li><Link href={clusterPath(cluster.slug)}>{cluster.name}</Link></li>}
-            <li aria-current="page">{title}</li>
+            <li aria-current="page">{cluster.name}</li>
           </ol>
         </nav>
         <section className="collection-level-hero">
           <div className="collection-wrap collection-level-hero-grid">
             <div>
-              <p className="collection-hero-kicker">{isCluster ? 'HVAC service cluster' : cluster.name}</p>
-              <h1>{title}</h1>
-              <p>{lede}</p>
+              <p className="collection-hero-kicker">HVAC service cluster</p>
+              <h1>{cluster.name}</h1>
+              <p>{cluster.description}</p>
               <div className="collection-hero-actions">
-                <a href="#service-directory-title">{isCluster ? 'Browse services' : 'Open service page'}</a>
+                <a href="#service-directory-title">Browse services</a>
                 <a href="https://citysuburbanheating.com/contact-us/">Schedule service</a>
               </div>
             </div>
             <div
-              className={`collection-level-stat${panelImage ? ' collection-level-stat-image' : ''}`}
-              data-panel-image={panelImage}
-              style={panelImage ? {backgroundImage: `linear-gradient(90deg,rgba(9,38,58,.96) 0%,rgba(9,38,58,.82) 52%,rgba(9,38,58,.38) 100%),url("${panelImage}")`} : undefined}
+              className={`collection-level-stat${cluster.cardImage ? ' collection-level-stat-image' : ''}`}
+              data-panel-image={cluster.cardImage}
+              style={cluster.cardImage ? {backgroundImage: `linear-gradient(90deg,rgba(9,38,58,.96) 0%,rgba(9,38,58,.82) 52%,rgba(9,38,58,.38) 100%),url("${cluster.cardImage}")`} : undefined}
             >
-              <span>{title}</span>
+              <span>{cluster.name}</span>
               <strong>{count}</strong>
-              <h2>{isCluster ? 'Available services' : 'Available page'}</h2>
-              <p>{isCluster ? `${count} services in this system` : 'Complete service details and scheduling'}</p>
+              <h2>Available services</h2>
+              <p>{count} services in this system</p>
             </div>
           </div>
         </section>
         <ServiceCollection
-          pages={pages}
+          pages={cluster.pages}
           clusterSlug={cluster.slug}
-          level={isCluster ? 'service' : 'area'}
-          kicker={isCluster ? `${cluster.name} directory` : 'Service page'}
-          heading={isCluster ? `Choose a ${cluster.name.toLowerCase()} service` : `Open the ${service?.name.toLowerCase()} page`}
-          description={isCluster
-            ? 'Choose an equipment or service type to continue to its service collection.'
-            : 'Open the complete service page for project guidance, reviews, pricing factors, and scheduling.'}
+          kicker={`${cluster.name} directory`}
+          heading={`Choose a ${cluster.name.toLowerCase()} service`}
+          description="Choose an equipment or service type to open its complete service landing page."
         />
       </main>
       <CollectionFooter />
