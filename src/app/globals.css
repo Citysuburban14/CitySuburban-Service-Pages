@@ -71,13 +71,14 @@ a{color:var(--brand);text-underline-offset:3px}
 @media(max-width:640px){.service-index{grid-template-columns:1fr}.page-wrap{width:min(100% - 28px,var(--wrap))}}
 @media print{.service-landing .callbar,.service-landing .form-card{display:none}}
 
-/* Image-backed service-library feature card. */
-.collection-hero-panel{background-color:var(--collection-charcoal);background-image:linear-gradient(90deg,rgba(15,25,35,.96) 0%,rgba(15,25,35,.86) 48%,rgba(15,25,35,.38) 100%),url("/services/images/services/electrical-panel-upgrade.jpg");background-position:center;background-repeat:no-repeat;background-size:cover;box-shadow:0 28px 60px -36px rgba(15,25,35,.85)}
+/* SVG-backed service-library feature card. */
+.collection-hero-panel{background:var(--collection-charcoal);box-shadow:0 28px 60px -36px rgba(15,25,35,.85)}
 .collection-hero-panel::before{background:var(--collection-lime);border:0;border-radius:0;height:4px;right:34px;top:34px;width:64px}
 
 .collection-hero-panel>span,.collection-hero-panel>strong,.collection-hero-panel>p,.collection-hero-panel>a{position:relative;z-index:1;text-shadow:0 2px 18px rgba(0,0,0,.55)}
 .collection-hero-panel strong{font-size:82px;font-weight:600;letter-spacing:-.06em}
 .collection-hero-panel p{color:#e5eaee}
+.collection-hero-svg{height:100%;opacity:.72;pointer-events:none;position:absolute;right:-20px;top:-14px;width:82%}
 
 /* Exact live-site chrome and shared service-page responsive refinements. */
 .collection-header-stack{position:sticky;top:0;z-index:1000}
@@ -213,6 +214,8 @@ a{color:var(--brand);text-underline-offset:3px}
 
 /* Workbook-driven hierarchy: cluster collection -> service collection -> local page. */
 .cluster-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.cluster-directory-heading{margin-bottom:28px}
+.cluster-directory-heading .collection-kicker{font-family:var(--font-space-grotesk),sans-serif;font-size:clamp(1.7rem,3vw,2.5rem);font-weight:600;letter-spacing:-.035em;text-transform:none}
 .cluster-card{background:#f3f6f7;border:1px solid var(--collection-line);color:var(--collection-ink);display:grid;grid-template-columns:minmax(150px,.72fr) minmax(0,1.28fr);min-height:290px;overflow:hidden;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
 .cluster-card:hover{box-shadow:0 26px 54px -35px rgba(9,38,58,.68);transform:translateY(-4px)}
 .cluster-card-media{align-items:flex-end;background-color:var(--collection-charcoal);background-position:center;background-size:cover;display:flex;padding:24px}
@@ -222,6 +225,9 @@ a{color:var(--brand);text-underline-offset:3px}
 .cluster-card-meta{color:var(--collection-lime-dark);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 .cluster-card-content>strong{font-size:28px;font-weight:500;line-height:1.08;margin-top:12px}
 .cluster-card-content>span:not(.cluster-card-meta):not(.cluster-card-link){color:var(--collection-muted);font-size:14px;line-height:1.55;margin-top:14px}
+.cluster-card-services{border-top:1px solid #d8e0e4;display:grid;gap:6px;list-style:none;margin:18px 0 0;padding:16px 0 0}
+.cluster-card-services li{color:var(--collection-charcoal);font-size:12px;font-weight:650;line-height:1.35;overflow-wrap:anywhere;padding-left:13px;position:relative}
+.cluster-card-services li::before{background:var(--collection-lime);border-radius:50%;content:"";height:5px;left:0;position:absolute;top:.46em;width:5px}
 .cluster-card-link{color:var(--collection-charcoal);font-weight:800;margin-top:auto;padding-top:24px}
 .cluster-card-link span{color:var(--collection-lime-dark)}
 .collection-breadcrumb{font-size:13px;padding-block:16px}
@@ -241,4 +247,4 @@ a{color:var(--brand);text-underline-offset:3px}
 .collection-level-stat h2{font-size:22px;font-weight:700;line-height:1.1;margin:8px 0 0}
 .collection-level-stat p{color:#e5eaee!important;font-size:14px!important;margin:8px 0 0!important}
 @media(max-width:820px){.cluster-card-grid{grid-template-columns:1fr}.collection-level-hero-grid{grid-template-columns:1fr;gap:34px}}
-@media(max-width:620px){.cluster-card{grid-template-columns:1fr;min-height:0}.cluster-card-media{min-height:150px}.collection-level-hero{padding:48px 0}.collection-level-hero h1{font-size:clamp(2.4rem,12vw,3.5rem)}.collection-level-stat{min-height:240px;padding:28px}.collection-level-stat::before{right:28px;top:28px}}
+@media(max-width:620px){.cluster-card-grid{gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}.cluster-card{grid-template-columns:1fr;min-height:0;min-width:0}.cluster-card-media{min-height:104px;padding:12px}.cluster-card-media>span{font-size:30px}.cluster-card-content{min-width:0;padding:14px 12px 16px}.cluster-card-meta{font-size:9px;letter-spacing:.06em}.cluster-card-content>strong{font-size:clamp(15px,4.5vw,19px);margin-top:7px;overflow-wrap:anywhere}.cluster-card-content>.cluster-card-description-text{display:none!important}.cluster-card-services{gap:5px;margin-top:12px;padding-top:11px}.cluster-card-services li{font-size:10px;padding-left:10px}.cluster-card-services li::before{height:4px;width:4px}.cluster-card-link{font-size:11px;padding-top:16px}.collection-level-hero{padding:48px 0}.collection-level-hero h1{font-size:clamp(2.4rem,12vw,3.5rem)}.collection-level-stat{min-height:240px;padding:28px}.collection-level-stat::before{right:28px;top:28px}}

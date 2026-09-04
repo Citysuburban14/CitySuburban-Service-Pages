@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import {useMemo, useState} from 'react'
 import {prepareCollectionItems, type CollectionItem} from '@/lib/collection-items'
+import {landingPagePath, servicePath} from '@/lib/service-navigation'
 
 export type {CollectionItem}
 
@@ -12,6 +13,7 @@ type Props = {
   kicker?: string
   heading?: string
   description?: string
+  clusterSlug: string
 }
 
 export function ServiceCollection({
@@ -20,6 +22,7 @@ export function ServiceCollection({
   kicker = 'Explore our services',
   heading = 'Find the right HVAC service',
   description = 'Browse locally focused service pages for heating, cooling, air quality, and commercial HVAC needs across Chicago.',
+  clusterSlug,
 }: Props) {
   const [query, setQuery] = useState('')
   const [area, setArea] = useState('All areas')
@@ -56,19 +59,19 @@ export function ServiceCollection({
           {level === 'area' && areas.length > 2 && <div className="collection-area-filter" aria-label="Filter by area">
             {areas.map((item) => <button type="button" aria-pressed={area === item} onClick={() => setArea(item)} key={item}>{item}</button>)}
           </div>}
-          <p className="collection-result-count" aria-live="polite">Showing <strong>{filtered.length}</strong> of {stablePages.length} {level === 'service' ? 'services' : 'local pages'}</p>
+          <p className="collection-result-count" aria-live="polite">Showing <strong>{filtered.length}</strong> of {stablePages.length} {level === 'service' ? 'services' : 'pages'}</p>
         </div>
         {!stablePages.length && <p className="setup-note">The Sanity dataset has no publishable service pages. Confirm each page has both a service and an area, or import the starter content.</p>}
         {stablePages.length > 0 && filtered.length === 0 && <div className="collection-empty"><h3>No matching services</h3><p>Try a broader service name or clear the search.</p><button type="button" onClick={() => {setQuery(''); setArea('All areas')}}>Clear filters</button></div>}
         <div className="collection-card-grid">
           {filtered.map((page) => (
-            <Link className="collection-card" data-card-image={page.cardImage} href={level === 'service' ? `/${page.serviceSlug}` : `/${page.serviceSlug}/${page.areaSlug}`} key={page._id}>
+            <Link className="collection-card" data-card-image={page.cardImage} href={level === 'service' ? servicePath(clusterSlug, page.serviceSlug) : landingPagePath(clusterSlug, page.serviceSlug, page.areaSlug)} key={page._id}>
               <span className={`collection-card-media${page.cardImage ? '' : ' collection-card-media-empty'}`} style={page.cardImage ? {backgroundImage: `linear-gradient(180deg, rgba(9,38,58,0) 45%, rgba(9,38,58,.14)), url("${page.cardImage}")`} : undefined} role="img" aria-label={`${page.serviceName} in ${page.areaName}`}>
                 {!page.cardImage && <span aria-hidden="true">CS</span>}
               </span>
               <span className="collection-card-arrow" aria-hidden="true">→</span>
               <span className="collection-card-content">
-                <span className="collection-card-area">{level === 'service' ? 'Service collection' : page.areaName}</span>
+                <span className="collection-card-area">{level === 'service' ? 'Service collection' : 'Service landing page'}</span>
                 <strong>{page.serviceName}</strong>
                 {page.metaDescription && <span className="collection-card-description">{page.metaDescription}</span>}
                 {page.monthlySearchVolume ? <span className="collection-card-volume">{page.monthlySearchVolume.toLocaleString('en-US')} monthly searches</span> : null}

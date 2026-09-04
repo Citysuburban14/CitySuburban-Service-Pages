@@ -6,6 +6,7 @@ import {CenteredAreaRail} from './centered-area-rail'
 import {LeadForm} from './lead-form'
 import {CollectionFooter, CollectionHeader} from './collection-chrome'
 import {questionHeading} from '@/lib/headings'
+import {clusterPath, servicePath} from '@/lib/service-navigation'
 
 type Props = {data: ServicePageData}
 
@@ -66,14 +67,15 @@ function asQuestion(value: string | undefined, area: string): string {
   return heading.endsWith('?') ? heading : `${heading}?`
 }
 
-function serviceHref(url: string | undefined) {
+function serviceHref(url: string | undefined, routes: ServicePageData['serviceRoutes']) {
   if (!url) return '/services'
   try {
     const parsed = new URL(url, 'https://citysuburbanheating.com')
     if (!/(^|\.)(citysuburbanheating|highlightschicago)\.com$/i.test(parsed.hostname)) return url
     const match = parsed.pathname.match(/^\/services\/([^/]+)\/?$/)
     if (!match) return url
-    return `/services/${match[1]}`
+    const route = routes?.find((candidate) => candidate.serviceSlug === match[1])
+    return route?.clusterSlug ? `/services${servicePath(route.clusterSlug, match[1])}` : `/services/${match[1]}`
   } catch {
     return url
   }
@@ -231,7 +233,7 @@ export function ServiceLandingPage({data}: Props) {
     <div className="site-chrome">
       <CollectionHeader />
       <main className="service-landing" style={brandStyle}>
-      <nav className="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href={settings.siteUrl}>Home</a></li><li><Link href="/">Services</Link></li>{service.cluster?.slug && <li><Link href={`/${service.cluster.slug}`}>{service.cluster.name}</Link></li>}<li><Link href={`/${service.slug}`}>{service.name}</Link></li><li aria-current="page">{area.name}</li></ol></nav>
+      <nav className="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href={settings.siteUrl}>Home</a></li><li><Link href="/">Services</Link></li>{service.cluster?.slug && <li><Link href={clusterPath(service.cluster.slug)}>{service.cluster.name}</Link></li>}<li><Link href={service.cluster?.slug ? servicePath(service.cluster.slug, service.slug) : `/${service.slug}`}>{service.name}</Link></li><li aria-current="page">{area.name}</li></ol></nav>
 
       <header className="hero"><div className="wrap hero-grid"><div>
         <p className="eyebrow">{area.heroEyebrow}</p><h1>{questionHeading(`${service.h1Prefix} in ${area.name}`)}</h1><p className="lede">{service.heroLede}</p>
@@ -254,7 +256,7 @@ export function ServiceLandingPage({data}: Props) {
 
       <section className="wrap" id="areas"><h2 className="single-line-mobile">{questionHeading(area.areasHeading)}</h2><p className="lede narrow">{area.areasLede}</p><div className="coverage-stack">{coverageMapFirst ? <>{coverageMap}{coverageAreas}</> : <>{coverageAreas}{coverageMap}</>}</div>{area.areasNote && <p className="small muted coverage-note">{area.areasNote}</p>}</section>
 
-      <section className="wrap" id="other-services"><h2>{questionHeading(`Our other services in ${area.name}`)}</h2><div className="svc-split">{service.featuredCategory?.title && <a className="svc-feature" href={serviceHref(service.featuredCategory.url)}><span className="svc-feature-tag">{service.featuredCategory.tag}</span><h3>{questionHeading(service.featuredCategory.title)}</h3><p>{service.featuredCategory.description}</p><span className="svc-feature-tag">{service.featuredCategory.cta} →</span></a>}<div className="svc-four">{service.otherServices?.slice(0, 4).map((item) => <a className="svc-mini" href={serviceHref(item.url)} key={item._key || item.name}><b>{item.name}</b><span>{item.description}</span></a>)}</div></div></section>
+      <section className="wrap" id="other-services"><h2>{questionHeading(`Our other services in ${area.name}`)}</h2><div className="svc-split">{service.featuredCategory?.title && <a className="svc-feature" href={serviceHref(service.featuredCategory.url, data.serviceRoutes)}><span className="svc-feature-tag">{service.featuredCategory.tag}</span><h3>{questionHeading(service.featuredCategory.title)}</h3><p>{service.featuredCategory.description}</p><span className="svc-feature-tag">{service.featuredCategory.cta} →</span></a>}<div className="svc-four">{service.otherServices?.slice(0, 4).map((item) => <a className="svc-mini" href={serviceHref(item.url, data.serviceRoutes)} key={item._key || item.name}><b>{item.name}</b><span>{item.description}</span></a>)}</div></div></section>
 
       <section className="section-tint" id="pricing"><div className="wrap"><h2>{questionHeading(presentation?.pricingHeadingAsQuestion === false ? `${service.pricing?.heading} in ${area.name}` : asQuestion(service.pricing?.heading, area.name))}</h2><p className="lede narrow">{service.pricing?.lede}</p><div className="table-wrap" tabIndex={0} aria-label={`${service.name} pricing table, scroll horizontally to view all columns`}><table><caption>{service.pricing?.caption}</caption><thead><tr><th>{service.pricing?.column1}</th><th>{service.pricing?.column2}</th><th>{service.pricing?.column3}</th></tr></thead><tbody>{service.pricing?.rows?.map((row) => <tr key={row._key || row.job}><td>{row.job}</td><td>{row.driver}</td><td>{row.permit}</td></tr>)}</tbody></table></div>{service.pricing?.note && <p className="small muted section-note">{service.pricing.note}</p>}</div></section>
 

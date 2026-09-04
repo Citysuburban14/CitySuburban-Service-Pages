@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
-import {findNavigationLevel, prepareServiceNavigation} from '../src/lib/service-navigation'
+import {clusterPath, findNavigationLevel, landingPagePath, prepareServiceNavigation, servicePath} from '../src/lib/service-navigation'
 
 type Row = Record<string, string | number>
 type Source = {equip: Row[]; area: Row[]; page: Row[]}
@@ -103,6 +103,9 @@ for (const service of taxonomySource.services) {
 }
 
 assert.equal(findNavigationLevel(clusters, 'unknown'), undefined)
+assert.equal(clusterPath('heating'), '/heating')
+assert.equal(servicePath('heating', 'furnace-repair-installation'), '/heating/furnace-repair-installation')
+assert.equal(landingPagePath('heating', 'furnace-repair-installation', 'chicago'), '/heating/furnace-repair-installation/chicago')
 assert.equal(taxonomySource.excludedTopics.some((topic) => /Fans \(General\/Portable\)/.test(topic.equipment)), true)
 assert.equal(clusters.some((cluster) => cluster.services.some((service) => /portable-fan/.test(service.slug))), false)
 

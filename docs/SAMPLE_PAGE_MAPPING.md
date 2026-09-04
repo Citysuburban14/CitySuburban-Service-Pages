@@ -1,8 +1,8 @@
-# Sample L4 page: Furnace Repair × Lincoln Park
+# Sample L4 page: Furnace Repair × Chicago
 
-Review route: `/services/furnace/lincoln-park`
+Review route: `/services/heating/furnace-repair-installation/chicago`
 
-This page is a pre-Sanity review sample. It merges the first complete HVAC combination in the supplied workbooks and falls back to local typed data only when the matching Sanity page does not exist. Once a published Sanity document exists for the same service and area, Sanity becomes the source automatically.
+This page follows the published Sanity content for the furnace service and Chicago area while using the shared standard template.
 
 ## Merge map
 
@@ -21,4 +21,4 @@ This page is a pre-Sanity review sample. It merges the first complete HVAC combi
 
 ## Approval scope
 
-The sample intentionally uses the shared L4 section order, City & Suburban red/blue/navy presentation, authentic company furnace imagery, and visible placeholders for the two photo slots that still need final Sanity media. No content has been written to the Sanity dataset.
+The sample uses the shared L4 section order, City & Suburban red/blue/navy presentation, and the service and area imagery stored in Sanity.

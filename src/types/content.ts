@@ -85,7 +85,7 @@ export type SiteSettings = {
 }
 
 export type ServicePageData = {
-  serviceRoutes?: Array<{serviceSlug: string; areaSlug: string}>
+  serviceRoutes?: Array<{serviceSlug: string; areaSlug: string; clusterSlug?: string}>
   page: {
     _id: string
     title: string

@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
   const clusters = prepareServiceNavigation((data || {}) as ServiceNavigationPayload)
-  const pageCount = clusters.reduce((total, cluster) => total + cluster.pages.length, 0)
   return (
     <div className="collection-page">
       <CollectionHeader />
@@ -31,10 +30,23 @@ export default async function HomePage() {
                 <a href="https://citysuburbanheating.com/contact-us/">Schedule service</a>
               </div>
             </div>
-            <div className="collection-hero-panel" aria-label={`${clusters.length} service clusters and ${pageCount} available local service pages`}>
+            <div className="collection-hero-panel" aria-label={`${clusters.length} HVAC service clusters`}>
+              <svg className="collection-hero-svg" viewBox="0 0 360 260" aria-hidden="true">
+                <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="264" cy="75" r="51" stroke="#DD382B" strokeWidth="11" />
+                  <path d="M264 42v66M235 58l58 34M235 92l58-34" stroke="#fff" strokeWidth="7" />
+                  <path d="M126 46c-20 20 20 30 0 50s20 30 0 50M164 46c-20 20 20 30 0 50s20 30 0 50" stroke="#DD382B" strokeWidth="8" />
+                  <path d="M61 192h238M78 192v25M126 192v25M174 192v25M222 192v25M282 192v25" stroke="#fff" strokeWidth="5" />
+                  <circle cx="78" cy="225" r="8" fill="#DD382B" stroke="#DD382B" />
+                  <circle cx="126" cy="225" r="8" fill="#fff" stroke="#fff" />
+                  <circle cx="174" cy="225" r="8" fill="#DD382B" stroke="#DD382B" />
+                  <circle cx="222" cy="225" r="8" fill="#fff" stroke="#fff" />
+                  <circle cx="282" cy="225" r="8" fill="#DD382B" stroke="#DD382B" />
+                </g>
+              </svg>
               <span>Service clusters</span>
               <strong>{clusters.length}</strong>
-              <p>{pageCount} local service pages and growing</p>
+              <p>Heating · Cooling · Air quality</p>
               <a href="tel:+17732383838">Call (773) 238-3838 <span aria-hidden="true">→</span></a>
             </div>
           </div>

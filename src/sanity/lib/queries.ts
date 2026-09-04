@@ -64,7 +64,8 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
   {
     "serviceRoutes": *[_type == "servicePage"] {
       "serviceSlug": service->slug.current,
-      "areaSlug": area->slug.current
+      "areaSlug": area->slug.current,
+      "clusterSlug": service->cluster->slug.current
     },
     "page": *[
       _type == "servicePage" &&
