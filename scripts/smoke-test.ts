@@ -112,9 +112,14 @@ async function run() {
   expect(collection.includes('/services/images/city-suburban-logo.png'), 'Collection page is not using the City & Suburban logo')
   expect(collection.includes('class="collection-footer-title"'), 'Collection footer is missing the single-line quote heading')
   expect((collection.match(/class="cluster-card"/g) || []).length === availableClusterSlugs.size, 'Collection page does not render each available service cluster')
-  for (const service of navigationEquipment) expect(visibleText(collection).includes(service.name), `Collection cluster cards do not list ${service.name}`)
+  expect(collection.includes('class="cluster-filter-bar"'), 'Collection page is missing the system filter bar')
+  expect(collection.includes('aria-pressed="true"'), 'Collection page does not expose an active filter state')
+  expect(collection.includes('class="cluster-card-count"'), 'Collection cards are missing their service-count overlays')
+  expect(collection.includes('class="cluster-card-title"'), 'Collection card titles are not overlaid on the media')
+  expect(collection.includes('loading="lazy"'), 'Collection card images are not lazy-loaded')
+  expect(collection.includes('class="cluster-card-service-chip cluster-card-more-chip"'), 'Collection cards do not summarize additional services')
   expect(!collection.includes('/services/furnace/lincoln-park'), 'Collection page still renders the Lincoln Park sample')
-  const cardImages = [...collection.matchAll(/class="cluster-card-media[^>]*style="[^"]*url\(&quot;([^&]+)&quot;\)/g)].map((match) => match[1])
+  const cardImages = [...collection.matchAll(/class="cluster-card-media[^"]*"[^>]*>\s*<img[^>]*src="([^"]+)"/g)].map((match) => match[1].replace(/&amp;/g, '&'))
   for (const image of cardImages) {
     const isRemote = /^https:\/\//.test(image)
     if (isRemote) {
