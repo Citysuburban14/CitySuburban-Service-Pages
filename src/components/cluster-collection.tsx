@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import {clusterPath, type PreparedCluster} from '@/lib/service-navigation'
 
-const clusterCardDescriptions: Record<string, string> = {
-  heating: 'Heating and hot-water care for reliable home comfort.',
-  cooling: 'Cooling solutions that keep Chicago homes comfortable.',
-  'hvac-systems': 'Complete HVAC systems, controls, and maintenance.',
-  'indoor-air-quality-ventilation': 'Cleaner indoor air and dependable ventilation solutions.',
-  'fireplace-chimney': 'Fireplace, chimney, and solid-fuel home services.',
-  'commercial-specialty': 'Commercial HVAC and specialty equipment support.',
+const clusterEquipmentSummaries: Record<string, string> = {
+  heating: 'Furnaces, boilers, water heaters, space heaters, and radiators.',
+  cooling: 'Central AC systems, ductless mini-splits, window units, portable units, and evaporative coolers.',
+  'hvac-systems': 'Heating systems, cooling systems, heat pumps, smart thermostats, and HVAC controls.',
+  'indoor-air-quality-ventilation': 'Air ducts, air purifiers, exhaust fans, humidifiers, and dehumidifiers.',
+  'fireplace-chimney': 'Gas fireplaces, wood stoves, pellet stoves, chimneys, and flue systems.',
+  'commercial-specialty': 'Commercial refrigerators, walk-in coolers, freezers, ice machines, and standby generators.',
 }
 
 function optimizedImageUrl(source: string) {
@@ -50,7 +50,7 @@ export function ClusterCollection({clusters}: {clusters: PreparedCluster[]}) {
                 </span>
                 <span className="cluster-card-content">
                   <strong className="cluster-card-title">{cluster.name}</strong>
-                  <span className="cluster-card-description-text">{clusterCardDescriptions[cluster.slug] || cluster.description}</span>
+                  <span className="cluster-card-description-text">{clusterEquipmentSummaries[cluster.slug] || cluster.description}</span>
                   <span className="cluster-card-link">Explore services <span aria-hidden="true">→</span></span>
                 </span>
               </Link>
