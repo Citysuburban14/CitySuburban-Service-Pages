@@ -36,7 +36,7 @@ export function ServiceCollection({
   }, [query, stablePages])
 
   return (
-    <section className="collection-directory" aria-labelledby="service-directory-title">
+    <section className="collection-directory service-directory" aria-labelledby="service-directory-title">
       <div className="collection-wrap">
         <div className="collection-directory-heading">
           <div>
@@ -64,7 +64,6 @@ export function ServiceCollection({
               <span className="collection-card-content">
                 <strong>{page.serviceName}</strong>
                 {page.metaDescription && <span className="collection-card-description">{page.metaDescription}</span>}
-                {page.monthlySearchVolume ? <span className="collection-card-volume">{page.monthlySearchVolume.toLocaleString('en-US')} monthly searches</span> : null}
               </span>
             </Link>
           ))}
