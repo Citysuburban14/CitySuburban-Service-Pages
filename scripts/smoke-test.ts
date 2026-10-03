@@ -22,9 +22,9 @@ const sourceIds = new Set(navigationPages.map((row) => Number(row.service_id)))
 const availableClusterSlugs = new Set(taxonomy.services.filter((item) => sourceIds.has(item.serviceId)).map((item) => item.clusterSlug))
 const clusterByServiceId = new Map(taxonomy.services.map((item) => [item.serviceId, item.clusterSlug]))
 const validServicePaths = new Set([
-  '/service',
-  ...clusters.clusters.filter((cluster) => availableClusterSlugs.has(cluster.slug)).map((cluster) => `/service/${cluster.slug}`),
-  ...navigationEquipment.map((row) => `/service/${clusterByServiceId.get(Number(row.C))}/${row.slug}`),
+  '/service/',
+  ...clusters.clusters.filter((cluster) => availableClusterSlugs.has(cluster.slug)).map((cluster) => `/service/${cluster.slug}/`),
+  ...navigationEquipment.map((row) => `/service/${clusterByServiceId.get(Number(row.C))}/${row.slug}/`),
 ])
 const failures: string[] = []
 let assertions = 0
@@ -95,23 +95,26 @@ async function run() {
   expect(!collection.includes('/service/images/services/electrical-panel-upgrade.jpg'), 'Collection hero still uses the retired raster background')
   for (const href of [
     'https://citysuburbanheating.com/',
-    'https://citysuburbanheating.com/about-us',
-    'https://citysuburbanheating.com/service/',
-    'https://citysuburbanheating.com/heating/',
-    'https://citysuburbanheating.com/cooling/',
-    'https://citysuburbanheating.com/service-areas/',
-    'https://citysuburbanheating.com/contact-us',
+    'https://citysuburbanheating.com/about-us/',
+    'https://citysuburbanheating.com/contact-us/',
+    'https://citysuburbanheating.com/service/heating/',
+    'https://citysuburbanheating.com/service/cooling/',
+    'https://citysuburbanheating.com/service/air-quality/',
+    'https://citysuburbanheating.com/service/commercial-hvac/',
+    'https://citysuburbanheating.com/services/heating/heater-repair/',
+    'https://citysuburbanheating.com/service/heating-services/',
+    '/service/',
     'tel:+17732383838',
     'mailto:service@citysuburbanheating.com',
   ]) expect(anchorHrefs(collection).includes(href), `Collection page is missing live destination ${href}`)
   expect(collection.includes('Need quick help?') && collection.includes('class="site-footer"'), 'Collection page is missing the live-site footer')
   expect(collection.includes('>Services<') && !collection.includes('>Service Areas<'), 'Header must show Services in place of Service Areas')
-  expect(collection.includes('family-owned HVAC company serving Chicago'), 'Collection footer is missing the City & Suburban company summary')
+  expect(collection.includes('We provide top-quality heating, ventilation, and air conditioning services tailored to your needs.'), 'Collection footer is missing the live company summary')
+  expect(!anchorHrefs(collection).includes('https://citysuburbanheating.com/service-areas/'), 'Header still links to Service Areas')
   expect(!collection.includes('nearby suburbs'), 'Collection page still makes the removed nearby-suburbs claim')
   expect(!collection.includes('NATE'), 'Collection page still makes an unverified NATE certification claim')
-  expect(collection.includes('class="collection-utility"'), 'Collection page is missing the live utility bar')
-  expect(collection.includes('/service/images/city-suburban-logo.png'), 'Collection page is not using the City & Suburban logo')
-  expect(collection.includes('class="collection-footer-title"'), 'Collection footer is missing the single-line quote heading')
+  expect(collection.includes('class="site-topbar"'), 'Collection page is missing the live top bar')
+  expect(collection.includes('/wp-content/uploads/2025/05/city-suburban-transparent-logo.png'), 'Collection page is not using the live City & Suburban logo')
   expect((collection.match(/class="cluster-card"/g) || []).length === availableClusterSlugs.size, 'Collection page does not render each available service cluster')
   expect(!collection.includes('class="cluster-filter-bar"'), 'Collection page still renders the unnecessary system filter bar')
   expect(collection.includes('class="cluster-card-count"'), 'Collection cards are missing their service-count overlays')
@@ -154,7 +157,7 @@ async function run() {
     const text = await testDocument(pathname, ['id="quote"', 'id="reviews"', 'id="faq"', 'id="guides"'])
     expect(visibleText(text).includes(`${service?.h1_prefix} in Chicago`), `${pathname} is missing its mapped Chicago H1`)
     expect((text.match(/class="site-header"/g) || []).length === 1, `${pathname} does not render exactly one shared header`)
-    expect((text.match(/class="collection-footer"/g) || []).length === 1, `${pathname} does not render exactly one shared footer`)
+    expect((text.match(/class="site-footer"/g) || []).length === 1, `${pathname} does not render exactly one shared footer`)
   }
 
   for (const row of source.page) {
@@ -164,8 +167,8 @@ async function run() {
     const heading = `${service?.h1_prefix} in ${area?.name}`
     const text = await testDocument(pathname, [heading, 'id="quote"', 'id="reviews"', 'id="faq"', 'id="guides"'])
     expect((text.match(/class="site-header"/g) || []).length === 1, `${pathname} does not render exactly one shared header`)
-    expect((text.match(/class="collection-footer"/g) || []).length === 1, `${pathname} does not render exactly one shared footer`)
-    expect((text.match(/class="collection-utility"/g) || []).length === 1, `${pathname} does not render exactly one utility bar`)
+    expect((text.match(/class="site-footer"/g) || []).length === 1, `${pathname} does not render exactly one shared footer`)
+    expect((text.match(/class="site-topbar"/g) || []).length === 1, `${pathname} does not render exactly one top bar`)
     const renderedText = visibleText(text)
     for (const pageHeading of headingTexts(text).filter((value) => /^(what|why|who)\b/i.test(value))) {
       expect(pageHeading.endsWith('?'), `${pathname} question heading is missing ?: ${pageHeading}`)
@@ -231,40 +234,40 @@ async function run() {
 
   for (const service of navigationEquipment) {
     const clusterSlug = clusterByServiceId.get(Number(service.C))
-    const oldCollection = await fetch(`${baseUrl}/service/${service.slug}`, {redirect: 'manual'})
-    expect(oldCollection.status === 308, `Legacy collection /services/${service.slug} returned ${oldCollection.status} instead of 308`)
-    expect(oldCollection.headers.get('location') === `/service/${clusterSlug}/${service.slug}`, `Legacy collection /services/${service.slug} redirects to the wrong hierarchy`)
+    const oldCollection = await fetch(`${baseUrl}/service/${service.slug}/`, {redirect: 'manual'})
+    expect(oldCollection.status === 308, `Legacy collection /service/${service.slug}/ returned ${oldCollection.status} instead of 308`)
+    expect(oldCollection.headers.get('location') === `/service/${clusterSlug}/${service.slug}/`, `Legacy collection /service/${service.slug}/ redirects to the wrong hierarchy`)
   }
   for (const row of navigationPages) {
     const clusterSlug = clusterByServiceId.get(Number(row.service_id))
-    const oldPage = await fetch(`${baseUrl}/service/${row.equipment_slug}/${row.area_slug}`, {redirect: 'manual'})
-    expect(oldPage.status === 308, `Legacy page /services/${row.equipment_slug}/${row.area_slug} returned ${oldPage.status} instead of 308`)
-    expect(oldPage.headers.get('location') === `/service/${clusterSlug}/${row.equipment_slug}`, `Legacy page /services/${row.equipment_slug}/${row.area_slug} redirects to the wrong hierarchy`)
-    const oldNestedPage = await fetch(`${baseUrl}/service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}`, {redirect: 'manual'})
-    expect(oldNestedPage.status === 308, `Area-suffixed page /services/${clusterSlug}/${row.equipment_slug}/${row.area_slug} returned ${oldNestedPage.status} instead of 308`)
-    expect(oldNestedPage.headers.get('location') === `/service/${clusterSlug}/${row.equipment_slug}`, `Area-suffixed page /services/${clusterSlug}/${row.equipment_slug}/${row.area_slug} redirects to the wrong hierarchy`)
+    const oldPage = await fetch(`${baseUrl}/service/${row.equipment_slug}/${row.area_slug}/`, {redirect: 'manual'})
+    expect(oldPage.status === 308, `Legacy page /service/${row.equipment_slug}/${row.area_slug}/ returned ${oldPage.status} instead of 308`)
+    expect(oldPage.headers.get('location') === `/service/${clusterSlug}/${row.equipment_slug}/`, `Legacy page /service/${row.equipment_slug}/${row.area_slug}/ redirects to the wrong hierarchy`)
+    const oldNestedPage = await fetch(`${baseUrl}/service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/`, {redirect: 'manual'})
+    expect(oldNestedPage.status === 308, `Area-suffixed page /service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/ returned ${oldNestedPage.status} instead of 308`)
+    expect(oldNestedPage.headers.get('location') === `/service/${clusterSlug}/${row.equipment_slug}/`, `Area-suffixed page /service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/ redirects to the wrong hierarchy`)
   }
 
-  const missing = await fetch(`${baseUrl}/service/heating/not-a-service`, {redirect: 'manual'})
+  const missing = await fetch(`${baseUrl}/service/heating/not-a-service/`, {redirect: 'manual'})
   expect(missing.status === 404, `Unknown service returned ${missing.status} instead of 404`)
-  const removedLincolnPark = await fetch(`${baseUrl}/service/heating/furnace-repair-installation/lincoln-park`, {redirect: 'manual'})
+  const removedLincolnPark = await fetch(`${baseUrl}/service/heating/furnace-repair-installation/lincoln-park/`, {redirect: 'manual'})
   expect(removedLincolnPark.status === 404, `Removed Lincoln Park route returned ${removedLincolnPark.status} instead of 404`)
 
-  const invalidLead = await request('/service/api/lead', {
+  const invalidLead = await request('/service/api/lead/', {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({}),
   })
   expect(invalidLead.response.status === 400, `Invalid lead returned ${invalidLead.response.status}`)
 
-  const honeypot = await request('/service/api/lead', {
+  const honeypot = await request('/service/api/lead/', {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({website: 'bot.example'}),
   })
   expect(honeypot.response.status === 200, `Honeypot lead returned ${honeypot.response.status}`)
 
-  const invalidWebhook = await request('/service/api/revalidate', {
+  const invalidWebhook = await request('/service/api/revalidate/', {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({documentType: 'servicePage'}),
