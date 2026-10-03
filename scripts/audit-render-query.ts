@@ -25,7 +25,7 @@ const client = createClient({
   perspective: 'published',
 })
 
-const routes = ['water-heater-repair-installation', 'air-conditioner-repair-installation', 'furnace-repair-installation', 'hvac-repair-installation', 'heat-pump-repair-installation']
+const routes = ['water-heater-repair-installation', 'air-conditioning-installation', 'furnace-repair-installation', 'hvac-repair-installation', 'heat-pump-services']
 async function main() {
   const results = []
   for (const serviceSlug of routes) {

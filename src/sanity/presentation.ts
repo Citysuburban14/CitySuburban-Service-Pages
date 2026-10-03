@@ -5,13 +5,13 @@ export const resolve: PresentationPluginOptions['resolve'] = {
     serviceCluster: defineLocations({
       select: {title: 'name', slug: 'slug.current'},
       resolve: (document) => ({
-        locations: document?.slug ? [{title: document.title || 'Service cluster', href: `/services/${document.slug}`}] : [],
+        locations: document?.slug ? [{title: document.title || 'Service cluster', href: `/services/${document.slug}/`}] : [],
       }),
     }),
     serviceDefinition: defineLocations({
       select: {title: 'name', slug: 'slug.current', clusterSlug: 'cluster->slug.current'},
       resolve: (document) => ({
-        locations: document?.slug && document?.clusterSlug ? [{title: document.title || 'Service page', href: `/services/${document.clusterSlug}/${document.slug}`}] : [],
+        locations: document?.slug && document?.clusterSlug ? [{title: document.title || 'Service page', href: `/services/${document.clusterSlug}/${document.slug}/`}] : [],
       }),
     }),
     servicePage: defineLocations({
@@ -22,7 +22,7 @@ export const resolve: PresentationPluginOptions['resolve'] = {
       },
       resolve: (document) => ({
         locations: document?.clusterSlug && document?.serviceSlug
-          ? [{title: document.title || 'Service page', href: `/services/${document.clusterSlug}/${document.serviceSlug}`}]
+          ? [{title: document.title || 'Service page', href: `/services/${document.clusterSlug}/${document.serviceSlug}/`}]
           : [],
       }),
     }),

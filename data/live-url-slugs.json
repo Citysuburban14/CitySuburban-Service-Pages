@@ -1,0 +1,13 @@
+{
+  "_note": "Service slugs that must equal the existing citysuburbanheating.com URL so the new page replaces the live page in place. Import scripts apply these over the source workbook slugs.",
+  "services": {
+    "302": "air-conditioning-installation",
+    "305": "heat-pump-services",
+    "306": "heater-repair",
+    "307": "duct-repair",
+    "308": "boiler-service",
+    "310": "ductless-hvac-service",
+    "315": "indoor-air-quality-test",
+    "320": "dehumidifier-installation"
+  }
+}

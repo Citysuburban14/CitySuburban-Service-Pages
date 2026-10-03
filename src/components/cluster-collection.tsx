@@ -7,7 +7,7 @@ const clusterEquipmentSummaries: Record<string, string> = {
   heating: 'Furnaces, boilers, water heaters, space heaters, and radiators.',
   cooling: 'Central AC systems, ductless mini-splits, window units, portable units, and evaporative coolers.',
   'hvac-systems': 'Heating systems, cooling systems, heat pumps, smart thermostats, and HVAC controls.',
-  'indoor-air-quality-ventilation': 'Air ducts, air purifiers, exhaust fans, humidifiers, and dehumidifiers.',
+  'air-quality': 'Air ducts, air purifiers, exhaust fans, humidifiers, and dehumidifiers.',
   'fireplace-chimney': 'Gas fireplaces, wood stoves, pellet stoves, chimneys, and flue systems.',
   'commercial-specialty': 'Commercial refrigerators, walk-in coolers, freezers, ice machines, and standby generators.',
 }

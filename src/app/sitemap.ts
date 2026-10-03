@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   })))
   return [
-    {url: `${base}/services`, lastModified, changeFrequency: 'weekly', priority: 1},
+    {url: `${base}/services/`, lastModified, changeFrequency: 'weekly', priority: 1},
     ...clusterPages,
     ...serviceCollections,
   ]
