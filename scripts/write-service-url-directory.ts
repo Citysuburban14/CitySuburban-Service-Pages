@@ -35,7 +35,7 @@ All 41 designs use the same responsive CSS and editable ordered section model. E
 
 The schema graph includes the service, page, business, breadcrumbs and visible FAQs. Canonical/service/page URLs match the directory. Collection navigation uses /service/; navbar landing URLs use /services/. The source reports eight navbar pages needing specific photos; its existing image slots are preserved.
 
-No Cloudflare Worker rules, WordPress navbar, Sanity publication or production proxy routing were changed. The internal Next proxy only makes the exact landing paths render in this app. Deploying/activating those pages at the live origin is a separate rollout.
+No live Cloudflare routes, WordPress navbar or Sanity publication were changed by the design setup. The internal Next proxy makes the exact landing paths render in this app. The updated standalone Cloudflare Worker is now prepared for these 24 URLs plus the existing \`/service/\` app paths. Follow [the updated Cloudflare rollout guide](CLOUDFLARE_PROXY.md) to activate it at the live origin.
 `
 fs.writeFileSync('docs/service-url-directory.md', text)
 console.log(`Wrote URL directory: ${catalog.length} navbar pages, ${retained.length} retained pages, ${Object.keys(migrations.overlaps).length} aliases.`)
