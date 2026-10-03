@@ -16,7 +16,7 @@ const wp = (path: string) => `${LIVE_SITE}${path}`
 export const liveMenu: MenuGroup[] = [
   {
     label: 'Heating',
-    href: wp('/service/heating/'),
+    href: wp('/services/heating/'),
     items: [
       {label: 'Heater repair', href: wp('/services/heating/heater-repair/')},
       {label: 'Boiler Services', href: wp('/services/heating/boiler-service/')},
@@ -29,7 +29,7 @@ export const liveMenu: MenuGroup[] = [
   },
   {
     label: 'Cooling',
-    href: wp('/service/cooling/'),
+    href: wp('/services/cooling/'),
     items: [
       {label: 'Ductless HVAC Services', href: wp('/services/cooling/ductless-hvac-service/')},
       {label: 'Air Conditioning Repair', href: wp('/services/cooling/air-conditioning-repair/')},
@@ -41,7 +41,7 @@ export const liveMenu: MenuGroup[] = [
   },
   {
     label: 'Air Quality',
-    href: wp('/service/air-quality/'),
+    href: wp('/services/air-quality/'),
     items: [
       {label: 'Dehumidifier Installation', href: wp('/services/air-quality/dehumidifier-installation/')},
       {label: 'Indoor Air Quality Test', href: wp('/services/air-quality/indoor-air-quality-test/')},
@@ -52,7 +52,7 @@ export const liveMenu: MenuGroup[] = [
   },
   {
     label: 'Commercial',
-    href: wp('/service/commercial-hvac/'),
+    href: wp('/services/commercial/'),
     items: [
       {label: 'Commercial HVAC System Installation', href: wp('/services/commercial/commercial-hvac-system-installation/')},
       {label: 'Commercial HVAC System Replacement', href: wp('/services/commercial/commercial-hvac-system-replacement/')},
@@ -64,7 +64,7 @@ export const liveMenu: MenuGroup[] = [
   },
 ]
 
-export const servicesLink: MenuLink = {label: 'Services', href: '/service/'}
+export const servicesLink: MenuLink = {label: 'Services', href: '/services/'}
 
 export const topBarLinks: MenuLink[] = [
   {label: 'Finance', href: 'https://retailservices.wellsfargo.com/pl/0024376626'},
@@ -73,10 +73,10 @@ export const topBarLinks: MenuLink[] = [
 ]
 
 export const footerServiceLinks: MenuLink[] = [
-  {label: 'Heating', href: wp('/service/heating-services/')},
-  {label: 'Cooling', href: wp('/service/cooling-services/')},
-  {label: 'Air Quality', href: wp('/service/air-quality-service/')},
-  {label: 'Commercial', href: wp('/service/commercial-hvac-service/')},
+  {label: 'Heating', href: wp('/services/heating/')},
+  {label: 'Cooling', href: wp('/services/cooling/')},
+  {label: 'Air Quality', href: wp('/services/air-quality/')},
+  {label: 'Commercial', href: wp('/services/commercial/')},
 ]
 
 export const business = {

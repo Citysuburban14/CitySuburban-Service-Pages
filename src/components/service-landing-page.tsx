@@ -10,6 +10,7 @@ import {clusterPath, servicePath} from '@/lib/service-navigation'
 import {getReferenceSnapshot, referenceServices} from '@/lib/reference-pages'
 import {legacyReplacementPath} from '@/lib/legacy-service-replacements'
 import {ReferenceLandingPage} from './reference-landing-page'
+import {migrateServiceUrls} from '@/lib/service-base-path'
 
 type Props = {data: ServicePageData}
 
@@ -27,7 +28,8 @@ const AVAILABLE_BRAND_LOGOS = new Set([
 ])
 
 function imageUrl(image?: ExternalImage): string | undefined {
-  return image?.resolvedUrl || image?.externalUrl
+  const url = image?.resolvedUrl || image?.externalUrl
+  return url ? migrateServiceUrls(url) : undefined
 }
 
 function imageStyle(image?: ExternalImage): CSSProperties | undefined {
@@ -49,7 +51,7 @@ function brandSlug(brand: string): string {
 }
 
 function brandLogoPath(brand: string): string {
-  return `/service/images/brands/${brandSlug(brand)}.png`
+  return `/services/images/brands/${brandSlug(brand)}.png`
 }
 
 function BrandMark({brand}: {brand: string}) {
@@ -71,14 +73,15 @@ function asQuestion(value: string | undefined, area: string): string {
 }
 
 function serviceHref(url: string | undefined, routes: ServicePageData['serviceRoutes']) {
-  if (!url) return '/service/'
+  if (!url) return '/services/'
+  url = migrateServiceUrls(url)
   try {
     const parsed = new URL(url, 'https://citysuburbanheating.com')
     if (!/(^|\.)(citysuburbanheating|highlightschicago)\.com$/i.test(parsed.hostname)) return url
     const match = parsed.pathname.match(/^\/services?\/([^/]+)\/?$/)
     if (!match) return url
     const route = routes?.find((candidate) => candidate.serviceSlug === match[1])
-    return route?.clusterSlug ? `/service${servicePath(route.clusterSlug, match[1])}` : `/service/${match[1]}/`
+    return route?.clusterSlug ? `/services${servicePath(route.clusterSlug, match[1])}` : `/services/${match[1]}/`
   } catch {
     return url
   }
@@ -166,7 +169,7 @@ function JsonLd({data}: Props) {
   if (!page || !settings) return null
   const {service, area} = page
   const canonicalUrl = service.cluster?.slug
-    ? `${settings.siteUrl.replace(/\/+$/, '')}/service${servicePath(service.cluster.slug, service.slug)}`
+    ? `${settings.siteUrl.replace(/\/+$/, '')}/services${servicePath(service.cluster.slug, service.slug)}`
     : page.seo.canonicalUrl
   const faqs: Faq[] = [...(service.faqs || []), ...(page.localFaqOverrides?.length ? page.localFaqOverrides : area.localFaqs || [])]
   const graph = [
@@ -184,8 +187,8 @@ function JsonLd({data}: Props) {
     {'@type': 'Service', name: `${service.h1Prefix} in ${area.name}`, url: canonicalUrl, serviceType: service.name, provider: {'@id': `${settings.siteUrl}/#business`}, areaServed: {'@type': 'City', name: `${area.name}, ${area.state}`}},
     {'@type': 'BreadcrumbList', itemListElement: [
       {'@type': 'ListItem', position: 1, name: 'Home', item: settings.siteUrl},
-      {'@type': 'ListItem', position: 2, name: 'Services', item: `${settings.siteUrl}/service/`},
-      ...(service.cluster?.name && service.cluster?.slug ? [{'@type': 'ListItem', position: 3, name: service.cluster.name, item: `${settings.siteUrl}/service/${service.cluster.slug}`}] : []),
+      {'@type': 'ListItem', position: 2, name: 'Services', item: `${settings.siteUrl}/services/`},
+      ...(service.cluster?.name && service.cluster?.slug ? [{'@type': 'ListItem', position: 3, name: service.cluster.name, item: `${settings.siteUrl}/services/${service.cluster.slug}`}] : []),
       {'@type': 'ListItem', position: service.cluster?.slug ? 4 : 3, name: `${service.name} in ${area.name}`, item: canonicalUrl},
     ]},
     ...(faqs.length ? [{'@type': 'FAQPage', mainEntity: faqs.map((faq) => ({'@type': 'Question', name: faq.question, acceptedAnswer: {'@type': 'Answer', text: faq.answer}}))}] : []),

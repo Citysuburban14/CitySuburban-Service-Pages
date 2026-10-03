@@ -10,13 +10,13 @@ type Props = {params: Promise<{serviceSlug: string; areaSlug: string; locationSl
 export default async function LegacyServicePage({params}: Props) {
   const {serviceSlug: clusterSlug, areaSlug: serviceSlug, locationSlug: areaSlug} = await params
   const replacement = legacyReplacementPath(serviceSlug)
-  if (replacement) permanentRedirect(replacement)
+  if (replacement) permanentRedirect(replacement.replace(/^\/services/, ''))
   const reference = getReferenceService(clusterSlug, serviceSlug)
-  if (reference && areaSlug === 'chicago') permanentRedirect(reference.livePath)
+  if (reference && areaSlug === 'chicago') permanentRedirect(reference.livePath.replace(/^\/services/, ''))
   const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
   const clusters = prepareServiceNavigation((data || {}) as ServiceNavigationPayload)
   const cluster = clusters.find((item) => item.slug === clusterSlug)
   const service = cluster?.services.find((item) => item.slug === serviceSlug)
   if (!cluster || !service || !service.pages.some((page) => page.areaSlug === areaSlug)) notFound()
-  permanentRedirect(`/service${servicePath(cluster.slug, service.slug)}`)
+  permanentRedirect(servicePath(cluster.slug, service.slug))
 }

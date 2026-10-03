@@ -1,0 +1,6 @@
+{
+  "heating-services": "heating",
+  "cooling-services": "cooling",
+  "air-quality-service": "air-quality",
+  "commercial-hvac-service": "commercial"
+}

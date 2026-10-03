@@ -69,14 +69,14 @@ for service in sorted(services, key=lambda doc: doc['serviceId']):
     category = migrations['directoryCategories'][cluster]
     name = service['name']
     h1 = f"{service['h1Prefix']} in {area['name']}"
-    live_path = f'/service/{cluster}/{slug}/'
+    live_path = f'/services/{cluster}/{slug}/'
     canonical = 'https://citysuburbanheating.com' + live_path
     gallery = page.get('gallery') or []
     hero_image = resolve_image(page.get('coverImage')) or next((resolve_image(image) for image in gallery if resolve_image(image)), None)
     modules = []
     header = deepcopy(nodes['site-header'])
     last_link = header.xpath('.//nav[@aria-label="Primary"]/a')[-1]
-    last_link.set('href', '/service/')
+    last_link.set('href', '/services/')
     set_text(last_link, 'Services')
     modules.append(header)
     hero = deepcopy(nodes['hero'])
@@ -89,7 +89,7 @@ for service in sorted(services, key=lambda doc: doc['serviceId']):
     breadcrumb.clear()
     breadcrumb.set('aria-label', 'Breadcrumb')
     breadcrumb.set('style', 'font-size:13px;color:rgba(255,255,255,.75)')
-    breadcrumb.append(html.fromstring(f'<span><a style="color:inherit" href="https://citysuburbanheating.com/">Home</a> › <a style="color:inherit" href="/service/">Services</a> › <a style="color:inherit" href="/service/{category}/">{e(category.replace("-", " ").title())}</a> › {e(name)}</span>'))
+    breadcrumb.append(html.fromstring(f'<span><a style="color:inherit" href="https://citysuburbanheating.com/">Home</a> › <a style="color:inherit" href="/services/">Services</a> › <a style="color:inherit" href="/services/{category}/">{e(category.replace("-", " ").title())}</a> › {e(name)}</span>'))
     column = hero.xpath('.//div[@class="r-cols"]/div[1]')[0]
     set_text(column.xpath('./span')[0], f'{area["name"]} {name}')
     set_text(hero.xpath('.//h1')[0], h1)
@@ -141,7 +141,7 @@ for service in sorted(services, key=lambda doc: doc['serviceId']):
         for brand in service['brands']:
             brand_slug = re.sub(r'[^a-z0-9]+', '-', brand.lower().replace('&', ' and ')).strip('-')
             logo = REPO / 'public/images/brands' / f'{brand_slug}.png'
-            image = f'<img src="/service/images/brands/{brand_slug}.png" alt="{e(brand)}" style="max-height:44px;max-width:140px;object-fit:contain">' if logo.exists() else e(brand)
+            image = f'<img src="/services/images/brands/{brand_slug}.png" alt="{e(brand)}" style="max-height:44px;max-width:140px;object-fit:contain">' if logo.exists() else e(brand)
             content += f'<figure style="margin:0;background:#FFFFFF;border:1px solid #E3E7EA;border-radius:10px;padding:14px;min-width:120px;height:72px;display:flex;align-items:center;justify-content:center">{image}</figure>'
         modules.append(section('brands', content + '</div>' + paragraph(service.get('brandsNote'))))
     process = deepcopy(nodes['process'])
@@ -188,7 +188,7 @@ for service in sorted(services, key=lambda doc: doc['serviceId']):
         {'@type': settings.get('schemaBusinessType') or 'HVACBusiness', '@id': 'https://citysuburbanheating.com/#business', 'name': settings['companyName'], 'url': 'https://citysuburbanheating.com', 'telephone': settings.get('phoneE164')},
         {'@type': 'Service', 'name': h1, 'serviceType': name, 'url': canonical, 'provider': {'@id': 'https://citysuburbanheating.com/#business'}, 'areaServed': {'@type': 'City', 'name': area['name']}},
         {'@type': 'WebPage', '@id': canonical + '#webpage', 'url': canonical, 'name': h1, 'description': page['seo']['description']},
-        {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://citysuburbanheating.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://citysuburbanheating.com/service/'}, {'@type': 'ListItem', 'position': 3, 'name': name, 'item': canonical}]},
+        {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://citysuburbanheating.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://citysuburbanheating.com/services/'}, {'@type': 'ListItem', 'position': 3, 'name': name, 'item': canonical}]},
     ]
     if faqs:
         graph.append({'@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': faq['question'], 'acceptedAnswer': {'@type': 'Answer', 'text': faq['answer']}} for faq in faqs]})

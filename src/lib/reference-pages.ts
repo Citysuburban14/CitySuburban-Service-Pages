@@ -5,6 +5,7 @@ import {referenceSnapshots} from '@/reference-pages'
 import type {ReferenceSnapshot} from '@/reference-pages/types'
 import type {PreparedCluster} from './service-navigation'
 import type {ReferenceContentField} from './reference-content-fields'
+import {migrateServiceContent} from './service-base-path'
 
 export type ReferenceService = (typeof catalog)[number] | (typeof retainedCatalog)[number]
 
@@ -40,6 +41,7 @@ export function getReferenceSnapshot(clusterSlug: string, slug: string): Referen
 }
 
 export function referenceNavigation(overrides: ReferenceOverride[] = []): PreparedCluster[] {
+  overrides = migrateServiceContent(overrides)
   return Object.entries(clusterDetails).map(([slug, details], index) => {
     const services = referenceServices.filter((item) => ('directoryClusterSlug' in item ? item.directoryClusterSlug : item.clusterSlug) === slug)
     const pages = services.map((item) => {

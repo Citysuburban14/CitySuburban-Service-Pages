@@ -4,6 +4,7 @@
 import {useEffect, useRef} from 'react'
 import type {ReferenceSnapshot} from '@/reference-pages/types'
 import liveFooter from '@/reference-pages/shared-footer.json'
+import {migrateServiceUrls} from '@/lib/service-base-path'
 
 type Props = {snapshot: Pick<ReferenceSnapshot, 'style' | 'html' | 'schema'>; serviceName: string}
 
@@ -35,7 +36,7 @@ export function ReferenceLandingPage({snapshot, serviceName}: Props) {
       if (!name || phone.length < 7) {
         message = 'Enter your name and a valid phone number to request service.'
       } else try {
-        const response = await fetch('/service/api/lead/', {
+        const response = await fetch('/services/api/lead/', {
           method: 'POST',
           headers: {'content-type': 'application/json'},
           body: JSON.stringify({
@@ -57,9 +58,9 @@ export function ReferenceLandingPage({snapshot, serviceName}: Props) {
 
   return <div className="reference-design" ref={root}>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" />
-    <style dangerouslySetInnerHTML={{__html: snapshot.style}} />
+    <style dangerouslySetInnerHTML={{__html: migrateServiceUrls(snapshot.style)}} />
     <style dangerouslySetInnerHTML={{__html: liveFooter.style}} />
-    <div dangerouslySetInnerHTML={{__html: html}} />
-    {snapshot.schema && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: snapshot.schema.replace(/</g, '\\u003c')}} />}
+    <div dangerouslySetInnerHTML={{__html: migrateServiceUrls(html)}} />
+    {snapshot.schema && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: migrateServiceUrls(snapshot.schema).replace(/</g, '\\u003c')}} />}
   </div>
 }

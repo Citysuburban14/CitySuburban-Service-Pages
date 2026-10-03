@@ -142,7 +142,7 @@ export const furnaceLincolnParkSample: ServicePageData = {
     },
     reviews: furnaceLincolnParkPageRow.reviews.map((review, index) => ({_key: `review-${index + 1}`, ...review})),
     gallery: [
-      {_key: 'official-furnace', externalUrl: '/service/images/services/furnace-repair.png', alt: 'City & Suburban technician servicing an American Standard furnace'},
+      {_key: 'official-furnace', externalUrl: '/services/images/services/furnace-repair.png', alt: 'City & Suburban technician servicing an American Standard furnace'},
       ...furnaceLincolnParkPageRow.photoSlots.map((slot, index) => ({_key: `gallery-slot-${index + 1}`, alt: slot.alt, credit: slot.note})),
     ],
     workingPhotos: furnaceLincolnParkPageRow.photoSlots.map((slot, index) => ({_key: `work-slot-${index + 1}`, alt: slot.alt, credit: slot.note})),
@@ -195,7 +195,7 @@ export const furnaceLincolnParkSample: ServicePageData = {
       name: 'Furnace Repair',
       slug: furnaceEquipmentRow.slug,
       parentName: furnaceEquipmentRow.categoryGroup,
-      parentUrl: 'https://citysuburbanheating.com/service/heating/',
+      parentUrl: 'https://citysuburbanheating.com/services/heating/',
       hubUrl: 'https://citysuburbanheating.com/services/heating/heater-repair/',
       h1Prefix: 'Furnace Repair',
       heroLede: furnaceLincolnParkPageRow.openingParagraph,
@@ -213,12 +213,12 @@ export const furnaceLincolnParkSample: ServicePageData = {
       whyHeading: 'What should you ask before approving furnace work?',
       whyLede: 'These questions merge the equipment-level contractor guidance with the page-specific Lincoln Park condition.',
       whyItems: [...furnaceEquipmentRow.contractorQuestions, furnaceLincolnParkPageRow.customContractorQuestion].map((item, index) => ({_key: `question-${index + 1}`, title: item.question, body: item.answer})),
-      featuredCategory: {tag: 'Heating services', title: 'Complete heating service', description: 'Repair, maintenance, and replacement support for furnaces, boilers, heat pumps, and related comfort systems.', cta: 'Explore heating', url: 'https://citysuburbanheating.com/service/heating/'},
+      featuredCategory: {tag: 'Heating services', title: 'Complete heating service', description: 'Repair, maintenance, and replacement support for furnaces, boilers, heat pumps, and related comfort systems.', cta: 'Explore heating', url: 'https://citysuburbanheating.com/services/heating/'},
       otherServices: [
         {_key: 'heater-repair', name: 'Heater repair', description: 'Diagnosis and repair for furnaces, boilers, and other heating systems.', url: 'https://citysuburbanheating.com/services/heating/heater-repair/'},
-        {_key: 'maintenance', name: 'Heating maintenance', description: 'Seasonal inspection and tune-up before peak winter demand.', url: 'https://citysuburbanheating.com/service/heating/'},
-        {_key: 'ac-repair', name: 'Air-conditioning repair', description: 'Cooling diagnostics and repair for Chicago homes and businesses.', url: 'https://citysuburbanheating.com/service/cooling/'},
-        {_key: 'air-quality', name: 'Indoor air quality', description: 'Filtration and air-quality options for healthier indoor comfort.', url: 'https://citysuburbanheating.com/service/air-quality/'},
+        {_key: 'maintenance', name: 'Heating maintenance', description: 'Seasonal inspection and tune-up before peak winter demand.', url: 'https://citysuburbanheating.com/services/heating/'},
+        {_key: 'ac-repair', name: 'Air-conditioning repair', description: 'Cooling diagnostics and repair for Chicago homes and businesses.', url: 'https://citysuburbanheating.com/services/cooling/'},
+        {_key: 'air-quality', name: 'Indoor air quality', description: 'Filtration and air-quality options for healthier indoor comfort.', url: 'https://citysuburbanheating.com/services/air-quality/'},
       ],
       pricing: {
         heading: 'What does furnace repair cost',
@@ -263,7 +263,7 @@ export const furnaceLincolnParkCollectionItem = {
   serviceName: 'Furnace Repair',
   areaName: lincolnParkAreaRow.displayName,
   metaDescription: furnaceLincolnParkSample.page?.seo.description,
-  cardImage: '/service/images/services/furnace-repair.png',
+  cardImage: '/services/images/services/furnace-repair.png',
 }
 
 export function isFurnaceLincolnParkSample(serviceSlug: string, areaSlug: string) {

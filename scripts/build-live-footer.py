@@ -39,7 +39,10 @@ if source.exists():
     parsed = html.fromstring(document)
     footer = re.search(r'<footer>.*?</footer>', document, re.S).group(0)
     footer = footer.replace('<footer>', '<footer id="live-site-footer" data-module="site-footer">', 1)
-    footer = footer.replace('https://citysuburbanheating.com/wp-content/uploads/2025/05/city-suburban-transparent-logo.png', '/service/images/live-footer-logo.png')
+    footer = footer.replace('https://citysuburbanheating.com/wp-content/uploads/2025/05/city-suburban-transparent-logo.png', '/services/images/live-footer-logo.png')
+    for old, new in {'heating-services': 'heating', 'cooling-services': 'cooling', 'air-quality-service': 'air-quality', 'commercial-hvac-service': 'commercial'}.items():
+        footer = footer.replace('/service/' + old + '/', '/services/' + new + '/')
+        footer = footer.replace('/services/' + old + '/', '/services/' + new + '/')
     footer = re.sub(r'<!--.*?-->', '', footer, flags=re.S)
     # WordPress's Cloudflare email protection decodes this in the live browser.
     # Our pages use the observed decoded address and do not need its script.

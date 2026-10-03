@@ -7,6 +7,7 @@ import {structureTool} from 'sanity/structure'
 import {resolve} from './src/sanity/presentation'
 import {schemaTypes} from './src/sanity/schemaTypes'
 import {structure} from './src/sanity/structure'
+import {migrateServiceUrls} from './src/lib/service-base-path'
 
 const projectId = process.env.NEXT_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'q0tvhxym'
 const dataset = process.env.NEXT_SANITY_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -18,11 +19,11 @@ async function resolveProductionUrl(previousUrl: string | undefined, context: Re
     const slug = (document.slug as {current?: string} | undefined)?.current
     const clusterSlug = document.clusterSlug as string | undefined
     const livePath = document.livePath as string | undefined
-    return livePath ? `${siteUrl}${livePath}` : slug && clusterSlug ? `${siteUrl}/services/${clusterSlug}/${slug}/` : previousUrl
+    return livePath ? `${siteUrl}${migrateServiceUrls(livePath)}` : slug && clusterSlug ? `${siteUrl}/services/${clusterSlug}/${slug}/` : previousUrl
   }
   if (document._type === 'serviceCluster' || document._type === 'serviceDefinition') {
     const slug = (document.slug as {current?: string} | undefined)?.current
-    return slug ? `${siteUrl}/service/${slug}` : previousUrl
+    return slug ? `${siteUrl}/services/${slug}` : previousUrl
   }
   if (document._type !== 'servicePage') return previousUrl
 
@@ -44,7 +45,7 @@ async function resolveProductionUrl(previousUrl: string | undefined, context: Re
     )
   }`, {serviceId, areaId})
 
-  return serviceSlug && areaSlug ? `${siteUrl}/service/${serviceSlug}/${areaSlug}` : previousUrl
+  return serviceSlug && areaSlug ? `${siteUrl}/services/${serviceSlug}/${areaSlug}` : previousUrl
 }
 
 export default defineConfig({
@@ -52,15 +53,15 @@ export default defineConfig({
   title: 'City & Suburban Service Pages',
   projectId,
   dataset,
-  basePath: '/service/studio',
+  basePath: '/services/studio',
   plugins: [
     structureTool({structure}),
     presentationTool({
       resolve,
       previewUrl: {
         origin: siteUrl,
-        preview: '/service/',
-        previewMode: {enable: '/service/api/draft-mode/enable/'},
+        preview: '/services/',
+        previewMode: {enable: '/services/api/draft-mode/enable/'},
       },
     }),
     visionTool(),

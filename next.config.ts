@@ -7,32 +7,32 @@ const browserConfig = {
   NEXT_SANITY_PROJECT_ID: process.env.NEXT_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   NEXT_SANITY_DATASET: process.env.NEXT_SANITY_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET,
   NEXT_SANITY_API_VERSION: process.env.NEXT_SANITY_API_VERSION || process.env.NEXT_PUBLIC_SANITY_API_VERSION,
-  NEXT_SANITY_STUDIO_URL: process.env.NEXT_SANITY_STUDIO_URL || process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
+  NEXT_SANITY_STUDIO_URL: (process.env.NEXT_SANITY_STUDIO_URL || process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || '/services/studio').replace(/\/service(?=\/|$)/, '/services'),
   NEXT_SITE_URL: process.env.NEXT_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL,
 }
 
 const nextConfig: NextConfig = {
-  // The app is served under the /service subdirectory of the main site, the same
-  // directory as the live WordPress hub pages (/service/heating/).
+  // The app is served under the /services subdirectory of the main site, the same
+  // directory as the live WordPress hub pages (/services/heating/).
   // basePath is compiled into the client bundle and is applied automatically to
-  // routes, <Link> hrefs, redirect source/destination, and public assets — but
-  // NOT to fetch() calls or raw string asset paths, which are prefixed manually.
-  basePath: '/service',
-  // URLs end with a slash, like the live WordPress URLs (/service/heating/).
+  // routes, <Link> hrefs and configured redirects. fetch() calls and raw public
+  // asset paths need an explicit prefix.
+  basePath: '/services',
+  // URLs end with a slash, like the live WordPress URLs (/services/heating/).
   trailingSlash: true,
   env: browserConfig,
   poweredByHeader: false,
   reactStrictMode: true,
   async redirects() {
-    // Sources/destinations are base-relative; basePath re-adds the /service prefix.
+    // Sources/destinations are base-relative; basePath re-adds the /services prefix.
     return [
       {
         // The bare origin root has no page under basePath. basePath:false keeps this
-        // matching the literal "/" (not "/service") and redirecting to the literal
-        // "/service/" collection. Only affects the direct Vercel URL; at the public
+        // matching the literal "/" (not "/services") and redirecting to the literal
+        // "/services/" collection. Only affects the direct Vercel URL; at the public
         // domain "/" is served by WordPress, not proxied here.
         source: '/',
-        destination: '/service/',
+        destination: '/services/',
         permanent: false,
         basePath: false,
       },

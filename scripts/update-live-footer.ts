@@ -51,7 +51,7 @@ async function main() {
   if (saved.length !== ids.length || saved.some(doc => !doc.responsiveCss?.endsWith(footer.style))) throw new Error('Footer CSS verification failed')
   for (const doc of saved.filter(d => d.sections)) {
     const section = doc.sections!.find(s => s.module === 'site-footer')
-    if (!section?.html.includes('id="live-site-footer"') || !section.html.includes('/service/images/live-footer-logo.png')) throw new Error(`Footer verification failed: ${doc._id}`)
+    if (!section?.html.includes('id="live-site-footer"') || !section.html.includes('/services/images/live-footer-logo.png')) throw new Error(`Footer verification failed: ${doc._id}`)
   }
   console.log(`Updated and verified only the footer in ${pages.length} Sanity drafts and the shared standard template.`)
 }

@@ -6,6 +6,7 @@ type Payload = {path?: string; documentType?: string}
 
 const serviceContentTypes = new Set([
   'servicePage',
+  'referenceServicePage',
   'serviceDefinition',
   'serviceArea',
   'siteSettings',

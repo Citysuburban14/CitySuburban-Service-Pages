@@ -13,7 +13,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--heater-repair.json",
-    "cardImage": "/service/reference-assets/svc-heating-repair.jpg"
+    "cardImage": "/services/reference-assets/svc-heating-repair.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -29,7 +29,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--boiler-service.json",
-    "cardImage": "/service/reference-assets/job-boiler-1.jpg"
+    "cardImage": "/services/reference-assets/job-boiler-1.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -45,7 +45,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--heat-pump.json",
-    "cardImage": "/service/reference-assets/as-heat-pump.png"
+    "cardImage": "/services/reference-assets/as-heat-pump.png"
   },
   {
     "clusterSlug": "heating",
@@ -61,7 +61,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--hybrid-heating-systems.json",
-    "cardImage": "/service/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/hero-heating.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -77,7 +77,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--hvac-maintenance-plans.json",
-    "cardImage": "/service/reference-assets/svc-maintenance-plans.jpg"
+    "cardImage": "/services/reference-assets/svc-maintenance-plans.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -93,7 +93,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--heater-installation.json",
-    "cardImage": "/service/reference-assets/svc-heating-installation.jpg"
+    "cardImage": "/services/reference-assets/svc-heating-installation.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -109,7 +109,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--heater-maintenance.json",
-    "cardImage": "/service/reference-assets/svc-heating-repair.jpg"
+    "cardImage": "/services/reference-assets/svc-heating-repair.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -125,7 +125,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork",
     "referenceFile": "cooling--ductless-hvac-service.json",
-    "cardImage": "/service/reference-assets/svc-ductless.jpg"
+    "cardImage": "/services/reference-assets/svc-ductless.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -141,7 +141,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork, packaged unit",
     "referenceFile": "cooling--air-conditioning-repair.json",
-    "cardImage": "/service/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/hero-heating.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -157,7 +157,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork",
     "referenceFile": "cooling--air-conditioning-maintenance.json",
-    "cardImage": "/service/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/hero-heating.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -173,7 +173,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork",
     "referenceFile": "cooling--air-conditioning-installation.json",
-    "cardImage": "/service/reference-assets/as-ac.png"
+    "cardImage": "/services/reference-assets/as-ac.png"
   },
   {
     "clusterSlug": "cooling",
@@ -189,7 +189,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: packaged unit",
     "referenceFile": "cooling--cooling-maintenance-plans.json",
-    "cardImage": "/service/reference-assets/svc-maintenance-plans.jpg"
+    "cardImage": "/services/reference-assets/svc-maintenance-plans.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -205,7 +205,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork, packaged unit",
     "referenceFile": "cooling--heat-pump-services.json",
-    "cardImage": "/service/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/hero-heating.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -221,7 +221,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: dehumidifier",
     "referenceFile": "air-quality--dehumidifier-installation.json",
-    "cardImage": "/service/reference-assets/svc-heating-maintenance.jpg"
+    "cardImage": "/services/reference-assets/svc-heating-maintenance.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -237,7 +237,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: dehumidifier",
     "referenceFile": "air-quality--indoor-air-quality-test.json",
-    "cardImage": "/service/reference-assets/as-air-purification-system.jpg"
+    "cardImage": "/services/reference-assets/as-air-purification-system.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -253,7 +253,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "air-quality--duct-repair.json",
-    "cardImage": "/service/reference-assets/as-zoned-system-by-American-Standard.jpg"
+    "cardImage": "/services/reference-assets/as-zoned-system-by-American-Standard.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -269,7 +269,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "air-quality--duct-maintenance.json",
-    "cardImage": "/service/reference-assets/as-zoned-system-by-American-Standard.jpg"
+    "cardImage": "/services/reference-assets/as-zoned-system-by-American-Standard.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -285,7 +285,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "air-quality--humidifier-air-cleaner.json",
-    "cardImage": "/service/reference-assets/svc-heating-installation.jpg"
+    "cardImage": "/services/reference-assets/svc-heating-installation.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -301,7 +301,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--commercial-hvac-system-installation.json",
-    "cardImage": "/service/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -317,7 +317,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--commercial-hvac-system-replacement.json",
-    "cardImage": "/service/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -333,7 +333,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--emergency-routine-commercial-hvac-repairs.json",
-    "cardImage": "/service/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/hero-heating.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -349,7 +349,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--energy-efficient-hvac-upgrades.json",
-    "cardImage": "/service/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -365,7 +365,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--custom-hvac-maintenance-plan.json",
-    "cardImage": "/service/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -381,6 +381,6 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--ductwork-design-repair-services.json",
-    "cardImage": "/service/reference-assets/as-zoned-system-by-American-Standard.jpg"
+    "cardImage": "/services/reference-assets/as-zoned-system-by-American-Standard.jpg"
   }
 ]

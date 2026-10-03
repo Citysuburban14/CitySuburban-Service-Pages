@@ -51,7 +51,12 @@ for row in rows:
         'photoStatus': status, 'referenceFile': f'{cluster}--{slug}.json'})
 
 live_paths = {entry['livePath'] for entry in catalog}
-collection_map = {'/services/': '/service/', '/service/commercial-hvac/': '/service/commercial/'}
+collection_map = {'/service/': '/services/', '/services/': '/services/', '/service/commercial-hvac/': '/services/commercial/', '/services/commercial-hvac/': '/services/commercial/'}
+for category in ('heating', 'cooling', 'air-quality', 'commercial'):
+    collection_map['/service/' + category + '/'] = '/services/' + category + '/'
+for old, new in {'heating-services': 'heating', 'cooling-services': 'cooling', 'air-quality-service': 'air-quality', 'commercial-hvac-service': 'commercial'}.items():
+    collection_map['/service/' + old + '/'] = '/services/' + new + '/'
+    collection_map['/services/' + old + '/'] = '/services/' + new + '/'
 assets = {}
 
 class ModuleParser(HTMLParser):
@@ -96,12 +101,12 @@ def localize_url(value, page_url):
         path = '/' + parsed_url.path[len(urlparse(BASE).path):]
         if path.startswith('/assets/'):
             assets[resolved] = path.rsplit('/', 1)[-1]
-            return '/service/reference-assets/' + assets[resolved]
+            return '/services/reference-assets/' + assets[resolved]
         suffix = ('?' + parsed_url.query if parsed_url.query else '') + ('#' + parsed_url.fragment if parsed_url.fragment else '')
         return collection_map.get(path, path) + suffix
     if urlparse(resolved).netloc in ('citysuburbanheating.com', 'www.citysuburbanheating.com'):
         parsed_url = urlparse(resolved)
-        if parsed_url.path in live_paths or parsed_url.path in collection_map or parsed_url.path in ('/service/heating/', '/service/cooling/', '/service/air-quality/'):
+        if parsed_url.path in live_paths or parsed_url.path in collection_map or parsed_url.path in ('/services/heating/', '/services/cooling/', '/services/air-quality/'):
             return collection_map.get(parsed_url.path, parsed_url.path) + ('#' + parsed_url.fragment if parsed_url.fragment else '')
     return value
 
@@ -118,7 +123,7 @@ for entry in catalog:
         def collection_entry(match):
             nav = match[0]
             return re.sub(r'<a\b([^>]*?)href="https://citysuburbanheating.com/service-areas/"([^>]*?)>Service areas</a>',
-                r'<a\1href="/service/"\2>Services</a>', nav, flags=re.I)
+                r'<a\1href="/services/"\2>Services</a>', nav, flags=re.I)
         markup = re.sub(r'<nav aria-label="Primary"[^>]*>.*?</nav>', collection_entry, markup, flags=re.S)
         # Only the booking button submits. Carousel buttons retain type=button.
         return re.sub(r'<button\b([^>]*?)type="button"([^>]*?)>(\s*REQUEST SERVICE)', r'<button\1type="submit"\2>\3', markup, flags=re.I)

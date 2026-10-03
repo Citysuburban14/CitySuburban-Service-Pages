@@ -13,9 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const published = await metadataClient.fetch(REFERENCE_NAVIGATION_QUERY).catch(() => []) as ReferenceOverride[]
   const clusters = referenceNavigation(published)
   return [
-    {url: `${base}/service/`, lastModified, changeFrequency: 'weekly', priority: 1},
+    {url: `${base}/services/`, lastModified, changeFrequency: 'weekly', priority: 1},
     ...clusters.map((cluster) => ({
-      url: `${base}/service${clusterPath(cluster.slug)}`,
+      url: `${base}/services${clusterPath(cluster.slug)}`,
       lastModified, changeFrequency: 'weekly' as const, priority: 0.9,
     })),
     ...published.flatMap((page) => {

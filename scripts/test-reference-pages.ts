@@ -12,6 +12,8 @@ import {proxy} from '../src/proxy'
 import {NextRequest} from 'next/server'
 import {liveMenu, servicesLink} from '../src/lib/site-navigation'
 import {applyReferenceContentFields, synchronizeVisibleSchema} from '../src/lib/reference-content-fields'
+import {migrateServiceContent} from '../src/lib/service-base-path'
+import {serviceRouteAliases} from '../src/lib/service-route-aliases'
 
 const counts = Object.fromEntries(['heating', 'cooling', 'air-quality', 'commercial'].map((cluster) => [cluster, catalog.filter((page) => page.clusterSlug === cluster).length]))
 assert.deepEqual(counts, {heating: 7, cooling: 6, 'air-quality': 5, commercial: 6})
@@ -20,7 +22,7 @@ assert.equal(new Set(catalog.map((page) => `${page.clusterSlug}/${page.slug}`)).
 assert.equal(new Set(catalog.map((page) => page.livePath)).size, 24)
 assert.equal(catalog.filter((page) => page.qcStatus === 'PASS').length, 16)
 assert.equal(retainedCatalog.length, 17)
-assert.equal(servicesLink.href, '/service/')
+assert.equal(servicesLink.href, '/services/')
 assert.deepEqual(liveMenu.flatMap((group) => group.items.map((item) => [item.label, new URL(item.href).pathname])), catalog.map((page) => [page.name, page.livePath]))
 
 for (const page of catalog) {
@@ -31,7 +33,7 @@ for (const page of catalog) {
   assert.ok(snapshot.sections.some((section) => section.module === 'hero'))
   assert.ok(snapshot.sections.some((section) => section.module === 'pricing'))
   assert.ok(snapshot.sections.some((section) => section.module === 'faq'))
-  assert.ok(/href="\/service\/"[^>]*>Services<\/a>/.test(snapshot.sections.find((section) => section.module === 'site-header')?.html || ''), `Missing collection menu link: ${page.slug}`)
+  assert.ok(/href="\/services\/"[^>]*>Services<\/a>/.test(snapshot.sections.find((section) => section.module === 'site-header')?.html || ''), `Missing collection menu link: ${page.slug}`)
   assert.ok(!snapshot.html.includes('maximuslabs-ai.github.io'), `External preview link in ${page.slug}`)
   assert.equal(page.livePath, `/services/${page.clusterSlug}/${page.slug}/`)
   assert.equal(page.canonicalUrl, `https://citysuburbanheating.com${page.livePath}`)
@@ -41,13 +43,13 @@ for (const page of catalog) {
   for (const section of snapshot.sections) assert.ok(snapshot.html.includes(section.html), `Sanity section changed reference markup: ${page.slug}/${section.module}`)
   assert.ok(snapshot.sections.every((section) => section.contentFields?.length), `Missing native Sanity fields: ${page.slug}`)
   const rewritten = proxy(new NextRequest(`http://localhost${page.livePath}?utm_source=review`))
-  assert.equal(rewritten.headers.get('x-middleware-rewrite'), `http://localhost/service/${page.clusterSlug}/${page.slug}/?utm_source=review`)
+  assert.equal(rewritten.headers.get('x-middleware-rewrite'), null)
   assert.equal(rewritten.headers.get('location'), null)
   const schema = JSON.parse(snapshot.schema) as {'@graph': Array<{'@type': string; url?: string; name?: string}>}
   assert.ok(schema['@graph'].some((node) => node['@type'] === 'Service' && node.url === page.canonicalUrl), `Incorrect Service schema URL: ${page.slug}`)
   assert.ok(schema['@graph'].some((node) => node['@type'] === 'WebPage' && node.url === page.canonicalUrl), `Incorrect WebPage schema URL: ${page.slug}`)
-  for (const match of snapshot.html.matchAll(/(?:src|href)="(\/service\/reference-assets\/[^"?#]+)"/g)) {
-    assert.ok(fs.existsSync(path.resolve('public', match[1].replace('/service/', ''))), `Missing asset ${match[1]}`)
+  for (const match of snapshot.html.matchAll(/(?:src|href)="(\/services\/reference-assets\/[^"?#]+)"/g)) {
+    assert.ok(fs.existsSync(path.resolve('public', match[1].replace('/services/', ''))), `Missing asset ${match[1]}`)
   }
 }
 
@@ -66,7 +68,7 @@ for (const cluster of referenceNavigation()) {
   const expected = [...catalog.filter((page) => page.clusterSlug === cluster.slug), ...retainedCatalog.filter((page) => page.directoryClusterSlug === cluster.slug)]
   assert.deepEqual(cluster.pages.map((page) => [page.serviceName, page.livePath]), expected.map((page) => [page.name, page.livePath]))
 }
-for (const untouched of ['/service/heating/', '/service/heating/furnace-repair-installation/', '/services/unrelated/', '/service/api/lead/']) {
+for (const untouched of ['/services/heating/', '/services/unrelated/', '/services/api/lead/', '/service-area/lincoln-park/', '/service-areas/']) {
   assert.equal(proxy(new NextRequest(`http://localhost${untouched}`)).headers.get('x-middleware-rewrite'), null)
 }
 
@@ -76,7 +78,7 @@ for (const old of taxonomy.services) {
     assert.equal(legacyReplacementPath(old.slug), replacement)
     assert.ok(catalog.some((page) => page.livePath === replacement), `Missing redirect destination: ${old.slug}`)
     assert.ok(!retainedCatalog.some((page) => page.slug === old.slug), `Duplicate keyword card: ${old.slug}`)
-    for (const alias of [`/service/${old.slug}/`, `/service/${old.clusterSlug}/${old.slug}/`, `/service/${old.clusterSlug}/${old.slug}/chicago/`]) {
+    for (const alias of ['service', 'services'].flatMap(base => [`/${base}/${old.slug}/`, `/${base}/${old.clusterSlug}/${old.slug}/`, `/${base}/${old.clusterSlug}/${old.slug}/chicago/`])) {
       const response = proxy(new NextRequest(`http://localhost${alias}?utm=keyword`))
       assert.equal(response.status, 308)
       assert.equal(response.headers.get('location'), `http://localhost${replacement}?utm=keyword`)
@@ -92,4 +94,24 @@ for (const old of taxonomy.services) {
     assert.ok(!snapshot.html.includes('Heater Repair in Chicago'), `Borrowed furnace copy on ${old.slug}`)
   }
 }
+for (const page of [...catalog, ...retainedCatalog]) {
+  const current = proxy(new NextRequest(`http://localhost${page.livePath}?utm=current`))
+  assert.equal(current.headers.get('location'), null)
+  assert.equal(current.headers.get('x-middleware-rewrite'), null)
+  const previous = proxy(new NextRequest(`http://localhost${page.livePath.replace('/services/', '/service/')}?utm=old`))
+  assert.equal(previous.status, 308)
+  assert.equal(previous.headers.get('location'), `http://localhost${page.livePath}?utm=old`)
+  const snapshot = referenceSnapshots[`${page.clusterSlug}/${page.slug}`]
+  assert.ok(!/\/service\//.test(JSON.stringify(snapshot)), `Old base in ${page.livePath}`)
+}
+for (const path of ['/service/api/lead/', '/service/_next/static/chunk.js', '/service/images/live-footer-logo.png', '/service/studio/']) {
+  const response = proxy(new NextRequest(`http://localhost${path}?test=compat`))
+  assert.equal(response.headers.get('x-middleware-rewrite'), `http://localhost${path.replace('/service/', '/services/')}?test=compat`)
+}
+const worker = fs.readFileSync('cloudflare/services-proxy-worker.mjs', 'utf8')
+const workerPaths = [...worker.split('// BEGIN SERVICE LANDING PATHS')[1].split('// END SERVICE LANDING PATHS')[0].matchAll(/'(\/services[^']*)'/g)].map(match => match[1])
+assert.deepEqual(workerPaths.sort(), [...serviceRouteAliases().keys()].sort(), 'Worker and app alias lists diverged')
+assert.deepEqual(migrateServiceContent({url: '/service/heating/water-heater-repair-installation/', image: '/service/images/logo.png', neighborhood: '/service-area/lincoln-park/', collection: '/service/heating-services/'}), {
+  url: '/services/heating/water-heater-repair-installation/', image: '/services/images/logo.png', neighborhood: '/service-area/lincoln-park/', collection: '/services/heating/',
+})
 console.log('Reference checks passed: 24 exact live URLs, 17 retained keyword pages, 8 consolidated overlaps, cards, editable markup and schema.')

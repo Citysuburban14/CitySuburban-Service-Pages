@@ -22,9 +22,9 @@ const sourceIds = new Set(navigationPages.map((row) => Number(row.service_id)))
 const availableClusterSlugs = new Set(taxonomy.services.filter((item) => sourceIds.has(item.serviceId)).map((item) => item.clusterSlug))
 const clusterByServiceId = new Map(taxonomy.services.map((item) => [item.serviceId, item.clusterSlug]))
 const validServicePaths = new Set([
-  '/service/',
-  ...clusters.clusters.filter((cluster) => availableClusterSlugs.has(cluster.slug)).map((cluster) => `/service/${cluster.slug}/`),
-  ...navigationEquipment.map((row) => `/service/${clusterByServiceId.get(Number(row.C))}/${row.slug}/`),
+  '/services/',
+  ...clusters.clusters.filter((cluster) => availableClusterSlugs.has(cluster.slug)).map((cluster) => `/services/${cluster.slug}/`),
+  ...navigationEquipment.map((row) => `/services/${clusterByServiceId.get(Number(row.C))}/${row.slug}/`),
 ])
 const failures: string[] = []
 let assertions = 0
@@ -54,7 +54,7 @@ function brandLogoPath(brand: string) {
     .replace(/&/g, ' and ')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
-  return `/service/images/brands/${slug}.png`
+  return `/services/images/brands/${slug}.png`
 }
 
 function visibleText(html: string) {
@@ -86,24 +86,24 @@ async function testDocument(pathname: string, requiredText: string[]) {
 }
 
 async function run() {
-  const collection = await testDocument('/service', ['Trusted HVAC experts for Chicago homes', 'Explore by system'])
+  const collection = await testDocument('/services', ['Trusted HVAC experts for Chicago homes', 'Explore by system'])
   expect(!collection.includes('Browse HVAC service clusters'), 'Collection page still renders the removed browse heading')
   expect(!collection.includes('Start with the system or problem category'), 'Collection page still renders the removed directory paragraph')
   expect(!collection.includes('local pages'), 'Collection page still labels cluster cards with local-page counts')
   expect(collection.includes('Explore services'), 'Collection page is missing the compact Explore services CTA')
   expect(collection.includes('class="collection-hero-svg"'), 'Collection hero is missing the red-and-white SVG graphic')
-  expect(!collection.includes('/service/images/services/electrical-panel-upgrade.jpg'), 'Collection hero still uses the retired raster background')
+  expect(!collection.includes('/services/images/services/electrical-panel-upgrade.jpg'), 'Collection hero still uses the retired raster background')
   for (const href of [
     'https://citysuburbanheating.com/',
     'https://citysuburbanheating.com/about-us/',
     'https://citysuburbanheating.com/contact-us/',
-    'https://citysuburbanheating.com/service/heating/',
-    'https://citysuburbanheating.com/service/cooling/',
-    'https://citysuburbanheating.com/service/air-quality/',
-    'https://citysuburbanheating.com/service/commercial-hvac/',
+    'https://citysuburbanheating.com/services/heating/',
+    'https://citysuburbanheating.com/services/cooling/',
+    'https://citysuburbanheating.com/services/air-quality/',
+    'https://citysuburbanheating.com/services/commercial-hvac/',
     'https://citysuburbanheating.com/services/heating/heater-repair/',
-    'https://citysuburbanheating.com/service/heating-services/',
-    '/service/',
+    'https://citysuburbanheating.com/services/heating-services/',
+    '/services/',
     'tel:+17732383838',
     'mailto:service@citysuburbanheating.com',
   ]) expect(anchorHrefs(collection).includes(href), `Collection page is missing live destination ${href}`)
@@ -121,15 +121,15 @@ async function run() {
   expect(collection.includes('class="cluster-card-title"'), 'Collection cards are missing their cluster titles')
   expect(collection.includes('loading="lazy"'), 'Collection card images are not lazy-loaded')
   expect(!collection.includes('cluster-card-service-chip'), 'Collection cards still expose individual equipment-service chips')
-  expect(!collection.includes('/service/furnace/lincoln-park'), 'Collection page still renders the Lincoln Park sample')
+  expect(!collection.includes('/services/furnace/lincoln-park'), 'Collection page still renders the Lincoln Park sample')
   const cardImages = [...collection.matchAll(/class="cluster-card-media[^"]*"[^>]*>\s*<img[^>]*src="([^"]+)"/g)].map((match) => match[1].replace(/&amp;/g, '&'))
   for (const image of cardImages) {
     const isRemote = /^https:\/\//.test(image)
     if (isRemote) {
       expect(new URL(image).hostname === 'cdn.sanity.io', `Collection image is not from the configured Sanity CDN: ${image}`)
     } else {
-      expect(image.startsWith('/service/images/services/'), `Collection image is not a recognized local service image: ${image}`)
-      const imagePath = path.resolve('public', image.replace('/service/', ''))
+      expect(image.startsWith('/services/images/services/'), `Collection image is not a recognized local service image: ${image}`)
+      const imagePath = path.resolve('public', image.replace('/services/', ''))
       expect(fs.existsSync(imagePath), `Collection image file is missing: ${image}`)
       const imageBytes = fs.readFileSync(imagePath)
       expect(imageBytes.length > 10_000, `Collection image is unexpectedly small: ${image}`)
@@ -143,16 +143,16 @@ async function run() {
     expect((await imageResponse.arrayBuffer()).byteLength > 10_000, `Collection image response is unexpectedly small: ${image}`)
   }
   for (const clusterSlug of availableClusterSlugs) {
-    const clusterPage = await testDocument(`/service/${clusterSlug}`, ['HVAC service cluster', 'Available services'])
-    expect(!clusterPage.includes('Service landing page'), `/service/${clusterSlug} still renders the removed landing-page keyword card`)
-    expect(!visibleText(clusterPage).includes('monthly searches'), `/service/${clusterSlug} still exposes monthly search-volume data`)
+    const clusterPage = await testDocument(`/services/${clusterSlug}`, ['HVAC service cluster', 'Available services'])
+    expect(!clusterPage.includes('Service landing page'), `/services/${clusterSlug} still renders the removed landing-page keyword card`)
+    expect(!visibleText(clusterPage).includes('monthly searches'), `/services/${clusterSlug} still exposes monthly search-volume data`)
     const panelImage = clusterPage.match(/data-panel-image="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
-    expect(panelImage?.startsWith('https://cdn.sanity.io/'), `/service/${clusterSlug} is missing its Sanity image-backed count panel`)
+    expect(panelImage?.startsWith('https://cdn.sanity.io/'), `/services/${clusterSlug} is missing its Sanity image-backed count panel`)
   }
-  await testDocument('/service/studio', [])
+  await testDocument('/services/studio', [])
 
   for (const row of navigationPages.filter((candidate) => Number(candidate.service_id) > 305)) {
-    const pathname = `/service/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}`
+    const pathname = `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}`
     const service = navigationEquipment.find((candidate) => Number(candidate.C) === Number(row.service_id))
     const text = await testDocument(pathname, ['id="quote"', 'id="reviews"', 'id="faq"', 'id="guides"'])
     expect(visibleText(text).includes(`${service?.h1_prefix} in Chicago`), `${pathname} is missing its mapped Chicago H1`)
@@ -161,7 +161,7 @@ async function run() {
   }
 
   for (const row of source.page) {
-    const pathname = `/service/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}`
+    const pathname = `/services/${clusterByServiceId.get(Number(row.service_id))}/${row.equipment_slug}`
     const service = serviceBySlug.get(row.equipment_slug)
     const area = areaBySlug.get(row.area_slug)
     const heading = `${service?.h1_prefix} in ${area?.name}`
@@ -206,10 +206,10 @@ async function run() {
     expect(!text.includes('class="fill"'), `${pathname} still renders an overlapping duplicate star layer`)
     for (const brand of (service?.brands || '').split('||').filter(Boolean)) {
       const logoPath = brandLogoPath(brand)
-      const logoSlug = logoPath.slice('/service/images/brands/'.length, -'.png'.length)
+      const logoSlug = logoPath.slice('/services/images/brands/'.length, -'.png'.length)
       expect(text.includes(logoPath), `${pathname} is missing the ${brand} logo`)
       expect(text.includes(`brand-mark--${logoSlug}`), `${pathname} is missing the ${brand} logo class`)
-      expect(fs.existsSync(path.resolve('public', logoPath.replace('/service/', ''))), `Local brand logo is missing: ${logoPath}`)
+      expect(fs.existsSync(path.resolve('public', logoPath.replace('/services/', ''))), `Local brand logo is missing: ${logoPath}`)
     }
     const whySection = text.match(/<section class="wrap" id="why-us">([\s\S]*?)<\/section>/)?.[1] || ''
     expect((whySection.match(/<article class="why-item"/g) || []).length === (service?.why || '').split('||').filter(Boolean).length, `${pathname} does not render every why-us item as always-visible content`)
@@ -234,40 +234,40 @@ async function run() {
 
   for (const service of navigationEquipment) {
     const clusterSlug = clusterByServiceId.get(Number(service.C))
-    const oldCollection = await fetch(`${baseUrl}/service/${service.slug}/`, {redirect: 'manual'})
-    expect(oldCollection.status === 308, `Legacy collection /service/${service.slug}/ returned ${oldCollection.status} instead of 308`)
-    expect(oldCollection.headers.get('location') === `/service/${clusterSlug}/${service.slug}/`, `Legacy collection /service/${service.slug}/ redirects to the wrong hierarchy`)
+    const oldCollection = await fetch(`${baseUrl}/services/${service.slug}/`, {redirect: 'manual'})
+    expect(oldCollection.status === 308, `Legacy collection /services/${service.slug}/ returned ${oldCollection.status} instead of 308`)
+    expect(oldCollection.headers.get('location') === `/services/${clusterSlug}/${service.slug}/`, `Legacy collection /services/${service.slug}/ redirects to the wrong hierarchy`)
   }
   for (const row of navigationPages) {
     const clusterSlug = clusterByServiceId.get(Number(row.service_id))
-    const oldPage = await fetch(`${baseUrl}/service/${row.equipment_slug}/${row.area_slug}/`, {redirect: 'manual'})
-    expect(oldPage.status === 308, `Legacy page /service/${row.equipment_slug}/${row.area_slug}/ returned ${oldPage.status} instead of 308`)
-    expect(oldPage.headers.get('location') === `/service/${clusterSlug}/${row.equipment_slug}/`, `Legacy page /service/${row.equipment_slug}/${row.area_slug}/ redirects to the wrong hierarchy`)
-    const oldNestedPage = await fetch(`${baseUrl}/service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/`, {redirect: 'manual'})
-    expect(oldNestedPage.status === 308, `Area-suffixed page /service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/ returned ${oldNestedPage.status} instead of 308`)
-    expect(oldNestedPage.headers.get('location') === `/service/${clusterSlug}/${row.equipment_slug}/`, `Area-suffixed page /service/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/ redirects to the wrong hierarchy`)
+    const oldPage = await fetch(`${baseUrl}/services/${row.equipment_slug}/${row.area_slug}/`, {redirect: 'manual'})
+    expect(oldPage.status === 308, `Legacy page /services/${row.equipment_slug}/${row.area_slug}/ returned ${oldPage.status} instead of 308`)
+    expect(oldPage.headers.get('location') === `/services/${clusterSlug}/${row.equipment_slug}/`, `Legacy page /services/${row.equipment_slug}/${row.area_slug}/ redirects to the wrong hierarchy`)
+    const oldNestedPage = await fetch(`${baseUrl}/services/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/`, {redirect: 'manual'})
+    expect(oldNestedPage.status === 308, `Area-suffixed page /services/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/ returned ${oldNestedPage.status} instead of 308`)
+    expect(oldNestedPage.headers.get('location') === `/services/${clusterSlug}/${row.equipment_slug}/`, `Area-suffixed page /services/${clusterSlug}/${row.equipment_slug}/${row.area_slug}/ redirects to the wrong hierarchy`)
   }
 
-  const missing = await fetch(`${baseUrl}/service/heating/not-a-service/`, {redirect: 'manual'})
+  const missing = await fetch(`${baseUrl}/services/heating/not-a-service/`, {redirect: 'manual'})
   expect(missing.status === 404, `Unknown service returned ${missing.status} instead of 404`)
-  const removedLincolnPark = await fetch(`${baseUrl}/service/heating/furnace-repair-installation/lincoln-park/`, {redirect: 'manual'})
+  const removedLincolnPark = await fetch(`${baseUrl}/services/heating/furnace-repair-installation/lincoln-park/`, {redirect: 'manual'})
   expect(removedLincolnPark.status === 404, `Removed Lincoln Park route returned ${removedLincolnPark.status} instead of 404`)
 
-  const invalidLead = await request('/service/api/lead/', {
+  const invalidLead = await request('/services/api/lead/', {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({}),
   })
   expect(invalidLead.response.status === 400, `Invalid lead returned ${invalidLead.response.status}`)
 
-  const honeypot = await request('/service/api/lead/', {
+  const honeypot = await request('/services/api/lead/', {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({website: 'bot.example'}),
   })
   expect(honeypot.response.status === 200, `Honeypot lead returned ${honeypot.response.status}`)
 
-  const invalidWebhook = await request('/service/api/revalidate/', {
+  const invalidWebhook = await request('/services/api/revalidate/', {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({documentType: 'servicePage'}),

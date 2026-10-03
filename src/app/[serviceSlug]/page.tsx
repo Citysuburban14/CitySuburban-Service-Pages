@@ -18,7 +18,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   if (referenceCluster) return {
     title: `${referenceCluster.name} Services in Chicago`,
     description: referenceCluster.description,
-    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/service${clusterPath(referenceCluster.slug)}`},
+    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/services${clusterPath(referenceCluster.slug)}`},
   }
   const data = await metadataClient.fetch(SERVICE_NAVIGATION_QUERY)
   const level = findNavigationLevel(prepareServiceNavigation((data || {}) as ServiceNavigationPayload), slug)
@@ -27,16 +27,16 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {
     title: `${level.cluster.name} Services in Chicago`,
     description: level.cluster.description,
-    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/service${clusterPath(level.cluster.slug)}`},
+    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/services${clusterPath(level.cluster.slug)}`},
   }
 }
 
 export default async function NavigationPage({params}: Props) {
   const {serviceSlug: slug} = await params
   const replacement = legacyReplacementPath(slug)
-  if (replacement) permanentRedirect(replacement)
+  if (replacement) permanentRedirect(replacement.replace(/^\/services/, ''))
   const landing = referenceServices.find((page) => page.slug === slug || page.legacySlug === slug)
-  if (landing) permanentRedirect(landing.livePath)
+  if (landing) permanentRedirect(landing.livePath.replace(/^\/services/, ''))
   const result = await sanityFetch({query: REFERENCE_NAVIGATION_QUERY, stega: false}).catch(() => null)
   const referenceCluster = referenceNavigation((result?.data || []) as ReferenceOverride[]).find((item) => item.slug === referenceCollectionSlug(slug))
   if (referenceCluster) return <NavigationLevelPage cluster={referenceCluster} />

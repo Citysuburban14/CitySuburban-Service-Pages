@@ -106,7 +106,7 @@ assert.equal(findNavigationLevel(clusters, 'unknown'), undefined)
 assert.equal(clusterPath('heating'), '/heating/')
 assert.equal(servicePath('heating', 'furnace-repair-installation'), '/heating/furnace-repair-installation/')
 
-// The original service slugs are kept: only the base path moved from /services to /service.
+// Retained keyword slugs are preserved while the application base is /services.
 const heater = taxonomySource.services.find((item) => item.serviceId === 306)
 assert.equal(heater && servicePath(heater.clusterSlug, heater.slug), '/heating/space-heater-repair-installation/')
 assert.equal(taxonomySource.excludedTopics.some((topic) => /Fans \(General\/Portable\)/.test(topic.equipment)), true)

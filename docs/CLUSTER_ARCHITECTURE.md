@@ -4,9 +4,9 @@ The public service library follows the taxonomy in `HVAC_Keyword_Clusters.xlsx`,
 
 ## Public hierarchy
 
-1. `/service/` — cluster collection
-2. `/service/{cluster-slug}` — services assigned to one cluster
-3. `/service/{cluster-slug}/{service-slug}` — the standard Sanity-driven service landing page
+1. `/services/` — cluster collection
+2. `/services/{cluster-slug}/` — services assigned to one cluster
+3. `/services/{cluster-slug}/{service-slug}/` — the standard Sanity-driven service landing page
 
 There is no additional one-card area layer. Selecting a service from its cluster opens the complete landing page immediately. The earlier `/service/{service-slug}`, `/service/{service-slug}/{area-slug}`, and `/service/{cluster-slug}/{service-slug}/{area-slug}` shapes remain as permanent redirects so existing bookmarks and indexed links resolve to the canonical nested URL.
 
@@ -14,9 +14,9 @@ The cluster pages organize the existing landing pages and derive their cards, im
 
 ## Base path
 
-The app is served under `/service`, the directory of the live WordPress hub pages. Service slugs are unchanged.
+The app is served under `/services`, matching the finalized live landing-page directory. The October update uses four collection groups and 41 reference landing pages; the workbook mapping below documents the original source taxonomy. Retained keyword/category slugs are preserved.
 
-All public URLs end with a slash (`trailingSlash: true`) under the `/service` base path to match the live site.
+Public page URLs end with a slash (`trailingSlash: true`) under `/services`. Known singular `/service/` URLs redirect permanently to their plural canonical. Studio, APIs, assets and sitemap also use `/services`. See [the current URL directory](service-url-directory.md) and [Cloudflare rollout](CLOUDFLARE_PROXY.md).
 
 ## Workbook mapping
 

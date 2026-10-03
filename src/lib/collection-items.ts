@@ -1,3 +1,5 @@
+import {migrateServiceContent} from './service-base-path'
+
 export type CollectionItem = {
   _id?: string | null
   title?: string | null
@@ -23,17 +25,17 @@ export type PreparedCollectionItem = Omit<CollectionItem, 'serviceSlug' | 'areaS
 }
 
 const serviceCardImages: Record<string, string> = {
-  'furnace': '/service/images/services/furnace-repair.png',
-  'generator-installation': '/service/images/services/generator-installation.jpg',
-  'solar-panel-installation': '/service/images/services/solar-panel-installation.jpg',
-  'ceiling-fan-installation': '/service/images/services/ceiling-fan-installation.jpg',
-  'generator-repair': '/service/images/services/generator-repair.jpg',
-  'whole-house-surge-protector': '/service/images/services/whole-house-surge-protector.jpg',
-  'gfci-outlet-installation': '/service/images/services/gfci-outlet-installation.jpg',
-  'garbage-disposal-wiring': '/service/images/services/garbage-disposal-wiring.jpg',
-  'electrical-repair': '/service/images/services/electrical-repair.jpg',
-  'electrical-panel-upgrade': '/service/images/services/electrical-panel-upgrade.jpg',
-  'circuit-breaker-replacement': '/service/images/services/circuit-breaker-replacement.jpg',
+  'furnace': '/services/images/services/furnace-repair.png',
+  'generator-installation': '/services/images/services/generator-installation.jpg',
+  'solar-panel-installation': '/services/images/services/solar-panel-installation.jpg',
+  'ceiling-fan-installation': '/services/images/services/ceiling-fan-installation.jpg',
+  'generator-repair': '/services/images/services/generator-repair.jpg',
+  'whole-house-surge-protector': '/services/images/services/whole-house-surge-protector.jpg',
+  'gfci-outlet-installation': '/services/images/services/gfci-outlet-installation.jpg',
+  'garbage-disposal-wiring': '/services/images/services/garbage-disposal-wiring.jpg',
+  'electrical-repair': '/services/images/services/electrical-repair.jpg',
+  'electrical-panel-upgrade': '/services/images/services/electrical-panel-upgrade.jpg',
+  'circuit-breaker-replacement': '/services/images/services/circuit-breaker-replacement.jpg',
 }
 
 function cleanString(value: unknown): string | undefined {
@@ -41,6 +43,7 @@ function cleanString(value: unknown): string | undefined {
 }
 
 export function prepareCollectionItems(pages: CollectionItem[]): PreparedCollectionItem[] {
+  pages = migrateServiceContent(pages)
   return pages.flatMap((page, index) => {
     const serviceSlug = cleanString(page.serviceSlug)
     const areaSlug = cleanString(page.areaSlug)
