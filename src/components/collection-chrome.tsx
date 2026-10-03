@@ -6,7 +6,9 @@
 // pages) replaces "Service Areas". It is a plain link with no dropdown: the
 // collection page is the way into the cluster and landing-page layers.
 
-import {business, footerServiceLinks, liveMenu, servicesLink, topBarLinks, LIVE_SITE} from '@/lib/site-navigation'
+import {LiveSiteFooter} from './live-site-footer'
+
+import {business, liveMenu, servicesLink, topBarLinks, LIVE_SITE} from '@/lib/site-navigation'
 
 const icons = {
   phone: 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z',
@@ -99,33 +101,5 @@ export function CollectionHeader() {
 }
 
 export function CollectionFooter() {
-  return (
-    <footer className="site-footer">
-      <div className="site-shell site-footer-grid">
-        <div className="site-footer-about">
-          <a href={`${LIVE_SITE}/`}><img src={business.logo} alt="City & Suburban Logo" width={190} height={67} /></a>
-          <p>We provide top-quality heating, ventilation, and air conditioning services tailored to your needs. Our experienced technicians deliver reliable solutions to keep you comfortable year-round.</p>
-        </div>
-        <nav className="site-footer-services" aria-label="Our Services">
-          <h4>Our Services</h4>
-          <ul>{footerServiceLinks.map((link) => <li key={link.label}><a href={link.href}>{link.label}</a></li>)}</ul>
-        </nav>
-        <div className="site-footer-contact">
-          <h4>Need quick help?</h4>
-          <a className="site-footer-phone" href={business.phoneHref}><Icon name="phone" className="site-btn-icon" />{business.phoneShort}</a>
-          <strong><a href={business.financeHref}>Apply for Financing</a></strong>
-          <a className="site-footer-line" href={`mailto:${business.email}`}><Icon name="mail" className="site-line-icon" />{business.email}</a>
-          <a className="site-footer-line" href={business.mapsHref}><Icon name="pin" className="site-line-icon" />{business.address}</a>
-          <div className="site-socials">
-            {business.socials.map((social) => (
-              <a href={social.href} key={social.label} aria-label={social.label}><Icon name={social.label} /></a>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="site-footer-bottom">
-        Copyright © {new Date().getFullYear()} City &amp; Suburban Heating &amp; Cooling • All rights reserved | <a href={`${LIVE_SITE}/privacy-policy/`}>Privacy Policy</a> | <a href={`${LIVE_SITE}/terms-of-use/`}>Terms Of Use</a>
-      </div>
-    </footer>
-  )
+  return <LiveSiteFooter />
 }

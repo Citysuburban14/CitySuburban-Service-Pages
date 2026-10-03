@@ -3,11 +3,16 @@
 
 import {useEffect, useRef} from 'react'
 import type {ReferenceSnapshot} from '@/reference-pages/types'
+import liveFooter from '@/reference-pages/shared-footer.json'
 
 type Props = {snapshot: Pick<ReferenceSnapshot, 'style' | 'html' | 'schema'>; serviceName: string}
 
 export function ReferenceLandingPage({snapshot, serviceName}: Props) {
   const root = useRef<HTMLDivElement>(null)
+  // Older published CMS revisions adopt the footer correction immediately;
+  // current revisions retain their editable footer copy and images.
+  const html = snapshot.html.includes('id="live-site-footer"') ? snapshot.html
+    : snapshot.html.replace(/<footer\b(?=[^>]*data-module="site-footer")[\s\S]*?<\/footer>/, liveFooter.html)
 
   useEffect(() => {
     const element = root.current
@@ -53,7 +58,8 @@ export function ReferenceLandingPage({snapshot, serviceName}: Props) {
   return <div className="reference-design" ref={root}>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" />
     <style dangerouslySetInnerHTML={{__html: snapshot.style}} />
-    <div dangerouslySetInnerHTML={{__html: snapshot.html}} />
+    <style dangerouslySetInnerHTML={{__html: liveFooter.style}} />
+    <div dangerouslySetInnerHTML={{__html: html}} />
     {snapshot.schema && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: snapshot.schema.replace(/</g, '\\u003c')}} />}
   </div>
 }
