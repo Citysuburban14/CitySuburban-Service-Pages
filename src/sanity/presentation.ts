@@ -2,6 +2,14 @@ import {defineLocations, type PresentationPluginOptions} from 'sanity/presentati
 
 export const resolve: PresentationPluginOptions['resolve'] = {
   locations: {
+    referenceServicePage: defineLocations({
+      select: {title: 'name', slug: 'slug.current', clusterSlug: 'clusterSlug', livePath: 'livePath'},
+      resolve: (document) => ({
+        locations: document?.clusterSlug && document?.slug
+          ? [{title: document.title || 'Service page', href: document.livePath || `/services/${document.clusterSlug}/${document.slug}/`}]
+          : [],
+      }),
+    }),
     serviceCluster: defineLocations({
       select: {title: 'name', slug: 'slug.current'},
       resolve: (document) => ({

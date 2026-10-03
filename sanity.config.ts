@@ -14,6 +14,12 @@ const siteUrl = (process.env.NEXT_SITE_URL || 'http://localhost:3000').replace(/
 
 async function resolveProductionUrl(previousUrl: string | undefined, context: ResolveProductionUrlContext) {
   const {document, getClient} = context
+  if (document._type === 'referenceServicePage') {
+    const slug = (document.slug as {current?: string} | undefined)?.current
+    const clusterSlug = document.clusterSlug as string | undefined
+    const livePath = document.livePath as string | undefined
+    return livePath ? `${siteUrl}${livePath}` : slug && clusterSlug ? `${siteUrl}/services/${clusterSlug}/${slug}/` : previousUrl
+  }
   if (document._type === 'serviceCluster' || document._type === 'serviceDefinition') {
     const slug = (document.slug as {current?: string} | undefined)?.current
     return slug ? `${siteUrl}/service/${slug}` : previousUrl

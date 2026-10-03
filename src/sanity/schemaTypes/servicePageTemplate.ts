@@ -1,6 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 const sections = [
+  'site-header', 'quick-facts', 'problems', 'repair-replace', 'systems', 'install', 'process', 'service-areas', 'guide', 'related', 'cta', 'site-footer',
   'hero', 'types', 'brands', 'trust', 'reviews', 'why', 'workingArea',
   'coverage', 'otherServices', 'pricing', 'faq', 'closingCta', 'guides',
 ]
@@ -13,6 +14,8 @@ export const servicePageTemplate = defineType({
     defineField({name: 'name', title: 'Template name', type: 'string', validation: (rule) => rule.required()}),
     defineField({name: 'version', title: 'Version', type: 'string', validation: (rule) => rule.required()}),
     defineField({name: 'active', title: 'Active', type: 'boolean', initialValue: true}),
+    defineField({name: 'designVersion', title: 'Landing page design', type: 'string', options: {list: [{title: 'Finalized October 2026 design', value: 'october-2026'}]}, initialValue: 'october-2026'}),
+    defineField({name: 'responsiveCss', title: 'Shared responsive landing page styles', type: 'text', rows: 12}),
     defineField({
       name: 'presentation', title: 'Shared presentation rules', type: 'object',
       description: 'Reusable design rules applied to every service page that references this template.',

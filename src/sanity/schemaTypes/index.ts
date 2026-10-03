@@ -4,6 +4,7 @@ import {serviceCluster} from './serviceCluster'
 import {serviceDefinition} from './serviceDefinition'
 import {servicePage} from './servicePage'
 import {servicePageTemplate} from './servicePageTemplate'
+import {referenceServicePage} from './referenceServicePage'
 import {siteSettings} from './siteSettings'
 
 export const schemaTypes = [
@@ -23,4 +24,5 @@ export const schemaTypes = [
   serviceDefinition,
   serviceArea,
   servicePage,
+  referenceServicePage,
 ]

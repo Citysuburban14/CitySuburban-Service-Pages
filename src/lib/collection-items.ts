@@ -8,6 +8,7 @@ export type CollectionItem = {
   monthlySearchVolume?: number | null
   metaDescription?: string | null
   cardImage?: string | null
+  livePath?: string
 }
 
 export type PreparedCollectionItem = Omit<CollectionItem, 'serviceSlug' | 'areaSlug' | 'serviceName' | 'areaName' | 'monthlySearchVolume' | 'metaDescription' | 'cardImage'> & {

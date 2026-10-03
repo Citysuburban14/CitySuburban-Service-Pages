@@ -5,12 +5,21 @@ import {clusterPath, findNavigationLevel, prepareServiceNavigation, servicePath,
 import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
 import {sanityFetch} from '@/sanity/lib/live'
-import {SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
+import {REFERENCE_NAVIGATION_QUERY, SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
+import {referenceCollectionSlug, referenceNavigation, referenceServices, type ReferenceOverride} from '@/lib/reference-pages'
+import {legacyReplacementPath} from '@/lib/legacy-service-replacements'
 
 type Props = {params: Promise<{serviceSlug: string}>}
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {serviceSlug: slug} = await params
+  const overrides = await metadataClient.fetch(REFERENCE_NAVIGATION_QUERY).catch(() => [])
+  const referenceCluster = referenceNavigation((overrides || []) as ReferenceOverride[]).find((item) => item.slug === referenceCollectionSlug(slug))
+  if (referenceCluster) return {
+    title: `${referenceCluster.name} Services in Chicago`,
+    description: referenceCluster.description,
+    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/service${clusterPath(referenceCluster.slug)}`},
+  }
   const data = await metadataClient.fetch(SERVICE_NAVIGATION_QUERY)
   const level = findNavigationLevel(prepareServiceNavigation((data || {}) as ServiceNavigationPayload), slug)
   if (!level) return {}
@@ -24,6 +33,13 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 
 export default async function NavigationPage({params}: Props) {
   const {serviceSlug: slug} = await params
+  const replacement = legacyReplacementPath(slug)
+  if (replacement) permanentRedirect(replacement)
+  const landing = referenceServices.find((page) => page.slug === slug || page.legacySlug === slug)
+  if (landing) permanentRedirect(landing.livePath)
+  const result = await sanityFetch({query: REFERENCE_NAVIGATION_QUERY, stega: false}).catch(() => null)
+  const referenceCluster = referenceNavigation((result?.data || []) as ReferenceOverride[]).find((item) => item.slug === referenceCollectionSlug(slug))
+  if (referenceCluster) return <NavigationLevelPage cluster={referenceCluster} />
   const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
   const level = findNavigationLevel(prepareServiceNavigation((data || {}) as ServiceNavigationPayload), slug)
   if (!level) notFound()

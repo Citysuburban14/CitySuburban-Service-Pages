@@ -14,5 +14,6 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('serviceCluster').title('Service clusters'),
       S.documentTypeListItem('serviceDefinition').title('Service definitions'),
       S.documentTypeListItem('serviceArea').title('Service areas'),
-      S.documentTypeListItem('servicePage').title('Service pages'),
+      S.documentTypeListItem('referenceServicePage').title('Service landing pages · finalized design'),
+      S.documentTypeListItem('servicePage').title('Original service content · preserved'),
     ])

@@ -5,8 +5,12 @@ import {findNavigationLevel, prepareServiceNavigation, servicePath, type Prepare
 import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
 import {sanityFetch} from '@/sanity/lib/live'
-import {SERVICE_NAVIGATION_QUERY, SERVICE_PAGE_METADATA_QUERY, SERVICE_PAGE_QUERY} from '@/sanity/lib/queries'
+import {REFERENCE_SERVICE_QUERY, SERVICE_NAVIGATION_QUERY, SERVICE_PAGE_METADATA_QUERY, SERVICE_PAGE_QUERY} from '@/sanity/lib/queries'
 import type {ServicePageData} from '@/types/content'
+import {getReferenceService, getReferenceSnapshot, type ReferenceDocument} from '@/lib/reference-pages'
+import {ReferenceLandingPage} from '@/components/reference-landing-page'
+import {legacyReplacementPath} from '@/lib/legacy-service-replacements'
+import {applyReferenceContentFields, synchronizeVisibleSchema} from '@/lib/reference-content-fields'
 
 type Props = {params: Promise<{serviceSlug: string; areaSlug: string}>}
 
@@ -16,6 +20,16 @@ function primaryPage(service: PreparedService) {
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {serviceSlug: clusterSlug, areaSlug: serviceSlug} = await params
+  const reference = getReferenceService(clusterSlug, serviceSlug)
+  if (reference) {
+    const updated = await metadataClient.fetch(REFERENCE_SERVICE_QUERY, {clusterSlug, serviceSlug: reference.slug}).catch(() => null)
+    return {
+    title: {absolute: updated?.metaTitle || reference.title},
+    description: updated?.metaDescription || reference.description,
+    alternates: {canonical: updated?.canonicalUrl || reference.canonicalUrl},
+    robots: {index: updated?.factChecksComplete === true, follow: true},
+  }
+  }
   const navigation = await metadataClient.fetch(SERVICE_NAVIGATION_QUERY)
   const clusters = prepareServiceNavigation((navigation || {}) as ServiceNavigationPayload)
   const cluster = clusters.find((item) => item.slug === clusterSlug)
@@ -33,6 +47,22 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 
 export default async function ServicePage({params}: Props) {
   const {serviceSlug: firstSlug, areaSlug: secondSlug} = await params
+  const replacement = legacyReplacementPath(secondSlug)
+  if (replacement) permanentRedirect(replacement)
+  const reference = getReferenceService(firstSlug, secondSlug)
+  const snapshot = reference && getReferenceSnapshot(firstSlug, secondSlug)
+  if (reference && snapshot) {
+    const result = await sanityFetch({query: REFERENCE_SERVICE_QUERY, params: {clusterSlug: firstSlug, serviceSlug: reference.slug}, stega: false}).catch(() => null)
+    const updated = result?.data as ReferenceDocument | null
+    const editedSnapshot = updated?.sections?.length ? {
+      ...snapshot,
+      style: updated.responsiveCss || snapshot.style,
+      schema: updated.structuredData || snapshot.schema,
+      html: `<main ${htmlAttributes(snapshot.mainAttributes)}><div ${htmlAttributes(snapshot.wrapperAttributes)}>${updated.sections.map((section) => applyReferenceContentFields(section.html, section.contentFields)).join('')}</div></main>`,
+    } : snapshot
+    if (updated?.sections?.length) editedSnapshot.schema = synchronizeVisibleSchema(editedSnapshot.schema, editedSnapshot.html)
+    return <ReferenceLandingPage snapshot={{style: editedSnapshot.style, html: editedSnapshot.html, schema: editedSnapshot.schema}} serviceName={updated?.name || reference.name} />
+  }
   const {data: navigation} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
   const clusters = prepareServiceNavigation((navigation || {}) as ServiceNavigationPayload)
 
@@ -48,7 +78,11 @@ export default async function ServicePage({params}: Props) {
 
   const legacy = findNavigationLevel(clusters, firstSlug)
   if (legacy?.kind === 'service' && legacy.service.pages.some((candidate) => candidate.areaSlug === secondSlug)) {
-    permanentRedirect(servicePath(legacy.cluster.slug, legacy.service.slug))
+    permanentRedirect(`/service${servicePath(legacy.cluster.slug, legacy.service.slug)}`)
   }
   notFound()
+}
+
+function htmlAttributes(attributes: Record<string, string>) {
+  return Object.entries(attributes).map(([name, value]) => `${name}="${value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`).join(' ')
 }

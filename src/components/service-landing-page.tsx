@@ -7,6 +7,9 @@ import {LeadForm} from './lead-form'
 import {CollectionFooter, CollectionHeader} from './collection-chrome'
 import {questionHeading} from '@/lib/headings'
 import {clusterPath, servicePath} from '@/lib/service-navigation'
+import {getReferenceSnapshot, referenceServices} from '@/lib/reference-pages'
+import {legacyReplacementPath} from '@/lib/legacy-service-replacements'
+import {ReferenceLandingPage} from './reference-landing-page'
 
 type Props = {data: ServicePageData}
 
@@ -195,6 +198,10 @@ export function ServiceLandingPage({data}: Props) {
   const {page, settings} = data
   if (!page || !settings) return null
   const {service, area} = page
+  const replacement = legacyReplacementPath(service.slug)
+  const approved = referenceServices.find((item) => item.livePath === replacement || item.slug === service.slug)
+  const currentDesign = approved && getReferenceSnapshot(approved.clusterSlug, approved.slug)
+  if (approved && currentDesign) return <ReferenceLandingPage snapshot={{style: currentDesign.style, html: currentDesign.html, schema: currentDesign.schema}} serviceName={approved.name} />
   const localFaqs = page.localFaqOverrides?.length ? page.localFaqOverrides : area.localFaqs
   const rating = settings.google?.rating
   const reviewCount = settings.google?.reviewCount

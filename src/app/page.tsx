@@ -1,9 +1,9 @@
 import type {Metadata} from 'next'
 import {ClusterCollection} from '@/components/cluster-collection'
 import {CollectionFooter, CollectionHeader} from '@/components/collection-chrome'
-import {prepareServiceNavigation, type ServiceNavigationPayload} from '@/lib/service-navigation'
 import {sanityFetch} from '@/sanity/lib/live'
-import {SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
+import {REFERENCE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
+import {referenceNavigation, type ReferenceOverride} from '@/lib/reference-pages'
 
 export const revalidate = 60
 export const metadata: Metadata = {
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
-  const clusters = prepareServiceNavigation((data || {}) as ServiceNavigationPayload)
+  const result = await sanityFetch({query: REFERENCE_NAVIGATION_QUERY, stega: false}).catch(() => null)
+  const clusters = referenceNavigation((result?.data || []) as ReferenceOverride[])
   return (
     <div className="collection-page">
       <CollectionHeader />

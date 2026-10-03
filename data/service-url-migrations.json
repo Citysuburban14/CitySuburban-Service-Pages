@@ -1,0 +1,20 @@
+{
+  "overlaps": {
+    "air-conditioner-repair-installation": "/services/cooling/air-conditioning-repair/",
+    "furnace-repair-installation": "/services/heating/heater-repair/",
+    "heat-pump-repair-installation": "/services/cooling/heat-pump-services/",
+    "boiler-repair-installation": "/services/heating/boiler-service/",
+    "ductless-mini-split-installation-repair": "/services/cooling/ductless-hvac-service/",
+    "indoor-air-quality-testing-installation": "/services/air-quality/indoor-air-quality-test/",
+    "humidifier-installation-repair": "/services/air-quality/humidifier-air-cleaner/",
+    "dehumidifier-installation-repair": "/services/air-quality/dehumidifier-installation/"
+  },
+  "directoryCategories": {
+    "heating": "heating",
+    "cooling": "cooling",
+    "hvac-systems": "heating",
+    "indoor-air-quality-ventilation": "air-quality",
+    "fireplace-chimney": "heating",
+    "commercial-specialty": "commercial"
+  }
+}

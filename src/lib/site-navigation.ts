@@ -1,8 +1,8 @@
 // Header and footer menus, mirroring the live citysuburbanheating.com menus.
 //
 // Labels, order and links are copied exactly from the live WordPress menu and footer
-// (03/10/2026). No item is pointed at a new page until the keyword-to-URL decisions
-// are made; change a link here when a page is moved.
+// (03/10/2026). These 24 dropdown keyword URLs are the exact paths in the approved
+// GitHub directory. The production proxy rollout is managed separately.
 // "Service Areas" is replaced by "Services": a plain link with no dropdown, to
 // this app's collection page, which leads on to the cluster and landing pages.
 

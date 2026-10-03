@@ -1,0 +1,15 @@
+# October service-page handoff
+
+The 24 service names, menu order and live paths in `src/reference-pages/catalog.json` match the updated GitHub directory on 3 October 2026. Landing pages use the exact `/services/{category}/{keyword}/` URLs. The HTML, responsive styles, copy and imagery are snapshots of the finalized pages. Collection and category layouts stay in their existing components; cards use the updated names and exact landing URLs.
+
+The `referenceServicePage` Sanity type stores card fields, the exact live path, canonical URL, keywords, JSON-LD, responsive CSS and ordered sections from the finalized design. Its section options include every module in the new pages. The reference reports 16 pages passing checks and 8 needing photos. That status is recorded as supplied; photo gaps are not filled with invented images. The 24 documents remain **drafts**. Existing keyword phrases are retained alongside the updated service and Chicago phrases. Published documents override their snapshots; search indexing remains controlled by `factChecksComplete`.
+
+After the user's clarification, eight overlapping services are consolidated into the exact GitHub keywords. Seventeen distinct existing keyword pages retain their app paths and existing content in the approved standard design. The directory now contains 41 pages in four collection categories. `data/service-url-migrations.json` records the eight overlaps and collection assignments. `docs/service-url-directory.md` lists every page and alias.
+
+`src/proxy.ts` serves only the 24 exact `/services/.../` paths through the app's `/service` routes without changing the browser URL. The app's old overlapping keyword routes use permanent HTTP 308 redirects to those exact paths. Collection layouts and the Cloudflare Worker are unchanged; production edge routing remains a later step.
+
+## Local review
+
+Run `pnpm dev`, open `/service/`, and use a `livePath` from the catalog to review a landing page. Run `pnpm test:reference`, `pnpm typecheck`, `pnpm lint` and `pnpm build` to verify the changes.
+
+To refresh a future reference update, download the directory and its pages into `../.reference-preview`, export existing Sanity service content with `scripts/export-retained-service-content.ts`, run `scripts/build-reference-pages.py`, `scripts/build-retained-service-pages.py` and `scripts/add-service-content-fields.py`, then `pnpm content:import-reference-pages --refresh-design`. The native content fields expose section copy and images without changing the layout. FAQ and WebPage schema is synchronized with rendered Sanity edits. The importer backs up existing drafts outside the app and checks document revisions before changing requested design fields. It saves 41 landing drafts and a version 2.0.0 standard-template draft. Without the flag, it only creates missing landing drafts. No Sanity publishing or production proxy rollout was performed. The current Cloudflare Worker still leaves `/services/...` on WordPress; switching that production traffic is a separate release step.

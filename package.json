@@ -17,6 +17,9 @@
     "test:smoke": "tsx scripts/smoke-test.ts",
     "test:collection-data": "tsx scripts/test-collection-data.ts",
     "test:navigation": "tsx scripts/test-service-navigation.ts",
+    "test:reference": "tsx scripts/test-reference-pages.ts",
+    "content:export-retained-services": "tsx scripts/export-retained-service-content.ts",
+    "content:url-directory": "tsx scripts/write-service-url-directory.ts",
     "test:lead": "tsx scripts/test-lead-delivery.ts",
     "test:sample": "tsx scripts/test-sample-page.ts",
     "content:import": "tsx scripts/import-content.ts",
@@ -27,6 +30,7 @@
     "content:audit-drafts-316-325": "tsx scripts/audit-sanity-drafts-306-315.ts --batch=316-325",
     "media:download-316-325": "node scripts/download-service-images-316-325.mjs",
     "content:update-template": "tsx scripts/update-service-template.ts",
+    "content:import-reference-pages": "tsx scripts/import-reference-pages.ts",
     "vercel:pull": "vercel pull --yes --environment=production",
     "vercel:build": "vercel build --prod",
     "vercel:deploy": "vercel deploy --prebuilt --prod"

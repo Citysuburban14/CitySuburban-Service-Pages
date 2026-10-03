@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import {useMemo, useState} from 'react'
 import {prepareCollectionItems, type CollectionItem} from '@/lib/collection-items'
 import {servicePath} from '@/lib/service-navigation'
@@ -56,7 +55,7 @@ export function ServiceCollection({
         {stablePages.length > 0 && filtered.length === 0 && <div className="collection-empty"><h3>No matching services</h3><p>Try a broader service name or clear the search.</p><button type="button" onClick={() => setQuery('')}>Clear filters</button></div>}
         <div className="collection-card-grid">
           {filtered.map((page) => (
-            <Link className="collection-card" data-card-image={page.cardImage} href={servicePath(clusterSlug, page.serviceSlug)} key={page._id}>
+            <a className="collection-card" data-card-image={page.cardImage} href={page.livePath || `/service${servicePath(clusterSlug, page.serviceSlug)}`} key={page._id}>
               <span className={`collection-card-media${page.cardImage ? '' : ' collection-card-media-empty'}`} style={page.cardImage ? {backgroundImage: `linear-gradient(180deg, rgba(9,38,58,0) 45%, rgba(9,38,58,.14)), url("${page.cardImage}")`} : undefined} role="img" aria-label={`${page.serviceName} in ${page.areaName}`}>
                 {!page.cardImage && <span aria-hidden="true">CS</span>}
               </span>
@@ -65,7 +64,7 @@ export function ServiceCollection({
                 <strong>{page.serviceName}</strong>
                 {page.metaDescription && <span className="collection-card-description">{page.metaDescription}</span>}
               </span>
-            </Link>
+            </a>
           ))}
         </div>
       </div>
