@@ -6,8 +6,8 @@
 //   - the two live items that now 301 (Air Conditioning Repair, Heating > Heat Pump)
 //     link straight to their destination, so no visitor goes through a redirect
 //   - pages still on WordPress keep their absolute WordPress URL
-// "Service Areas" is replaced by "Services", which opens this app's collection,
-// cluster and landing pages (built from Sanity in the header component).
+// "Service Areas" is replaced by "Services": a plain link with no dropdown, to
+// this app's collection page, which leads on to the cluster and landing pages.
 
 export const LIVE_SITE = 'https://citysuburbanheating.com'
 
@@ -66,6 +66,8 @@ export const liveMenu: MenuGroup[] = [
     ],
   },
 ]
+
+export const servicesLink: MenuLink = {label: 'Services', href: '/service/'}
 
 export const topBarLinks: MenuLink[] = [
   {label: 'Finance', href: 'https://retailservices.wellsfargo.com/pl/0024376626'},
