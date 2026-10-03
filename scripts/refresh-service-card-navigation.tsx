@@ -29,6 +29,7 @@ const images: Record<string, string> = {
   'custom-hvac-maintenance-plan': 'images/services/city-suburban/306-315/digital-thermostat-wall-plate.jpg',
   'ductwork-design-repair-services': 'images/service-cards/commercial-ductwork.jpg',
   'dryer-vent-cleaning-repair': 'images/service-cards/dryer-vent.jpg',
+  'commercial-refrigeration-repair-maintenance': 'images/service-cards/commercial-refrigeration.jpg',
 }
 
 const header = `<div data-module="site-header">${renderToStaticMarkup(<CollectionHeader />)}</div>`

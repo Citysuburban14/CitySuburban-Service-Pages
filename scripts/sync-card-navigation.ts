@@ -26,6 +26,7 @@ async function main() {
     const snapshot = JSON.parse(fs.readFileSync(`src/reference-pages/${page.referenceFile}`, 'utf8'))
     const shared = snapshot.sections.find((section: {module: string}) => section.module === 'site-header')
     const section = doc.sections.find(section => section.module === 'site-header')
+    if (doc.cardImageUrl === page.cardImage && section?.html === shared.html) continue
     let patch = client.patch(doc._id).ifRevisionId(doc._rev).set({cardImageUrl: page.cardImage})
     if (section) patch = patch.set({[`sections[_key=="${section._key}"].html`]: shared.html, [`sections[_key=="${section._key}"].contentFields`]: []})
     await patch.commit()
