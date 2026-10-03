@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {createClient} from 'next-sanity'
-import {clusterRef, serviceSlug} from './service-url-map'
+import {clusterRef} from './service-url-map'
 
 type Row = Record<string, string>
 type Source = {equip: Row[]; area: Row[]; page: Row[]}
@@ -126,7 +126,7 @@ const services = source.equip.map((row) => {
   const taxonomyItem = taxonomyById.get(Number(serviceId))
   if (!taxonomyItem) throw new Error(`Missing service taxonomy for ${serviceId}`)
   return ({
-  _id: `service-${serviceId}`, _type: 'serviceDefinition', serviceId: Number(serviceId), name: row.name, slug: {_type: 'slug', current: serviceSlug(serviceId, row.slug)},
+  _id: `service-${serviceId}`, _type: 'serviceDefinition', serviceId: Number(serviceId), name: row.name, slug: {_type: 'slug', current: row.slug},
   cluster: clusterRef(taxonomyItem.clusterSlug), scopeStatus: taxonomyItem.scopeStatus, scopeNote: taxonomyItem.scopeNote,
   parentName: row.parent_name, parentUrl: row.parent_url, hubUrl: row.hub_url,
   primaryKeywords: keywords(row.kw_primary), monthlySearchVolume: firstVolume(row.kw_volume), searchVolumeSummary: row.kw_volume, secondaryKeywords: keywords(row.kw_secondary),

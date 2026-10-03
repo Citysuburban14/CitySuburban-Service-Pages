@@ -18,8 +18,7 @@ const nextConfig: NextConfig = {
   // routes, <Link> hrefs, redirect source/destination, and public assets — but
   // NOT to fetch() calls or raw string asset paths, which are prefixed manually.
   basePath: '/service',
-  // The live WordPress URLs end with a slash (/service/heating/). Matching that
-  // exactly means a replaced page keeps its URL with no redirect.
+  // URLs end with a slash, like the live WordPress URLs (/service/heating/).
   trailingSlash: true,
   env: browserConfig,
   poweredByHeader: false,
@@ -37,25 +36,6 @@ const nextConfig: NextConfig = {
         permanent: false,
         basePath: false,
       },
-      // The app used /services before it moved to /service. Keep those Vercel URLs
-      // working. On the public domain, /services/* is handled by the Cloudflare Worker.
-      {source: '/services', destination: '/service/', permanent: true, basePath: false},
-      {source: '/services/:path+', destination: '/service/:path+/', permanent: true, basePath: false},
-      // Eight pages were renamed to the exact URLs of the live WordPress pages they
-      // replace, and the air quality cluster now uses the live "air-quality" slug.
-      // These keep the earlier preview URLs working. Specific rules come first.
-      ...([
-        ['/cooling/air-conditioner-repair-installation', '/cooling/air-conditioning-installation/'],
-        ['/hvac-systems/heat-pump-repair-installation', '/cooling/heat-pump-services/'],
-        ['/heating/space-heater-repair-installation', '/heating/heater-repair/'],
-        ['/heating/boiler-repair-installation', '/heating/boiler-service/'],
-        ['/cooling/ductless-mini-split-installation-repair', '/cooling/ductless-hvac-service/'],
-        ['/indoor-air-quality-ventilation/air-duct-cleaning-repair', '/air-quality/duct-repair/'],
-        ['/indoor-air-quality-ventilation/indoor-air-quality-testing-installation', '/air-quality/indoor-air-quality-test/'],
-        ['/indoor-air-quality-ventilation/dehumidifier-installation-repair', '/air-quality/dehumidifier-installation/'],
-      ] as const).map(([source, destination]) => ({source, destination, permanent: true})),
-      {source: '/indoor-air-quality-ventilation', destination: '/air-quality/', permanent: true},
-      {source: '/indoor-air-quality-ventilation/:slug', destination: '/air-quality/:slug/', permanent: true},
     ]
   },
 }

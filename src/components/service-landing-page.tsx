@@ -6,7 +6,7 @@ import {CenteredAreaRail} from './centered-area-rail'
 import {LeadForm} from './lead-form'
 import {CollectionFooter, CollectionHeader} from './collection-chrome'
 import {questionHeading} from '@/lib/headings'
-import {clusterPath, legacyServiceSlugs, servicePath} from '@/lib/service-navigation'
+import {clusterPath, servicePath} from '@/lib/service-navigation'
 
 type Props = {data: ServicePageData}
 
@@ -74,8 +74,8 @@ function serviceHref(url: string | undefined, routes: ServicePageData['serviceRo
     if (!/(^|\.)(citysuburbanheating|highlightschicago)\.com$/i.test(parsed.hostname)) return url
     const match = parsed.pathname.match(/^\/services?\/([^/]+)\/?$/)
     if (!match) return url
-    const route = [match[1], legacyServiceSlugs[match[1]]].map((slug) => routes?.find((candidate) => candidate.serviceSlug === slug)).find(Boolean)
-    return route?.clusterSlug ? `/service${servicePath(route.clusterSlug, route.serviceSlug)}` : `/service/${legacyServiceSlugs[match[1]] || match[1]}/`
+    const route = routes?.find((candidate) => candidate.serviceSlug === match[1])
+    return route?.clusterSlug ? `/service${servicePath(route.clusterSlug, match[1])}` : `/service/${match[1]}/`
   } catch {
     return url
   }

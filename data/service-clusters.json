@@ -24,7 +24,7 @@
       "sourceServiceCount": 3,
       "monthlySearchVolume": 1003350,
       "chicagoSearchVolume": 250,
-      "serviceIds": [302, 305, 310, 314],
+      "serviceIds": [302, 310, 314],
       "requiresScopeReview": false,
       "buildNote": "Everything that removes heat. Chicago's large stock without central air makes this cluster broader than central AC alone."
     },
@@ -37,14 +37,14 @@
       "sourceServiceCount": 3,
       "monthlySearchVolume": 702650,
       "chicagoSearchVolume": 400,
-      "serviceIds": [304, 311],
+      "serviceIds": [304, 305, 311],
       "requiresScopeReview": false,
       "buildNote": "Whole-system jobs and the controls that run them, where the customer is replacing or upgrading rather than fixing one appliance."
     },
     {
       "id": "cluster-indoor-air-quality-ventilation",
       "name": "Indoor Air Quality & Ventilation",
-      "slug": "air-quality",
+      "slug": "indoor-air-quality-ventilation",
       "description": "Services that move, filter and condition indoor air, including ductwork, purification, humidity and exhaust ventilation.",
       "displayOrder": 4,
       "sourceServiceCount": 9,
