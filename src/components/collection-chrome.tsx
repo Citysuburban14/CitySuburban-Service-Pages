@@ -54,7 +54,7 @@ export function CollectionHeader() {
             <ul className="site-menu">
               {liveMenu.map((group) => (
                 <li className="site-menu-item has-sub" key={group.label}>
-                  <a href={group.href}>{group.label}</a>
+                  <a href={group.href} aria-haspopup="true">{group.label}</a>
                   <ul className="site-submenu">
                     {group.items.map((item) => <li key={item.label}><a href={item.href}>{item.label}</a></li>)}
                   </ul>

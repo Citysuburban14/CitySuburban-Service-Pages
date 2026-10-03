@@ -5,6 +5,8 @@ import {useEffect, useRef} from 'react'
 import type {ReferenceSnapshot} from '@/reference-pages/types'
 import liveFooter from '@/reference-pages/shared-footer.json'
 import {migrateServiceUrls} from '@/lib/service-base-path'
+import {CollectionHeader} from './collection-chrome'
+import {withoutReferenceHeader} from '@/lib/reference-header'
 
 type Props = {snapshot: Pick<ReferenceSnapshot, 'style' | 'html' | 'schema'>; serviceName: string}
 
@@ -56,11 +58,14 @@ export function ReferenceLandingPage({snapshot, serviceName}: Props) {
     return () => {element.removeEventListener('click', click); element.removeEventListener('submit', submit)}
   }, [serviceName])
 
-  return <div className="reference-design" ref={root}>
+  return <><CollectionHeader /><div className="reference-design" ref={root}>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" />
-    <style dangerouslySetInnerHTML={{__html: migrateServiceUrls(snapshot.style)}} />
+    <style dangerouslySetInnerHTML={{__html: migrateServiceUrls(snapshot.style)
+      .replaceAll('nav[aria-label="Primary"]', '.reference-design nav[aria-label="Primary"]')
+      .replaceAll('header a[href', '.reference-design header a[href')
+      .replaceAll('header > div', '.reference-design header > div')}} />
     <style dangerouslySetInnerHTML={{__html: liveFooter.style}} />
-    <div dangerouslySetInnerHTML={{__html: migrateServiceUrls(html)}} />
+    <div dangerouslySetInnerHTML={{__html: migrateServiceUrls(withoutReferenceHeader(html))}} />
     {snapshot.schema && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: migrateServiceUrls(snapshot.schema).replace(/</g, '\\u003c')}} />}
-  </div>
+  </div></>
 }

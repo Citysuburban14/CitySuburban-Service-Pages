@@ -61,7 +61,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--hybrid-heating-systems.json",
-    "cardImage": "/services/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -77,7 +77,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--hvac-maintenance-plans.json",
-    "cardImage": "/services/reference-assets/svc-maintenance-plans.jpg"
+    "cardImage": "/services/reference-assets/job-furnace-3.jpg"
   },
   {
     "clusterSlug": "heating",
@@ -109,7 +109,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "heating--heater-maintenance.json",
-    "cardImage": "/services/reference-assets/svc-heating-repair.jpg"
+    "cardImage": "/services/reference-assets/job-furnace-1.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -141,7 +141,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork, packaged unit",
     "referenceFile": "cooling--air-conditioning-repair.json",
-    "cardImage": "/services/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/svc-maintenance-plans.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -157,7 +157,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork",
     "referenceFile": "cooling--air-conditioning-maintenance.json",
-    "cardImage": "/services/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/as-coil.png"
   },
   {
     "clusterSlug": "cooling",
@@ -189,7 +189,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: packaged unit",
     "referenceFile": "cooling--cooling-maintenance-plans.json",
-    "cardImage": "/services/reference-assets/svc-maintenance-plans.jpg"
+    "cardImage": "/services/reference-assets/svc-heating-maintenance.jpg"
   },
   {
     "clusterSlug": "cooling",
@@ -205,7 +205,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: ductwork, packaged unit",
     "referenceFile": "cooling--heat-pump-services.json",
-    "cardImage": "/services/reference-assets/hero-heating.jpg"
+    "cardImage": "/services/reference-assets/svc-heat-pumps.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -221,7 +221,7 @@
     "qcStatus": "NEEDS-PHOTO",
     "photoStatus": "Needs photo: dehumidifier",
     "referenceFile": "air-quality--dehumidifier-installation.json",
-    "cardImage": "/services/reference-assets/svc-heating-maintenance.jpg"
+    "cardImage": "/services/images/services/city-suburban/316-325/dehumidifier.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -253,7 +253,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "air-quality--duct-repair.json",
-    "cardImage": "/services/reference-assets/as-zoned-system-by-American-Standard.jpg"
+    "cardImage": "/services/images/service-cards/duct-repair.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -269,7 +269,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "air-quality--duct-maintenance.json",
-    "cardImage": "/services/reference-assets/as-zoned-system-by-American-Standard.jpg"
+    "cardImage": "/services/images/service-cards/duct-maintenance.jpg"
   },
   {
     "clusterSlug": "air-quality",
@@ -285,7 +285,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "air-quality--humidifier-air-cleaner.json",
-    "cardImage": "/services/reference-assets/svc-heating-installation.jpg"
+    "cardImage": "/services/reference-assets/as-steam-humidifier.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -301,7 +301,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--commercial-hvac-system-installation.json",
-    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/images/services/city-suburban/306-315/mechanical-room.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -317,7 +317,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--commercial-hvac-system-replacement.json",
-    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/images/services/city-suburban/rooftop-ac-condensers.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -349,7 +349,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--energy-efficient-hvac-upgrades.json",
-    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/images/services/city-suburban/306-315/smart-heating-control.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -365,7 +365,7 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--custom-hvac-maintenance-plan.json",
-    "cardImage": "/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg"
+    "cardImage": "/services/images/services/city-suburban/306-315/digital-thermostat-wall-plate.jpg"
   },
   {
     "clusterSlug": "commercial",
@@ -381,6 +381,6 @@
     "qcStatus": "PASS",
     "photoStatus": "Passes all checks",
     "referenceFile": "commercial--ductwork-design-repair-services.json",
-    "cardImage": "/services/reference-assets/as-zoned-system-by-American-Standard.jpg"
+    "cardImage": "/services/images/service-cards/commercial-ductwork.jpg"
   }
 ]

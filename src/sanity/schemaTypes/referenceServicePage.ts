@@ -44,18 +44,18 @@ export const referenceServicePage = defineType({
     defineField({name: 'responsiveCss', title: 'Responsive design CSS', type: 'text', rows: 8, group: 'design', validation: (rule) => rule.required()}),
     defineField({
       name: 'sections', title: 'Landing page sections, in display order', type: 'array', group: 'design',
-      description: 'Edit copy and images in the native content fields. The design markup preserves the approved layout; reorder sections to change the page flow.',
+      description: 'Edit copy and images in the native content fields. Navigation uses the shared live-site menu on every collection and landing page. The site-header section records that shared design; its menu is managed centrally.',
       of: [defineArrayMember({
         type: 'object', name: 'referencePageSection', title: 'Page section',
         fields: [
           defineField({name: 'module', title: 'Section', type: 'string', options: {list: modules}, validation: (rule) => rule.required()}),
-          defineField({name: 'contentFields', title: 'Section copy & images', type: 'array', of: [defineArrayMember({type: 'object', name: 'referenceContentField', fields: [
+          defineField({name: 'contentFields', title: 'Section copy & images', type: 'array', readOnly: ({parent}) => parent?.module === 'site-header', of: [defineArrayMember({type: 'object', name: 'referenceContentField', fields: [
             defineField({name: 'label', title: 'Field', type: 'string', readOnly: true}),
             defineField({name: 'target', title: 'Design element ID', type: 'string', hidden: true}),
             defineField({name: 'kind', title: 'Field type', type: 'string', hidden: true}),
             defineField({name: 'value', title: 'Content', type: 'text', rows: 3}),
           ], preview: {select: {title: 'label', subtitle: 'value'}}})]}),
-          defineField({name: 'html', title: 'Section design and content', type: 'text', rows: 16, validation: (rule) => rule.required()}),
+          defineField({name: 'html', title: 'Section design and content', type: 'text', rows: 16, readOnly: ({parent}) => parent?.module === 'site-header', validation: (rule) => rule.required()}),
         ],
         preview: {select: {title: 'module'}},
       })],

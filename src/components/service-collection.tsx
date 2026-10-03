@@ -3,6 +3,7 @@
 import {useMemo, useState} from 'react'
 import {prepareCollectionItems, type CollectionItem} from '@/lib/collection-items'
 import {servicePath} from '@/lib/service-navigation'
+import {serviceCardCredits} from '@/lib/service-card-credits'
 
 export type {CollectionItem}
 
@@ -67,6 +68,12 @@ export function ServiceCollection({
             </a>
           ))}
         </div>
+        {!!serviceCardCredits(filtered.map(page => page.cardImage)).length && <details className="collection-photo-credits">
+          <summary>Photo credits</summary>
+          <ul>{serviceCardCredits(filtered.map(page => page.cardImage)).map(credit => <li key={credit.image}>
+            <a href={credit.source}>{credit.author}</a> · {credit.licenseUrl ? <a href={credit.licenseUrl}>{credit.license}</a> : credit.license}
+          </li>)}</ul>
+        </details>}
       </div>
     </section>
   )

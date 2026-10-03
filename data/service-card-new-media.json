@@ -1,0 +1,34 @@
+[
+  {
+    "id": "duct-repair",
+    "image": "/services/images/service-cards/duct-repair.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Duct_connected_01.jpg",
+    "author": "pinqui",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+    "id": "duct-maintenance",
+    "image": "/services/images/service-cards/duct-maintenance.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Office_building_infrastructure.jpg",
+    "author": "Eric Polk",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "id": "commercial-ductwork",
+    "image": "/services/images/service-cards/commercial-ductwork.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:OC_Fairground_ductwork.jpg",
+    "author": "Eric Polk",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "id": "dryer-vent",
+    "image": "/services/images/service-cards/dryer-vent.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Clothes_dryer_flex_hose_kinked.jpg",
+    "author": "Rick Harpenau",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  }
+]

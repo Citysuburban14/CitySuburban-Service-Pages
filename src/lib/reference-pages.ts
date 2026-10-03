@@ -41,6 +41,14 @@ export function getReferenceSnapshot(clusterSlug: string, slug: string): Referen
   return service && referenceSnapshots[`${clusterSlug}/${service.slug}`]
 }
 
+// Preserve the first collection layer's category images independently of service cards.
+const clusterImages: Record<string, string> = {
+  heating: '/services/reference-assets/svc-heating-repair.jpg',
+  cooling: '/services/reference-assets/svc-ductless.jpg',
+  'air-quality': '/services/reference-assets/svc-heating-maintenance.jpg',
+  commercial: '/services/reference-assets/as-gold-14-hybrid-comfort-packaged-system.jpg',
+}
+
 /** CMS pages need no entry in the imported reference catalog. */
 export function referencePagePath(page: ReferenceOverride): string | undefined {
   if (!page.clusterSlug || !page.slug || !/^[a-z0-9-]+$/.test(page.clusterSlug) || !/^[a-z0-9-]+$/.test(page.slug)) return undefined
@@ -84,7 +92,7 @@ export function referenceNavigation(overrides: ReferenceOverride[] = []): Prepar
       requiresScopeReview: services.some((item) => item.qcStatus !== 'PASS') || extraPages.some(page => page.factChecksComplete !== true),
       pages,
       services: pages.map((page) => ({slug: page.serviceSlug, name: page.serviceName, description: page.metaDescription, cardImage: page.cardImage, pages: [page]})),
-      cardImage: pages.find((page) => page.cardImage)?.cardImage,
+      cardImage: clusterImages[slug],
     }
   })
 }

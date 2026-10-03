@@ -386,7 +386,7 @@
     "qcStatus": "RETAINED",
     "photoStatus": "Existing service copy and media retained",
     "referenceFile": "indoor-air-quality-ventilation--dryer-vent-cleaning-repair.json",
-    "cardImage": "https://cdn.sanity.io/images/q0tvhxym/production/02dd32654dd23bb356474aa8baf988a2669e137c-1920x2560.jpg",
+    "cardImage": "/services/images/service-cards/dryer-vent.jpg",
     "keyPhrases": [
       "dryer vent repair near me",
       "dryer vent cleaning",

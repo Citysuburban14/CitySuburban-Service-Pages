@@ -259,6 +259,7 @@ a{color:var(--brand);text-underline-offset:3px}
 /* ---------- Site header and footer: mirror citysuburbanheating.com ---------- */
 .site-header-stack,.site-footer{--site-blue:#186AA4;--site-navy:#09263A;--site-ink:#0C1E35;--site-red:#DD382B;--site-red-dark:#B92E23;--site-grey:#6A6A6A;font-family:var(--font-noto-sans),"Noto Sans",system-ui,sans-serif;color:var(--site-navy)}
 .site-header-stack *,.site-footer *{box-sizing:border-box}
+.collection-photo-credits{margin-top:24px;color:#6A6A6A;font-size:12px;line-height:1.6}.collection-photo-credits summary{cursor:pointer}.collection-photo-credits a{color:inherit}.collection-photo-credits ul{padding-left:20px}
 .site-shell{width:min(1140px,calc(100% - 40px));margin-inline:auto}
 .site-topbar{background:var(--site-blue);color:#fff;font-size:14px;font-weight:600}
 .site-topbar-inner{display:flex;align-items:center;min-height:48px}

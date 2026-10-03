@@ -14,6 +14,7 @@ import {liveMenu, servicesLink} from '../src/lib/site-navigation'
 import {applyReferenceContentFields, synchronizeVisibleSchema} from '../src/lib/reference-content-fields'
 import {migrateServiceContent} from '../src/lib/service-base-path'
 import {renderReferencePage} from '../src/lib/reference-page-rendering'
+import {withoutReferenceHeader} from '../src/lib/reference-header'
 
 const counts = Object.fromEntries(['heating', 'cooling', 'air-quality', 'commercial'].map((cluster) => [cluster, catalog.filter((page) => page.clusterSlug === cluster).length]))
 assert.deepEqual(counts, {heating: 7, cooling: 6, 'air-quality': 5, commercial: 6})
@@ -22,6 +23,7 @@ assert.equal(new Set(catalog.map((page) => `${page.clusterSlug}/${page.slug}`)).
 assert.equal(new Set(catalog.map((page) => page.livePath)).size, 24)
 assert.equal(catalog.filter((page) => page.qcStatus === 'PASS').length, 16)
 assert.equal(retainedCatalog.length, 17)
+assert.equal(new Set([...catalog, ...retainedCatalog].map(page => page.cardImage)).size, 41, 'Every service card needs a distinct image')
 assert.equal(servicesLink.href, '/services/')
 assert.deepEqual(liveMenu.flatMap((group) => group.items.map((item) => [item.label, new URL(item.href).pathname])), catalog.map((page) => [page.name, page.livePath]))
 
@@ -41,7 +43,7 @@ for (const page of catalog) {
   assert.equal(getReferenceSnapshot(page.clusterSlug, page.legacySlug), snapshot)
   assert.ok(snapshot.html.includes('type="submit"'), `Booking form is inert: ${page.slug}`)
   for (const section of snapshot.sections) assert.ok(snapshot.html.includes(section.html), `Sanity section changed reference markup: ${page.slug}/${section.module}`)
-  assert.ok(snapshot.sections.every((section) => section.contentFields?.length), `Missing native Sanity fields: ${page.slug}`)
+  assert.ok(snapshot.sections.every((section) => section.module === 'site-header' || section.contentFields?.length), `Missing native Sanity fields: ${page.slug}`)
   const rewritten = proxy(new NextRequest(`http://localhost${page.livePath}?utm_source=review`))
   assert.equal(rewritten.headers.get('x-middleware-rewrite'), null)
   assert.equal(rewritten.headers.get('location'), null)
@@ -102,6 +104,10 @@ for (const page of [...catalog, ...retainedCatalog]) {
   assert.equal(previous.status, 308)
   assert.equal(previous.headers.get('location'), `http://localhost${page.livePath}?utm=old`)
   const snapshot = referenceSnapshots[`${page.clusterSlug}/${page.slug}`]
+  const header = snapshot.sections.find(section => section.module === 'site-header')!
+  assert.equal((header.html.match(/class="site-submenu"/g) || []).length, 4, `Missing dropdowns: ${page.slug}`)
+  const content = withoutReferenceHeader(snapshot.html)
+  assert.ok(!content.includes('data-module="site-header"') && content.includes('data-module="hero"') && content.includes('id="live-site-footer"'), `Header removal damaged page: ${page.slug}`)
   assert.ok(!/\/service\//.test(JSON.stringify(snapshot)), `Old base in ${page.livePath}`)
 }
 for (const path of ['/service/api/lead/', '/service/_next/static/chunk.js', '/service/images/live-footer-logo.png', '/service/studio/']) {
