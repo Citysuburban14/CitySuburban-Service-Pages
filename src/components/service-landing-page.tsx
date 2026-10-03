@@ -6,7 +6,7 @@ import {CenteredAreaRail} from './centered-area-rail'
 import {LeadForm} from './lead-form'
 import {CollectionFooter, CollectionHeader} from './collection-chrome'
 import {questionHeading} from '@/lib/headings'
-import {clusterPath, servicePath} from '@/lib/service-navigation'
+import {clusterPath, legacyServiceSlugs, servicePath} from '@/lib/service-navigation'
 
 type Props = {data: ServicePageData}
 
@@ -68,14 +68,14 @@ function asQuestion(value: string | undefined, area: string): string {
 }
 
 function serviceHref(url: string | undefined, routes: ServicePageData['serviceRoutes']) {
-  if (!url) return '/services'
+  if (!url) return '/services/'
   try {
     const parsed = new URL(url, 'https://citysuburbanheating.com')
     if (!/(^|\.)(citysuburbanheating|highlightschicago)\.com$/i.test(parsed.hostname)) return url
     const match = parsed.pathname.match(/^\/services\/([^/]+)\/?$/)
     if (!match) return url
-    const route = routes?.find((candidate) => candidate.serviceSlug === match[1])
-    return route?.clusterSlug ? `/services${servicePath(route.clusterSlug, match[1])}` : `/services/${match[1]}`
+    const route = [match[1], legacyServiceSlugs[match[1]]].map((slug) => routes?.find((candidate) => candidate.serviceSlug === slug)).find(Boolean)
+    return route?.clusterSlug ? `/services${servicePath(route.clusterSlug, route.serviceSlug)}` : `/services/${legacyServiceSlugs[match[1]] || match[1]}/`
   } catch {
     return url
   }
@@ -181,7 +181,7 @@ function JsonLd({data}: Props) {
     {'@type': 'Service', name: `${service.h1Prefix} in ${area.name}`, url: canonicalUrl, serviceType: service.name, provider: {'@id': `${settings.siteUrl}/#business`}, areaServed: {'@type': 'City', name: `${area.name}, ${area.state}`}},
     {'@type': 'BreadcrumbList', itemListElement: [
       {'@type': 'ListItem', position: 1, name: 'Home', item: settings.siteUrl},
-      {'@type': 'ListItem', position: 2, name: 'Services', item: `${settings.siteUrl}/services`},
+      {'@type': 'ListItem', position: 2, name: 'Services', item: `${settings.siteUrl}/services/`},
       ...(service.cluster?.name && service.cluster?.slug ? [{'@type': 'ListItem', position: 3, name: service.cluster.name, item: `${settings.siteUrl}/services/${service.cluster.slug}`}] : []),
       {'@type': 'ListItem', position: service.cluster?.slug ? 4 : 3, name: `${service.name} in ${area.name}`, item: canonicalUrl},
     ]},

@@ -54,7 +54,7 @@ export default defineConfig({
       previewUrl: {
         origin: siteUrl,
         preview: '/services',
-        previewMode: {enable: '/services/api/draft-mode/enable'},
+        previewMode: {enable: '/services/api/draft-mode/enable/'},
       },
     }),
     visionTool(),

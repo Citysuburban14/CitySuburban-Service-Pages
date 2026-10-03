@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {createClient} from 'next-sanity'
+import {clusterRef} from './service-url-map'
 
 type Cluster = {
   id: string
@@ -86,7 +87,7 @@ async function main() {
     const taxonomy = taxonomyById.get(service.serviceId)
     if (!taxonomy) continue
     transaction = transaction.patch(service._id, (patch) => patch.set({
-      cluster: {_type: 'reference', _ref: `cluster-${taxonomy.clusterSlug}`},
+      cluster: clusterRef(taxonomy.clusterSlug),
       scopeStatus: taxonomy.scopeStatus,
       scopeNote: taxonomy.scopeNote,
     }))

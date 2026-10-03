@@ -9,7 +9,7 @@ const FOOTER_LOGO = '/services/images/city-suburban-logo.png'
 const primaryLinks = [
   {label: 'Home', href: `${LIVE_SITE}/`},
   {label: 'About Us', href: `${LIVE_SITE}/about-us`},
-  {label: 'Services', href: `${LIVE_SITE}/services`},
+  {label: 'Services', href: `${LIVE_SITE}/services/`},
   {label: 'Heating', href: `${LIVE_SITE}/heating/`},
   {label: 'Cooling', href: `${LIVE_SITE}/cooling/`},
   {label: 'Service Areas', href: `${LIVE_SITE}/service-areas/`},
@@ -80,7 +80,7 @@ export function CollectionFooter() {
             <nav aria-label="Company links">
               <h2>Company</h2>
               <a href={`${LIVE_SITE}/about-us`}>About Us</a>
-              <a href={`${LIVE_SITE}/services`}>Our Services</a>
+              <a href={`${LIVE_SITE}/services/`}>Our Services</a>
               <a href={`${LIVE_SITE}/heating/`}>Heating Services</a>
               <a href={`${LIVE_SITE}/contact-us`}>Contact Us</a>
             </nav>

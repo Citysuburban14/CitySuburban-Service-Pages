@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {createClient} from 'next-sanity'
+import {clusterRef, serviceSlug} from './service-url-map'
 
 type Row = Record<string, unknown>
 type Source = {equip: Row[]; area: Row[]; page: Row[]}
@@ -116,8 +117,8 @@ const buildServices = (): ImportDocument[] => source.equip.map((row) => {
     _type: 'serviceDefinition',
     serviceId: Number(serviceId),
     name: value(row, 'name'),
-    slug: {_type: 'slug', current: value(row, 'slug')},
-    cluster: {_type: 'reference', _ref: `cluster-${taxonomyItem.clusterSlug}`},
+    slug: {_type: 'slug', current: serviceSlug(serviceId, value(row, 'slug'))},
+    cluster: clusterRef(taxonomyItem.clusterSlug),
     scopeStatus: taxonomyItem.scopeStatus,
     scopeNote: taxonomyItem.scopeNote,
     parentName: value(row, 'parent_name'),
