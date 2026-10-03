@@ -1,65 +1,136 @@
 /* eslint-disable @next/next/no-img-element */
 
-import {FooterLeadForm} from './footer-lead-form'
+// Site header and footer. They mirror the live citysuburbanheating.com header and
+// footer so the new pages sit seamlessly inside the main site. The only difference
+// is the last menu item: "Services" (this app's collection > clusters > landing
+// pages) replaces "Service Areas".
 
-const LIVE_SITE = 'https://citysuburbanheating.com'
-const HEADER_LOGO = '/services/images/city-suburban-logo.png'
-const FOOTER_LOGO = '/services/images/city-suburban-logo.png'
+import {clusterPath, prepareServiceNavigation, servicePath, type ServiceNavigationPayload} from '@/lib/service-navigation'
+import {business, footerServiceLinks, liveMenu, topBarLinks, LIVE_SITE, type MenuGroup} from '@/lib/site-navigation'
+import {sanityFetch} from '@/sanity/lib/live'
+import {SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
 
-const primaryLinks = [
-  {label: 'Home', href: `${LIVE_SITE}/`},
-  {label: 'About Us', href: `${LIVE_SITE}/about-us`},
-  {label: 'Services', href: `${LIVE_SITE}/services/`},
-  {label: 'Heating', href: `${LIVE_SITE}/heating/`},
-  {label: 'Cooling', href: `${LIVE_SITE}/cooling/`},
-  {label: 'Service Areas', href: `${LIVE_SITE}/service-areas/`},
-]
-
-const utilityIcons = {
-  location: 'M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 10.2A3.2 3.2 0 1 1 12 5.8a3.2 3.2 0 0 1 0 6.4Z',
-  clock: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 5v4.45l3.2 1.85-1 1.73L11 12.6V7h2Z',
-  email: 'M3 4h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm9 8.3L20.2 7H3.8l8.2 5.3Zm0 2.4L3 8.9V18h18V8.9l-9 5.8Z',
-  phone: 'M6.6 2.7 10 6.1 7.8 9c1.3 2.6 3.5 4.8 6.1 6.1l2.9-2.2 3.4 3.4-2.1 3.4c-.4.7-1.2 1.1-2 1C8.8 19.6 4.4 15.2 3.3 7.9c-.1-.8.3-1.6 1-2l2.3-3.2Z',
+const icons = {
+  phone: 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z',
+  calendar: 'M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2Zm12 8H5v9h14v-9ZM7 12h4v4H7v-4Z',
+  chevron: 'M9 6l6 6-6 6',
+  mail: 'M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.2L4 7.3V17h16V7.3l-8 4.9Z',
+  pin: 'M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z',
+  Facebook: 'M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6Z',
+  Instagram: 'M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 3.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm4.8-4.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z',
+  Yelp: 'M12.3 2.2c-.6-.3-4.8 1-5.4 1.4-.4.3-.5.9-.3 1.3l4.4 7.6c.6 1 1.7.6 1.7-.5V3c0-.4-.2-.7-.4-.8ZM20 9.8c-.3-.6-2.6-3.6-3.3-3.8-.4-.1-.9 0-1.2.4l-3 4.1c-.6.9.3 1.9 1.3 1.6l5.5-1.3c.6-.2.9-.6.7-1ZM20.4 15.4c.1-.6-1-4-1.5-4.4-.4-.3-.9-.3-1.2-.1l-4.6 2.7c-1 .6-.4 1.9.7 1.9l5.7.6c.5 0 .8-.3.9-.7ZM15.3 21c.6-.2 2.6-3.2 2.7-3.9 0-.4-.2-.8-.6-1l-4.7-2.4c-1-.5-1.9.5-1.4 1.4l3 5.4c.3.5.7.6 1 .5ZM9.7 13.3 4.8 11.5c-.6-.2-1.2.2-1.3.8-.2 1-.2 3.3.3 4.2.2.4.7.6 1.1.5l5-1.8c1-.4 1-1.6-.2-1.9Z',
 } as const
 
-function UtilityIcon({name}: {name: keyof typeof utilityIcons}) {
-  return <svg className="collection-utility-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={utilityIcons[name]} /></svg>
+function Icon({name, className}: {name: keyof typeof icons; className?: string}) {
+  const stroke = name === 'chevron'
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" fill={stroke ? 'none' : 'currentColor'} stroke={stroke ? 'currentColor' : undefined} strokeWidth={stroke ? 2.4 : undefined} strokeLinecap="round" strokeLinejoin="round">
+      <path d={icons[name]} />
+    </svg>
+  )
 }
 
-export function CollectionHeader() {
+async function servicesMenu(): Promise<MenuGroup & {clusters: MenuGroup[]}> {
+  const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
+  const clusters = prepareServiceNavigation((data || {}) as ServiceNavigationPayload)
+  return {
+    label: 'Services',
+    href: '/service/',
+    items: [],
+    clusters: clusters.map((cluster) => ({
+      label: cluster.name,
+      href: `/service${clusterPath(cluster.slug)}`,
+      items: cluster.services.map((service) => ({label: service.name, href: `/service${servicePath(cluster.slug, service.slug)}`})),
+    })),
+  }
+}
+
+export async function CollectionHeader() {
+  const services = await servicesMenu()
+
   return (
-    <div className="collection-header-stack">
-      <div className="collection-utility" aria-label="Business contact information">
-        <div className="collection-utility-inner">
-          <a href={`${LIVE_SITE}/contact-us/`}><UtilityIcon name="location" />1225 North Cleaver Street, Chicago, IL 60642</a>
-          <div className="collection-utility-group">
-            <span><UtilityIcon name="clock" />Working Hours: 24/7</span>
-            <a href="mailto:service@citysuburbanheating.com"><UtilityIcon name="email" />service@citysuburbanheating.com</a>
-            <a href="tel:+17732383838"><UtilityIcon name="phone" />(773) 238-3838</a>
-          </div>
+    <div className="site-header-stack">
+      <div className="site-topbar">
+        <div className="site-shell site-topbar-inner">
+          <span className="site-topbar-text">Trusted HVAC Experts &lsquo;From City to Suburbs&rsquo;</span>
+          <span className="site-topbar-text site-topbar-divided">Working Hours: 24/7</span>
+          <a className="site-topbar-rating site-topbar-divided" href={business.reviewsHref} aria-label="Google rating 5.0 out of 5">
+            <img src={business.googleRating} alt="" width={118} height={22} />
+          </a>
+          <nav className="site-topbar-links" aria-label="Company">
+            {topBarLinks.map((link) => <a href={link.href} key={link.label}>{link.label}</a>)}
+          </nav>
         </div>
       </div>
-      <header className="collection-header">
-        <div className="collection-nav-shell">
-          <a className="collection-logo" href={`${LIVE_SITE}/`} aria-label="City & Suburban home">
-            <img src={HEADER_LOGO} alt="City & Suburban Heating & Cooling" />
+
+      <header className="site-header">
+        <div className="site-shell site-header-inner">
+          <a className="site-logo" href={`${LIVE_SITE}/`}>
+            <img src={business.logo} alt="City Suburban Logo" width={190} height={67} />
           </a>
-          <nav className="collection-desktop-nav" aria-label="Primary navigation">
-            {primaryLinks.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
+
+          <nav className="site-nav" aria-label="Main">
+            <ul className="site-menu">
+              {liveMenu.map((group) => (
+                <li className="site-menu-item has-sub" key={group.label}>
+                  <a href={group.href}>{group.label}<Icon name="chevron" className="site-chevron" /></a>
+                  <ul className="site-submenu">
+                    {group.items.map((item) => <li key={item.label}><a href={item.href}>{item.label}</a></li>)}
+                  </ul>
+                </li>
+              ))}
+              <li className="site-menu-item has-sub site-menu-services">
+                <a href={services.href}>{services.label}<Icon name="chevron" className="site-chevron" /></a>
+                <ul className="site-submenu">
+                  <li><a href={services.href}>All Services</a></li>
+                  {services.clusters.map((cluster) => (
+                    <li className="has-flyout" key={cluster.href}>
+                      <a href={cluster.href}>{cluster.label}<Icon name="chevron" className="site-chevron" /></a>
+                      <ul className="site-flyout">
+                        {cluster.items.map((item) => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
           </nav>
-          <a className="collection-contact-button" href={`${LIVE_SITE}/contact-us`}>Contact us</a>
-          <details className="collection-mobile-menu">
+
+          <div className="site-header-actions">
+            <a className="site-call" href={business.phoneHref}>
+              <Icon name="phone" className="site-call-icon" />
+              <span><small>Call</small>{business.phoneDisplay}</span>
+            </a>
+            <a className="site-schedule" href={business.scheduleHref}>Schedule Service<Icon name="calendar" className="site-btn-icon" /></a>
+          </div>
+
+          <details className="site-mobile-menu">
             <summary aria-label="Open navigation menu"><span /><span /><span /></summary>
-            <nav aria-label="Mobile navigation">
-              {primaryLinks.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
-              <a href={`${LIVE_SITE}/contact-us`}>Contact us</a>
+            <nav aria-label="Mobile">
+              {[...liveMenu, {...services, items: []}].map((group) => (
+                <details key={group.label}>
+                  <summary>{group.label}</summary>
+                  <a href={group.href}>{group.label === 'Services' ? 'All Services' : `All ${group.label}`}</a>
+                  {group.items.map((item) => <a href={item.href} key={item.label}>{item.label}</a>)}
+                  {group.label === 'Services' && services.clusters.map((cluster) => (
+                    <details className="site-mobile-cluster" key={cluster.href}>
+                      <summary>{cluster.label}</summary>
+                      <a href={cluster.href}>All {cluster.label}</a>
+                      {cluster.items.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
+                    </details>
+                  ))}
+                </details>
+              ))}
+              {topBarLinks.map((link) => <a className="site-mobile-plain" href={link.href} key={link.label}>{link.label}</a>)}
+              <a className="site-schedule" href={business.scheduleHref}>Schedule Service</a>
             </nav>
           </details>
         </div>
       </header>
-      <div className="collection-mobile-actions" aria-label="Quick service actions">
-        <a className="collection-mobile-call" href="tel:+17732383838">(773) 238-3838</a>
-        <a className="collection-mobile-schedule" href={`${LIVE_SITE}/contact-us/`}>Schedule service</a>
+
+      <div className="site-mobile-actions" aria-label="Quick service actions">
+        <a href={business.phoneHref}>Call Us</a>
+        <a href={business.scheduleHref}>Schedule Service</a>
       </div>
     </div>
   )
@@ -67,46 +138,31 @@ export function CollectionHeader() {
 
 export function CollectionFooter() {
   return (
-    <footer className="collection-footer">
-      <div className="collection-footer-grid">
-        <div className="collection-footer-main">
-          <a className="collection-footer-logo" href={`${LIVE_SITE}/`} aria-label="City & Suburban home">
-            <img src={FOOTER_LOGO} alt="City & Suburban Heating & Cooling" />
-          </a>
-          <p className="collection-footer-intro">City & Suburban Heating & Cooling is a family-owned HVAC company serving Chicago with reliable heating, cooling, and indoor-air-quality services since 1952.</p>
-          <a className="collection-ai-link" href={`${LIVE_SITE}/`}>Learn about City & Suburban <span aria-hidden="true">→</span></a>
-          <div className="collection-footer-rule" />
-          <div className="collection-footer-links">
-            <nav aria-label="Company links">
-              <h2>Company</h2>
-              <a href={`${LIVE_SITE}/about-us`}>About Us</a>
-              <a href={`${LIVE_SITE}/services/`}>Our Services</a>
-              <a href={`${LIVE_SITE}/heating/`}>Heating Services</a>
-              <a href={`${LIVE_SITE}/contact-us`}>Contact Us</a>
-            </nav>
-            <nav aria-label="About links">
-              <h2>About Us</h2>
-              <a href={`${LIVE_SITE}/cooling/`}>Cooling Services</a>
-              <a href={`${LIVE_SITE}/air-quality/`}>Air Quality</a>
-              <a href={`${LIVE_SITE}/commercial/`}>Commercial HVAC</a>
-            </nav>
-            <address>
-              <h2>Contact</h2>
-              <a href={`${LIVE_SITE}/contact-us/`}>Address: 1225 North Cleaver Street<br />Chicago, IL 60642</a>
-              <a href="tel:+17732383838">Phone: (773) 238-3838</a>
-              <a href="mailto:service@citysuburbanheating.com">Email: service@citysuburbanheating.com</a>
-            </address>
-          </div>
-          <div className="collection-footer-bottom">
-            <span>Copyright © {new Date().getFullYear()} City & Suburban Heating & Cooling</span>
+    <footer className="site-footer">
+      <div className="site-shell site-footer-grid">
+        <div className="site-footer-about">
+          <a href={`${LIVE_SITE}/`}><img src={business.logo} alt="City & Suburban Logo" width={190} height={67} /></a>
+          <p>We provide top-quality heating, ventilation, and air conditioning services tailored to your needs. Our experienced technicians deliver reliable solutions to keep you comfortable year-round.</p>
+        </div>
+        <nav className="site-footer-services" aria-label="Our Services">
+          <h4>Our Services</h4>
+          <ul>{footerServiceLinks.map((link) => <li key={link.label}><a href={link.href}>{link.label}</a></li>)}</ul>
+        </nav>
+        <div className="site-footer-contact">
+          <h4>Need quick help?</h4>
+          <a className="site-footer-phone" href={business.phoneHref}><Icon name="phone" className="site-btn-icon" />{business.phoneShort}</a>
+          <strong><a href={business.financeHref}>Apply for Financing</a></strong>
+          <a className="site-footer-line" href={`mailto:${business.email}`}><Icon name="mail" className="site-line-icon" />{business.email}</a>
+          <a className="site-footer-line" href={business.mapsHref}><Icon name="pin" className="site-line-icon" />{business.address}</a>
+          <div className="site-socials">
+            {business.socials.map((social) => (
+              <a href={social.href} key={social.label} aria-label={social.label}><Icon name={social.label} /></a>
+            ))}
           </div>
         </div>
-        <aside className="collection-footer-cta">
-          <h2 className="collection-footer-title">Request a quick <span>quote</span></h2>
-          <p>Tell the City & Suburban team what HVAC service you need and get help planning the next step.</p>
-          <FooterLeadForm />
-          <a className="collection-footer-phone" href="tel:+17732383838">Or call (773) 238-3838</a>
-        </aside>
+      </div>
+      <div className="site-footer-bottom">
+        Copyright © {new Date().getFullYear()} City &amp; Suburban Heating &amp; Cooling • All rights reserved | <a href={`${LIVE_SITE}/privacy-policy/`}>Privacy Policy</a> | <a href={`${LIVE_SITE}/terms-of-use/`}>Terms Of Use</a>
       </div>
     </footer>
   )

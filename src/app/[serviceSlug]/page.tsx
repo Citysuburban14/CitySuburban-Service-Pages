@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import {notFound, permanentRedirect} from 'next/navigation'
 import {NavigationLevelPage} from '@/components/navigation-level-page'
-import {findNavigationLevel, prepareServiceNavigation, servicePath, type ServiceNavigationPayload} from '@/lib/service-navigation'
+import {clusterPath, findNavigationLevel, prepareServiceNavigation, servicePath, type ServiceNavigationPayload} from '@/lib/service-navigation'
 import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
 import {sanityFetch} from '@/sanity/lib/live'
@@ -18,7 +18,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {
     title: `${level.cluster.name} Services in Chicago`,
     description: level.cluster.description,
-    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/services/${level.cluster.slug}`},
+    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/service${clusterPath(level.cluster.slug)}`},
   }
 }
 

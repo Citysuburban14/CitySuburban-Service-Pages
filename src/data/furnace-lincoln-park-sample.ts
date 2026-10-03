@@ -142,7 +142,7 @@ export const furnaceLincolnParkSample: ServicePageData = {
     },
     reviews: furnaceLincolnParkPageRow.reviews.map((review, index) => ({_key: `review-${index + 1}`, ...review})),
     gallery: [
-      {_key: 'official-furnace', externalUrl: '/services/images/services/furnace-repair.png', alt: 'City & Suburban technician servicing an American Standard furnace'},
+      {_key: 'official-furnace', externalUrl: '/service/images/services/furnace-repair.png', alt: 'City & Suburban technician servicing an American Standard furnace'},
       ...furnaceLincolnParkPageRow.photoSlots.map((slot, index) => ({_key: `gallery-slot-${index + 1}`, alt: slot.alt, credit: slot.note})),
     ],
     workingPhotos: furnaceLincolnParkPageRow.photoSlots.map((slot, index) => ({_key: `work-slot-${index + 1}`, alt: slot.alt, credit: slot.note})),
@@ -263,7 +263,7 @@ export const furnaceLincolnParkCollectionItem = {
   serviceName: 'Furnace Repair',
   areaName: lincolnParkAreaRow.displayName,
   metaDescription: furnaceLincolnParkSample.page?.seo.description,
-  cardImage: '/services/images/services/furnace-repair.png',
+  cardImage: '/service/images/services/furnace-repair.png',
 }
 
 export function isFurnaceLincolnParkSample(serviceSlug: string, areaSlug: string) {

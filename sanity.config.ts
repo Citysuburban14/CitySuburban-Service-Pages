@@ -16,7 +16,7 @@ async function resolveProductionUrl(previousUrl: string | undefined, context: Re
   const {document, getClient} = context
   if (document._type === 'serviceCluster' || document._type === 'serviceDefinition') {
     const slug = (document.slug as {current?: string} | undefined)?.current
-    return slug ? `${siteUrl}/services/${slug}` : previousUrl
+    return slug ? `${siteUrl}/service/${slug}` : previousUrl
   }
   if (document._type !== 'servicePage') return previousUrl
 
@@ -38,7 +38,7 @@ async function resolveProductionUrl(previousUrl: string | undefined, context: Re
     )
   }`, {serviceId, areaId})
 
-  return serviceSlug && areaSlug ? `${siteUrl}/services/${serviceSlug}/${areaSlug}` : previousUrl
+  return serviceSlug && areaSlug ? `${siteUrl}/service/${serviceSlug}/${areaSlug}` : previousUrl
 }
 
 export default defineConfig({
@@ -46,15 +46,15 @@ export default defineConfig({
   title: 'City & Suburban Service Pages',
   projectId,
   dataset,
-  basePath: '/services/studio',
+  basePath: '/service/studio',
   plugins: [
     structureTool({structure}),
     presentationTool({
       resolve,
       previewUrl: {
         origin: siteUrl,
-        preview: '/services',
-        previewMode: {enable: '/services/api/draft-mode/enable/'},
+        preview: '/service/',
+        previewMode: {enable: '/service/api/draft-mode/enable/'},
       },
     }),
     visionTool(),

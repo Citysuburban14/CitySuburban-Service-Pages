@@ -4,111 +4,91 @@ Checked against the live site on 03/10/2026.
 
 ## The idea
 
-- Where a live WordPress page targets the **same keyword** as one of our new pages, the new page takes over that **exact URL**, trailing slash included. No redirect.
-- Where no live page has the keyword, the new page appears only through the new **Services** menu item: `/services/` (collection) > `/services/{cluster}/` > `/services/{cluster}/{page}/`.
-- Everything else on WordPress keeps working as it is.
+- The app lives under **`/service/`**, the same directory as the live WordPress hub pages.
+- The app's Heating, Cooling and Air Quality cluster pages take over the live hub URLs `/service/heating/`, `/service/cooling/` and `/service/air-quality/` **in place**.
+- The 8 live service pages that target the same keyword as a new page move from `/services/...` to `/service/...` with **one 301 each**. Two more duplicate pages 301 to the same new pages.
+- Pages with no matching new page stay on WordPress, unchanged.
+- The app's header and footer mirror the live site. The only difference is that **Services** replaces **Service Areas**, and opens the collection, cluster and landing pages.
 
-## How the live site is laid out
+## URL map
 
-| URL shape | What it is | Example |
-| --- | --- | --- |
-| `/service/{cluster}/` | 4 WordPress hub pages | `/service/heating/` |
-| `/services/{cluster}/{page}/` | 24 WordPress service pages | `/services/heating/heater-repair/` |
-
-WordPress itself treats `/services/{cluster}/{page}/` as the real address of each service page: `/service/heating/heater-repair/` 301s there. So the app keeps `basePath: '/services'` and `trailingSlash: true`, which is what lets it serve those exact URLs.
-
-## The 8 pages replaced in place
-
-Same keyword on both sides. After launch each URL shows the new page, with no redirect.
-
-| Live URL (unchanged) | Live keyword | New page (Sanity ID) |
-| --- | --- | --- |
-| /services/heating/heater-repair/ | heater repair | Space & Unit Heater (306) |
-| /services/heating/boiler-service/ | boiler service | Boiler (308) |
-| /services/cooling/air-conditioning-installation/ | ac installation | Central AC (302) |
-| /services/cooling/ductless-hvac-service/ | ductless ac service | Ductless Mini-Split (310) |
-| /services/cooling/heat-pump-services/ | heat pump repair | Heat Pump (305) |
-| /services/air-quality/dehumidifier-installation/ | whole-home dehumidifier installation | Dehumidifier (320) |
-| /services/air-quality/indoor-air-quality-test/ | indoor air quality testing | Indoor Air Quality (315) |
-| /services/air-quality/duct-repair/ | duct repair | Air Duct (307) |
-
-## The 2 redirects that cannot be avoided
-
-Each points at a new page that already owns one of the URLs above. One page cannot live at two URLs without duplicate content.
-
-| Old URL | 301 to |
+| Live today | After launch |
 | --- | --- |
-| /services/cooling/air-conditioning-repair/ | /services/cooling/air-conditioning-installation/ |
-| /services/heating/heat-pump/ | /services/cooling/heat-pump-services/ |
+| /service/heating/ (WordPress hub) | Same URL, new Heating & Hot Water cluster page |
+| /service/cooling/ (WordPress hub) | Same URL, new Cooling cluster page |
+| /service/air-quality/ (WordPress hub) | Same URL, new Air Quality cluster page |
+| /service/commercial-hvac/ and the footer hub copies | Stay on WordPress |
+| /service/ (301 to /service-areas/ today) | New collection page |
 
-## The 14 pages that stay on WordPress
+### The 10 redirects (`/services/` to `/service/`)
 
-- Close but not the same keyword: heater installation, heater maintenance, HVAC maintenance plans, AC maintenance, duct maintenance, humidifier and air cleaner.
-- No new page for the keyword: hybrid heating, cooling maintenance plans, and the six commercial pages.
+| Old WordPress URL | 301 to | Keyword |
+| --- | --- | --- |
+| /services/heating/heater-repair/ | /service/heating/heater-repair/ | heater repair |
+| /services/heating/boiler-service/ | /service/heating/boiler-service/ | boiler service |
+| /services/cooling/air-conditioning-installation/ | /service/cooling/air-conditioning-installation/ | ac installation |
+| /services/cooling/ductless-hvac-service/ | /service/cooling/ductless-hvac-service/ | ductless ac service |
+| /services/cooling/heat-pump-services/ | /service/cooling/heat-pump-services/ | heat pump repair |
+| /services/air-quality/dehumidifier-installation/ | /service/air-quality/dehumidifier-installation/ | whole-home dehumidifier installation |
+| /services/air-quality/indoor-air-quality-test/ | /service/air-quality/indoor-air-quality-test/ | indoor air quality testing |
+| /services/air-quality/duct-repair/ | /service/air-quality/duct-repair/ | duct repair |
+| /services/cooling/air-conditioning-repair/ | /service/cooling/air-conditioning-installation/ | duplicate of AC installation |
+| /services/heating/heat-pump/ | /service/cooling/heat-pump-services/ | duplicate of heat pump |
 
-The full list is in `KEEP_ON_WORDPRESS` in `cloudflare/services-proxy-worker.mjs`.
+### Stays on WordPress
+
+Everything else under `/services/` (heater installation and maintenance, maintenance plans, hybrid heating, AC maintenance, duct maintenance, humidifier and air cleaner, all commercial pages), plus `/service-areas/` and `/service-area/...`.
 
 ## Steps, in order
 
-### 1. Sanity: give the 8 pages the live URLs
+### 1. Vercel
 
-```bash
-npx tsx scripts/apply-live-url-slugs.ts
-npx tsx scripts/apply-live-url-slugs.ts --apply
-```
+Production environment variables:
+- `NEXT_SITE_URL` = `https://citysuburbanheating.com`
+- `NEXT_SANITY_STUDIO_URL` = `/service/studio` (was `/services/studio`)
 
-The first command only reads and prints the plan. The second writes 10 patches to 9 documents in one transaction, then verifies them. Afterwards this should pass:
+Redeploy after changing them. Production must not be behind Deployment Protection.
 
-```bash
-npx tsx scripts/test-service-navigation.ts
-```
-
-### 2. Vercel
-
-1. Merge this branch so production has `trailingSlash: true` and the new slugs.
-2. Settings, Deployment Protection: Production must be public.
-3. Production environment variables: `NEXT_SITE_URL` = `https://citysuburbanheating.com` and `NEXT_SANITY_STUDIO_URL` = `/services/studio`. Redeploy.
-
-### 3. Cloudflare Worker
+### 2. Cloudflare Worker
 
 1. Workers & Pages, Create Worker, name it `citysuburban-services-proxy`.
 2. Edit code: paste `cloudflare/services-proxy-worker.mjs`. Deploy.
-3. Settings, Domains & Routes, add two routes on zone `citysuburbanheating.com`:
-   - `citysuburbanheating.com/services*`
-   - `www.citysuburbanheating.com/services*`
+3. Settings, Domains & Routes, add one route per host on zone `citysuburbanheating.com`:
+   - `citysuburbanheating.com/service*`
+   - `www.citysuburbanheating.com/service*`
+
+   This one pattern covers `/service/`, `/services/` and `/service-areas/`. The Worker sends each to the right place.
 4. Failure mode: **Fail open**.
 
-### 4. Test
+### 3. Test
 
 ```bash
+curl -sI https://citysuburbanheating.com/service/heating/heater-repair/
 curl -sI https://citysuburbanheating.com/services/heating/heater-repair/
 ```
 
-Expect `200` and an `x-vercel-id` header, which means the new page is served at the old URL. Then check:
+The first should return `200` with an `x-vercel-id` header. The second should return `301` to the first. Then check:
+- `/service/heating/` shows the new cluster page.
+- `/service/` shows the new collection page.
+- `/services/heating/heater-installation/` and `/service-areas/` still show WordPress.
 
-- `/services/cooling/air-conditioning-repair/` returns `301` to `/services/cooling/air-conditioning-installation/`.
-- `/services/heating/heater-installation/` still shows WordPress.
-- `/services/` shows the new collection page.
-- View source on a replaced page: the canonical tag is the same old URL.
+### 4. WordPress menu (Appearance, Menus)
 
-### 5. WordPress menu (Appearance, Menus)
+The new pages already carry the updated menu. To make the WordPress pages match:
+1. Replace **Service Areas** with **Services**, linking to `https://citysuburbanheating.com/service/`.
+2. Point the 8 matched items, and the AC Repair and Heating > Heat Pump items, at their `/service/` URLs from the table above.
 
-1. Replace **Service Areas** with **Services**, linking to `https://citysuburbanheating.com/services/`.
-2. The 8 replaced items keep their links. They now open the new pages.
-3. Remove **Air Conditioning Repair** and the Heating **Heat Pump** item, or point them at the URLs they redirect to.
-4. Leave the 14 WordPress-only items as they are.
+### 5. WordPress clean-up
 
-### 6. WordPress clean-up
+1. Set the 10 redirected posts to **Draft**. Do not delete them.
+2. Yoast robots.txt: add `Sitemap: https://citysuburbanheating.com/service/sitemap.xml`.
+3. Search Console: submit that sitemap and inspect a few redirected URLs.
 
-1. For the 8 replaced pages and the 2 redirected pages, set the WordPress posts to **Draft**. Do not delete them. They leave the Yoast sitemap, while the Worker keeps serving their URLs.
-2. Yoast robots.txt: add `Sitemap: https://citysuburbanheating.com/services/sitemap.xml`.
-3. Search Console: submit that sitemap and inspect two replaced URLs.
+### 6. Sanity settings
 
-### 7. Sanity settings
-
-1. CORS origins: add `https://citysuburbanheating.com` and `https://www.citysuburbanheating.com` with credentials.
-2. Webhook URL: `https://citysuburbanheating.com/services/api/revalidate/` (trailing slash).
+1. CORS origins: `https://citysuburbanheating.com` and `https://www.citysuburbanheating.com`, with credentials.
+2. Webhook URL: `https://citysuburbanheating.com/service/api/revalidate/`.
 
 ## Rollback
 
-Remove the two Worker routes and set the WordPress posts back to Published. WordPress answers every `/services/...` URL exactly as before.
+Remove the two Worker routes and set the WordPress posts back to Published. WordPress then answers every URL exactly as before.
