@@ -2,7 +2,7 @@ import type {MetadataRoute} from 'next'
 import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
 import {REFERENCE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
-import {getReferenceService, referenceNavigation, type ReferenceOverride} from '@/lib/reference-pages'
+import {referencePagePath, referenceNavigation, type ReferenceOverride} from '@/lib/reference-pages'
 import {clusterPath} from '@/lib/service-navigation'
 
 export const revalidate = 3600
@@ -19,10 +19,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified, changeFrequency: 'weekly' as const, priority: 0.9,
     })),
     ...published.flatMap((page) => {
-      const reference = page.clusterSlug && page.slug && getReferenceService(page.clusterSlug, page.slug)
-      if (!page.factChecksComplete || !reference) return []
+      const path = referencePagePath(page)
+      if (!page.factChecksComplete || !path) return []
       return [{
-      url: `${base}${reference.livePath}`,
+      url: `${base}${path}`,
       lastModified, changeFrequency: 'weekly' as const, priority: 0.85,
     }]}),
   ]

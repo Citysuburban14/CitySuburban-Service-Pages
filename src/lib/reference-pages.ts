@@ -6,6 +6,7 @@ import type {ReferenceSnapshot} from '@/reference-pages/types'
 import type {PreparedCluster} from './service-navigation'
 import type {ReferenceContentField} from './reference-content-fields'
 import {migrateServiceContent} from './service-base-path'
+import {legacyReplacementPath} from './legacy-service-replacements'
 
 export type ReferenceService = (typeof catalog)[number] | (typeof retainedCatalog)[number]
 
@@ -22,7 +23,7 @@ export function referenceCollectionSlug(slug: string): string {
   return slug === 'commercial-hvac' ? 'commercial' : (migrations.directoryCategories as Record<string, string>)[slug] || slug
 }
 
-export type ReferenceOverride = {name?: string; clusterSlug?: string; slug?: string; livePath?: string; canonicalUrl?: string; cardDescription?: string; cardImage?: string; metaDescription?: string; factChecksComplete?: boolean}
+export type ReferenceOverride = {name?: string; clusterSlug?: string; directoryClusterSlug?: string; slug?: string; livePath?: string; canonicalUrl?: string; cardDescription?: string; cardImage?: string; metaDescription?: string; factChecksComplete?: boolean; qcStatus?: string}
 export type ReferenceDocument = ReferenceOverride & {
   metaTitle?: string
   factChecksComplete?: boolean
@@ -40,10 +41,21 @@ export function getReferenceSnapshot(clusterSlug: string, slug: string): Referen
   return service && referenceSnapshots[`${clusterSlug}/${service.slug}`]
 }
 
+/** CMS pages need no entry in the imported reference catalog. */
+export function referencePagePath(page: ReferenceOverride): string | undefined {
+  if (!page.clusterSlug || !page.slug || !/^[a-z0-9-]+$/.test(page.clusterSlug) || !/^[a-z0-9-]+$/.test(page.slug)) return undefined
+  return getReferenceService(page.clusterSlug, page.slug)?.livePath || `/services/${page.clusterSlug}/${page.slug}/`
+}
+
 export function referenceNavigation(overrides: ReferenceOverride[] = []): PreparedCluster[] {
   overrides = migrateServiceContent(overrides)
   return Object.entries(clusterDetails).map(([slug, details], index) => {
     const services = referenceServices.filter((item) => ('directoryClusterSlug' in item ? item.directoryClusterSlug : item.clusterSlug) === slug)
+    const extraPages = overrides.filter(row => referencePagePath(row) && row.name && !legacyReplacementPath(row.slug || '') &&
+      !getReferenceService(row.clusterSlug || '', row.slug || '') &&
+      referenceCollectionSlug(row.directoryClusterSlug || row.clusterSlug || '') === slug)
+      .filter((row, position, rows) => rows.findIndex(other => referencePagePath(other) === referencePagePath(row)) === position)
+      .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
     const pages = services.map((item) => {
       const override = overrides.find((row) => row.clusterSlug === item.clusterSlug && row.slug === item.slug)
       return ({
@@ -55,15 +67,21 @@ export function referenceNavigation(overrides: ReferenceOverride[] = []): Prepar
       areaName: 'Chicago',
       metaDescription: override?.cardDescription || override?.metaDescription || item.description,
       cardImage: override?.cardImage || item.cardImage || undefined,
-    })})
+    })}).concat(extraPages.map(page => ({
+      _id: `reference-${page.clusterSlug}-${page.slug}`,
+      serviceSlug: page.slug!, livePath: referencePagePath(page)!, areaSlug: 'chicago',
+      serviceName: page.name!, areaName: 'Chicago',
+      metaDescription: page.cardDescription || page.metaDescription || '',
+      cardImage: page.cardImage || undefined,
+    })))
     return {
       id: `reference-${slug}`,
       slug,
       name: details.name,
       description: details.description,
       displayOrder: index + 1,
-      sourceServiceCount: services.length,
-      requiresScopeReview: services.some((item) => item.qcStatus !== 'PASS'),
+      sourceServiceCount: pages.length,
+      requiresScopeReview: services.some((item) => item.qcStatus !== 'PASS') || extraPages.some(page => page.factChecksComplete !== true),
       pages,
       services: pages.map((page) => ({slug: page.serviceSlug, name: page.serviceName, description: page.metaDescription, cardImage: page.cardImage, pages: [page]})),
       cardImage: pages.find((page) => page.cardImage)?.cardImage,

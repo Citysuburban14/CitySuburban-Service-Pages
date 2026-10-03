@@ -7,13 +7,13 @@ import migrations from '../data/service-url-migrations.json'
 import {referenceSnapshots} from '../src/reference-pages'
 import {legacyReplacementPath} from '../src/lib/legacy-service-replacements'
 import taxonomy from '../data/service-taxonomy.json'
-import {getReferenceService, getReferenceSnapshot, referenceNavigation} from '../src/lib/reference-pages'
+import {getReferenceService, getReferenceSnapshot, referenceNavigation, referencePagePath} from '../src/lib/reference-pages'
 import {proxy} from '../src/proxy'
 import {NextRequest} from 'next/server'
 import {liveMenu, servicesLink} from '../src/lib/site-navigation'
 import {applyReferenceContentFields, synchronizeVisibleSchema} from '../src/lib/reference-content-fields'
 import {migrateServiceContent} from '../src/lib/service-base-path'
-import {serviceRouteAliases} from '../src/lib/service-route-aliases'
+import {renderReferencePage} from '../src/lib/reference-page-rendering'
 
 const counts = Object.fromEntries(['heating', 'cooling', 'air-quality', 'commercial'].map((cluster) => [cluster, catalog.filter((page) => page.clusterSlug === cluster).length]))
 assert.deepEqual(counts, {heating: 7, cooling: 6, 'air-quality': 5, commercial: 6})
@@ -108,9 +108,20 @@ for (const path of ['/service/api/lead/', '/service/_next/static/chunk.js', '/se
   const response = proxy(new NextRequest(`http://localhost${path}?test=compat`))
   assert.equal(response.headers.get('x-middleware-rewrite'), `http://localhost${path.replace('/service/', '/services/')}?test=compat`)
 }
-const worker = fs.readFileSync('cloudflare/services-proxy-worker.mjs', 'utf8')
-const workerPaths = [...worker.split('// BEGIN SERVICE LANDING PATHS')[1].split('// END SERVICE LANDING PATHS')[0].matchAll(/'(\/services[^']*)'/g)].map(match => match[1])
-assert.deepEqual(workerPaths.sort(), [...serviceRouteAliases().keys()].sort(), 'Worker and app alias lists diverged')
+const futurePage = {name: 'New published CMS service', clusterSlug: 'cooling', slug: 'future-cms-service', directoryClusterSlug: 'cooling', cardDescription: 'A new service description', cardImage: '/services/images/live-footer-logo.png'}
+assert.equal(referencePagePath(futurePage), '/services/cooling/future-cms-service/')
+assert.equal(referencePagePath({...futurePage, slug: '../invalid'}), undefined)
+const futureNavigation = referenceNavigation([futurePage, {...futurePage}]).find(cluster => cluster.slug === 'cooling')!
+assert.equal(futureNavigation.pages.length, 8)
+assert.equal(futureNavigation.sourceServiceCount, 8)
+assert.equal(futureNavigation.pages.at(-1)?.livePath, '/services/cooling/future-cms-service/')
+assert.equal(futureNavigation.pages.at(-1)?.cardImage, futurePage.cardImage)
+const futureSnapshot = renderReferencePage({...futurePage, responsiveCss: '.test{color:red}', sections: [{module: 'hero', html: '<section><h1>New published CMS service</h1><img src="/service/images/new.jpg" /></section>'}]})!
+assert.ok(futureSnapshot.html.includes('<h1>New published CMS service</h1>'))
+assert.ok(futureSnapshot.html.includes('/services/images/new.jpg'))
+assert.equal(futureSnapshot.style, '.test{color:red}')
+assert.equal(renderReferencePage(null), undefined)
+assert.equal(renderReferencePage(null, referenceSnapshots['heating/heater-repair']), referenceSnapshots['heating/heater-repair'])
 assert.deepEqual(migrateServiceContent({url: '/service/heating/water-heater-repair-installation/', image: '/service/images/logo.png', neighborhood: '/service-area/lincoln-park/', collection: '/service/heating-services/'}), {
   url: '/services/heating/water-heater-repair-installation/', image: '/services/images/logo.png', neighborhood: '/service-area/lincoln-park/', collection: '/services/heating/',
 })

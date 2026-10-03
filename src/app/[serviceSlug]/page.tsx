@@ -6,7 +6,7 @@ import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
 import {sanityFetch} from '@/sanity/lib/live'
 import {REFERENCE_NAVIGATION_QUERY, SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
-import {referenceCollectionSlug, referenceNavigation, referenceServices, type ReferenceOverride} from '@/lib/reference-pages'
+import {referenceCollectionSlug, referenceNavigation, referenceServices, referencePagePath, type ReferenceOverride} from '@/lib/reference-pages'
 import {legacyReplacementPath} from '@/lib/legacy-service-replacements'
 
 type Props = {params: Promise<{serviceSlug: string}>}
@@ -38,6 +38,8 @@ export default async function NavigationPage({params}: Props) {
   const landing = referenceServices.find((page) => page.slug === slug || page.legacySlug === slug)
   if (landing) permanentRedirect(landing.livePath.replace(/^\/services/, ''))
   const result = await sanityFetch({query: REFERENCE_NAVIGATION_QUERY, stega: false}).catch(() => null)
+  const cmsLanding = ((result?.data || []) as ReferenceOverride[]).find(page => page.slug === slug && referencePagePath(page))
+  if (cmsLanding) permanentRedirect(referencePagePath(cmsLanding)!.replace(/^\/services/, ''))
   const referenceCluster = referenceNavigation((result?.data || []) as ReferenceOverride[]).find((item) => item.slug === referenceCollectionSlug(slug))
   if (referenceCluster) return <NavigationLevelPage cluster={referenceCluster} />
   const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})

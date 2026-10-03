@@ -22,7 +22,11 @@ export const referenceServicePage = defineType({
     defineField({name: 'directoryClusterSlug', title: 'Collection category', type: 'string', group: 'identity', options: {list: ['heating', 'cooling', 'air-quality', 'commercial']}}),
     defineField({name: 'template', title: 'Standard design template', type: 'reference', to: [{type: 'servicePageTemplate'}], group: 'identity'}),
     defineField({name: 'slug', title: 'Service URL slug', type: 'slug', group: 'identity', options: {source: 'name'}, validation: (rule) => rule.required()}),
-    defineField({name: 'livePath', title: 'Exact landing page path', type: 'string', group: 'identity', readOnly: true, description: 'All landing pages use the /services base path.', validation: (rule) => rule.required().regex(/^\/services\/[^/]+\/[^/]+\/$/)}),
+    defineField({name: 'livePath', title: 'Exact landing page path', type: 'string', group: 'identity', description: 'Leave blank for a new page: its path is /services/{URL category}/{Service URL slug}/. A supplied path must match those fields.', validation: (rule) => rule.regex(/^\/services\/[^/]+\/[^/]+\/$/).custom((value, context) => {
+      const category = context.document?.clusterSlug
+      const slug = (context.document?.slug as {current?: string} | undefined)?.current
+      return !value || !category || !slug || value === `/services/${category}/${slug}/` || 'Path must match the URL category and service slug, or be left blank.'
+    })}),
     defineField({name: 'cardImage', title: 'Service card image', type: 'image', group: 'identity', options: {hotspot: true}}),
     defineField({name: 'cardImageUrl', title: 'Reference card image URL', type: 'string', group: 'identity', description: 'Local image used until a Sanity image is selected.'}),
     defineField({name: 'cardDescription', title: 'Service card description', type: 'text', rows: 3, group: 'identity'}),

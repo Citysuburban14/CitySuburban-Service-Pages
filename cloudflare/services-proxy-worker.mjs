@@ -1,312 +1,40 @@
-// Cloudflare Worker for the new service pages on citysuburbanheating.com
-//
-// Primary routes: citysuburbanheating.com/services* and www.citysuburbanheating.com/services*.
-// Add /service* routes on both hosts for old URL compatibility. See docs/CLOUDFLARE_PROXY.md.
-// All 41 landing pages, collections and known aliases go to Vercel.
-// Unknown service URLs and neighborhood pages stay on WordPress.
-// The app handles old keyword redirects; the Worker relays their status/Location.
-
+// Generic reverse proxy. Every /services URL is owned by the Vercel app.
 const ORIGIN = 'https://city-suburban-service-pages.vercel.app';
-
-// BEGIN SERVICE LANDING PATHS
-const SERVICE_LANDING_PATHS = new Set([
-  '/services',
-  '/services/ac-installation',
-  '/services/ac-installation/chicago',
-  '/services/ac-maintenance',
-  '/services/ac-maintenance/chicago',
-  '/services/ac-repair',
-  '/services/ac-repair/chicago',
-  '/services/air-conditioner-repair-installation',
-  '/services/air-conditioner-repair-installation/chicago',
-  '/services/air-conditioning-installation',
-  '/services/air-conditioning-installation/chicago',
-  '/services/air-conditioning-maintenance',
-  '/services/air-conditioning-maintenance/chicago',
-  '/services/air-conditioning-repair',
-  '/services/air-conditioning-repair/chicago',
-  '/services/air-duct-cleaning-repair',
-  '/services/air-duct-cleaning-repair/chicago',
-  '/services/air-quality',
-  '/services/air-quality-service',
-  '/services/air-quality/dehumidifier-installation',
-  '/services/air-quality/dehumidifier-installation/chicago',
-  '/services/air-quality/duct-maintenance',
-  '/services/air-quality/duct-maintenance/chicago',
-  '/services/air-quality/duct-repair',
-  '/services/air-quality/duct-repair/chicago',
-  '/services/air-quality/humidifier-air-cleaner',
-  '/services/air-quality/humidifier-air-cleaner/chicago',
-  '/services/air-quality/indoor-air-quality-test',
-  '/services/air-quality/indoor-air-quality-test/chicago',
-  '/services/attic-fan-installation-repair',
-  '/services/attic-fan-installation-repair/chicago',
-  '/services/boiler-repair-installation',
-  '/services/boiler-repair-installation/chicago',
-  '/services/boiler-service',
-  '/services/boiler-service/chicago',
-  '/services/boiler-services',
-  '/services/boiler-services/chicago',
-  '/services/ceiling-fan-installation-repair',
-  '/services/ceiling-fan-installation-repair/chicago',
-  '/services/chimney-sweeping-inspection-repair',
-  '/services/chimney-sweeping-inspection-repair/chicago',
-  '/services/commercial',
-  '/services/commercial-hvac',
-  '/services/commercial-hvac-service',
-  '/services/commercial-hvac-system-installation',
-  '/services/commercial-hvac-system-installation/chicago',
-  '/services/commercial-hvac-system-replacement',
-  '/services/commercial-hvac-system-replacement/chicago',
-  '/services/commercial-refrigeration-repair-maintenance',
-  '/services/commercial-refrigeration-repair-maintenance/chicago',
-  '/services/commercial-specialty',
-  '/services/commercial-specialty/commercial-refrigeration-repair-maintenance',
-  '/services/commercial-specialty/commercial-refrigeration-repair-maintenance/chicago',
-  '/services/commercial-specialty/generator-installation-repair',
-  '/services/commercial-specialty/generator-installation-repair/chicago',
-  '/services/commercial/commercial-hvac-system-installation',
-  '/services/commercial/commercial-hvac-system-installation/chicago',
-  '/services/commercial/commercial-hvac-system-replacement',
-  '/services/commercial/commercial-hvac-system-replacement/chicago',
-  '/services/commercial/custom-hvac-maintenance-plan',
-  '/services/commercial/custom-hvac-maintenance-plan/chicago',
-  '/services/commercial/ductwork-design-repair-services',
-  '/services/commercial/ductwork-design-repair-services/chicago',
-  '/services/commercial/emergency-routine-commercial-hvac-repairs',
-  '/services/commercial/emergency-routine-commercial-hvac-repairs/chicago',
-  '/services/commercial/energy-efficient-hvac-upgrades',
-  '/services/commercial/energy-efficient-hvac-upgrades/chicago',
-  '/services/cooling',
-  '/services/cooling-maintenance-plans',
-  '/services/cooling-maintenance-plans/chicago',
-  '/services/cooling-services',
-  '/services/cooling/ac-installation',
-  '/services/cooling/ac-installation/chicago',
-  '/services/cooling/ac-maintenance',
-  '/services/cooling/ac-maintenance/chicago',
-  '/services/cooling/ac-repair',
-  '/services/cooling/ac-repair/chicago',
-  '/services/cooling/air-conditioner-repair-installation',
-  '/services/cooling/air-conditioner-repair-installation/chicago',
-  '/services/cooling/air-conditioning-installation',
-  '/services/cooling/air-conditioning-installation/chicago',
-  '/services/cooling/air-conditioning-maintenance',
-  '/services/cooling/air-conditioning-maintenance/chicago',
-  '/services/cooling/air-conditioning-repair',
-  '/services/cooling/air-conditioning-repair/chicago',
-  '/services/cooling/cooling-maintenance-plans',
-  '/services/cooling/cooling-maintenance-plans/chicago',
-  '/services/cooling/ductless-hvac',
-  '/services/cooling/ductless-hvac-service',
-  '/services/cooling/ductless-hvac-service/chicago',
-  '/services/cooling/ductless-hvac/chicago',
-  '/services/cooling/ductless-mini-split-installation-repair',
-  '/services/cooling/ductless-mini-split-installation-repair/chicago',
-  '/services/cooling/heat-pump-services',
-  '/services/cooling/heat-pump-services/chicago',
-  '/services/cooling/window-portable-ac-installation-repair',
-  '/services/cooling/window-portable-ac-installation-repair/chicago',
-  '/services/custom-hvac-maintenance-plan',
-  '/services/custom-hvac-maintenance-plan/chicago',
-  '/services/dehumidifier-installation',
-  '/services/dehumidifier-installation-repair',
-  '/services/dehumidifier-installation-repair/chicago',
-  '/services/dehumidifier-installation/chicago',
-  '/services/dryer-vent-cleaning-repair',
-  '/services/dryer-vent-cleaning-repair/chicago',
-  '/services/duct-maintenance',
-  '/services/duct-maintenance/chicago',
-  '/services/duct-repair',
-  '/services/duct-repair/chicago',
-  '/services/ductless-hvac',
-  '/services/ductless-hvac-service',
-  '/services/ductless-hvac-service/chicago',
-  '/services/ductless-hvac/chicago',
-  '/services/ductless-mini-split-installation-repair',
-  '/services/ductless-mini-split-installation-repair/chicago',
-  '/services/ductwork-design-repair-services',
-  '/services/ductwork-design-repair-services/chicago',
-  '/services/emergency-routine-commercial-hvac-repairs',
-  '/services/emergency-routine-commercial-hvac-repairs/chicago',
-  '/services/energy-efficient-hvac-upgrades',
-  '/services/energy-efficient-hvac-upgrades/chicago',
-  '/services/exhaust-fan-installation-repair',
-  '/services/exhaust-fan-installation-repair/chicago',
-  '/services/fireplace-chimney',
-  '/services/fireplace-chimney/chimney-sweeping-inspection-repair',
-  '/services/fireplace-chimney/chimney-sweeping-inspection-repair/chicago',
-  '/services/fireplace-chimney/gas-fireplace-repair-installation',
-  '/services/fireplace-chimney/gas-fireplace-repair-installation/chicago',
-  '/services/fireplace-chimney/wood-pellet-stove-repair-installation',
-  '/services/fireplace-chimney/wood-pellet-stove-repair-installation/chicago',
-  '/services/furnace-repair-installation',
-  '/services/furnace-repair-installation/chicago',
-  '/services/gas-fireplace-repair-installation',
-  '/services/gas-fireplace-repair-installation/chicago',
-  '/services/generator-installation-repair',
-  '/services/generator-installation-repair/chicago',
-  '/services/heat-pump',
-  '/services/heat-pump-repair-installation',
-  '/services/heat-pump-repair-installation/chicago',
-  '/services/heat-pump-services',
-  '/services/heat-pump-services/chicago',
-  '/services/heat-pump/chicago',
-  '/services/heat-pumps',
-  '/services/heat-pumps/chicago',
-  '/services/heater-installation',
-  '/services/heater-installation/chicago',
-  '/services/heater-maintenance',
-  '/services/heater-maintenance/chicago',
-  '/services/heater-repair',
-  '/services/heater-repair/chicago',
-  '/services/heating',
-  '/services/heating-installation',
-  '/services/heating-installation/chicago',
-  '/services/heating-maintenance',
-  '/services/heating-maintenance/chicago',
-  '/services/heating-repair',
-  '/services/heating-repair/chicago',
-  '/services/heating-services',
-  '/services/heating/boiler-repair-installation',
-  '/services/heating/boiler-repair-installation/chicago',
-  '/services/heating/boiler-service',
-  '/services/heating/boiler-service/chicago',
-  '/services/heating/boiler-services',
-  '/services/heating/boiler-services/chicago',
-  '/services/heating/furnace-repair-installation',
-  '/services/heating/furnace-repair-installation/chicago',
-  '/services/heating/heat-pump',
-  '/services/heating/heat-pump/chicago',
-  '/services/heating/heat-pumps',
-  '/services/heating/heat-pumps/chicago',
-  '/services/heating/heater-installation',
-  '/services/heating/heater-installation/chicago',
-  '/services/heating/heater-maintenance',
-  '/services/heating/heater-maintenance/chicago',
-  '/services/heating/heater-repair',
-  '/services/heating/heater-repair/chicago',
-  '/services/heating/heating-installation',
-  '/services/heating/heating-installation/chicago',
-  '/services/heating/heating-maintenance',
-  '/services/heating/heating-maintenance/chicago',
-  '/services/heating/heating-repair',
-  '/services/heating/heating-repair/chicago',
-  '/services/heating/hvac-maintenance-plans',
-  '/services/heating/hvac-maintenance-plans/chicago',
-  '/services/heating/hybrid-heating',
-  '/services/heating/hybrid-heating-systems',
-  '/services/heating/hybrid-heating-systems/chicago',
-  '/services/heating/hybrid-heating/chicago',
-  '/services/heating/maintenance-plans',
-  '/services/heating/maintenance-plans/chicago',
-  '/services/heating/oil-propane-heating-repair-maintenance',
-  '/services/heating/oil-propane-heating-repair-maintenance/chicago',
-  '/services/heating/radiator-radiant-heat-repair-installation',
-  '/services/heating/radiator-radiant-heat-repair-installation/chicago',
-  '/services/heating/space-heater-repair-installation',
-  '/services/heating/space-heater-repair-installation/chicago',
-  '/services/heating/water-heater-repair-installation',
-  '/services/heating/water-heater-repair-installation/chicago',
-  '/services/humidifier-air-cleaner',
-  '/services/humidifier-air-cleaner/chicago',
-  '/services/humidifier-installation-repair',
-  '/services/humidifier-installation-repair/chicago',
-  '/services/hvac-maintenance-plans',
-  '/services/hvac-maintenance-plans/chicago',
-  '/services/hvac-repair-installation',
-  '/services/hvac-repair-installation/chicago',
-  '/services/hvac-systems',
-  '/services/hvac-systems/heat-pump-repair-installation',
-  '/services/hvac-systems/heat-pump-repair-installation/chicago',
-  '/services/hvac-systems/hvac-repair-installation',
-  '/services/hvac-systems/hvac-repair-installation/chicago',
-  '/services/hvac-systems/smart-thermostat-installation-repair',
-  '/services/hvac-systems/smart-thermostat-installation-repair/chicago',
-  '/services/hybrid-heating',
-  '/services/hybrid-heating-systems',
-  '/services/hybrid-heating-systems/chicago',
-  '/services/hybrid-heating/chicago',
-  '/services/indoor-air-quality-test',
-  '/services/indoor-air-quality-test/chicago',
-  '/services/indoor-air-quality-testing-installation',
-  '/services/indoor-air-quality-testing-installation/chicago',
-  '/services/indoor-air-quality-ventilation',
-  '/services/indoor-air-quality-ventilation/air-duct-cleaning-repair',
-  '/services/indoor-air-quality-ventilation/air-duct-cleaning-repair/chicago',
-  '/services/indoor-air-quality-ventilation/attic-fan-installation-repair',
-  '/services/indoor-air-quality-ventilation/attic-fan-installation-repair/chicago',
-  '/services/indoor-air-quality-ventilation/ceiling-fan-installation-repair',
-  '/services/indoor-air-quality-ventilation/ceiling-fan-installation-repair/chicago',
-  '/services/indoor-air-quality-ventilation/dehumidifier-installation-repair',
-  '/services/indoor-air-quality-ventilation/dehumidifier-installation-repair/chicago',
-  '/services/indoor-air-quality-ventilation/dryer-vent-cleaning-repair',
-  '/services/indoor-air-quality-ventilation/dryer-vent-cleaning-repair/chicago',
-  '/services/indoor-air-quality-ventilation/exhaust-fan-installation-repair',
-  '/services/indoor-air-quality-ventilation/exhaust-fan-installation-repair/chicago',
-  '/services/indoor-air-quality-ventilation/humidifier-installation-repair',
-  '/services/indoor-air-quality-ventilation/humidifier-installation-repair/chicago',
-  '/services/indoor-air-quality-ventilation/indoor-air-quality-testing-installation',
-  '/services/indoor-air-quality-ventilation/indoor-air-quality-testing-installation/chicago',
-  '/services/maintenance-plans',
-  '/services/maintenance-plans/chicago',
-  '/services/oil-propane-heating-repair-maintenance',
-  '/services/oil-propane-heating-repair-maintenance/chicago',
-  '/services/radiator-radiant-heat-repair-installation',
-  '/services/radiator-radiant-heat-repair-installation/chicago',
-  '/services/smart-thermostat-installation-repair',
-  '/services/smart-thermostat-installation-repair/chicago',
-  '/services/space-heater-repair-installation',
-  '/services/space-heater-repair-installation/chicago',
-  '/services/water-heater-repair-installation',
-  '/services/water-heater-repair-installation/chicago',
-  '/services/window-portable-ac-installation-repair',
-  '/services/window-portable-ac-installation-repair/chicago',
-  '/services/wood-pellet-stove-repair-installation',
-  '/services/wood-pellet-stove-repair-installation/chicago',
-]);
-// END SERVICE LANDING PATHS
-
-function isUnder(path, prefix) {
-  return path === prefix || path.startsWith(`${prefix}/`);
-}
-
-async function proxyToApp(request, url) {
-  const publicHost = url.host;
-  const headers = new Headers(request.headers);
-  headers.delete('Host'); // Fetch uses the Vercel hostname for upstream routing.
-  headers.set('X-Forwarded-Host', publicHost);
-  headers.set('X-Forwarded-Proto', 'https');
-
-  const res = await fetch(new URL(url.pathname + url.search, ORIGIN).toString(), {
-    method: request.method,
-    headers,
-    body: ['GET', 'HEAD'].includes(request.method) ? undefined : request.body,
-    redirect: 'manual',
-  });
-
-  const out = new Headers(res.headers);
-  const loc = out.get('Location');
-  if (loc) {
-    const destination = new URL(loc, ORIGIN);
-    if (destination.origin === ORIGIN && /^(https?:)?\/\//.test(loc)) {
-      out.set('Location', `https://${publicHost}${destination.pathname}${destination.search}${destination.hash}`);
-    }
-  }
-  out.set('X-CitySuburban-Proxy', 'vercel');
-  return new Response(res.body, {status: res.status, statusText: res.statusText, headers: out});
-}
+const BASE_PATH = '/services';
 
 const worker = {
   async fetch(request) {
     const url = new URL(request.url);
-    const key = url.pathname.replace(/\/+$/, '') || '/';
+    if (url.pathname !== BASE_PATH && !url.pathname.startsWith(`${BASE_PATH}/`)) {
+      return fetch(request);
+    }
 
-    const pluralKey = key.replace(/^\/service(?=\/|$)/, '/services');
-    const technical = ['api', '_next', 'images', 'reference-assets', 'studio'].some(segment => isUnder(pluralKey, `/services/${segment}`));
-    if (SERVICE_LANDING_PATHS.has(pluralKey) || technical || pluralKey === '/services/sitemap.xml') return proxyToApp(request, url);
-    // Same-zone subrequests go to WordPress without re-running this Worker.
-    return fetch(request);
+    const headers = new Headers(request.headers);
+    headers.delete('Host');
+    headers.set('X-Forwarded-Host', url.host);
+    headers.set('X-Forwarded-Proto', url.protocol.slice(0, -1));
+
+    const upstream = await fetch(new URL(url.pathname + url.search, ORIGIN), {
+      method: request.method,
+      headers,
+      body: ['GET', 'HEAD'].includes(request.method) ? undefined : request.body,
+      redirect: 'manual',
+    });
+
+    const responseHeaders = new Headers(upstream.headers);
+    const location = responseHeaders.get('Location');
+    if (location) {
+      const target = new URL(location, ORIGIN);
+      if (target.origin === ORIGIN && /^(https?:)?\/\//.test(location)) {
+        responseHeaders.set('Location', `${url.origin}${target.pathname}${target.search}${target.hash}`);
+      }
+    }
+    responseHeaders.set('X-CitySuburban-Proxy', 'vercel');
+    return new Response(upstream.body, {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers: responseHeaders,
+    });
   },
 };
 

@@ -10,8 +10,8 @@ import type {ServicePageData} from '@/types/content'
 import {getReferenceService, getReferenceSnapshot, type ReferenceDocument} from '@/lib/reference-pages'
 import {ReferenceLandingPage} from '@/components/reference-landing-page'
 import {legacyReplacementPath} from '@/lib/legacy-service-replacements'
-import {applyReferenceContentFields, synchronizeVisibleSchema} from '@/lib/reference-content-fields'
 import {migrateServiceContent} from '@/lib/service-base-path'
+import {renderReferencePage} from '@/lib/reference-page-rendering'
 
 type Props = {params: Promise<{serviceSlug: string; areaSlug: string}>}
 
@@ -22,12 +22,12 @@ function primaryPage(service: PreparedService) {
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {serviceSlug: clusterSlug, areaSlug: serviceSlug} = await params
   const reference = getReferenceService(clusterSlug, serviceSlug)
-  if (reference) {
-    const updated = migrateServiceContent(await metadataClient.fetch(REFERENCE_SERVICE_QUERY, {clusterSlug, serviceSlug: reference.slug}).catch(() => null))
+  const updated = migrateServiceContent(await metadataClient.fetch(REFERENCE_SERVICE_QUERY, {clusterSlug, serviceSlug: reference?.slug || serviceSlug}).catch(() => null)) as ReferenceDocument | null
+  if (reference || updated?.sections?.length) {
     return {
-    title: {absolute: updated?.metaTitle || reference.title},
-    description: updated?.metaDescription || reference.description,
-    alternates: {canonical: updated?.canonicalUrl || reference.canonicalUrl},
+    title: {absolute: updated?.metaTitle || reference?.title || updated?.name || serviceSlug},
+    description: updated?.metaDescription || reference?.description,
+    alternates: {canonical: reference ? updated?.canonicalUrl || reference.canonicalUrl : `${siteUrl.replace(/\/+$/, '')}/services/${clusterSlug}/${serviceSlug}/`},
     robots: {index: updated?.factChecksComplete === true, follow: true},
   }
   }
@@ -52,18 +52,10 @@ export default async function ServicePage({params}: Props) {
   if (replacement) permanentRedirect(replacement.replace(/^\/services/, ''))
   const reference = getReferenceService(firstSlug, secondSlug)
   const snapshot = reference && getReferenceSnapshot(firstSlug, secondSlug)
-  if (reference && snapshot) {
-    const result = await sanityFetch({query: REFERENCE_SERVICE_QUERY, params: {clusterSlug: firstSlug, serviceSlug: reference.slug}, stega: false}).catch(() => null)
-    const updated = migrateServiceContent(result?.data as ReferenceDocument | null)
-    const editedSnapshot = updated?.sections?.length ? {
-      ...snapshot,
-      style: updated.responsiveCss || snapshot.style,
-      schema: updated.structuredData || snapshot.schema,
-      html: `<main ${htmlAttributes(snapshot.mainAttributes)}><div ${htmlAttributes(snapshot.wrapperAttributes)}>${updated.sections.map((section) => applyReferenceContentFields(section.html, section.contentFields)).join('')}</div></main>`,
-    } : snapshot
-    if (updated?.sections?.length) editedSnapshot.schema = synchronizeVisibleSchema(editedSnapshot.schema, editedSnapshot.html)
-    return <ReferenceLandingPage snapshot={{style: editedSnapshot.style, html: editedSnapshot.html, schema: editedSnapshot.schema}} serviceName={updated?.name || reference.name} />
-  }
+  const result = await sanityFetch({query: REFERENCE_SERVICE_QUERY, params: {clusterSlug: firstSlug, serviceSlug: reference?.slug || secondSlug}, stega: false}).catch(() => null)
+  const updated = result?.data as ReferenceDocument | null
+  const editedSnapshot = renderReferencePage(updated, snapshot)
+  if (editedSnapshot) return <ReferenceLandingPage snapshot={editedSnapshot} serviceName={updated?.name || reference?.name || secondSlug} />
   const {data: navigation} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
   const clusters = prepareServiceNavigation((navigation || {}) as ServiceNavigationPayload)
 
@@ -82,8 +74,4 @@ export default async function ServicePage({params}: Props) {
     permanentRedirect(servicePath(legacy.cluster.slug, legacy.service.slug))
   }
   notFound()
-}
-
-function htmlAttributes(attributes: Record<string, string>) {
-  return Object.entries(attributes).map(([name, value]) => `${name}="${value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`).join(' ')
 }

@@ -1,97 +1,66 @@
-// Run: node cloudflare/services-proxy-worker.test.mjs
+// Generic prefix routing, forwarding and response behavior. No real leads submitted.
 import worker from './services-proxy-worker.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-const catalog = JSON.parse(fs.readFileSync(new URL('../src/reference-pages/catalog.json', import.meta.url), 'utf8'));
-const retained = JSON.parse(fs.readFileSync(new URL('../src/reference-pages/retained-catalog.json', import.meta.url), 'utf8'));
-
-const calls = [];
-let lastOptions;
-let responseHeaders = {};
-let responseStatus = 200;
+const pages = ['catalog.json', 'retained-catalog.json'].flatMap(file => JSON.parse(fs.readFileSync(new URL(`../src/reference-pages/${file}`, import.meta.url), 'utf8')));
+const origin = 'https://city-suburban-service-pages.vercel.app';
+const publicOrigin = 'https://citysuburbanheating.com';
+let call;
+let status = 200;
+let headers = {};
+let body = 'ok';
 globalThis.fetch = async (input, options) => {
-  calls.push(typeof input === 'string' ? input : input.url);
-  lastOptions = options;
-  return new Response('ok', {status: responseStatus, headers: responseHeaders});
+  call = {url: typeof input === 'string' ? input : input instanceof URL ? input.toString() : input.url, options};
+  return new Response(body, {status, headers});
 };
-
-const S = 'https://citysuburbanheating.com';
-const V = 'https://city-suburban-service-pages.vercel.app';
-const WP = (path) => `${S}${path}`;
-
-// [request URL, expected status, expected Location or null, expected upstream URL or null]
-const cases = [
-  // App: collection, cluster and landing pages (original slugs), assets, API
-  [`${S}/service/`, 200, null, `${V}/service/`],
-  [`${S}/service`, 200, null, `${V}/service`],
-  [`${S}/service/heating/`, 200, null, `${V}/service/heating/`],
-  [`${S}/service/indoor-air-quality-ventilation/`, 200, null, `${V}/service/indoor-air-quality-ventilation/`],
-  [`${S}/service/heating/space-heater-repair-installation/?utm=x`, 200, null, `${V}/service/heating/space-heater-repair-installation/?utm=x`],
-  [`${S}/service/_next/static/chunk.js`, 200, null, `${V}/service/_next/static/chunk.js`],
-  [`${S}/service/api/lead/`, 200, null, `${V}/service/api/lead/`],
-  // All current collection categories are supported by the app.
-  [`${S}/service/air-quality/`, 200, null, `${V}/service/air-quality/`],
-  [`${S}/service/commercial-hvac/`, 200, null, `${V}/service/commercial-hvac/`],
-  // Old footer hubs now reach the app's plural collection redirect.
-  [`${S}/service/heating-services/`, 200, null, `${V}/service/heating-services/`],
-  [`${S}/services/`, 200, null, `${V}/services/`],
-  [`${S}/services/heating/`, 200, null, `${V}/services/heating/`],
-  [`${S}/services/api/lead/`, 200, null, `${V}/services/api/lead/`],
-  [`${S}/services/_next/static/chunk.js`, 200, null, `${V}/services/_next/static/chunk.js`],
-  [`${S}/services/images/live-footer-logo.png`, 200, null, `${V}/services/images/live-footer-logo.png`],
-  [`${S}/services/studio/`, 200, null, `${V}/services/studio/`],
-  [`${S}/services/sitemap.xml`, 200, null, `${V}/services/sitemap.xml`],
-  // Every finalized navbar and extra keyword page reaches the app with query intact.
-  ...[...catalog, ...retained].map(page => [`${S}${page.livePath}?utm=review`, 200, null, `${V}${page.livePath}?utm=review`]),
-  ...[...catalog, ...retained].map(page => { const path = page.livePath.replace('/services/', '/service/'); return [`${S}${path}?utm=legacy`, 200, null, `${V}${path}?utm=legacy`]; }),
-  [`${S}/services/heating/heater-repair`, 200, null, `${V}/services/heating/heater-repair`],
-  ['https://www.citysuburbanheating.com/services/heating/heater-repair/', 200, null, `${V}/services/heating/heater-repair/`],
-  // Unmigrated service URLs pass through to WordPress.
-  [`${S}/services/heating/unknown-service/`, 200, null, WP('/services/heating/unknown-service/')],
-  [`${S}/service/cooling-test/`, 200, null, WP('/service/cooling-test/')],
-  [`${S}/service/heating/unknown-service/`, 200, null, WP('/service/heating/unknown-service/')],
-  // Paths that only share the prefix are never touched
-  [`${S}/service-areas/`, 200, null, WP('/service-areas/')],
-  [`${S}/service-area/lincoln-park/`, 200, null, WP('/service-area/lincoln-park/')],
-];
-
-let fail = 0;
-for (const [url, status, loc, upstream] of cases) {
-  calls.length = 0;
-  const r = await worker.fetch(new Request(url));
-  const ok = r.status === status
-    && r.headers.get('Location') === loc
-    && (upstream === undefined || upstream === null ? calls.length === 0 : calls[0] === upstream);
-  if (!ok) fail++;
-  console.log(ok ? 'PASS' : 'FAIL', r.status, url, '->', r.headers.get('Location') || calls[0] || '');
+let checked = 0;
+for (const host of [publicOrigin, 'https://www.citysuburbanheating.com']) {
+  for (const path of [...pages.map(page => page.livePath), '/services', '/services/', '/services/new-category/newly-published-page/?utm=future', '/services/api/lead/', '/services/studio/', '/services/_next/static/app.js', '/services/images/live-footer-logo.png', '/services/sitemap.xml']) {
+    const response = await worker.fetch(new Request(host + path));
+    assert.equal(call.url, origin + path);
+    assert.equal(response.headers.get('X-CitySuburban-Proxy'), 'vercel');
+    assert.equal(call.options.headers.get('X-Forwarded-Host'), new URL(host).host);
+    assert.equal(call.options.headers.get('X-Forwarded-Proto'), 'https');
+    checked++;
+  }
 }
-// Redirects generated by Next must remain on the visitor's public host.
-for (const host of ['citysuburbanheating.com', 'www.citysuburbanheating.com']) {
-  responseStatus = 308;
-  responseHeaders = {Location: `${V}/services/heating/heater-repair/?utm=old`, 'Set-Cookie': 'example=test; Path=/services/; Secure'};
-  const response = await worker.fetch(new Request(`https://${host}/service/heating/furnace-repair-installation/?utm=old`));
+for (const path of ['/', '/about-us/', '/wp-admin/', '/service-areas/', '/service-area/lincoln-park/', '/services-other/', '/service/', '/service/heating/']) {
+  const response = await worker.fetch(new Request(publicOrigin + path));
+  assert.equal(call.url, publicOrigin + path);
+  assert.equal(call.options, undefined);
+  assert.equal(response.headers.get('X-CitySuburban-Proxy'), null);
+  checked++;
+}
+for (const host of [publicOrigin, 'https://www.citysuburbanheating.com']) {
+  status = 308;
+  headers = {Location: origin + '/services/heating/heater-repair/?utm=old', 'Set-Cookie': 'test=value; Path=/services/; Secure', 'Cache-Control': 'private, no-store', 'Content-Security-Policy': "default-src 'self'"};
+  const response = await worker.fetch(new Request(host + '/services/heating/furnace-repair-installation/?utm=old'));
   assert.equal(response.status, 308);
-  assert.equal(response.headers.get('Location'), `https://${host}/services/heating/heater-repair/?utm=old`);
-  assert.equal(response.headers.get('Set-Cookie'), responseHeaders['Set-Cookie']);
+  assert.equal(response.headers.get('Location'), host + '/services/heating/heater-repair/?utm=old');
+  for (const key of ['Set-Cookie', 'Cache-Control', 'Content-Security-Policy']) assert.equal(response.headers.get(key), headers[key]);
+  checked++;
 }
-responseHeaders = {Location: '/services/heating/heater-repair/'};
-assert.equal((await worker.fetch(new Request(`${S}/service/furnace-repair-installation/`))).headers.get('Location'), responseHeaders.Location);
-responseHeaders = {Location: 'https://retailservices.wellsfargo.com/pl/0024376626'};
-assert.equal((await worker.fetch(new Request(`${S}/service/`))).headers.get('Location'), responseHeaders.Location);
-responseStatus = 200;
-responseHeaders = {};
-// This is a mocked POST; no real form or notification is submitted.
-const body = JSON.stringify({name: 'Proxy unit test'});
-const response = await worker.fetch(new Request(`${S}/services/api/lead/?test=mock`, {method: 'POST', body, headers: {'content-type': 'application/json', Host: 'citysuburbanheating.com', Cookie: 'example=test'}}));
-assert.equal(lastOptions.method, 'POST');
-assert.equal(await new Response(lastOptions.body).text(), body);
-assert.equal(lastOptions.redirect, 'manual');
-assert.equal(lastOptions.headers.has('Host'), false);
-assert.equal(lastOptions.headers.get('X-Forwarded-Host'), 'citysuburbanheating.com');
-assert.equal(lastOptions.headers.get('Cookie'), 'example=test');
-assert.equal(response.headers.get('X-CitySuburban-Proxy'), 'vercel');
-await worker.fetch(new Request(`${S}/service/`, {method: 'HEAD'}));
-assert.equal(lastOptions.method, 'HEAD');
-assert.equal(lastOptions.body, undefined);
-console.log(fail ? `${fail} failed` : `all ${cases.length} passed`);
-process.exit(fail ? 1 : 0);
+for (const location of ['/services/heating/heater-repair/', 'https://retailservices.wellsfargo.com/pl/0024376626']) {
+  headers = {Location: location};
+  const response = await worker.fetch(new Request(publicOrigin + '/services/'));
+  assert.equal(response.headers.get('Location'), location);
+  checked++;
+}
+status = 200;
+headers = {};
+const payload = JSON.stringify({name: 'Mock routing test'});
+await worker.fetch(new Request(publicOrigin + '/services/api/lead/?test=mock', {method: 'POST', body: payload, headers: {'content-type': 'application/json', Host: 'citysuburbanheating.com', Cookie: 'test=value'}}));
+assert.equal(call.options.method, 'POST');
+assert.equal(await new Response(call.options.body).text(), payload);
+assert.equal(call.options.redirect, 'manual');
+assert.equal(call.options.headers.has('Host'), false);
+assert.equal(call.options.headers.get('Cookie'), 'test=value');
+await worker.fetch(new Request(publicOrigin + '/services/', {method: 'HEAD'}));
+assert.equal(call.options.method, 'HEAD');
+assert.equal(call.options.body, undefined);
+status = 404;
+assert.equal((await worker.fetch(new Request(publicOrigin + '/services/missing/page/'))).status, 404);
+status = 200;
+body = new Uint8Array([0, 255, 33, 127]);
+assert.deepEqual(new Uint8Array(await (await worker.fetch(new Request(publicOrigin + '/services/images/example.bin'))).arrayBuffer()), body);
+console.log(`Passed ${checked} URL/redirect cases, future-page routing, POST/HEAD, binary data, cookies, security/cache headers and upstream 404 preservation.`);

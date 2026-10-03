@@ -2,7 +2,8 @@ import {defineQuery} from 'next-sanity'
 
 export const REFERENCE_SERVICE_QUERY = defineQuery(`
   *[_type == "referenceServicePage" && clusterSlug == $clusterSlug && slug.current == $serviceSlug][0] {
-    name, metaTitle, metaDescription, canonicalUrl, livePath, qcStatus, factChecksComplete, structuredData,
+    name, clusterSlug, directoryClusterSlug, "slug": slug.current,
+    metaTitle, metaDescription, canonicalUrl, livePath, qcStatus, factChecksComplete, structuredData,
     "responsiveCss": coalesce(template->responsiveCss, responsiveCss), sections[]{_key, module, html, contentFields[]{_key,target,kind,label,value}},
     "cardImage": coalesce(cardImage.asset->url, cardImageUrl),
     cardDescription, keyPhrases
@@ -11,7 +12,7 @@ export const REFERENCE_SERVICE_QUERY = defineQuery(`
 
 export const REFERENCE_NAVIGATION_QUERY = defineQuery(`
   *[_type == "referenceServicePage" && defined(slug.current)] {
-    name, clusterSlug, "slug": slug.current, livePath, canonicalUrl, cardDescription,
+    name, clusterSlug, directoryClusterSlug, "slug": slug.current, livePath, canonicalUrl, cardDescription,
     "cardImage": coalesce(cardImage.asset->url, cardImageUrl),
     metaTitle, metaDescription, qcStatus, factChecksComplete
   }
