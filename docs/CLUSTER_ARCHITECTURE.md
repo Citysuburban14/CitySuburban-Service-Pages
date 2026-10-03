@@ -4,11 +4,11 @@ The public service library follows the taxonomy in `HVAC_Keyword_Clusters.xlsx`,
 
 ## Public hierarchy
 
-1. `/services` — cluster collection
-2. `/services/{cluster-slug}` — services assigned to one cluster
-3. `/services/{cluster-slug}/{service-slug}` — the standard Sanity-driven service landing page
+1. `/service/` — cluster collection
+2. `/service/{cluster-slug}` — services assigned to one cluster
+3. `/service/{cluster-slug}/{service-slug}` — the standard Sanity-driven service landing page
 
-There is no additional one-card area layer. Selecting a service from its cluster opens the complete landing page immediately. The earlier `/services/{service-slug}`, `/services/{service-slug}/{area-slug}`, and `/services/{cluster-slug}/{service-slug}/{area-slug}` shapes remain as permanent redirects so existing bookmarks and indexed links resolve to the canonical nested URL.
+There is no additional one-card area layer. Selecting a service from its cluster opens the complete landing page immediately. The earlier `/service/{service-slug}`, `/service/{service-slug}/{area-slug}`, and `/service/{cluster-slug}/{service-slug}/{area-slug}` shapes remain as permanent redirects so existing bookmarks and indexed links resolve to the canonical nested URL.
 
 The cluster pages organize the existing landing pages and derive their cards, images, descriptions, volumes, and availability from the same `servicePage`, `serviceDefinition`, and `serviceArea` records.
 
@@ -16,7 +16,7 @@ The cluster pages organize the existing landing pages and derive their cards, im
 
 Eight service slugs, the air quality cluster slug and the Heat Pump cluster were changed on 03/10/2026 so those pages take over the exact URLs of live WordPress pages with the same keyword. Heat Pump (305) moved from Whole-System HVAC to Cooling for that reason. The overrides live in `data/live-url-slugs.json`, and every import script applies them. See `docs/CLOUDFLARE_PROXY.md`.
 
-All public URLs end with a slash (`trailingSlash: true`) to match the live site.
+All public URLs end with a slash (`trailingSlash: true`) under the `/service` base path to match the live site.
 
 ## Workbook mapping
 

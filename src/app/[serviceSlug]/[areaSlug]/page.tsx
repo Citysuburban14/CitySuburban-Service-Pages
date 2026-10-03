@@ -27,7 +27,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {
     title: metadata.title,
     description: metadata.description,
-    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/services${servicePath(cluster.slug, service.slug)}`},
+    alternates: {canonical: `${siteUrl.replace(/\/+$/, '')}/service${servicePath(cluster.slug, service.slug)}`},
   }
 }
 

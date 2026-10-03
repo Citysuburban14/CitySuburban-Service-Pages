@@ -9,7 +9,7 @@ export const revalidate = 60
 export const metadata: Metadata = {
   title: 'HVAC Services in Chicago',
   description: 'Explore City & Suburban heating, cooling, indoor-air-quality, and commercial HVAC service pages.',
-  alternates: {canonical: 'https://citysuburbanheating.com/services'},
+  alternates: {canonical: 'https://citysuburbanheating.com/service/'},
 }
 
 export default async function HomePage() {

@@ -12,30 +12,35 @@ const browserConfig = {
 }
 
 const nextConfig: NextConfig = {
-  // The app is served under the /services subdirectory of the main site.
+  // The app is served under the /service subdirectory of the main site, the same
+  // directory as the live WordPress hub pages (/service/heating/).
   // basePath is compiled into the client bundle and is applied automatically to
   // routes, <Link> hrefs, redirect source/destination, and public assets — but
   // NOT to fetch() calls or raw string asset paths, which are prefixed manually.
-  basePath: '/services',
-  // The live WordPress URLs end with a slash (/services/heating/heater-repair/).
-  // Matching that exactly means a replaced page keeps its URL with no redirect.
+  basePath: '/service',
+  // The live WordPress URLs end with a slash (/service/heating/). Matching that
+  // exactly means a replaced page keeps its URL with no redirect.
   trailingSlash: true,
   env: browserConfig,
   poweredByHeader: false,
   reactStrictMode: true,
   async redirects() {
-    // Sources/destinations are base-relative; basePath re-adds the /services prefix.
+    // Sources/destinations are base-relative; basePath re-adds the /service prefix.
     return [
       {
         // The bare origin root has no page under basePath. basePath:false keeps this
-        // matching the literal "/" (not "/services") and redirecting to the literal
-        // "/services" collection (not "/services/services"). Only affects the direct
-        // Vercel URL; at the public domain "/" is served by Webflow, not proxied here.
+        // matching the literal "/" (not "/service") and redirecting to the literal
+        // "/service/" collection. Only affects the direct Vercel URL; at the public
+        // domain "/" is served by WordPress, not proxied here.
         source: '/',
-        destination: '/services/',
+        destination: '/service/',
         permanent: false,
         basePath: false,
       },
+      // The app used /services before it moved to /service. Keep those Vercel URLs
+      // working. On the public domain, /services/* is handled by the Cloudflare Worker.
+      {source: '/services', destination: '/service/', permanent: true, basePath: false},
+      {source: '/services/:path+', destination: '/service/:path+/', permanent: true, basePath: false},
       // Eight pages were renamed to the exact URLs of the live WordPress pages they
       // replace, and the air quality cluster now uses the live "air-quality" slug.
       // These keep the earlier preview URLs working. Specific rules come first.

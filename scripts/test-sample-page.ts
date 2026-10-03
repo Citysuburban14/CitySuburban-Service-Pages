@@ -1,6 +1,6 @@
 async function main() {
   const baseUrl = (process.argv[2] || process.env.SAMPLE_BASE_URL || 'http://127.0.0.1:3000').replace(/\/$/, '')
-  const pathname = '/services/furnace/lincoln-park'
+  const pathname = '/service/furnace/lincoln-park'
   const response = await fetch(`${baseUrl}${pathname}`)
   const html = await response.text()
 
@@ -22,7 +22,7 @@ async function main() {
     'Lincoln Park homes and furnace access',
   ]) expect(html.includes(required), `Sample page is missing ${JSON.stringify(required)}`)
 
-  expect(html.includes('/services/images/services/furnace-repair.png'), 'Sample page is missing the authentic furnace image')
+  expect(html.includes('/service/images/services/furnace-repair.png'), 'Sample page is missing the authentic furnace image')
   expect((html.match(/class="rev-card"/g) || []).length === 2, 'Sample page must render the two supplied reviews')
   expect((html.match(/class="photo-slot-label"/g) || []).length >= 4, 'Sample page must expose the supplied photo placeholders')
   expect(!html.includes('local sample? in Lincoln Park?'), 'Sample page has a duplicated question mark in the brand heading')
