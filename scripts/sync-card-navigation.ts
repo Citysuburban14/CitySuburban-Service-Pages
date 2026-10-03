@@ -16,7 +16,7 @@ const client = createClient({projectId: 'q0tvhxym', dataset: 'production', apiVe
 async function main() {
   const pages = [...catalog, ...retained]
   const ids = pages.flatMap(page => [`reference-service-${page.clusterSlug}-${page.legacySlug}`, `drafts.reference-service-${page.clusterSlug}-${page.legacySlug}`])
-  const documents = await client.fetch<Array<{_id: string; _rev: string; sections: Array<{module: string; _key: string; html: string}>; factChecksComplete?: boolean; cardImageUrl?: string}>>('*[_id in $ids]', {ids})
+  const documents = await client.fetch<Array<{_id: string; _rev: string; sections: Array<{module: string; _key: string; html: string}>; cardImageUrl?: string}>>('*[_id in $ids]', {ids})
   if (!documents.length) throw new Error('No matching Sanity documents')
   const backup = path.resolve('..', '.reference-preview', 'sanity-backups', `before-card-navigation-${Date.now()}.json`)
   fs.writeFileSync(backup, JSON.stringify(documents, null, 2))
@@ -34,11 +34,10 @@ async function main() {
   }
   const verified = await client.fetch<typeof documents>('*[_id in $ids]', {ids})
   for (const doc of verified) {
-    const original = documents.find(row => row._id === doc._id)!
     const page = pages.find(page => doc._id.replace(/^drafts\./, '') === `reference-service-${page.clusterSlug}-${page.legacySlug}`)!
-    if (doc.cardImageUrl !== page.cardImage || doc.factChecksComplete !== original.factChecksComplete ||
+    if (doc.cardImageUrl !== page.cardImage ||
       !doc.sections.find(section => section.module === 'site-header')?.html.includes('site-submenu')) throw new Error(`Verification failed: ${doc._id}`)
   }
-  console.log(`Updated and verified ${updated} Sanity documents; content and indexing approvals preserved.`)
+  console.log(`Updated and verified ${updated} Sanity documents; existing page content preserved.`)
 }
 main().catch(error => {console.error(error instanceof Error ? error.message : error); process.exitCode = 1})

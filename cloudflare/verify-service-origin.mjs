@@ -13,10 +13,11 @@ await Promise.all(Array.from({length: 4}, async () => {
       const response = await fetch(origin + page.livePath, {redirect: 'manual', signal: AbortSignal.timeout(30000)});
       const html = await response.text();
       const canonical = html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/)?.[1];
-      if (response.status !== 200 || canonical !== page.canonicalUrl || !html.includes('reference-design') || !html.includes('id="live-site-footer"')) {
-        failures.push({path: page.livePath, status: response.status, location: response.headers.get('location'), canonical});
+      const indexingBlocked = /<meta[^>]+name="(?:robots|googlebot)"[^>]+content="[^"]*noindex/i.test(html) || /noindex/i.test(response.headers.get('x-robots-tag') || '');
+      if (response.status !== 200 || canonical !== page.canonicalUrl || !html.includes('reference-design') || !html.includes('id="live-site-footer"') || indexingBlocked) {
+        failures.push({path: page.livePath, status: response.status, location: response.headers.get('location'), canonical, indexingBlocked});
       } else checked++;
-      if (/<meta[^>]+name="robots"[^>]+content="[^"]*noindex/.test(html)) noindex++;
+      if (indexingBlocked) noindex++;
     } catch (error) { failures.push({path: page.livePath, error: error.message}); }
   }
 }));

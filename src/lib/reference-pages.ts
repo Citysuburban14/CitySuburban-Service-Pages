@@ -23,10 +23,9 @@ export function referenceCollectionSlug(slug: string): string {
   return slug === 'commercial-hvac' ? 'commercial' : (migrations.directoryCategories as Record<string, string>)[slug] || slug
 }
 
-export type ReferenceOverride = {name?: string; clusterSlug?: string; directoryClusterSlug?: string; slug?: string; livePath?: string; canonicalUrl?: string; cardDescription?: string; cardImage?: string; metaDescription?: string; factChecksComplete?: boolean; qcStatus?: string}
+export type ReferenceOverride = {name?: string; clusterSlug?: string; directoryClusterSlug?: string; slug?: string; livePath?: string; canonicalUrl?: string; cardDescription?: string; cardImage?: string; metaDescription?: string; qcStatus?: string}
 export type ReferenceDocument = ReferenceOverride & {
   metaTitle?: string
-  factChecksComplete?: boolean
   responsiveCss?: string
   structuredData?: string
   sections?: Array<{_key?: string; module: string; html: string; contentFields?: ReferenceContentField[]}>
@@ -89,7 +88,7 @@ export function referenceNavigation(overrides: ReferenceOverride[] = []): Prepar
       description: details.description,
       displayOrder: index + 1,
       sourceServiceCount: pages.length,
-      requiresScopeReview: services.some((item) => item.qcStatus !== 'PASS') || extraPages.some(page => page.factChecksComplete !== true),
+      requiresScopeReview: services.some((item) => item.qcStatus !== 'PASS') || extraPages.some(page => Boolean(page.qcStatus) && page.qcStatus !== 'PASS'),
       pages,
       services: pages.map((page) => ({slug: page.serviceSlug, name: page.serviceName, description: page.metaDescription, cardImage: page.cardImage, pages: [page]})),
       cardImage: clusterImages[slug],

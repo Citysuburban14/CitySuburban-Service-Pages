@@ -28,7 +28,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     title: {absolute: updated?.metaTitle || reference?.title || updated?.name || serviceSlug},
     description: updated?.metaDescription || reference?.description,
     alternates: {canonical: reference ? updated?.canonicalUrl || reference.canonicalUrl : `${siteUrl.replace(/\/+$/, '')}/services/${clusterSlug}/${serviceSlug}/`},
-    robots: {index: updated?.factChecksComplete === true, follow: true},
+    robots: {index: true, follow: true},
   }
   }
   const navigation = await metadataClient.fetch(SERVICE_NAVIGATION_QUERY)

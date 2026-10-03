@@ -2,7 +2,7 @@ import type {MetadataRoute} from 'next'
 import {metadataClient} from '@/sanity/lib/client'
 import {siteUrl} from '@/sanity/env'
 import {REFERENCE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
-import {referencePagePath, referenceNavigation, type ReferenceOverride} from '@/lib/reference-pages'
+import {referenceNavigation, type ReferenceOverride} from '@/lib/reference-pages'
 import {clusterPath} from '@/lib/service-navigation'
 
 export const revalidate = 3600
@@ -18,12 +18,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${base}/services${clusterPath(cluster.slug)}`,
       lastModified, changeFrequency: 'weekly' as const, priority: 0.9,
     })),
-    ...published.flatMap((page) => {
-      const path = referencePagePath(page)
-      if (!page.factChecksComplete || !path) return []
-      return [{
-      url: `${base}${path}`,
+    // Include every public landing page: imported snapshots and new published CMS pages.
+    ...clusters.flatMap((cluster) => cluster.pages.map((page) => ({
+      url: `${base}${page.livePath}`,
       lastModified, changeFrequency: 'weekly' as const, priority: 0.85,
-    }]}),
+    }))),
   ]
 }

@@ -42,7 +42,7 @@ Navbar labels do not control routing: their actual link URLs do. A neighborhood 
 
 Published `referenceServicePage` documents are discovered dynamically by URL category and slug. They render from their CMS sections and shared template styles and appear in the chosen collection automatically. A new page needs its own name, category, slug, SEO/content fields and complete design sections. Set its collection category when its URL category differs from the four public collection groups.
 
-The optional exact livePath field may be left blank; the route is `/services/{clusterSlug}/{slug}/`. A supplied path must match those fields. Existing imported pages retain their exact finalized URLs. A valid published page can load without `factChecksComplete`; that approval flag continues to control search indexing. Newly added WordPress menu items still need their corresponding link added in WordPress.
+The optional exact livePath field may be left blank; the route is `/services/{clusterSlug}/{slug}/`. A supplied path must match those fields. Existing imported pages retain their exact finalized URLs. Public landing pages allow search indexing and appear in the service sitemap automatically; there is no indexing approval field. Newly added WordPress menu items still need their corresponding link added in WordPress.
 
 The signed Sanity webhook URL is:
 

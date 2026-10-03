@@ -92,7 +92,7 @@ async function main() {
       await client.patch(id).ifRevisionId(existing._rev).set(fields).commit()
       refreshed++
     } else {
-      await client.createIfNotExists({_id: id, _type: 'referenceServicePage', ...fields, factChecksComplete: false})
+      await client.createIfNotExists({_id: id, _type: 'referenceServicePage', ...fields})
       created++
     }
   }

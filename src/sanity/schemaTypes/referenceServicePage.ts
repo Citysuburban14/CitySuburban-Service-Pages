@@ -40,7 +40,6 @@ export const referenceServicePage = defineType({
     defineField({name: 'sourcePage', title: 'Retained source content', type: 'reference', to: [{type: 'servicePage'}], group: 'review', readOnly: true}),
     defineField({name: 'scopeStatus', title: 'Existing service scope', type: 'string', group: 'review', readOnly: true}),
     defineField({name: 'photoStatus', title: 'Reference image review', type: 'string', group: 'review', readOnly: true}),
-    defineField({name: 'factChecksComplete', title: 'Ready for search indexing', type: 'boolean', initialValue: false, group: 'review'}),
     defineField({name: 'responsiveCss', title: 'Responsive design CSS', type: 'text', rows: 8, group: 'design', validation: (rule) => rule.required()}),
     defineField({
       name: 'sections', title: 'Landing page sections, in display order', type: 'array', group: 'design',
