@@ -3,17 +3,14 @@
 // Site header and footer. They mirror the live citysuburbanheating.com header and
 // footer so the new pages sit seamlessly inside the main site. The only difference
 // is the last menu item: "Services" (this app's collection > clusters > landing
-// pages) replaces "Service Areas".
+// pages) replaces "Service Areas". It is a plain link with no dropdown: the
+// collection page is the way into the cluster and landing-page layers.
 
-import {clusterPath, prepareServiceNavigation, servicePath, type ServiceNavigationPayload} from '@/lib/service-navigation'
-import {business, footerServiceLinks, liveMenu, topBarLinks, LIVE_SITE, type MenuGroup} from '@/lib/site-navigation'
-import {sanityFetch} from '@/sanity/lib/live'
-import {SERVICE_NAVIGATION_QUERY} from '@/sanity/lib/queries'
+import {business, footerServiceLinks, liveMenu, servicesLink, topBarLinks, LIVE_SITE} from '@/lib/site-navigation'
 
 const icons = {
   phone: 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z',
   calendar: 'M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2Zm12 8H5v9h14v-9ZM7 12h4v4H7v-4Z',
-  chevron: 'M9 6l6 6-6 6',
   mail: 'M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.2L4 7.3V17h16V7.3l-8 4.9Z',
   pin: 'M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z',
   Facebook: 'M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6Z',
@@ -22,32 +19,14 @@ const icons = {
 } as const
 
 function Icon({name, className}: {name: keyof typeof icons; className?: string}) {
-  const stroke = name === 'chevron'
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" fill={stroke ? 'none' : 'currentColor'} stroke={stroke ? 'currentColor' : undefined} strokeWidth={stroke ? 2.4 : undefined} strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
       <path d={icons[name]} />
     </svg>
   )
 }
 
-async function servicesMenu(): Promise<MenuGroup & {clusters: MenuGroup[]}> {
-  const {data} = await sanityFetch({query: SERVICE_NAVIGATION_QUERY, stega: false})
-  const clusters = prepareServiceNavigation((data || {}) as ServiceNavigationPayload)
-  return {
-    label: 'Services',
-    href: '/service/',
-    items: [],
-    clusters: clusters.map((cluster) => ({
-      label: cluster.name,
-      href: `/service${clusterPath(cluster.slug)}`,
-      items: cluster.services.map((service) => ({label: service.name, href: `/service${servicePath(cluster.slug, service.slug)}`})),
-    })),
-  }
-}
-
-export async function CollectionHeader() {
-  const services = await servicesMenu()
-
+export function CollectionHeader() {
   return (
     <div className="site-header-stack">
       <div className="site-topbar">
@@ -73,25 +52,14 @@ export async function CollectionHeader() {
             <ul className="site-menu">
               {liveMenu.map((group) => (
                 <li className="site-menu-item has-sub" key={group.label}>
-                  <a href={group.href}>{group.label}<Icon name="chevron" className="site-chevron" /></a>
+                  <a href={group.href}>{group.label}</a>
                   <ul className="site-submenu">
                     {group.items.map((item) => <li key={item.label}><a href={item.href}>{item.label}</a></li>)}
                   </ul>
                 </li>
               ))}
-              <li className="site-menu-item has-sub site-menu-services">
-                <a href={services.href}>{services.label}<Icon name="chevron" className="site-chevron" /></a>
-                <ul className="site-submenu">
-                  <li><a href={services.href}>All Services</a></li>
-                  {services.clusters.map((cluster) => (
-                    <li className="has-flyout" key={cluster.href}>
-                      <a href={cluster.href}>{cluster.label}<Icon name="chevron" className="site-chevron" /></a>
-                      <ul className="site-flyout">
-                        {cluster.items.map((item) => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
+              <li className="site-menu-item">
+                <a href={servicesLink.href}>{servicesLink.label}</a>
               </li>
             </ul>
           </nav>
@@ -107,20 +75,14 @@ export async function CollectionHeader() {
           <details className="site-mobile-menu">
             <summary aria-label="Open navigation menu"><span /><span /><span /></summary>
             <nav aria-label="Mobile">
-              {[...liveMenu, {...services, items: []}].map((group) => (
+              {liveMenu.map((group) => (
                 <details key={group.label}>
                   <summary>{group.label}</summary>
-                  <a href={group.href}>{group.label === 'Services' ? 'All Services' : `All ${group.label}`}</a>
+                  <a href={group.href}>All {group.label}</a>
                   {group.items.map((item) => <a href={item.href} key={item.label}>{item.label}</a>)}
-                  {group.label === 'Services' && services.clusters.map((cluster) => (
-                    <details className="site-mobile-cluster" key={cluster.href}>
-                      <summary>{cluster.label}</summary>
-                      <a href={cluster.href}>All {cluster.label}</a>
-                      {cluster.items.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
-                    </details>
-                  ))}
                 </details>
               ))}
+              <a className="site-mobile-plain" href={servicesLink.href}>{servicesLink.label}</a>
               {topBarLinks.map((link) => <a className="site-mobile-plain" href={link.href} key={link.label}>{link.label}</a>)}
               <a className="site-schedule" href={business.scheduleHref}>Schedule Service</a>
             </nav>

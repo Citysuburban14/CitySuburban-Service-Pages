@@ -12,9 +12,9 @@ There is no additional one-card area layer. Selecting a service from its cluster
 
 The cluster pages organize the existing landing pages and derive their cards, images, descriptions, volumes, and availability from the same `servicePage`, `serviceDefinition`, and `serviceArea` records.
 
-## Live URL matching
+## Base path
 
-Eight service slugs, the air quality cluster slug and the Heat Pump cluster were changed on 03/10/2026 so those pages take over the exact URLs of live WordPress pages with the same keyword. Heat Pump (305) moved from Whole-System HVAC to Cooling for that reason. The overrides live in `data/live-url-slugs.json`, and every import script applies them. See `docs/CLOUDFLARE_PROXY.md`.
+The app is served under `/service`, the directory of the live WordPress hub pages. Service slugs are unchanged.
 
 All public URLs end with a slash (`trailingSlash: true`) under the `/service` base path to match the live site.
 
@@ -23,9 +23,9 @@ All public URLs end with a slash (`trailingSlash: true`) under the `/service` ba
 | Order | Cluster | Slug | Service IDs | Rule |
 | --- | --- | --- | --- | --- |
 | 1 | Heating & Hot Water | `heating` | 301, 303, 306, 308, 321, 324 | Equipment that creates heat or hot water. |
-| 2 | Cooling | `cooling` | 302, 305, 310, 314 | Equipment that removes heat. |
-| 3 | Whole-System HVAC & Controls | `hvac-systems` | 304, 311 | Whole-system work and controls. |
-| 4 | Indoor Air Quality & Ventilation | `air-quality` | 307, 315, 316, 317, 319, 320, 322, 323 | Air movement, filtration, humidity and ventilation. |
+| 2 | Cooling | `cooling` | 302, 310, 314 | Equipment that removes heat. |
+| 3 | Whole-System HVAC & Controls | `hvac-systems` | 304, 305, 311 | Whole-system work and controls. |
+| 4 | Indoor Air Quality & Ventilation | `indoor-air-quality-ventilation` | 307, 315, 316, 317, 319, 320, 322, 323 | Air movement, filtration, humidity and ventilation. |
 | 5 | Fireplace, Chimney & Solid Fuel | `fireplace-chimney` | 309, 312, 313 | Scope-flagged hearth and chimney work. |
 | 6 | Commercial & Specialty | `commercial-specialty` | 318, 325 | Scope-flagged commercial or adjacent-trade work. |
 

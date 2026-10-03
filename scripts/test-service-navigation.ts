@@ -1,8 +1,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
-import {clusterPath, findNavigationLevel, legacyServiceSlugs, prepareServiceNavigation, servicePath} from '../src/lib/service-navigation'
-import {serviceSlug} from './service-url-map'
+import {clusterPath, findNavigationLevel, prepareServiceNavigation, servicePath} from '../src/lib/service-navigation'
 
 type Row = Record<string, string | number>
 type Source = {equip: Row[]; area: Row[]; page: Row[]}
@@ -65,11 +64,10 @@ const clusters = prepareServiceNavigation({
     assert.ok(service, `service ${serviceId} is missing from the content batches`)
     assert.ok(taxonomy, `service ${serviceId} is missing from the workbook taxonomy`)
     assert.equal(row.area_slug, 'chicago', `service ${serviceId} must use the Chicago area`)
-    const slug = serviceSlug(serviceId, String(service.slug))
-    assert.equal(slug, taxonomy.slug, `service ${serviceId} slug does not match its workbook mapping`)
+    assert.equal(service.slug, taxonomy.slug, `service ${serviceId} slug does not match its workbook mapping`)
     return {
       _id: `servicePage-${serviceId}-chicago`,
-      serviceSlug: slug,
+      serviceSlug: String(service.slug),
       areaSlug: String(row.area_slug),
       serviceName: String(service.name),
       areaName: 'Chicago',
@@ -108,24 +106,9 @@ assert.equal(findNavigationLevel(clusters, 'unknown'), undefined)
 assert.equal(clusterPath('heating'), '/heating/')
 assert.equal(servicePath('heating', 'furnace-repair-installation'), '/heating/furnace-repair-installation/')
 
-// Pages that replace a live WordPress page must sit at that page's exact URL.
-const liveUrls: Record<number, string> = {
-  302: '/cooling/air-conditioning-installation/', 305: '/cooling/heat-pump-services/', 306: '/heating/heater-repair/',
-  307: '/air-quality/duct-repair/', 308: '/heating/boiler-service/', 310: '/cooling/ductless-hvac-service/',
-  315: '/air-quality/indoor-air-quality-test/', 320: '/air-quality/dehumidifier-installation/',
-}
-for (const [id, url] of Object.entries(liveUrls)) {
-  const item = taxonomySource.services.find((candidate) => candidate.serviceId === Number(id))
-  assert.ok(item, `service ${id} is missing from the taxonomy`)
-  assert.equal(servicePath(item.clusterSlug, item.slug), url, `service ${id} must keep its live URL`)
-}
-// The app's old-slug aliases must point at exactly the slugs the import scripts apply.
-for (const [id, url] of Object.entries(liveUrls)) {
-  const slug = url.split('/')[2]
-  assert.ok(Object.values(legacyServiceSlugs).includes(slug), `alias for service ${id} is missing`)
-  assert.equal(serviceSlug(id, 'unused'), slug, `live slug override for service ${id} is wrong`)
-}
-assert.equal(Object.keys(legacyServiceSlugs).length, Object.keys(liveUrls).length)
+// The original service slugs are kept: only the base path moved from /services to /service.
+const heater = taxonomySource.services.find((item) => item.serviceId === 306)
+assert.equal(heater && servicePath(heater.clusterSlug, heater.slug), '/heating/space-heater-repair-installation/')
 assert.equal(taxonomySource.excludedTopics.some((topic) => /Fans \(General\/Portable\)/.test(topic.equipment)), true)
 assert.equal(clusters.some((cluster) => cluster.services.some((service) => /portable-fan/.test(service.slug))), false)
 

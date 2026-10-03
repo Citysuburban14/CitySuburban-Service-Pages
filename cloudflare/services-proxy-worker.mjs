@@ -5,35 +5,19 @@
 //
 // What happens to each request, in order:
 //   /service and /service/...  -> the Vercel + Sanity app (basePath /service), except the
-//                                 WordPress-only pages in KEEP_ON_WORDPRESS.
-//                                 /service/heating/, /service/cooling/ and /service/air-quality/
-//                                 are live WordPress hub URLs that the app's cluster pages now
-//                                 replace in place.
-//   /services/...              -> the 10 old WordPress pages whose keyword matches a new page
-//                                 get a 301 to that page. Everything else stays on WordPress.
-//   anything else (/service-areas/, /service-area/...) -> WordPress, untouched.
+//                                 WordPress pages in KEEP_ON_WORDPRESS.
+//   anything else (/services/..., /service-areas/, /service-area/...) -> WordPress, untouched.
+//
+// There are no redirects. The live /services/... pages keep working on WordPress until
+// a decision is made for each keyword.
 //
 // Paths are compared lowercased and without a trailing slash.
 
 const ORIGIN = 'https://city-suburban-service-pages.vercel.app';
 
-// Old WordPress URL -> new page. The first 8 are the same keyword; the last 2 are
-// duplicates of a page that already has one of the first 8.
-const REDIRECTS = {
-  '/services/heating/heater-repair': '/service/heating/heater-repair/',
-  '/services/heating/boiler-service': '/service/heating/boiler-service/',
-  '/services/cooling/air-conditioning-installation': '/service/cooling/air-conditioning-installation/',
-  '/services/cooling/ductless-hvac-service': '/service/cooling/ductless-hvac-service/',
-  '/services/cooling/heat-pump-services': '/service/cooling/heat-pump-services/',
-  '/services/air-quality/dehumidifier-installation': '/service/air-quality/dehumidifier-installation/',
-  '/services/air-quality/indoor-air-quality-test': '/service/air-quality/indoor-air-quality-test/',
-  '/services/air-quality/duct-repair': '/service/air-quality/duct-repair/',
-  '/services/cooling/air-conditioning-repair': '/service/cooling/air-conditioning-installation/',
-  '/services/heating/heat-pump': '/service/cooling/heat-pump-services/',
-};
-
-// WordPress pages under /service/ that the app has no equivalent for.
+// WordPress pages under /service/ that the app has no page for.
 const KEEP_ON_WORDPRESS = new Set([
+  '/service/air-quality',
   '/service/commercial-hvac',
   '/service/commercial-hvac-service',
   '/service/heating-services',
@@ -73,11 +57,6 @@ const worker = {
     if (isUnder(key, '/service')) {
       // A same-zone subrequest goes to WordPress and does not re-run this Worker.
       return KEEP_ON_WORDPRESS.has(key) ? fetch(request) : proxyToApp(request, url);
-    }
-
-    if (isUnder(key, '/services')) {
-      const target = REDIRECTS[key];
-      if (target) return Response.redirect(`https://${url.host}${target}${url.search}`, 301);
     }
 
     return fetch(request);

@@ -1,13 +1,10 @@
 // Header and footer menus, mirroring the live citysuburbanheating.com menus.
 //
-// Item labels and order are copied from the live WordPress menu (03/10/2026). Links
-// point at the final URL of each page:
-//   - pages this app now serves (same keyword as the live page) use their /service/ URL
-//   - the two live items that now 301 (Air Conditioning Repair, Heating > Heat Pump)
-//     link straight to their destination, so no visitor goes through a redirect
-//   - pages still on WordPress keep their absolute WordPress URL
-// "Service Areas" is replaced by "Services", which opens this app's collection,
-// cluster and landing pages (built from Sanity in the header component).
+// Labels, order and links are copied exactly from the live WordPress menu and footer
+// (03/10/2026). No item is pointed at a new page until the keyword-to-URL decisions
+// are made; change a link here when a page is moved.
+// "Service Areas" is replaced by "Services": a plain link with no dropdown, to
+// this app's collection page, which leads on to the cluster and landing pages.
 
 export const LIVE_SITE = 'https://citysuburbanheating.com'
 
@@ -19,11 +16,11 @@ const wp = (path: string) => `${LIVE_SITE}${path}`
 export const liveMenu: MenuGroup[] = [
   {
     label: 'Heating',
-    href: '/service/heating/',
+    href: wp('/service/heating/'),
     items: [
-      {label: 'Heater repair', href: '/service/heating/heater-repair/'},
-      {label: 'Boiler Services', href: '/service/heating/boiler-service/'},
-      {label: 'Heat Pump', href: '/service/cooling/heat-pump-services/'},
+      {label: 'Heater repair', href: wp('/services/heating/heater-repair/')},
+      {label: 'Boiler Services', href: wp('/services/heating/boiler-service/')},
+      {label: 'Heat Pump', href: wp('/services/heating/heat-pump/')},
       {label: 'Hybrid Heating Systems', href: wp('/services/heating/hybrid-heating-systems/')},
       {label: 'HVAC Maintenance Plans', href: wp('/services/heating/hvac-maintenance-plans/')},
       {label: 'Heater Installation', href: wp('/services/heating/heater-installation/')},
@@ -32,23 +29,23 @@ export const liveMenu: MenuGroup[] = [
   },
   {
     label: 'Cooling',
-    href: '/service/cooling/',
+    href: wp('/service/cooling/'),
     items: [
-      {label: 'Ductless HVAC Services', href: '/service/cooling/ductless-hvac-service/'},
-      {label: 'Air Conditioning Repair', href: '/service/cooling/air-conditioning-installation/'},
+      {label: 'Ductless HVAC Services', href: wp('/services/cooling/ductless-hvac-service/')},
+      {label: 'Air Conditioning Repair', href: wp('/services/cooling/air-conditioning-repair/')},
       {label: 'Air Conditioning Maintenance', href: wp('/services/cooling/air-conditioning-maintenance/')},
-      {label: 'Air Conditioning Installation', href: '/service/cooling/air-conditioning-installation/'},
+      {label: 'Air Conditioning Installation', href: wp('/services/cooling/air-conditioning-installation/')},
       {label: 'Cooling Maintenance Plans', href: wp('/services/cooling/cooling-maintenance-plans/')},
-      {label: 'Heat Pump Services', href: '/service/cooling/heat-pump-services/'},
+      {label: 'Heat Pump Services', href: wp('/services/cooling/heat-pump-services/')},
     ],
   },
   {
     label: 'Air Quality',
-    href: '/service/air-quality/',
+    href: wp('/service/air-quality/'),
     items: [
-      {label: 'Dehumidifier Installation', href: '/service/air-quality/dehumidifier-installation/'},
-      {label: 'Indoor Air Quality Test', href: '/service/air-quality/indoor-air-quality-test/'},
-      {label: 'Duct Repair', href: '/service/air-quality/duct-repair/'},
+      {label: 'Dehumidifier Installation', href: wp('/services/air-quality/dehumidifier-installation/')},
+      {label: 'Indoor Air Quality Test', href: wp('/services/air-quality/indoor-air-quality-test/')},
+      {label: 'Duct Repair', href: wp('/services/air-quality/duct-repair/')},
       {label: 'Duct Maintenance', href: wp('/services/air-quality/duct-maintenance/')},
       {label: 'Humidifier & Air Cleaner', href: wp('/services/air-quality/humidifier-air-cleaner/')},
     ],
@@ -67,6 +64,8 @@ export const liveMenu: MenuGroup[] = [
   },
 ]
 
+export const servicesLink: MenuLink = {label: 'Services', href: '/service/'}
+
 export const topBarLinks: MenuLink[] = [
   {label: 'Finance', href: 'https://retailservices.wellsfargo.com/pl/0024376626'},
   {label: 'About Us', href: wp('/about-us/')},
@@ -74,10 +73,10 @@ export const topBarLinks: MenuLink[] = [
 ]
 
 export const footerServiceLinks: MenuLink[] = [
-  {label: 'Heating', href: '/service/heating/'},
-  {label: 'Cooling', href: '/service/cooling/'},
-  {label: 'Air Quality', href: '/service/air-quality/'},
-  {label: 'Commercial', href: wp('/service/commercial-hvac/')},
+  {label: 'Heating', href: wp('/service/heating-services/')},
+  {label: 'Cooling', href: wp('/service/cooling-services/')},
+  {label: 'Air Quality', href: wp('/service/air-quality-service/')},
+  {label: 'Commercial', href: wp('/service/commercial-hvac-service/')},
 ]
 
 export const business = {

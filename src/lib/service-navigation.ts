@@ -54,7 +54,7 @@ const fallbackClusterSlugs: Record<string, string> = {
   'Heating & Hot Water': 'heating',
   Cooling: 'cooling',
   'Whole-System HVAC & Controls': 'hvac-systems',
-  'Indoor Air Quality & Ventilation': 'air-quality',
+  'Indoor Air Quality & Ventilation': 'indoor-air-quality-ventilation',
   'Fireplace, Chimney & Solid Fuel': 'fireplace-chimney',
   'Commercial & Specialty': 'commercial-specialty',
 }
@@ -134,15 +134,3 @@ export function servicePath(clusterSlug: string, serviceSlug: string): string {
   return `/${clusterSlug}/${serviceSlug}/`
 }
 
-// Earlier service slugs, renamed to the live WordPress URLs they replace. Content
-// stored in Sanity (for example "other services" links) still uses the old slugs.
-export const legacyServiceSlugs: Record<string, string> = {
-  'air-conditioner-repair-installation': 'air-conditioning-installation',
-  'heat-pump-repair-installation': 'heat-pump-services',
-  'space-heater-repair-installation': 'heater-repair',
-  'air-duct-cleaning-repair': 'duct-repair',
-  'boiler-repair-installation': 'boiler-service',
-  'ductless-mini-split-installation-repair': 'ductless-hvac-service',
-  'indoor-air-quality-testing-installation': 'indoor-air-quality-test',
-  'dehumidifier-installation-repair': 'dehumidifier-installation',
-}
