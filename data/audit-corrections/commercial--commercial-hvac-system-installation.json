@@ -1,0 +1,80 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Scale, access and downtime all change. City &amp; Suburban has been family owned since 1952. Rob runs it now, second generation of the founding family. So an owner sits in the estimate talk. NATE-certified technicians handle startup and controls. The price is put in writing before work starts, with no hidden fees. Good scheduling works around store hours, roof access and the other trades on site. Across the full <a href=\"/services/commercial/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial HVAC</a> range, the score is 4.98 from 204 Google reviews. Yelp shows 4.9 from 251 reviews, and the BBB grade is A+.",
+      "replace": "Scale, access and downtime all change. City &amp; Suburban has been family owned since 1952. Rob runs it now, second generation of the founding family. City &amp; Suburban's technicians are NATE-certified. The price is put in writing before work starts, with no hidden fees. A commercial proposal should also name who leads the site assessment and who handles startup and controls. Good scheduling works around store hours, roof access and the other trades on site. City &amp; Suburban holds 4.98 from 204 Google reviews across all of its work, not only the <a href=\"/services/commercial/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial HVAC</a> range. Yelp shows 4.9 from 251 reviews, and the BBB grade is A+.",
+      "why": "CRITICAL faq: remove unsupported 'owner sits in the estimate talk' and startup-attendance claim; Google rating is company-wide, not commercial-only"
+    },
+    {
+      "find": "Three: combustion venting, gas line size and power service. A gas-fired unit on an undersized or shared vent is a carbon monoxide risk. Illinois covers alarms through the Carbon Monoxide Alarm Detector Act. A gas line that cannot carry the added load is the same kind of risk. Rigging is the other hazard, since a unit has to reach a roof or a mechanical room safely. Venting deserves a check on any furnace work. NATE-certified technicians test every safety before the system is signed over.",
+      "replace": "Three: combustion venting, gas line size and power service. A gas-fired unit on an undersized or shared vent can create a carbon monoxide risk. A gas line that cannot carry the added load is a related risk. Rigging is the other hazard, since a unit has to reach a roof or a mechanical room safely. If a carbon monoxide alarm sounds or anyone smells gas, everyone should leave the building first. Call 911, or the gas utility for a gas odor, from outside. Illinois has a carbon monoxide alarm law; which spaces it covers depends on the building. The proposal should list the startup safety tests, who performs them and how results are recorded before the system is signed over.",
+      "why": "CRITICAL faq: replace 'NATE-certified technicians test every safety' with commissioning items for the proposal; add leave-and-call-911 safety step; qualify CO law"
+    },
+    {
+      "find": "Ask which work the installation team performs and which work is subcontracted; the pack does not establish those project responsibilities.",
+      "replace": "The written proposal should name which trade handles each task, which work is subcontracted and what is excluded.",
+      "why": "MAJOR pricing: remove source-pack language; proposal should name trade responsibilities and exclusions"
+    },
+    {
+      "find": "A commercial installation schedule should connect the agreed scope with approvals, access, equipment delivery and other trade work. The completion discussion should include startup, staff instructions and the documents available at handover. City &amp; Suburban’s NATE-certified technicians are a registered company credential; project-specific work and dates belong in the written proposal.",
+      "replace": "A commercial proposal should state the configuration: packaged rooftop units, split systems, or ductless units for separate rooms. It should confirm capacity, roof or mounting fit, and how other trades fit the schedule before delivery. At completion, ask for commissioning records, including startup readings, control settings and safety test results. Handover should include model and serial details, staff operating instructions and a named service contact. City &amp; Suburban’s technicians are NATE-certified; project-specific work and dates belong in the written proposal.",
+      "why": "MAJOR install: replace generic intro with commercial configurations, commissioning records and handover requirements; remove 'registered company credential' wording"
+    },
+    {
+      "find": "Uneven is the normal case. A south-facing storefront and an inside meeting room rarely want the same airflow. One thermostat in the wrong spot makes every other area wrong. Zoning splits a space into areas with separate control. That can mean more than one unit, dampers on one system, or separate indoor heads. Zones work best when they follow how the space is used through the day, with the controls set to match. Settling zones before the install costs far less than adding them later. The <a href=\"/services/commercial/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial HVAC</a> range covers both.",
+      "replace": "Uneven is the normal case. A south-facing storefront and an inside meeting room rarely want the same airflow. One thermostat in the wrong spot makes every other area wrong. Zoning splits a space into areas with separate control. That can mean more than one unit, dampers on one system, or separate indoor heads. Zones work well when each zone follows how the space is used through the day, with the controls set to match. Settling zones before the install usually costs less than adding zones later. City &amp; Suburban's <a href=\"/services/commercial/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial HVAC</a> range covers both.",
+      "why": "PRON-02 minor: pronouns before a named noun; HYG-06 'best'; soften absolute cost claim"
+    },
+    {
+      "find": "Raising store hours early lets the install be planned around them.",
+      "replace": "Raising store hours early lets the install be planned around those hours.",
+      "why": "PRON-02 minor: pronoun before the noun is named"
+    },
+    {
+      "find": "Same-day service is on hand when the schedule allows.",
+      "replace": "City &amp; Suburban offers same-day service when the schedule allows.",
+      "why": "FAQ voice: brand-as-subject"
+    },
+    {
+      "find": "Mechanical work in Chicago is permitted work. Finished jobs show up in the public City of Chicago permit record. So the paper trail follows the building for years. A commercial job usually means a mechanical permit and an inspection sign-off. On a new build or a build-out, it is folded into the general contractor's wider permit package. Commercial equipment work in Chicago generally needs a City permit, and the written scope should say who pulls it. Who files what is put in writing at quote stage. City &amp; Suburban prices upfront, with no hidden fees.",
+      "replace": "Many commercial HVAC jobs in Chicago need a mechanical permit and an inspection sign-off. Whether a given job does depends on its scope, so confirm it with the project team. Permitted jobs show up in the public City of Chicago permit record. So the paper trail follows the building for years. On a new build or a build-out, the HVAC work may be folded into the general contractor's wider permit package. The written scope should say who pulls the permit, who books the inspection and who pays the fees. Ask for that in writing at quote stage. City &amp; Suburban prices upfront, with no hidden fees.",
+      "why": "Rules 4/5: qualify blanket permit claim; recast 'who files what is put in writing' as what to ask for"
+    },
+    {
+      "find": "NATE-certified technicians from City &amp; Suburban handle that step.",
+      "replace": "The proposal should say who runs those checks and how the readings are recorded. City &amp; Suburban's technicians are NATE-certified.",
+      "why": "Rule 2: unverified startup practice recast as proposal item"
+    },
+    {
+      "find": "City &amp; Suburban backs the work with a satisfaction guarantee. Booking",
+      "replace": "Ask which handover documents and follow-up visits the proposal includes. Booking",
+      "why": "Rule 1: satisfaction guarantee not an approved fact; recast as what to ask"
+    },
+    {
+      "find": "Two of City &amp; Suburban's Google reviews describe exactly that.",
+      "replace": "Two of City &amp; Suburban's Google reviews describe hard roof access. Neither review says the job was commercial, so confirm access for the specific building.",
+      "why": "Rule 6: residential reviews are not proof of commercial capability"
+    },
+    {
+      "find": " and a BBB A+ rating. The work carries a satisfaction guarantee.",
+      "replace": " and a BBB A+ rating.",
+      "why": "Rule 1: satisfaction guarantee not an approved fact"
+    },
+    {
+      "find": "Two covers matter here, and the terms are not the same. City &amp; Suburban installs American Standard equipment, so the unit carries the maker's factory warranty. Registration details belong on site at handover. The labor term should be stated in the written quote. City &amp; Suburban prices upfront with no hidden fees and stands behind the work with a satisfaction guarantee. Repairs cover all makes and models, so later service is not tied to one brand. A <a href=\"/services/commercial/custom-hvac-maintenance-plan/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial maintenance plan</a> adds seasonal check-ups, priority dispatch and member discounts.",
+      "replace": "Two covers matter here, and the terms are not the same. New equipment usually carries a manufacturer's warranty. Its length and registration rules vary by maker and model. Registration details belong on site at handover. The labor term should be stated in the written quote, along with who handles warranty claims. City &amp; Suburban prices upfront with no hidden fees, so the written figure is the figure. Ask how later service and parts would be handled once the install is done. Members of a <a href=\"/services/commercial/custom-hvac-maintenance-plan/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial maintenance plan</a> get priority dispatch; other plan terms belong in the written agreement.",
+      "why": "Rules 1/2: remove unapproved satisfaction guarantee, factory-warranty and plan-benefit claims; warranty terms recast as what the quote should state"
+    },
+    {
+      "find": "NATE-certified technicians do the install and the startup.",
+      "replace": "City &amp; Suburban's technicians are NATE-certified; the proposal should name who does the install and the startup.",
+      "why": "Rule 2: unverified practice recast as proposal item"
+    },
+    {
+      "find": "Wells Fargo Home Projects credit card, subject to credit approval.",
+      "replace": "Wells Fargo Home Projects credit card, subject to credit approval. Eligibility for business projects must be confirmed.",
+      "why": "Rule 1: consumer financing must not imply commercial eligibility"
+    }
+  ]
+}

@@ -5,6 +5,13 @@ import type {PreparedCluster} from '@/lib/service-navigation'
 
 type Props = {cluster: PreparedCluster}
 
+// Plain guidance shown on every category directory (audit 2026-10-05: decision router + safety stop).
+const DIRECTORY_GUIDE = 'Pick the service that matches what the equipment is doing: repair for a fault, maintenance for routine care, installation when the equipment needs replacing. If the right page is unclear, call (773) 238-3838 and describe the symptoms. If a carbon monoxide alarm sounds, you smell gas, or you see smoke, leave the building and call 911 from outside before calling for service.'
+
+function withArticle(phrase: string) {
+  return `${/^[aeiou]/i.test(phrase) ? 'an' : 'a'} ${phrase}`
+}
+
 export function NavigationLevelPage({cluster}: Props) {
   const count = cluster.services.length
 
@@ -22,8 +29,8 @@ export function NavigationLevelPage({cluster}: Props) {
         <section className="collection-level-hero">
           <div className="collection-wrap collection-level-hero-grid">
             <div>
-              <p className="collection-hero-kicker">HVAC service cluster</p>
-              <h1>{cluster.name}</h1>
+              <p className="collection-hero-kicker">City &amp; Suburban services</p>
+              <h1>{cluster.name} services in Chicago</h1>
               <p>{cluster.description}</p>
               <div className="collection-hero-actions">
                 <a href="#service-directory-title">Browse services</a>
@@ -37,8 +44,7 @@ export function NavigationLevelPage({cluster}: Props) {
             >
               <span>{cluster.name}</span>
               <strong>{count}</strong>
-              <h2>Available services</h2>
-              <p>{count} services in this system</p>
+              <h2>{count === 1 ? 'Service' : 'Services'} in this category</h2>
             </div>
           </div>
         </section>
@@ -46,8 +52,8 @@ export function NavigationLevelPage({cluster}: Props) {
           pages={cluster.pages}
           clusterSlug={cluster.slug}
           kicker={`${cluster.name} directory`}
-          heading={`Choose a ${cluster.name.toLowerCase()} service`}
-          description="Choose an equipment or service type to open its complete service landing page."
+          heading={`Choose ${withArticle(cluster.name.toLowerCase())} service`}
+          description={DIRECTORY_GUIDE}
         />
       </main>
       <CollectionFooter />

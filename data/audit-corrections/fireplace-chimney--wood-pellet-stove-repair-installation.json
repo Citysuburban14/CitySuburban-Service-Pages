@@ -1,0 +1,100 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "This draft should not publish as an active service page unless the owner adds a qualified hearth partner and verifies the scope.",
+      "replace": "Wood and pellet stoves are hearth appliances and sit outside City & Suburban's confirmed HVAC services.",
+      "why": "CRITICAL: remove internal publish gate; state the service boundary plainly"
+    },
+    {
+      "find": "The stronger content defines a publish/no-publish gate, the specialist evidence required and the handoff information a customer needs if City & Suburban does not own the work.",
+      "replace": "The guidance below covers what a qualified hearth professional's assessment and quote should include.",
+      "why": "CRITICAL: remove editorial publish/no-publish language from the hero"
+    },
+    {
+      "find": "Use this form only to request the correct referral path, not to assume service availability.",
+      "replace": "Describe the stove type, fuel, and what the appliance is doing.",
+      "why": "CRITICAL: do not imply a referral service exists"
+    },
+    {
+      "find": "Need a hearth-specialist referral",
+      "replace": "Not sure which trade is needed",
+      "why": "Do not imply a vetted referral partner"
+    },
+    {
+      "find": "This is not a price book. It shows the scope variables and what the Chicago permit record can and cannot support so quotes can be compared on the same basis.",
+      "replace": "Hearth work is priced from the scope variables below, so quotes can be compared on the same basis.",
+      "why": "Editorial framing removed from pricing lede"
+    },
+    {
+      "find": "Chicago logged one permit mentioning wood or pellet stoves in 24 months. That single $15,000 reported project is not a market price. Do not quote it.",
+      "replace": "Chicago's permit records show one permit citywide mentioning wood or pellet stoves in 24 months, too few to suggest any price.",
+      "why": "CRITICAL PRICE-01: remove $15,000 figure; permit data as citywide context only"
+    },
+    {
+      "find": "If a partner is added, require the proposal to separate appliance,",
+      "replace": "A complete hearth proposal separates the appliance,",
+      "why": "Internal partner instruction recast as what a good proposal includes"
+    },
+    {
+      "find": "No charge before booking",
+      "replace": "Confirm by phone",
+      "why": "CRITICAL: unregistered no-charge fee promise removed"
+    },
+    {
+      "find": "Refer to hearth specialist",
+      "replace": "Hearth specialist scope",
+      "why": "Do not imply a referral service"
+    },
+    {
+      "find": "Permit required",
+      "replace": "Permit usually required",
+      "why": "Legal claim made conditional"
+    },
+    {
+      "find": "A retail product, not service intent, despite dominating this keyword cluster.",
+      "replace": "A retail product, not a service.",
+      "why": "Remove keyword research language"
+    },
+    {
+      "find": "The commercial intent is weak and the service is outside the verified HVAC scope. A future partner must be able to work",
+      "replace": "This work is outside City & Suburban's confirmed HVAC scope. A qualified hearth provider should be able to work",
+      "why": "Remove market research and implied future partner"
+    },
+    {
+      "find": "The honest answer may be a referral",
+      "replace": "This work belongs with a hearth specialist",
+      "why": "Do not imply a referral service"
+    },
+    {
+      "find": "This is an out-of-scope research row kept for roadmap completeness. It must not be converted into an HVAC capability claim. ",
+      "replace": "",
+      "why": "CRITICAL: remove internal roadmap commentary"
+    },
+    {
+      "find": "Not as a verified HVAC service today. This draft is a roadmap record and must stay unpublished until the owner confirms qualified scope.",
+      "replace": "Not as a confirmed service. Wood and pellet stoves sit outside City & Suburban's confirmed HVAC scope, so their installation, repair and chimney work belong with a qualified hearth professional. Questions about a separate furnace or boiler can go to City & Suburban at (773) 238-3838.",
+      "why": "CRITICAL: remove draft/roadmap language; no implied capability"
+    },
+    {
+      "find": "Confirm the current Chicago requirements with the qualified installer.",
+      "replace": "Requirements vary by municipality, so the qualified installer should confirm what applies at the address.",
+      "why": "Legal claim made conditional; named-noun voice"
+    },
+    {
+      "find": "Stop using the appliance, ventilate, and have the stove and chimney evaluated before relighting it.",
+      "replace": "If smoke enters the room, a carbon monoxide alarm sounds, anyone feels unwell or a chimney fire is suspected, leave the building and call 911 from outside. Do not open a hot stove or try to investigate. The stove should not be used again until a qualified hearth professional has evaluated it and the chimney.",
+      "why": "MAJOR safety: smoke, CO alarm or chimney fire mean leave and call 911 first"
+    },
+    {
+      "find": "Can this draft support a referral page instead of a service page?",
+      "replace": "What should a hearth contractor's proposal confirm?",
+      "why": "MAJOR: replace editorial FAQ with homeowner intent"
+    },
+    {
+      "find": "Yes, if it clearly says City & Suburban does not perform the work, identifies a vetted partner, explains how information is shared and avoids collecting a service request under an HVAC promise.",
+      "replace": "A qualified hearth contractor should confirm the appliance listing and clearances, chimney or liner compatibility, hearth protection, approved repair parts, who handles the permit and inspection, and who stands behind the warranty.",
+      "why": "MAJOR: replace editorial answer with listing, chimney, parts and permit responsibility guidance"
+    }
+  ]
+}

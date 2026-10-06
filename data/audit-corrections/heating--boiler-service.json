@@ -1,0 +1,55 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Four symptoms qualify. A gas smell. Water pouring from the boiler or a relief valve discharging. A carbon monoxide alarm sounding. No heat at all in freezing weather. A gas odor means leaving the building and calling the utility first. The others mean switching the boiler off at its service switch, then closing the water feed if a leak is spreading.",
+      "replace": "Four symptoms qualify: a gas smell, a carbon monoxide alarm sounding, water pouring from the boiler or a relief valve discharging, and no heat at all in freezing weather. A gas smell means leaving the building and calling the gas utility or 911 from outside. A carbon monoxide alarm means getting everyone outside and calling 911 from there, without stopping to switch equipment off. For water or a discharging relief valve, keep clear of hot water and wet electrical equipment, leave valves and the water feed alone, and call for service.",
+      "why": "CRITICAL: CO alarm grouped with switching boiler off and closing water feed; evacuate and call 911 from outside first"
+    },
+    {
+      "find": "Keep a working carbon monoxide alarm on every sleeping floor, as the Illinois Carbon Monoxide Alarm Detector Act requires near sleeping areas.",
+      "replace": "Keep working carbon monoxide alarms near sleeping areas; the Illinois Carbon Monoxide Alarm Detector Act requires an operating alarm within 15 feet of each sleeping room in the dwellings it covers.",
+      "why": "CRITICAL: invented 'every sleeping floor' law wording; use 430 ILCS 135/10 scope (within 15 feet of each sleeping room)"
+    },
+    {
+      "find": "On a hot water loop a single cold radiator is almost always trapped air or a partly closed valve. Bleeding the radiator clears trapped air. On a steam system the usual causes are a dead air vent on that radiator or a failed thermostatic valve. A pitch problem that lets condensate pool in the pipe does the same.",
+      "replace": "On a hot water loop, a single cold radiator can come from trapped air, a partly closed valve or a restricted branch. On a steam system, possible causes include a failed air vent on that radiator, a failed thermostatic valve, or a pitch problem that lets condensate pool in the pipe. Bleeding a radiator and handling hot valves or fittings is technician work.",
+      "why": "MAJOR: 'almost always' trapped air; list possible causes by system type, bleeding and hot fittings are technician work"
+    },
+    {
+      "find": "It is the wrong answer for a home that needs central cooling as well as heat. It is also the wrong answer for a converted attic or rear addition that was never piped for heat. Those spaces are usually better served by a ",
+      "replace": "A home that also wants cooling does not have to give up radiator heat: ductless cooling or a separate air conditioning system can run alongside the boiler, and those options are worth comparing before any conversion. A converted attic or rear addition that was never piped for heat may be better served by a separate system such as a ",
+      "why": "MAJOR: blanket claim boiler is wrong for homes needing cooling; boiler heat can coexist with separate cooling"
+    },
+    {
+      "find": "Annual boiler maintenance blows down the low water cutoff, checks the gauge glass and tests the relief valve. A steam boiler making wet steam is skimmed, and operating pressure is set low, where a steam system is designed to run. A hot water system instead gets the expansion tank charge, the circulator and the air separator checked.",
+      "replace": "Depending on the equipment and manufacturer instructions, annual maintenance on a steam boiler can include testing the low water cutoff (blowing it down where it is a blow-down type), checking the gauge glass and testing the relief valve, with operating pressure checked against the system design. Skimming a boiler that makes wet steam is a corrective task once diagnosed, not an automatic annual step. A hot water system instead calls for checks of the expansion tank charge, the circulator and the air separator. The written scope should say which tasks apply.",
+      "why": "MAJOR: fixed maintenance checklist (blowdown, skimming) stated as automatic; make conditional on equipment and written scope"
+    },
+    {
+      "find": "On a steam boiler the low water cutoff is blown down and the gauge glass is read. On a hot water system the relief valve, expansion tank and circulator are inspected.",
+      "replace": "On a steam boiler the low water cutoff and gauge glass may be checked, as the equipment allows. On a hot water system the relief valve, expansion tank and circulator may be inspected.",
+      "why": "MAJOR (consistency with item 6): unregistered visit checklist stated as fixed company procedure"
+    },
+    {
+      "find": "A repair that uses a part carried on the van is usually finished the same visit, while a special order control means a return trip.",
+      "replace": "A repair that uses a part on hand may be finished the same visit, while a special order control means a return trip.",
+      "why": "Unregistered timeframe/stocking claim made conditional"
+    },
+    {
+      "find": "From September 15 to June 1 the general rule in the Chicago Municipal Code is at least 68 degrees from 8:30 a.m. to 10:30 p.m. The same rule sets 66 degrees from 10:30 p.m. to 8:30 a.m. where the landlord supplies the heat.",
+      "replace": "The Chicago Municipal Code sets a heating season from September 15 to June 1. Where the landlord supplies the heat, the general rule is at least 68 degrees from 8:30 a.m. to 10:30 p.m. and at least 66 degrees overnight.",
+      "why": "READ-01 minor: sentence over 30 words split"
+    },
+    {
+      "find": "when the Chicago Heat Ordinance season starts and every contractor takes the first cold calls at once.",
+      "replace": "when the Chicago Heat Ordinance season starts and many contractors take the first cold calls at once.",
+      "why": "Minor: universal claim softened"
+    },
+    {
+      "find": "subject to credit approval, and the work carries a satisfaction guarantee. When boiler",
+      "replace": "subject to credit approval. When boiler",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    }
+  ]
+}

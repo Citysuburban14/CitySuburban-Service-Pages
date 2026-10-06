@@ -1,0 +1,90 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "We identify the trade before the visit",
+      "replace": "Fixed and portable heaters need different help",
+      "why": "CRITICAL 1: unregistered phone-screening practice in why title"
+    },
+    {
+      "find": "We will separate those on the phone instead of charging you to discover it at the door.",
+      "replace": "Identifying the model, fuel and location before booking shows whether an HVAC visit is the right call.",
+      "why": "CRITICAL 1: phone trade screening and no-charge promise are not approved facts"
+    },
+    {
+      "find": "Attach the rating plate if you can; we will confirm whether the unit belongs in an HVAC service call.",
+      "replace": "A photo of the rating plate helps show whether the unit belongs in an HVAC service call.",
+      "why": "CRITICAL 1: form-note screening promise recast as customer guidance"
+    },
+    {
+      "find": "We confirm the appliance before booking so an HVAC call is not sold for a product that belongs at an appliance counter.",
+      "replace": "Confirming the appliance type before booking avoids paying for an HVAC call on a product that belongs at an appliance counter.",
+      "why": "CRITICAL 1: unregistered booking procedure recast as customer guidance"
+    },
+    {
+      "find": "Send the model plate and a wide photo. We will tell you whether the appliance is HVAC-serviceable before we book the call.",
+      "replace": "A photo of the model plate and a wide shot of the installation help show whether the appliance is HVAC-serviceable before a visit is booked.",
+      "why": "CRITICAL 1: CTA phone-triage promise recast"
+    },
+    {
+      "find": "Usually no. Most plug-in products are not economical or safe to field-repair. Send the model number first and we will tell you whether a service call makes sense.",
+      "replace": "Usually not. Many plug-in products are not designed for field repair, so the manufacturer's recall and service guidance is the first check, and a damaged heater should be taken out of use. Sharing the model number before booking helps show whether an HVAC service call makes sense.",
+      "why": "CRITICAL 1 / MAJOR 2: remove triage promise and universal safety/cost ranking; second-person voice"
+    },
+    {
+      "find": "Do you repair portable space heaters?",
+      "replace": "Does City & Suburban repair portable space heaters?",
+      "why": "MINOR 11: second-person FAQ question"
+    },
+    {
+      "find": "a portable electric product that should be replaced rather than repaired.",
+      "replace": "a portable electric product.",
+      "why": "MAJOR 2: universal replace-not-repair claim"
+    },
+    {
+      "find": "most plug-in heaters are consumer products whose safest, least expensive outcome is replacement.",
+      "replace": "a plug-in heater is a consumer product, so the manufacturer's recall and service guidance decides whether repair makes sense, and a damaged one should be taken out of use.",
+      "why": "MAJOR 2: unsupported safest/cheapest ranking"
+    },
+    {
+      "find": "Most service calls never enter that file,",
+      "replace": "Most service calls never appear in those records,",
+      "why": "Data-pipeline wording ('that file') in hero"
+    },
+    {
+      "find": "Most are retail appliances; replacement is usually safer and cheaper than field repair.",
+      "replace": "Most are retail appliances; the manufacturer's recall and service guidance decides whether repair makes sense. Safe use means plugging straight into a wall outlet, never an extension cord, keeping combustibles clear and not leaving it running unattended; one that smokes or smells of burning is a reason to leave and call 911.",
+      "why": "MAJOR 2/4: unsupported cost ranking; add portable-heater safe-use and fire boundary"
+    },
+    {
+      "find": "A fixed appliance with combustion air and a flue; venting is part of the diagnosis.",
+      "replace": "A fixed appliance with combustion air and a flue; venting is part of the diagnosis. For a gas smell, smoke or a carbon monoxide alarm, leave the building and call 911 or the gas utility from outside.",
+      "why": "MAJOR 4: missing gas, CO and fire safety boundary for combustion appliances"
+    },
+    {
+      "find": "Sometimes, if the control voltage and zoning are compatible. We check the wiring diagram and the heater's required control before recommending a thermostat.",
+      "replace": "Sometimes, if the control voltage and zoning are compatible. Many unit heaters use low-voltage controls, while electric heaters often need a line-voltage thermostat rated for the heater's circuit, and the two are not interchangeable. A sound recommendation is based on the heater's wiring diagram and required control, and the wiring belongs with a qualified technician rather than a DIY thermostat swap.",
+      "why": "MAJOR 3: unregistered company procedure; clarify line versus low voltage; no DIY rewiring"
+    },
+    {
+      "find": "Do not bypass a safety switch to keep it running.",
+      "replace": "Do not bypass a safety switch to keep it running. If there is a gas smell, leave the building and call 911 or the gas utility from outside.",
+      "why": "MAJOR 4: gas-odor safety boundary on the burner FAQ"
+    },
+    {
+      "find": "Repair and diagnosis do not.",
+      "replace": "Repair and diagnosis generally do not.",
+      "why": "Rule 4: absolute permit claim made conditional"
+    },
+    {
+      "find": "No permit",
+      "replace": "Usually no permit",
+      "why": "Rule 4: absolute permit claims made conditional"
+    },
+    {
+      "find": "The permit file contains",
+      "replace": "Chicago's permit records contain",
+      "why": "Data-pipeline wording in pricing note"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "The federal efficiency tax credit applies to qualifying high-efficiency heat pumps and furnaces. ComEd runs residential electric efficiency programs and Nicor Gas runs residential gas efficiency programs, each with its own equipment requirements. Eligibility turns on the rated efficiency of the exact models installed, which is why a proposal has to name the pairing. Which programs apply is confirmed at the estimate against the equipment selected.",
+      "replace": "The federal 25C home-improvement tax credit does not apply to equipment installed in 2026, because the IRS limits eligibility to improvements made through 2025. ComEd and the home's gas utility may offer efficiency programs; each sets its own equipment requirements, dates and application rules, so current availability should be confirmed with the utility. Eligibility turns on the rated efficiency of the exact models installed, which is why a proposal has to name the pairing. Which programs apply should be checked against the selected equipment before it is ordered.",
+      "why": "CRITICAL 2: remove expired 25C credit claim for 2026 work; utility programs made conditional"
+    },
+    {
+      "find": "A standard air-source heat pump on a Chicago install is usually handed over to the furnace somewhere between 25 and 35 degrees. A cold-climate model holds useful output much lower, and changeover settings of 5 to 15 degrees are common on those systems. The band is wide because heat pump capacity falls as the outdoor temperature falls, while the heat loss of the house rises at the same time.",
+      "replace": "There is no single Chicago changeover temperature. A cold-climate heat pump keeps useful output at lower outdoor temperatures than a standard air-source model, so it can often carry the house longer before the furnace takes over. Heat pump capacity falls as the outdoor temperature falls, while the heat loss of the house rises at the same time. Gas and electric rates and the control settings also affect where the handover is set.",
+      "why": "MAJOR 3: remove unsourced changeover ranges; explain what determines the point"
+    },
+    {
+      "find": "Often, yes, and that is the least expensive route into hybrid heating.",
+      "replace": "Often, yes, if the existing furnace is compatible.",
+      "why": "MAJOR 4: remove unverified least-expensive claim"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment and repairs all makes and models, so a furnace from another brand is no barrier. Where the furnace is already failing, replacing both at once usually costs less than two separate projects.",
+      "replace": "Compatibility, not the brand badge, decides the pairing: manufacturer-approved matches, blower capability, refrigerant and coil compatibility, and the controls all have to work together. City &amp; Suburban repairs all makes and models, and the written quote should name the proposed pairing. Where the furnace is already failing, compare replacing both at once with two separate projects.",
+      "why": "MAJOR 4: all-makes repair is not proof of cross-brand dual-fuel compatibility; remove unverified cost comparison"
+    },
+    {
+      "find": "Replacing heating equipment in the city is permitted work. A City of Chicago permit covers the equipment change, and the electrical work a heat pump adds normally sits in the same filing. Permit records for the 24 months to August 2026 show furnace and heat pump replacements filed routinely, so this is ordinary rather than exceptional. The practical questions are who files it, how much time the filing adds, and whether the fee sits inside the quote. Equipment replacements in Chicago generally need a City permit, and the written quote should say who pulls it.",
+      "replace": "Equipment replacement in Chicago generally involves a City permit, but the written quote should spell out which permits apply. The scope can include mechanical work for the furnace and heat pump and electrical work for a new circuit and disconnect; whether those are separate filings depends on the scope and current City rules, so confirm with the City. In the suburbs, the local village or city building department sets its own requirements. The practical questions are which permits are needed, who files them, how much time the filing adds, and whether the fees sit inside the quote.",
+      "why": "MAJOR 5: no promised permit filing combination; quote identifies permits, authority and responsibility; Chicago vs suburbs"
+    },
+    {
+      "find": "The symptom decides. Air from the vents feels cooler on heat pump heat than on gas heat, which is normal. A short cool stretch near freezing is usually a defrost cycle. No heat in a hard freeze is a same-night call. So is a burning smell, a breaker tripping on the outdoor unit, or a furnace locking out on repeated ignition attempts.",
+      "replace": "The symptom decides. For a gas smell, smoke, a burning odor or a carbon monoxide alarm, everyone should leave the building and call 911, or the gas utility for a gas smell, from outside, without touching the equipment. Cooler vent air on heat pump heat is normal, and a short cool stretch near freezing is often a defrost cycle. No heat in a hard freeze is an urgent call, as is a breaker that trips on the outdoor unit or a furnace locking out on repeated ignition attempts.",
+      "why": "MAJOR 6: explicit escape instructions for smoke, gas and CO before routine no-heat booking"
+    },
+    {
+      "find": "Maintenance plan members get priority dispatch when a cold snap fills the board.",
+      "replace": "Maintenance plan members get priority dispatch.",
+      "why": "MAJOR 6: keep qualified hours and priority dispatch to the approved fact"
+    },
+    {
+      "find": "In most Chicago setups only one source runs at a time, so the burner is never fighting the compressor.",
+      "replace": "In a conventional dual-fuel setup the controls lock out the heat pump while the furnace runs; whether any overlap is allowed depends on the matched equipment and the manufacturer's instructions. Electric resistance backup is a different configuration.",
+      "why": "MAJOR 7: explain lockout conditionally; remove unsupported local prevalence"
+    },
+    {
+      "find": "From inside the house the change shows up only as a short pause in airflow.",
+      "replace": "From inside the house the change usually shows up as a short pause in airflow.",
+      "why": "Rule 5: absolute softened"
+    },
+    {
+      "find": "Heat pump heating is cheapest in the shoulder seasons,",
+      "replace": "Heat pump heating tends to cost least in the shoulder seasons,",
+      "why": "HYG-06 minor: unproven superlative 'cheapest'"
+    },
+    {
+      "find": "A setting chosen carelessly is the most common reason a hybrid install disappoints,",
+      "replace": "A poorly chosen setting is a common reason a hybrid install disappoints,",
+      "why": "Rule 5: unsupported superlative"
+    },
+    {
+      "find": "Maintenance plans add seasonal check-ups, priority dispatch and member discounts for homes running two systems.",
+      "replace": "Maintenance plans add seasonal check-ups and priority dispatch for members; other plan terms should be confirmed in writing.",
+      "why": "Rule 2: member discounts not an approved plan term"
+    },
+    {
+      "find": "Two heat sources mean two seasonal services, not one.",
+      "replace": "Two heat sources usually mean two seasonal services, not one.",
+      "why": "Rule 5: fixed interval made conditional"
+    },
+    {
+      "find": "A dual-fuel system meets that standard the way a furnace does, because the gas side carries the coldest hours.",
+      "replace": "A dual-fuel system can meet that standard the way a furnace does, because the gas side carries the coldest hours.",
+      "why": "Rule 5: guaranteed outcome made conditional"
+    }
+  ]
+}

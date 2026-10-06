@@ -1,0 +1,80 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "Gas-fireplace work is adjacent to HVAC, but City & Suburban's exact service scope is not yet verified.",
+      "replace": "Gas-fireplace work is adjacent to HVAC, and whether City & Suburban can take on a specific fireplace has to be confirmed by phone before booking.",
+      "why": "CRITICAL: state the scope boundary in customer terms without implying capability"
+    },
+    {
+      "find": "Chicago recorded 29 permits mentioning fireplaces",
+      "replace": "Chicago's permit records show 29 permits citywide mentioning fireplaces",
+      "why": "Permit statistic as citywide market context only"
+    },
+    {
+      "find": "The draft can still be useful without overstating capability: it teaches the owner and customer exactly what must be verified before the service is activated. That includes appliance listing,",
+      "replace": "Before any repair or installation, a good assessment confirms the appliance listing,",
+      "why": "MAJOR: remove draft and activation language from the hero"
+    },
+    {
+      "find": "This is not a price book. It shows the scope variables and what the Chicago permit record can and cannot support so quotes can be compared on the same basis.",
+      "replace": "Gas-fireplace work is priced from the scope variables below, so quotes can be compared on the same basis.",
+      "why": "Editorial framing removed from pricing lede"
+    },
+    {
+      "find": "Only 29 Chicago permits mention fireplaces, below the 100-costed-permit threshold for a reliable median. Do not turn the $177,610 whole-project median into a fireplace price. Quote from the listed appliance, vent route, gas, electrical, and finish scope after capability is confirmed.",
+      "replace": "Only 29 Chicago permits citywide mention fireplaces, too few to suggest a typical price. A fair quote reflects the listed appliance, vent route, gas, electrical, and finish scope.",
+      "why": "CRITICAL PRICE-01: remove $177,610 median and internal quoting instruction"
+    },
+    {
+      "find": "Permit required",
+      "replace": "Permit usually required",
+      "why": "Legal claim made conditional"
+    },
+    {
+      "find": " That warning stays visible until the owner verifies capability and any required registrations.",
+      "replace": "",
+      "why": "MAJOR: remove publishing-status commentary"
+    },
+    {
+      "find": "A direct-vent unit, vent-free log set and masonry-fireplace insert are not interchangeable.",
+      "replace": "A direct-vent unit, vent-free log set and masonry-fireplace insert are not interchangeable, and vent-free appliances are not allowed or suitable in every location, so the listing and local requirements decide what can be installed.",
+      "why": "MAJOR: do not imply vent-free suitability everywhere"
+    },
+    {
+      "find": "Before accepting a call, confirm the model plate, fuel, vent type, and whether parts remain listed for that appliance. Before promising repair, check whether the valve,",
+      "replace": "Before booking, it helps to have the model plate, fuel and vent type, and to ask whether parts remain listed for that appliance. A repair quote should confirm whether the valve,",
+      "why": "Internal staff procedure recast as what the customer should provide and what a quote should include"
+    },
+    {
+      "find": "We will not blur an adjacent trade",
+      "replace": "Gas fireplaces are an adjacent trade",
+      "why": "Unregistered company promise removed"
+    },
+    {
+      "find": "Until the owner confirms gas-fireplace scope, the correct promise is a phone check and an honest referral when the appliance belongs to a hearth specialist.",
+      "replace": "Some fireplaces belong with a hearth specialist, so whether a specific appliance fits City & Suburban's scope should be confirmed by phone at (773) 238-3838 before booking.",
+      "why": "CRITICAL: remove owner/draft language and unregistered referral promise"
+    },
+    {
+      "find": "This scope must be confirmed with the owner before the page is published or a visit is booked. Send the model plate and a photo of the vent arrangement.",
+      "replace": "Gas-fireplace service is not a confirmed City & Suburban service for every appliance. Call (773) 238-3838 to confirm whether a specific fireplace fits its current scope before booking, with the model plate and a photo of the vent arrangement on hand.",
+      "why": "CRITICAL: remove publishing language; no implied capability"
+    },
+    {
+      "find": "Stop use if you smell gas or see abnormal flame behavior.",
+      "replace": "Black glass is a symptom to diagnose, not a reason to clean and relight. Stop using the fireplace if the flame looks abnormal or the glass is cracked. For a gas smell, a carbon monoxide alarm or smoke, leave the building without operating switches or controls and call 911 or the gas utility from outside.",
+      "why": "MAJOR safety: gas odor, CO alarm and smoke mean leave and call from outside"
+    },
+    {
+      "find": "What should be verified before this page goes live?",
+      "replace": "What should a gas fireplace contractor confirm before work starts?",
+      "why": "MAJOR: replace editorial FAQ with a customer-facing contractor question"
+    },
+    {
+      "find": "Confirm that City & Suburban or a documented partner accepts the appliance class,",
+      "replace": "A contractor should confirm in writing that it accepts the appliance class,",
+      "why": "Remove implied documented partner; customer-facing guidance"
+    }
+  ]
+}

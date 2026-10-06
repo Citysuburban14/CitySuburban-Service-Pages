@@ -1,0 +1,105 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "City &amp; Suburban installs American Standard heat pump equipment. It also sets the outdoor temperature at which a backup heat source takes over. That keeps the house warm through a deep cold snap. For most of a Chicago heating season the heat pump carries the load on its own, and the backup is there for the extremes.",
+      "replace": "City &amp; Suburban installs American Standard heat pump equipment. A written proposal should specify the outdoor temperature at which a backup heat source takes over, so the house stays warm through a deep cold snap. A correctly sized system can carry most of a Chicago heating season on its own, with the backup there for the extremes.",
+      "why": "CRITICAL: unverified company control programming (sets backup changeover); recast as what a proposal should specify"
+    },
+    {
+      "find": "The decision starts with the building, not the equipment. City &amp; Suburban looks at how the home is heated now, whether usable ducts exist, and what the electrical service can carry.",
+      "replace": "The decision starts with the building, not the equipment. A sound assessment, and the quote that follows it, should address how the home is heated now, whether usable ducts exist, and what the electrical service can carry.",
+      "why": "CRITICAL: unverified company assessment checklist; recast as what the assessment and quote should address"
+    },
+    {
+      "find": "A NATE-certified technician sees the house before anything is quoted.",
+      "replace": "City &amp; Suburban technicians are NATE-certified; homeowners can ask for the assessment findings with the written quote.",
+      "why": "CRITICAL: unverified promise of a prequote house review"
+    },
+    {
+      "find": "City &amp; Suburban has a NATE-certified technician review the house and the existing ducts before a heat pump is quoted.",
+      "replace": "A heat pump quote should show the heat-loss basis and say whether the existing ducts were checked.",
+      "why": "CRITICAL (item 3, sizing): unverified company sizing procedure recast as quote content"
+    },
+    {
+      "find": "City &amp; Suburban installs either arrangement with American Standard equipment. It sets the thermostat changeover so the backup fires only when the heat pump cannot keep up.",
+      "replace": "City &amp; Suburban installs American Standard equipment. Either way, the proposal should state the thermostat changeover setting, so the backup runs only when the heat pump cannot keep up.",
+      "why": "CRITICAL (item 3, backup arrangements): unverified changeover programming recast as proposal content"
+    },
+    {
+      "find": "Not by itself. A heat pump moves heat rather than burning fuel, so it is efficient in most Chicago weather.",
+      "replace": "It depends on model performance, utility rates, the heat loss of the building and how much the backup runs. A heat pump moves heat rather than burning fuel, so it can be efficient in much Chicago weather, but efficiency alone does not guarantee a lower bill.",
+      "why": "MAJOR: 'Not by itself' implies cheaper bill; lead with what running cost depends on"
+    },
+    {
+      "find": "City &amp; Suburban sets the thermostat changeover on either arrangement.",
+      "replace": "A useful comparison asks for the expected changeover temperature, the backup type and local gas and electric rates, rather than a promised saving.",
+      "why": "MAJOR: unverified company changeover claim replaced with a non-price comparison framework"
+    },
+    {
+      "find": "A straightforward changeover usually runs one to two days. It runs longer when electrical work or duct changes are part of the scope. Crews recover refrigerant from the old system, then set the new outdoor unit clear of snow drift.",
+      "replace": "A straightforward changeover often takes one to two days, and longer when electrical work or duct changes are part of the scope; the written quote should state the expected schedule. A typical installation recovers refrigerant from the old system, then sets the new outdoor unit clear of snow drift.",
+      "why": "Unregistered timeframe and crew procedure recast as typical scope"
+    },
+    {
+      "find": "Chicago requires a permit for HVAC equipment replacement, as reflected in the City permit records. ",
+      "replace": "",
+      "why": "Unqualified legal claim removed; the next sentence already says replacements generally need a City permit"
+    },
+    {
+      "find": "Chicago requires a permit for HVAC equipment replacement. Equipment replacements in Chicago generally need a City permit",
+      "replace": "Equipment replacements in Chicago generally need a City permit",
+      "why": "Install module: same unqualified legal claim removed"
+    },
+    {
+      "find": "Burning smells, smoke, repeated breaker trips, or a cabinet encased in ice are reasons to shut the system off at the disconnect.",
+      "replace": "Smoke, sparks or a burning smell means leaving the building and calling 911 from outside. Repeated breaker trips or a cabinet encased in ice call for service: leave the breaker off, keep clear of the iced unit, and set the thermostat to off if that is safe.",
+      "why": "CRITICAL: smoke/burning grouped with shutting off at the outdoor disconnect; separate fire evacuation from ice/breaker service calls"
+    },
+    {
+      "find": "City &amp; Suburban diagnoses the defrost circuit rather than topping off refrigerant, which hides a leak instead of finding it.",
+      "replace": "A sound repair diagnosis checks the defrost controls and looks for a leak before any refrigerant is added, because topping off hides a leak instead of finding it.",
+      "why": "CRITICAL (item 3, defrost diagnosis): unverified company diagnostic claim recast as good practice"
+    },
+    {
+      "find": "Shoveling snow back from the cabinet and keeping the unit above drift level prevents much of it.",
+      "replace": "Shoveling snow back from the cabinet and keeping the unit above drift level can prevent some of it.",
+      "why": "Minor: deterministic prevention claim softened"
+    },
+    {
+      "find": "Because the equipment works through both seasons, City &amp; Suburban advises a check in the fall before the heating load arrives, and another in spring.",
+      "replace": "Because the equipment works through both seasons, homeowners can ask whether a check before the heating season and another before the cooling season suits their system.",
+      "why": "CRITICAL (item 3, seasonal advice): unverified company advice recast as homeowner question"
+    },
+    {
+      "find": "City &amp; Suburban prices the repair and the replacement before the homeowner has to choose.",
+      "replace": "City &amp; Suburban diagnoses before quoting and puts the exact price in writing before work begins, so a repair figure can be weighed against a replacement proposal.",
+      "why": "Unregistered practice restated with approved facts (diagnosis first, written price)"
+    },
+    {
+      "find": "\"We did a bit of online searching and felt the pricing was fair.\"</a> The same math applies to a tired heat pump. Repair cost is weighed against the years of service left, with both figures written down first.",
+      "replace": "\"We did a bit of online searching and felt the pricing was fair and decided to replace the whole thing.\"</a> Those reviews describe furnace and general HVAC decisions, not heat pump results. For a heat pump, the same comparison weighs a written repair quote against the condition and repair history of the system.",
+      "why": "CRITICAL: Mardi K. quote truncated; restore complete sentence. MAJOR: remove 'same math applies to a heat pump' inference from furnace review"
+    },
+    {
+      "find": "City &amp; Suburban says so when the building argues against a conversion, and will keep the existing <a href=\"/services/heating/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">home heating</a> system running instead.",
+      "replace": "An honest assessment should say so when the building argues against a conversion. City &amp; Suburban repairs all makes and models, so keeping the existing <a href=\"/services/heating/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">home heating</a> system running remains an option.",
+      "why": "CRITICAL (item 3): unverified assessment practice and promise recast; link kept"
+    },
+    {
+      "find": "Rob, the second generation of the founding family, runs it today. That is why the same name turns up across repeat visits.",
+      "replace": "Rob, the second generation of the founding family, runs it today.",
+      "why": "Minor: unsupported inference removed"
+    },
+    {
+      "find": "with no hidden fees, and the work carries a satisfaction guarantee. Andrew T.",
+      "replace": "with no hidden fees. Andrew T.",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    },
+    {
+      "find": "pricing is upfront with no hidden fees, and the work carries a satisfaction guarantee. American Standard",
+      "replace": "pricing is upfront with no hidden fees. American Standard",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    }
+  ]
+}

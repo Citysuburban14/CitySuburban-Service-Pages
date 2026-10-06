@@ -1,0 +1,60 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "It often decides the comparison. R-22 is no longer produced. Equipment still running it depends on reclaimed supply, and a single large leak can end the repair path on its own. New equipment now ships with A2L refrigerants, which carry different line sizing, leak detection and handling rules than the R-410A generation. Reusing an existing line set is a question of condition and compatibility, not a given, and a contaminated circuit should not be carried into new equipment. City &amp; Suburban repairs all makes and models, so a building can stage replacement while older equipment stays serviceable.",
+      "replace": "It often decides the comparison. R-22 is no longer produced. Equipment still running it depends on reclaimed supply. A single large leak can end the repair path on its own. Much new equipment now uses A2L refrigerants, but not all of it does. Where an A2L unit is chosen, line sizing, leak detection and handling rules can differ from the R-410A generation. Which rules apply depends on the equipment category, the refrigerant selected, the current transition rules and the maker's instructions. Reusing an existing line set is a question of condition and compatibility, not a given. A contaminated circuit should not be carried into new equipment.",
+      "why": "MAJOR faq: qualify blanket A2L claim by equipment category, refrigerant, transition rules and manufacturer; shorter sentences (READ-02)"
+    },
+    {
+      "find": "City &amp; Suburban prices upfront, with no hidden fees, so the written figure is the figure. Wells Fargo Home Projects financing is available, subject to credit approval, for an owner spreading a larger project. Scope and payment terms both get settled before the crew is booked. New equipment carries the manufacturer's parts warranty, and registration after installation is what secures the full term. Labor coverage is a separate term, so its length belongs in the written scope. The completed work carries a satisfaction guarantee. Joseph F. wrote in April 2026: <a href=\"https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pRek9HdExZa3h6WDJNMmEycDNjV1ZpUWxONU1XYxAB!2m1!1s0x0:0xb1c6abfab8cf849b!3m1!1s2@1:CAIQACodChtycF9oOjQzOGtLYkxzX2M2a2p3cWViQlN5MWc%7C%7C?hl=en\" target=\"_blank\" style=\"color: #186AA4; font-weight: 600;\">“They came in under budget and installed the full system way faster than anticipated.”</a>",
+      "replace": "City &amp; Suburban prices upfront, with no hidden fees, so the written figure is the figure. City &amp; Suburban also offers Wells Fargo Home Projects financing, subject to credit approval. It is a consumer product, so eligibility for a commercial or multi-unit project must be confirmed first. Scope and payment terms should both be settled before the crew is booked. New equipment usually carries a manufacturer's parts warranty. Terms vary, and some makers require registration after installation for the full term. Labor coverage is a separate term, so its length belongs in the written scope. Joseph F. wrote in April 2026: <a href=\"https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pRek9HdExZa3h6WDJNMmEycDNjV1ZpUWxONU1XYxAB!2m1!1s0x0:0xb1c6abfab8cf849b!3m1!1s2@1:CAIQACodChtycF9oOjQzOGtLYkxzX2M2a2p3cWViQlN5MWc%7C%7C?hl=en\" target=\"_blank\" style=\"color: #186AA4; font-weight: 600;\">“They came in under budget and installed the full system way faster than anticipated.”</a>",
+      "why": "MAJOR faq: financing must not imply commercial/multi-unit eligibility; qualify warranty claim; remove unapproved satisfaction guarantee"
+    },
+    {
+      "find": "Phased replacement can keep unaffected business spaces operating while another area closes, provided the systems can be separated. Before ordering equipment, identify the first area affected and the condition for returning it to service. Record business hours, access restrictions and temperature-sensitive activities when preparing for the shutdown. No fixed outage duration fits every building. A tenant should coordinate landlord approval and the building access contact before announcing a closure. After the exchange, operating instructions should explain how occupied spaces return to normal use.",
+      "replace": "Before ordering, the replacement scope should confirm curb or pad fit and electrical and gas capacity. It should say whether any retained coil or air handler is compatible with the new equipment. It should name the refrigerant, the rules that apply to it, and who removes and disposes of the old unit. Phased replacement can keep unaffected spaces open while another area closes, if the systems can be separated. Identify the first area affected and when it returns to service. No fixed outage duration fits every building. A tenant should get landlord approval and an access contact before announcing a closure.",
+      "why": "MAJOR install: replace generic intro with the replacement decision (curb fit, gas/electrical capacity, retained coil compatibility, refrigerant rules, shutdown planning, disposal)"
+    },
+    {
+      "find": "City &amp; Suburban confirms the outage window in writing before the exchange, so the shutdown is scheduled rather than discovered.",
+      "replace": "The outage window should be confirmed in writing before the exchange, so the shutdown is scheduled rather than discovered.",
+      "why": "Rule 2: unverified company practice recast as what the written scope should include"
+    },
+    {
+      "find": "Brendan B. reviewed an install in May 2026.",
+      "replace": "Brendan B. reviewed an install in May 2026; the review does not say the job was commercial.",
+      "why": "Rule 6: residential review not proof of commercial capability"
+    },
+    {
+      "find": "Equipment replacement in Chicago is permitted work, as the general rule. The record is public.",
+      "replace": "Many equipment replacements in Chicago need a City permit, but the answer depends on the scope. Permit records are public.",
+      "why": "Rules 4/5: qualify blanket permit claim"
+    },
+    {
+      "find": "Rooftop replacement shows up in those reviews.",
+      "replace": "One review describes a rooftop install; it does not say whether the building was commercial.",
+      "why": "Rule 6: residential review not proof of commercial capability"
+    },
+    {
+      "find": "A property manager should also expect the exact price in writing before any work begins, and a satisfaction guarantee on the completed job.",
+      "replace": "A property manager should also expect the exact price in writing before any work begins.",
+      "why": "Rule 1: satisfaction guarantee not an approved fact"
+    },
+    {
+      "find": "Manufacturer parts warranty, registration requirements and labor coverage need separate written terms; City &amp; Suburban provides a satisfaction guarantee.",
+      "replace": "Manufacturer parts warranty, registration requirements and labor coverage need separate written terms.",
+      "why": "Rule 1: satisfaction guarantee not an approved fact"
+    },
+    {
+      "find": "Wells Fargo Home Projects credit card, subject to credit approval.",
+      "replace": "Wells Fargo Home Projects credit card, subject to credit approval. Eligibility for business projects must be confirmed.",
+      "why": "MAJOR (financing): consumer financing must not imply commercial eligibility"
+    },
+    {
+      "find": "One rule of thumb multiplies the equipment age by the quoted repair cost. When the result passes $5,000, replacement is usually the better value.",
+      "replace": "One rule of thumb multiplies the equipment age by the quoted repair cost. A result above $5,000 often points to replacement.",
+      "why": "READ-02 major: plainer wording; soften rule-of-thumb verdict"
+    }
+  ]
+}

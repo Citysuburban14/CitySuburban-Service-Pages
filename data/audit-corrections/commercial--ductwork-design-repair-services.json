@@ -1,0 +1,105 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "A technician measures airflow and traces the affected runs before anything is quoted, and the exact price goes in writing before work starts.",
+      "replace": "A technician diagnoses the problem before anything is quoted, and the exact price goes in writing before work starts.",
+      "why": "CRITICAL 1: unregistered airflow-measurement protocol (hero repeat of FAQ claim); use approved diagnosis-first fact"
+    },
+    {
+      "find": "A design starts with measurement, not a drawing. The survey records room sizes, occupancy, equipment capacity and the runs that already exist.",
+      "replace": "A sound design starts with measurement, not a drawing. The survey should record room sizes, occupancy, equipment capacity and the runs that already exist.",
+      "why": "CRITICAL 1: recast design procedure as what a good design includes"
+    },
+    {
+      "find": "Damper positions get recorded, so the balanced settings can be checked next season. City &amp; Suburban measures airflow and traces the affected runs before anything is quoted, and the exact price goes in writing before work starts.",
+      "replace": "Damper positions should be recorded, so the balanced settings can be checked next season. A design proposal should state which measurements it rests on. City &amp; Suburban diagnoses the problem before anything is quoted, and the exact price goes in writing before work starts.",
+      "why": "CRITICAL 1: 'measures airflow and traces the affected runs' is not a registered practice; recast as proposal content"
+    },
+    {
+      "find": "On a duct complaint that means measuring airflow, tracing the affected runs, and checking what is reachable above the ceiling. Small work such as sealing a joint or setting a damper is often finished in one visit. Balancing a whole floor takes longer. A build-out redesign gets scheduled around the other trades",
+      "replace": "On a duct complaint, a useful assessment covers airflow in the affected rooms, the route of the affected runs and what is reachable above the ceiling. Small work such as sealing a joint or setting a damper can sometimes be finished in one visit, depending on access. Balancing a whole floor takes longer. A build-out redesign is usually scheduled around the other trades",
+      "why": "CRITICAL 1 (same protocol claim) and unregistered one-visit timeframe made conditional"
+    },
+    {
+      "find": "Yes, and most commercial duct work is staged that way. Sealing and damper work happens zone by zone, and ceiling tiles go back the same day. Noisy cutting gets grouped into after-hours or weekend blocks. Phasing costs a little more labor and avoids closing a floor.",
+      "replace": "Often, depending on access and the scope in the written proposal. Sealing and damper work can usually be done zone by zone, and whether ceiling tiles go back the same day depends on the area opened and the building rules. Noisy cutting can be grouped into after-hours or weekend blocks where the building and the proposal allow it. Phasing usually adds some labor in exchange for keeping a floor open.",
+      "why": "MAJOR 3: staging, same-day ceiling restoration and after-hours work qualified by access and written proposal"
+    },
+    {
+      "find": "As a general rule, mechanical alteration work in Chicago is permitted work, and scale decides the path. A like-for-like duct repair is not the same filing as a new layout tied to a build-out. Larger alteration work is recorded against a City of Chicago permit. Occupied buildings carry a second obligation. Where the landlord supplies heat, the Chicago Heat Ordinance (Municipal Code 13-196-410) sets a floor. It is at least 68 degrees from 8:30 a.m. to 10:30 p.m., and 66 degrees overnight, from September 15 to June 1.",
+      "replace": "Often, and scale decides the path. Many mechanical alterations in Chicago need a City of Chicago permit, and a like-for-like duct repair may be treated differently from a new layout tied to a build-out, so confirm the requirement for the specific scope with the City before work is scheduled. Mixed-use buildings can carry a second obligation. Where the landlord supplies heat to apartments, the Chicago Heat Ordinance (Municipal Code 13-196-410) sets minimums for those dwelling units: at least 68 degrees from 8:30 a.m. to 10:30 p.m. and 66 degrees overnight, from September 15 to June 1. Heat in commercial-only space is usually a matter for the lease.",
+      "why": "MAJOR 4: Heat Ordinance scoped to dwelling units in mixed-use buildings; permit claim made conditional"
+    },
+    {
+      "find": "not only a sheet metal question. Larger alteration work is recorded against a City of Chicago permit.",
+      "replace": "not only a sheet metal question. Larger alteration work may need a City of Chicago permit, so confirm the requirement for the specific route.",
+      "why": "Legal claim made conditional"
+    },
+    {
+      "find": "Those reviews describe the conditions commercial duct work involves, including roof-mounted equipment and multi-story access. Christopher A. wrote in June 2025 about one such install.",
+      "replace": "Most of those reviews come from homes and condos, so they speak to communication and site access rather than to commercial duct design or balancing. Christopher A. wrote in June 2025 about an install that needed roof access.",
+      "why": "MAJOR 2: residential reviews no longer presented as proof of commercial duct capability"
+    },
+    {
+      "find": "A satisfaction guarantee covers the work, and the technicians on site are NATE-certified.",
+      "replace": "The technicians on site are NATE-certified. A building owner comparing contractors can ask for examples of comparable commercial duct projects.",
+      "why": "Rule 1: satisfaction guarantee is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban offers maintenance plans with seasonal check-ups, priority dispatch and member discounts. Those sit on the ",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch, and plan options sit on the ",
+      "why": "Rule 2: plan terms beyond member priority dispatch are not approved"
+    },
+    {
+      "find": "page, and Wells Fargo Home Projects financing is available, subject to credit approval.",
+      "replace": "page. Wells Fargo Home Projects financing is a consumer product subject to credit approval, so eligibility for a business project must be confirmed first.",
+      "why": "Rule 1: consumer financing must not imply commercial eligibility"
+    },
+    {
+      "find": "Wells Fargo Home Projects credit card, subject to credit approval.</p>",
+      "replace": "Wells Fargo Home Projects credit card, subject to credit approval; eligibility for business projects must be confirmed.</p>",
+      "why": "Rule 1: consumer financing must not imply commercial eligibility"
+    },
+    {
+      "find": "Three cases move to the front of the line.",
+      "replace": "Three cases call for prompt attention.",
+      "why": "Rule 2: avoid implying unapproved priority dispatch"
+    },
+    {
+      "find": "Backdrafting is the hazard behind carbon monoxide alarm requirements in Illinois dwellings, and the same return-air mistake can be made in a mixed-use building over occupied apartments.",
+      "replace": "That risk matters most in a mixed-use building over occupied apartments. If a carbon monoxide alarm sounds or gas is smelled, everyone leaves the building first and calls 911, or the gas utility for a gas odor, from outside.",
+      "why": "Safety rule 3: CO/gas first instruction is to leave and call from outside; READ-01 long sentence shortened"
+    },
+    {
+      "find": "Walls move during a build-out while the registers stay in the old positions, so a trunk drawn for an open floor plate ends up feeding closed offices.",
+      "replace": "Walls move during a build-out while the registers stay put. A trunk drawn for an open floor plate then ends up feeding closed offices.",
+      "why": "READ-01 minor: long sentence split"
+    },
+    {
+      "find": "small industrial spaces, and condo or association common areas. City &amp; Suburban repairs all makes and models. Coverage runs to",
+      "replace": "small industrial spaces, and condo or association common areas. City &amp; Suburban coverage runs to",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": " City &amp; Suburban repairs all makes and models.</p>",
+      "replace": " City &amp; Suburban diagnoses before quoting, so the visit starts by confirming which kind of work the building needs.</p>",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban diagnoses duct faults on all makes and models.",
+      "replace": "City &amp; Suburban diagnoses duct faults before anything is quoted.",
+      "why": "Rule 1: 'all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment. Explore commercial HVAC installation",
+      "replace": "Explore commercial HVAC installation",
+      "why": "Rule 1: American Standard installer claim is not an approved fact"
+    },
+    {
+      "find": "Explore a commercial maintenance plan for seasonal check-ups and ongoing equipment care.",
+      "replace": "Explore a commercial maintenance plan for ongoing equipment care.",
+      "why": "Rule 2: seasonal check-ups are not an approved plan term"
+    }
+  ]
+}

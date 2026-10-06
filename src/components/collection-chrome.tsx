@@ -34,9 +34,9 @@ export function CollectionHeader() {
       <div className="site-topbar">
         <div className="site-shell site-topbar-inner">
           <span className="site-topbar-text">Trusted HVAC Experts &lsquo;From City to Suburbs&rsquo;</span>
-          <span className="site-topbar-text site-topbar-divided">Working Hours: 24/7</span>
-          <a className="site-topbar-rating site-topbar-divided" href={business.reviewsHref} aria-label="Google rating 5.0 out of 5">
-            <img src={business.googleRating} alt="" width={118} height={22} />
+          <span className="site-topbar-text site-topbar-divided">Emergency service till midnight, Mon–Sat</span>
+          <a className="site-topbar-rating site-topbar-divided" href={business.reviewsHref} aria-label="Google rating 4.98 out of 5 from 204 reviews">
+            <span className="site-topbar-stars" aria-hidden="true">★</span><span>4.98 · 204 Google reviews</span>
           </a>
           <nav className="site-topbar-links" aria-label="Company">
             {topBarLinks.map((link) => <a href={link.href} key={link.label}>{link.label}</a>)}
@@ -44,7 +44,7 @@ export function CollectionHeader() {
         </div>
       </div>
 
-      <header className="site-header">
+      <header className="site-header" data-module="site-header">
         <div className="site-shell site-header-inner">
           <a className="site-logo" href={`${LIVE_SITE}/`}>
             <img src={business.logo} alt="City Suburban Logo" width={190} height={67} />

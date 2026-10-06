@@ -1,0 +1,85 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "A cracked heat exchanger ends the repair-versus-replacement decision regardless of furnace age.",
+      "replace": "A suspected cracked heat exchanger means the furnace stays off until a professional safety evaluation. A manufacturer-approved heat exchanger replacement can then be compared with full furnace replacement, where parts and warranty permit.",
+      "why": "CRITICAL 2: cracked heat exchanger does not universally force full furnace replacement"
+    },
+    {
+      "find": "A cracked heat exchanger is the other limit, because that fault calls for replacement rather than a part swap.",
+      "replace": "A cracked heat exchanger is the other limit: the furnace should stay off until a safety evaluation, then a manufacturer-approved heat exchanger replacement is compared with a new furnace.",
+      "why": "CRITICAL 2: same cracked-exchanger absolute in the service-fit FAQ"
+    },
+    {
+      "find": "Most no-heat calls start with something a pre-season check would have caught.",
+      "replace": "Many no-heat calls start with something a pre-season check could have caught.",
+      "why": "CRITICAL 3: remove absolute/deterministic prevention claim"
+    },
+    {
+      "find": "Igniters and capacitors wear on a schedule, so age alone predicts the failure.",
+      "replace": "Igniters and capacitors wear with use, but age alone does not predict when one fails; testing shows their condition.",
+      "why": "CRITICAL 3: remove deterministic failure prediction"
+    },
+    {
+      "find": "puts that visit on a seasonal schedule and adds priority dispatch. City &amp; Suburban runs both.",
+      "replace": "puts that visit on a seasonal schedule and adds priority dispatch. City &amp; Suburban runs both. Maintenance can reduce avoidable failures, but it cannot prevent every one.",
+      "why": "CRITICAL 3: state that maintenance cannot prevent every failure"
+    },
+    {
+      "find": "The owner still runs service calls. City &amp; Suburban has been family-owned since 1952 and is run by Rob, the second generation of the founding family. The person who diagnoses a furnace is often the person who repairs it, and the one who sees it again next winter. Technicians are NATE-certified, and the company repairs all makes and models. That includes systems well outside the American Standard equipment it installs. Heather S. (Dec 2025) came back three times and wrote: \"Same man, same excellent service.\"",
+      "replace": "City &amp; Suburban has been family-owned since 1952 and is run by Rob, the second generation of the founding family. Diagnosis comes before any quote, and the exact price goes in writing for approval before work starts, with no hidden fees. Technicians are NATE-certified, and the company repairs all makes and models. Some customers describe seeing the same technician on return visits; that is an individual experience, not a scheduling promise. Heather S. (Dec 2025) came back three times and wrote: \"Same man, same excellent service.\"",
+      "why": "MAJOR 4: remove unregistered owner-dispatch and technician-continuity promises; unapproved American Standard install claim"
+    },
+    {
+      "find": "Four checks are safe and sometimes enough. Confirm the thermostat is set to heat and has fresh batteries. Find the furnace service switch on the wall or the cabinet, which looks like a light switch and is easy to flip by mistake. Check the breaker. Check the filter, because a clogged filter trips the high limit and causes short cycling. Anything past those four, including gas valves, burners and flue pipes, belongs to a technician.",
+      "replace": "With a gas smell, smoke or a CO alarm, skip all checks: leave and call 911 or the gas utility from outside. Otherwise, a few checks are safe. Confirm the thermostat is set to heat and has working batteries. Find the furnace service switch, which looks like a light switch and is easy to flip by mistake. Look at the breaker if the panel is safely reachable; reset it once at most. Change an accessible filter only with power off as the manufacturer's instructions describe, since a clogged filter can trip the high limit. Gas valves, burners and flue pipes belong to a technician.",
+      "why": "MAJOR 5: add hazard stop, no repeated breaker resets, power isolation before filter change"
+    },
+    {
+      "find": "City &amp; Suburban books same-day service when the schedule allows once those four come up empty.",
+      "replace": "City &amp; Suburban books same-day service when the schedule allows once those checks come up empty.",
+      "why": "MAJOR 5: keep wording consistent with revised checks"
+    },
+    {
+      "find": "Limited access does not explain the fault. Keep the closet clear so the technician can reach the furnace cabinet.",
+      "replace": "An upflow furnace in a closet and a horizontal unit in an attic or crawlspace need different access for the same repair. Access affects labor time, not the diagnosis; keep the closet clear.",
+      "why": "MAJOR 6: replace superficial card with service-relevant access difference"
+    },
+    {
+      "find": "A repair decision depends on the fault and overall condition. Age alone is not a diagnosis.",
+      "replace": "A high-efficiency condensing furnace has a condensate drain and plastic venting that a standard-efficiency furnace lacks, so the possible faults differ. The repair decision depends on the confirmed fault and overall condition.",
+      "why": "MAJOR 6: replace superficial card with condensing versus noncondensing difference"
+    },
+    {
+      "find": "City &amp; Suburban backs its work with a satisfaction guarantee, and a fault that returns goes back to the company that made the repair. The parts and labor period for a repaired component belongs in writing alongside the price. Replacement parts also carry manufacturer coverage, which is separate from the system's own warranty.",
+      "replace": "A fault that returns after a repair should go back to the company that made it, with the original invoice. Before approving a City &amp; Suburban repair, ask what parts and labor coverage applies to the repaired component and for how long; that term belongs in writing alongside the price. Replacement parts may also carry manufacturer coverage, which is separate from the system's own warranty.",
+      "why": "Rule 2: satisfaction guarantee / warranty term not an approved fact; recast as question to settle in writing"
+    },
+    {
+      "find": "The company carries a BBB A+ rating and backs the work with a satisfaction guarantee.",
+      "replace": "The company carries a BBB A+ rating.",
+      "why": "Rule 1: satisfaction guarantee not an approved fact"
+    },
+    {
+      "find": "American Standard is the brand the company installs, but repair parts are matched to the furnace in the house, not to a preferred label. Second opinions are routine work.",
+      "replace": "Repair parts are matched to the furnace in the house, not to a preferred label. A second opinion on a diagnosis is a reasonable request.",
+      "why": "Rule 1/2: unapproved install-brand and routine-practice claims"
+    },
+    {
+      "find": "One common rule of thumb multiplies system age by repair cost, and reads a result above $5,000 as a signal to replace.",
+      "replace": "One common rule of thumb multiplies system age by repair cost, and treats a result above $5,000 as a reason to compare replacement, not an automatic verdict.",
+      "why": "Repair-replace: rule of thumb is not a compulsory replacement threshold"
+    },
+    {
+      "find": "Maintenance plan members get priority dispatch when the phones are busy.",
+      "replace": "Maintenance plan members get priority dispatch.",
+      "why": "Minor: keep priority dispatch to the approved fact"
+    },
+    {
+      "find": "Most repairs finish inside one visit.",
+      "replace": "Many repairs finish inside one visit, depending on the part, access and part availability.",
+      "why": "Minor: absolute timeframe made conditional"
+    }
+  ]
+}

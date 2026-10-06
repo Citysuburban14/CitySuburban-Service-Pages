@@ -1,0 +1,60 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "A custom plan discussion suits buildings where downtime costs money and staff do not service mechanical equipment. Examples include restaurants, salons, medical and dental suites, offices, retail, churches and multi-tenant buildings with landlord-owned rooftop units. A full-time building engineer already changing filters changes the proposed responsibilities. Equipment past its service life calls for discussing <a href=\"/services/commercial/commercial-hvac-system-replacement/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial HVAC replacement</a>. Houses and condos can review <a href=\"/services/heating/hvac-maintenance-plans/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">residential maintenance plans</a>. City &amp; Suburban offers seasonal check-ups, priority dispatch and member discounts. Discuss commercial scope building by building before enrollment.",
+      "replace": "A custom plan suits buildings where downtime costs money and staff do not service mechanical equipment. Examples include restaurants, salons, medical and dental suites, offices, retail, churches and multi-tenant buildings with landlord-owned rooftop units. A full-time building engineer who already changes filters changes the split of duties. Equipment past its service life calls for discussing <a href=\"/services/commercial/commercial-hvac-system-replacement/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">commercial HVAC replacement</a>. Houses and condos can review <a href=\"/services/heating/hvac-maintenance-plans/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">residential maintenance plans</a>. City &amp; Suburban plan members get priority dispatch. Visit count, covered units, filters, included repairs and response times are terms to agree in writing for each building.",
+      "why": "MAJOR faq: replace repeated discussion prompt with verified plan benefit vs building-specific terms still to be agreed"
+    },
+    {
+      "find": "A one-off call pays for one visit and ends there. City &amp; Suburban offers maintenance plans with seasonal check-ups, priority dispatch and member discounts on service work. A custom HVAC maintenance plan discussion should cover the building rather than assume identical needs across sites. Ask about a known contact, proposed pricing and visits before each season. City &amp; Suburban has been family-owned since 1952 and repairs all makes and models. Discuss the covered equipment list so each rooftop unit, furnace, boiler or split system is named in the proposal rather than assumed.",
+      "replace": "A one-off call pays for one visit and ends there. A City &amp; Suburban maintenance plan adds priority dispatch for members. Pricing stays upfront, with the price in writing before any work and no hidden fees. Other terms are set for the building and should be written into the agreement, not assumed. Those terms include the visit count, the units covered, filter duties, the tasks done at each visit and how repairs are quoted. City &amp; Suburban has been family-owned since 1952. Ask for the covered equipment list so each rooftop unit, furnace, boiler or split system is named in the proposal.",
+      "why": "MAJOR faq: verified plan benefits vs terms to agree; no invented visit count, SLA, filters or included repairs; shorter sentences (READ-02)"
+    },
+    {
+      "find": "<li style=\"display: flex; gap: 10px;\"><span aria-hidden=\"true\" style=\"color: #E8574B; font-weight: 700;\">•</span><span>Discuss the commercial scope of the custom proposal before enrollment. Ask about filter responsibility, supplies, covered units, reminders and visit booking.</span></li>",
+      "replace": "",
+      "why": "MAJOR: remove repeated discussion prompt (duplicates the unit, visit and filter bullets)"
+    },
+    {
+      "find": "Prepare the unit inventory, business hours and prior records for a custom HVAC maintenance plan discussion. Review proposed visits, filter schedules and access. Ask about priority dispatch, member discounts and exclusions. Discuss pricing and approvals before enrollment. City &amp; Suburban has NATE-certified technicians and has been family-owned since 1952.",
+      "replace": "A written maintenance agreement should list each unit and the space it serves. It should set the visit schedule and the checkpoints a technician can safely reach at each unit. It should say how findings are reported after each visit, and how corrective repairs are quoted and approved before work starts. Renewal terms, and what changes when tenants or hours change, belong in the same document. City &amp; Suburban plan members get priority dispatch. City &amp; Suburban has NATE-certified technicians and has been family-owned since 1952.",
+      "why": "MAJOR install: replace intro with maintenance deliverables (unit inventory, visit schedule, accessible checkpoints, findings, repair approval, renewal terms) as agreement contents"
+    },
+    {
+      "find": "Larger projects can run through Wells Fargo Home Projects financing, subject to credit approval.",
+      "replace": "Wells Fargo Home Projects financing is subject to credit approval and is a consumer product, so eligibility for business or tenant work must be confirmed.",
+      "why": "MAJOR pricing/financing: do not imply commercial or tenant eligibility"
+    },
+    {
+      "find": "Larger work can run through Wells Fargo Home Projects financing, subject to credit approval.",
+      "replace": "Wells Fargo Home Projects financing is subject to credit approval; eligibility for business or tenant work must be confirmed.",
+      "why": "MAJOR pricing/financing: do not imply commercial or tenant eligibility"
+    },
+    {
+      "find": "Wells Fargo Home Projects credit card, subject to credit approval.",
+      "replace": "Wells Fargo Home Projects credit card, subject to credit approval. Eligibility for business projects must be confirmed.",
+      "why": "MAJOR pricing: do not imply commercial agreement or tenant eligibility"
+    },
+    {
+      "find": "Discuss eligible member discounts and priority dispatch terms.",
+      "replace": "Discuss eligible member discounts and priority dispatch terms, and ask which current offers, if any, apply to the agreed maintenance scope.",
+      "why": "MAJOR pricing: clarify which offers apply to agreed maintenance scope"
+    },
+    {
+      "find": "Manufacturer warranty terms generally require documented annual maintenance; review the applicable equipment terms.",
+      "replace": "Some manufacturer warranties require documented maintenance; review the terms for each unit.",
+      "why": "Rule 5: remove universal warranty claim"
+    },
+    {
+      "find": "Gas heating sections and boilers carry combustion risks, especially where commercial equipment goes unseen for weeks. Cracked heat exchangers, blocked flues, failing pressure switches and dirty burners can show up as combustion problems before comfort problems. The Illinois Carbon Monoxide Alarm Detector Act sets the general rule for CO alarms in dwellings. Occupied commercial space with gas appliances also needs attention to combustion risks. City &amp; Suburban sends NATE-certified technicians. Discuss proposed safety checks and how a finding such as a cracked heat exchanger would be reported before relying on routine visit timing.",
+      "replace": "Gas heating sections and boilers carry combustion risks, especially where commercial equipment goes unseen for weeks. Cracked heat exchangers, blocked flues, failing pressure switches and dirty burners can show up as combustion problems before comfort problems. If a carbon monoxide alarm sounds or anyone smells gas, everyone should leave the building first. Call 911, or the gas utility for a gas odor, from outside. Illinois has a carbon monoxide alarm law for dwellings; needs for other spaces depend on the building. City &amp; Suburban sends NATE-certified technicians. Ask which safety checks the plan includes and how a finding such as a cracked heat exchanger would be reported.",
+      "why": "Rule 3: add leave-and-call-911 first step; rule 4: qualify CO law; shorter sentences"
+    },
+    {
+      "find": " American Standard is the installed line when replacement becomes the answer. A satisfaction guarantee backs the work.",
+      "replace": "",
+      "why": "Rule 1: satisfaction guarantee and installed-brand line not approved facts for this answer"
+    }
+  ]
+}

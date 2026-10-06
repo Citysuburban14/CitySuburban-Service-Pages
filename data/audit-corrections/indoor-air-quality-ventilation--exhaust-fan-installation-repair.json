@@ -1,0 +1,50 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "This page is a draft. Confirm the service scope shown in Sanity before publishing or scheduling from this content.",
+      "replace": "Call (773) 238-3838 before booking. City & Suburban confirms whether this work fits its current service scope at your address before scheduling a visit.",
+      "why": "CRITICAL hero/form: draft note replaced; booking no longer implies confirmed scope"
+    },
+    {
+      "find": "The first step is confirming the responsible trade and useful next action.",
+      "replace": "Call (773) 238-3838 before booking. City & Suburban confirms whether this work fits its current service scope at your address before scheduling a visit.",
+      "why": "CRITICAL: CTA must not imply verified capability for unconfirmed scope"
+    },
+    {
+      "find": "This is high-volume seasonal ventilation, not the same as a bathroom exhaust fan or HVAC return.",
+      "replace": "High-volume seasonal ventilation for the whole house; a separate system from point-source bathroom or kitchen exhaust and from an HVAC return.",
+      "why": "MAJOR systems: separate whole-house fans from point-source exhaust"
+    },
+    {
+      "find": "ERV or HRV",
+      "replace": "Balanced recovery ventilation",
+      "why": "MAJOR systems / VIS-01: separate balanced ventilation; drop unphotographed ERV mention"
+    },
+    {
+      "find": "Balanced ventilation requires supply and exhaust design, filtration, condensate, and commissioning.",
+      "replace": "Heat- or energy-recovery units supply and exhaust air in balance for the whole home. They need their own design, filtration, condensate, and commissioning, separate from point-source bathroom or kitchen exhaust.",
+      "why": "MAJOR systems: separate balanced HRV/ERV ventilation from point-source exhaust"
+    },
+    {
+      "find": "Some high-capacity systems do. Building tightness, combustion appliances, and local code determine the requirement.",
+      "replace": "Some do. Whether a range hood needs make-up air depends on the hood model and its airflow, how tight the building is, whether combustion appliances nearby could backdraft, and what local code requires. A hood quote should state whether make-up air was reviewed and on what basis.",
+      "why": "MAJOR faq: make-up air is model-, flow-, building- and code-dependent"
+    },
+    {
+      "find": "A complete visit checks the housing",
+      "replace": "A complete assessment checks the housing",
+      "why": "Practice framed as assessment criteria, not a company promise"
+    },
+    {
+      "find": "Quotes should instead state",
+      "replace": "Quotes should state",
+      "why": "Dangling wording after source-file sentence is dropped"
+    },
+    {
+      "find": "Chicago bathroom & kitchen exhaust fan installation, repair and cleaning guidance from City & Suburban. Compare symptoms, equipment types, scope, permit questions, an.",
+      "replace": "Bathroom and kitchen exhaust fan guidance for Chicago homes from City & Suburban: symptoms, fan and hood types, scope, permit questions and quote drivers.",
+      "why": "META-02: truncated 167-character description"
+    }
+  ]
+}

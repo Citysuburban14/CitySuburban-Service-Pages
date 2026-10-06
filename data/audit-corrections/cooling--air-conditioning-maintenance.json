@@ -1,0 +1,155 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "No heat right now? Call (773) 238-3838.",
+      "replace": "AC already stopped cooling? Call (773) 238-3838.",
+      "why": "MAJOR #6: heating emergency helper on a cooling page"
+    },
+    {
+      "find": "one spring visit of cleaning, measuring and tightening that keeps the July call from happening.",
+      "replace": "one spring visit of cleaning, measuring and tightening that makes a July breakdown call less likely.",
+      "why": "Guaranteed outcome made conditional"
+    },
+    {
+      "find": "Cooling maintenance is an annual visit, best booked late April through May.",
+      "replace": "Cooling maintenance is an annual visit, usually booked in spring before the first hot stretch; confirm current availability when booking.",
+      "why": "CRITICAL #1: fixed booking window removed; HYG-06 superlative 'best' removed"
+    },
+    {
+      "find": "By the time rooms stop cooling, the part that was merely stressed in May has usually failed.",
+      "replace": "By the time rooms stop cooling, the part that was merely stressed in May may already have failed.",
+      "why": "Deterministic failure prediction softened"
+    },
+    {
+      "find": "At the end of the visit the homeowner has the measured readings, the filter size, and an upfront price for anything found weak.",
+      "replace": "At the end of a good visit the homeowner should have the measured readings, the filter size, and a written price for anything found weak; confirm before booking which readings the visit includes.",
+      "why": "Unregistered deliverable recast as what a good visit should provide"
+    },
+    {
+      "find": "Late April through May. City &amp; Suburban schedules cooling tune-ups before the first 90-degree stretch, because a system idle since September shows its weak parts under load and not at rest.",
+      "replace": "In spring, before the first 90-degree stretch, because a system idle since September shows its weak parts under load and not at rest. Confirm current availability with City &amp; Suburban when booking.",
+      "why": "CRITICAL #1: company scheduling calendar removed"
+    },
+    {
+      "find": "City &amp; Suburban books cooling maintenance from late April, and offers same-day service when the schedule allows for anything urgent found during the visit. A tune-up that turns up a failing part becomes a quoted repair on the spot rather than a second appointment.",
+      "replace": "Spring is the time to book, and current availability should be confirmed when calling. City &amp; Suburban offers same-day service when the schedule allows for anything urgent, and any repair found during a visit is priced in writing before work starts.",
+      "why": "CRITICAL #1: late-April booking guarantee and on-the-spot repair promise removed"
+    },
+    {
+      "find": "Households that want the visit scheduled for them without calling each spring can look at a <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a>, which adds seasonal check-ups and priority dispatch.",
+      "replace": "Households that would rather not track the date can look at a <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a>; plan members get priority dispatch.",
+      "why": "Plan terms limited to approved fact (priority dispatch)"
+    },
+    {
+      "find": "Late April to mid-May: the tune-up window.",
+      "replace": "Spring, often late April to mid-May: a common tune-up window.",
+      "why": "CRITICAL #1: fixed window softened to general guidance"
+    },
+    {
+      "find": "City &amp; Suburban rinses that mat out from the inside of the coil during a tune-up.",
+      "replace": "A thorough tune-up should rinse that mat out from the inside of the coil, using a method the manufacturer allows; confirm coil cleaning is in the visit scope.",
+      "why": "CRITICAL #2: unregistered cleaning routine recast as scope item to confirm"
+    },
+    {
+      "find": "City &amp; Suburban finds most of those conditions as readings in spring, while they are still adjustments rather than replacements.",
+      "replace": "A measured spring visit can catch many of those conditions as readings, while they are still adjustments rather than replacements.",
+      "why": "Unregistered procedure claim recast as general practice"
+    },
+    {
+      "find": "and a capacitor that drifted out of range in May fails in July at emergency-call timing.",
+      "replace": "and a capacitor that drifted out of range in May can fail in July at emergency-call timing.",
+      "why": "Deterministic failure prediction softened"
+    },
+    {
+      "find": "capacitor values and amp draw, and they are worth recording every year.",
+      "replace": "capacitor values and amp draw, and those readings are worth recording every year.",
+      "why": "PRON-02: pronoun before noun"
+    },
+    {
+      "find": "The households that avoid the July call are the ones on a schedule.",
+      "replace": "Households on a schedule are less likely to make the July call.",
+      "why": "Absolute claim softened"
+    },
+    {
+      "find": "City &amp; Suburban carries a 4.9 rating from 251 Yelp reviews alongside its 4.98 Google average, and backs its work with a satisfaction guarantee.",
+      "replace": "City &amp; Suburban carries a 4.9 rating from 251 Yelp reviews alongside its 4.98 Google average.",
+      "why": "Unapproved warranty term (satisfaction guarantee) removed"
+    },
+    {
+      "find": "City &amp; Suburban measures suction and liquid pressure, calculates superheat or subcooling against the outdoor temperature, and reads the split between supply and return air.",
+      "replace": "A sound charge check measures suction and liquid pressure, calculates superheat or subcooling against the outdoor temperature, and reads the split between supply and return air. Ask which of these readings the visit includes.",
+      "why": "CRITICAL #3: tune-up measurement scope recast as good practice"
+    },
+    {
+      "find": "City &amp; Suburban's technicians are NATE-certified, and readings are taken with the system running under load, which is the only state that tells the truth. Work found during a tune-up is quoted upfront, and a return visit can be <a href=\"https://citysuburbanheating.com/contact-us/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">booked</a> once the price is agreed.",
+      "replace": "Readings should be taken with the system running under load, which is the only state that tells the truth. City &amp; Suburban's technicians are NATE-certified, and any repair found during a visit is priced in writing before work starts.",
+      "why": "CRITICAL #3: procedure recast; GUIDE-06 unregistered contact link removed"
+    },
+    {
+      "find": "A system that needs refrigerant every year or two has a leak, not a habit.",
+      "replace": "A system that needs refrigerant every year or two most likely has a leak, not a habit.",
+      "why": "Absolute claim softened"
+    },
+    {
+      "find": "Because the indoor coil sits on the furnace in most homes, one City &amp; Suburban visit can cover both halves of the <a href=\"/services/cooling/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">air conditioning</a> and heating system.",
+      "replace": "Where the indoor coil sits on the furnace, checks on both halves of the <a href=\"/services/cooling/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">air conditioning</a> and heating system can share one visit only if that scope and its price are agreed at booking; a cooling tune-up is not automatically a heating inspection.",
+      "why": "MAJOR #5: combined heating/cooling scope must be agreed at booking"
+    },
+    {
+      "find": "City &amp; Suburban has worked on Chicago buildings since 1952 and backs the work with a satisfaction guarantee.",
+      "replace": "City &amp; Suburban has worked on Chicago buildings since 1952.",
+      "why": "Unapproved warranty term (satisfaction guarantee) removed"
+    },
+    {
+      "find": "City &amp; Suburban reads static pressure, capacitor values and amp draw on a tune-up, because each of those drifts before it fails.",
+      "replace": "A thorough tune-up should include static pressure, capacitor values and amp draw, because each of those drifts before it fails. Ask which readings are included and which diagnostics are quoted separately.",
+      "why": "CRITICAL #4: procedural promise replaced with scope checklist"
+    },
+    {
+      "find": "Every one of those is a number in spring and a stranded household in July.",
+      "replace": "Every one of those is a number in spring and can become a no-cool call in July.",
+      "why": "Deterministic failure prediction softened"
+    },
+    {
+      "find": "Where the readings show a system at the end of its service life, City &amp; Suburban turns the conversation to",
+      "replace": "Where the readings show a system at the end of its service life, the conversation should turn to",
+      "why": "Unregistered company practice recast as good practice"
+    },
+    {
+      "find": "City &amp; Suburban handles the measured work in spring, and these habits are what keep that tune-up holding through September.",
+      "replace": "A spring tune-up covers the measured work, and these habits help that tune-up hold through September.",
+      "why": "Unregistered company practice recast"
+    },
+    {
+      "find": "A City &amp; Suburban <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a> adds seasonal check-ups, priority dispatch and member discounts for households that would rather not track the date.",
+      "replace": "For households that would rather not track the date, City &amp; Suburban <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a> members get priority dispatch; confirm other plan terms before joining.",
+      "why": "Plan terms limited to approved fact (priority dispatch)"
+    },
+    {
+      "find": "City &amp; Suburban offers a satisfaction guarantee, which is different from promising no future failures.",
+      "replace": "City &amp; Suburban gives a written price before any work, which is different from promising no future failures.",
+      "why": "FAQ: unapproved warranty term replaced with approved fact"
+    },
+    {
+      "find": "City &amp; Suburban offers seasonal check-ups, priority dispatch and member discounts through maintenance plans.",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch; confirm visit frequency and other plan terms before joining.",
+      "why": "FAQ: plan terms limited to approved fact"
+    },
+    {
+      "find": "Seasonal check-ups, priority dispatch and member discounts are covered there.",
+      "replace": "Plan members get priority dispatch; confirm other plan terms there.",
+      "why": "Related card: plan terms limited to approved fact"
+    },
+    {
+      "find": "Report active leaks, a burning smell or a stopped system when booking; routine maintenance may not fit the need.",
+      "replace": "Report active leaks or a stopped system when booking; routine maintenance may not fit the need. For a burning smell or smoke, leave the building and call 911 from outside.",
+      "why": "Safety: burning smell means leave and call 911 first"
+    },
+    {
+      "find": "A stopped air conditioner, active overflow or a burning smell should be reported when requesting service.",
+      "replace": "A stopped air conditioner or active overflow should be reported when requesting service. For a burning smell or smoke, leave the building and call 911 from outside first.",
+      "why": "Safety: burning smell means leave and call 911 first"
+    }
+  ]
+}

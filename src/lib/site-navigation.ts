@@ -90,7 +90,6 @@ export const business = {
   financeHref: 'https://retailservices.wellsfargo.com/pl/0024376626',
   scheduleHref: wp('/contact-us/'),
   logo: wp('/wp-content/uploads/2025/05/city-suburban-transparent-logo.png'),
-  googleRating: wp('/wp-content/uploads/2025/05/google-rating-image.png'),
   socials: [
     {label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61576251038690'},
     {label: 'Instagram', href: 'https://www.instagram.com/city_suburban_heating_cooling'},

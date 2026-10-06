@@ -1,0 +1,95 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Tests of this kind usually record relative humidity, airborne particulates and carbon monoxide. Many also capture volatile organic compounds and carbon dioxide where the instrument set includes those channels. A Chicago basement can read damp in August while a top-floor bedroom reads far drier in the same hour. That spread is the finding. City &amp; Suburban sends NATE-certified technicians, so each number is read against the furnace, coil and ducts behind it.",
+      "replace": "Tests of this kind usually record relative humidity and airborne particulates. Some scopes add carbon monoxide, volatile organic compounds or carbon dioxide where the instrument set includes those channels. A Chicago basement can read damp in August while a top-floor bedroom reads far drier in the same hour. That spread is often the finding. Before booking, a homeowner should ask which measurements the visit includes, which instruments take them and how each number will be interpreted against the furnace, coil and ducts. City &amp; Suburban has NATE-certified technicians and gives an upfront written price before work, with no hidden fees.",
+      "why": "CRITICAL: NATE certification does not substantiate testing channels or interpretation; methods recast as questions to ask"
+    },
+    {
+      "find": "A fresh filter is the cheap first move, and it settles plenty of dust complaints outright. Testing earns its place when the symptoms outlive the filter. Watch for a musty smell that returns every July, window condensation in January, or dust back within a day of cleaning. City &amp; Suburban works on upfront pricing with no hidden fees, and a technician finds the cause before anything is quoted.",
+      "replace": "A fresh filter is the cheap first move, and it settles plenty of dust complaints outright. Testing earns its place when the symptoms outlive the filter. Watch for a musty smell that returns every July, window condensation in January, or dust back within a day of cleaning. Other signs include one room that stays stale, or a smell that follows the furnace or AC cycle. City &amp; Suburban works on upfront pricing with no hidden fees, and a technician finds the cause before anything is quoted.",
+      "why": "MAJOR: FAQ answer under 450 characters (394)"
+    },
+    {
+      "find": "Assessments of this kind usually run one to two hours in a single-system home. Instruments need time to settle before a humidity or carbon dioxide reading means anything. A thorough visit samples several rooms plus the basement, rather than one hallway beside the return. City &amp; Suburban works on upfront pricing with no hidden fees, so a longer visit does not quietly become a larger invoice.",
+      "replace": "Visit length depends on the number of rooms, floors and measurements in the agreed scope, so it is worth asking for an estimate when booking. Instruments need time to settle before a humidity or carbon dioxide reading means anything. A thorough visit samples several rooms plus the basement, rather than one hallway beside the return. A concern tied to cooking or overnight conditions may need readings at that time, which can lengthen the work. City &amp; Suburban works on upfront pricing with no hidden fees, and the written price comes before any work.",
+      "why": "MAJOR: FAQ answer under 450 characters (393); fixed one-to-two-hour duration made scope-dependent"
+    },
+    {
+      "find": "The visit opens with questions. Which rooms feel wrong, what season the problem shows up in, what has already been replaced. In a thorough assessment, instruments usually go into the living space, the bedrooms and the mechanical room, and combustion appliances get checked for carbon monoxide. City &amp; Suburban repairs all makes and models, so one technician reads the numbers against the equipment.",
+      "replace": "A useful visit opens with questions: which rooms feel wrong, what season the problem shows up in, and what has already been replaced. In a thorough assessment, instruments usually go into the living space, the bedrooms and the mechanical room. Whether combustion appliances get checked for carbon monoxide depends on the agreed scope, so that is worth confirming at booking. Readings should be recorded with their units, rooms and times. City &amp; Suburban has NATE-certified technicians, and diagnosis comes before any quote for corrective work.",
+      "why": "MAJOR: FAQ answer under 450 characters (398); unapproved 'all makes and models' removed; testing scope made conditional"
+    },
+    {
+      "find": "Scope decides it. The number of floors and systems, how many rooms need sampling, and whether combustion appliances are in play all move the figure. Tracing or opening ductwork to find a source adds time. So does written reporting. City &amp; Suburban quotes upfront with no hidden fees and puts the exact price in writing before any work begins.",
+      "replace": "Scope decides it. The number of floors and systems, how many rooms need sampling, and whether combustion appliances are in play all move the figure. Tracing or opening ductwork to find a source adds time. So does written reporting, and any outside lab analysis is a separate item worth asking about. A useful estimate names each measurement and the concern it addresses, so two quotes can be compared on the same basis. City &amp; Suburban quotes upfront with no hidden fees and puts the exact price in writing before any work begins.",
+      "why": "MAJOR: FAQ answer under 450 characters (342)"
+    },
+    {
+      "find": "A consumer monitor reports a number. It cannot name a source. That could be a cracked heat exchanger, a return duct pulling air from a damp crawlspace, or a bath fan venting into the attic. Closing that gap takes calibrated instruments and a trained read of the system. City &amp; Suburban has been family-owned since 1952 and averages 4.98 across 204 Google reviews.",
+      "replace": "A consumer monitor reports a number. It cannot name a source. That could be a cracked heat exchanger, a return duct pulling air from a damp crawlspace, or a bath fan venting into the attic. Low-cost sensors also vary in accuracy, and one location may miss the room where the problem sits. A monitor is still useful for logging when readings change, and those dated logs help focus a later assessment. Closing the gap between a number and its cause takes calibrated instruments and a trained read of the system. City &amp; Suburban diagnoses before any quote.",
+      "why": "MAJOR: FAQ answer under 450 characters (363); repeated credentials replaced with decision content"
+    },
+    {
+      "find": "Yes, and it is the one result that stops everything else. A positive carbon monoxide reading takes the suspect appliance out of service and gets the house ventilated. Illinois requires carbon monoxide alarms in homes under the Carbon Monoxide Alarm Detector Act. A sounding alarm is a reason to leave the building and call the fire department first. City &amp; Suburban offers same-day service when the schedule allows.",
+      "replace": "Yes, and it is the one result that stops everything else. If a carbon monoxide alarm sounds or exposure is suspected, everyone should leave the building first and call 911 from outside, without stopping to shut off or inspect appliances. Emergency responders or the gas utility decide when it is safe to return. Only after that clearance does the suspect appliance get examined and repaired. Illinois requires carbon monoxide alarms in homes under the Carbon Monoxide Alarm Detector Act. A routine air quality appointment cannot replace that emergency response. City &amp; Suburban offers emergency HVAC service every day till midnight, except Sundays.",
+      "why": "MAJOR + safety rule: lead with leaving the building and calling 911; no appliance shutdown or ventilation task before evacuation"
+    },
+    {
+      "find": "Air quality complaints rarely sound urgent to a dispatcher, which is how a smell survives a whole season. City &amp; Suburban offers same-day service when the schedule allows. Maintenance plan members get priority dispatch, seasonal check-ups and member discounts. A summer of damp basement air can cup hardwood, swell door trim and feed mold growth inside finished walls.",
+      "replace": "City &amp; Suburban offers same-day service when the schedule allows, and maintenance plan members get priority dispatch. A musty smell is rarely an emergency, but waiting has a cost: a summer of damp basement air can cup hardwood, swell door trim and feed mold growth inside finished walls. When booking, it helps to describe where the smell is strongest, when it appears and whether it follows rain or the AC cycle. That lets the visit be timed to catch the pattern rather than a quiet interval.",
+      "why": "MAJOR: FAQ answer under 450 characters (368); plan terms beyond priority dispatch removed"
+    },
+    {
+      "find": "Readings point to a fix, not a shopping list. Damp summer air usually leads to a whole-home dehumidifier discussion. Winter dryness and static point toward a humidifier or an air cleaner. Dust that returns the day after cleaning often traces back to duct leaks that need sealing or repair. A recommendation worth acting on names the reading behind it. City &amp; Suburban repairs all makes and models and backs the work that follows with a satisfaction guarantee.",
+      "replace": "Readings point to a fix, not a shopping list. Damp summer air can lead to a moisture-control discussion, such as a whole-home dehumidifier. Winter dryness and static point toward humidification; an air cleaner captures particles and does nothing for low humidity. Dust that returns the day after cleaning often traces back to duct leaks or filter bypass, which can point toward duct repair or better filtration. A recommendation worth acting on names the reading behind it. City &amp; Suburban diagnoses before any quote and gives the price in writing before work.",
+      "why": "MAJOR: separate moisture control from particle filtration; unapproved satisfaction guarantee and all-makes claims removed"
+    },
+    {
+      "find": "Often, yes. Particulate counts that spike when the blower starts point at the duct system or the filter seal. A reading that drifts all day with the windows shut points at the house itself. Humidity that climbs only while the air conditioner runs suggests a coil or drainage problem. City &amp; Suburban technicians are NATE-certified, and the company repairs all makes and models.",
+      "replace": "Sometimes. Particulate counts that rise when the blower starts can point at the duct system or the filter seal. A reading that drifts all day with the windows shut can point at the house itself. Humidity that climbs while the air conditioner runs is worth investigating, but timing alone is not a diagnosis. Instrument accuracy, outdoor conditions, airflow, infiltration and the equipment's own behavior all need checking before a coil or drainage problem is named. City &amp; Suburban technicians are NATE-certified, and a diagnosis comes before any quote.",
+      "why": "MAJOR: timing alone not presented as diagnosis; FAQ under 450 characters (377); all-makes claim removed"
+    },
+    {
+      "find": "Three cases. A home with an obvious visible cause should fix that first. Standing water in a crawlspace, or a filter last changed two winters ago, needs no instrument. A home in mid-renovation will read dust and solvent levels that describe the work, not the house. A phone call sorts out which case applies, since a City &amp; Suburban technician finds the cause before anything is quoted.",
+      "replace": "A few cases. A home with an obvious visible cause should fix that first. Standing water in a crawlspace, or a filter last changed two winters ago, needs no instrument. A home in mid-renovation will read dust and solvent levels that describe the work, not the house, so testing is better timed after the work and cleanup finish. A question that is really about mold, radon or asbestos belongs with a specialist in that field. A phone call sorts out which case applies, since a City &amp; Suburban technician finds the cause before anything is quoted.",
+      "why": "MAJOR: FAQ answer under 450 characters (386)"
+    },
+    {
+      "find": "No, and that limit is worth knowing before booking. Mold needs sampling and culture work. Radon needs a multi-day canister. Asbestos needs a certified abatement contractor in that trade. An HVAC air quality assessment measures the conditions that let mold thrive, such as humidity, weak air movement and a wet basement. On the HVAC side, City &amp; Suburban repairs all makes and models.",
+      "replace": "Not as a rule, and that limit is worth knowing before booking. Mold assessment often starts with a visual inspection and moisture readings; sampling is only one possible step, chosen by a mold professional. Radon has several accepted measurement methods, from short-term tests to long-term monitors. Suspected asbestos should be left undisturbed for an accredited inspector and, where needed, an abatement contractor. An HVAC air quality assessment can measure conditions that let mold thrive, such as humidity, weak air movement and a wet basement. Which measurements a visit includes is worth confirming with City &amp; Suburban at booking.",
+      "why": "MAJOR: categorical mold/radon testing-method claims removed; FAQ under 450 characters (383)"
+    },
+    {
+      "find": "City &amp; Suburban covers 21 service areas: 13 Chicago neighborhoods and 8 surrounding suburbs. The footprint was built by a family business running since 1952, now led by Rob, the second generation of the founding family. The same brick two-flats, bungalows and greystones repeat block after block, with the same short duct runs and unconditioned crawlspaces behind the readings.",
+      "replace": "City &amp; Suburban covers 21 service areas: 13 Chicago neighborhoods and 8 surrounding suburbs. The footprint was built by a family business running since 1952, now led by Rob, the second generation of the founding family. The same brick two-flats, bungalows and greystones repeat block after block, with the same short duct runs and unconditioned crawlspaces behind the readings. A testing request should include the address, building type and affected floor. Access to a garden unit or shared mechanical room may need arranging with the building owner first.",
+      "why": "MAJOR: FAQ answer under 450 characters (377)"
+    },
+    {
+      "find": "City &amp; Suburban maintenance plans carry seasonal check-ups, priority dispatch and member discounts, so plan members pay a member rate on work that falls inside the plan. Whether a given discount or posted offer applies to an assessment depends on the scope booked. City &amp; Suburban quotes upfront with no hidden fees and puts the exact price in writing before any work begins, so the figure is settled before a technician starts.",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch. Whether a plan covers an air quality assessment, and whether any posted offer applies, depends on the plan terms and the scope booked, so both are worth confirming before the visit. Posted offers on this page carry their own dates and exclusions. City &amp; Suburban quotes upfront with no hidden fees and puts the exact price in writing before any work begins, so the figure is settled before a technician starts.",
+      "why": "MAJOR: FAQ answer under 450 characters (428); unapproved plan terms (member rates, discounts) removed"
+    },
+    {
+      "find": "An assessment of this kind ends with the recorded readings, an explanation of what produced the readings, and the repair or equipment options those numbers support. Readings are worth reviewing while the equipment is still open and the numbers are fresh. City &amp; Suburban quotes upfront with no hidden fees, so any written reporting is priced with the rest of the scope.",
+      "replace": "A useful assessment should end with the recorded readings, each with its units, room and time, an explanation of what likely produced them, and the repair or equipment options those numbers support. Whether results arrive as a spoken explanation, recorded readings or a written report should be agreed at booking, since a written report is not automatic. Readings are worth reviewing while the equipment is still open and the numbers are fresh. City &amp; Suburban quotes upfront with no hidden fees, so any written reporting is priced with the rest of the scope.",
+      "why": "MAJOR: FAQ answer under 450 characters (369); deliverables recast as what a useful assessment should include"
+    },
+    {
+      "find": "That also keeps the bill down, since fewer parts get replaced.</p>",
+      "replace": "That also keeps the bill down, since fewer parts get replaced. Before a testing visit, it is worth asking which measurements are included and how results are reported, since that separates a diagnosis from a reading.</p>",
+      "why": "MAJOR: FAQ answer under 450 characters (435)"
+    },
+    {
+      "find": "seasonal context before equipment decisions follow. City &amp; Suburban installs American Standard equipment.",
+      "replace": "seasonal context before equipment decisions follow. City &amp; Suburban offers upfront pricing with no hidden fees.",
+      "why": "Rule 1: American Standard installer claim is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models and backs its work with a satisfaction guarantee.",
+      "replace": "City &amp; Suburban diagnoses before any quote and gives a written price before work.",
+      "why": "Rule 1: 'all makes and models' and satisfaction guarantee are not approved facts"
+    }
+  ]
+}

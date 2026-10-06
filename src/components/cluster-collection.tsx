@@ -27,7 +27,7 @@ export function ClusterCollection({clusters}: {clusters: PreparedCluster[]}) {
             <p className="cluster-directory-eyebrow">Find your system</p>
             <h2 className="collection-kicker" id="service-directory-title">Explore by system</h2>
           </div>
-          <p>Choose a service cluster to see the help available for your home or business.</p>
+          <p>Choose a service category to see the help available for your home or business.</p>
         </div>
 
         {!clusters.length && <p className="setup-note">No published service clusters are available yet. Import the workbook taxonomy and confirm that each service definition is assigned to a cluster.</p>}

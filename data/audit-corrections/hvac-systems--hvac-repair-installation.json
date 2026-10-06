@@ -1,0 +1,125 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "No published price book, no membership plan, no financing. Those are real gaps against the franchises and we are not going to invent them here.",
+      "replace": "City & Suburban does not publish a price book. It diagnoses before any quote and gives an upfront written price before work, with no hidden fees. Maintenance plan members get priority dispatch, and financing is available through Wells Fargo Home Projects, subject to credit approval.",
+      "why": "CRITICAL 1: false denial of membership plan and financing"
+    },
+    {
+      "find": "We do not publish a membership plan. Customers schedule seasonal visits directly and reviewers describe that as easy to arrange. If a published plan matters to you, that is a genuine gap against the larger franchises and you should weigh it.",
+      "replace": "Yes. City & Suburban offers a maintenance plan, and plan members get priority dispatch. Seasonal service on both heating and cooling is worthwhile on equipment the owner intends to keep. Before joining, it is worth asking which equipment the plan covers and getting the plan terms in writing.",
+      "why": "CRITICAL 2: false denial of the maintenance plan"
+    },
+    {
+      "find": "Do you offer a maintenance plan?",
+      "replace": "Does City & Suburban offer a maintenance plan?",
+      "why": "MAJOR 16: second-person FAQ question"
+    },
+    {
+      "find": "Heating and cooling, quoted by the same person who will do the work. Tell us what you have and what it is doing.",
+      "replace": "Heating and cooling, diagnosed before any quote, with an upfront written price before work begins. Describe the equipment and what it is doing.",
+      "why": "CRITICAL 3: universal same-person delivery promise"
+    },
+    {
+      "find": "Both trades, same company, same person quoting. You are not coordinating two contractors around one basement.",
+      "replace": "City & Suburban works on both heating and cooling, so a problem that spans the furnace, the air conditioner and a shared blower or thermostat can be diagnosed by one company rather than two contractors working around one basement.",
+      "why": "CRITICAL 3: same-person quoting promise"
+    },
+    {
+      "find": "Yes. That is the point of this page - one firm, one person quoting, no coordinating two contractors around the same basement and the same thermostat.",
+      "replace": "Yes. City & Suburban works on both heating and cooling equipment, so a problem involving a shared blower, control board or thermostat can be diagnosed by one company rather than split between two contractors.",
+      "why": "CRITICAL 3: same-person quoting promise; answer was truncated to 'Yes.'"
+    },
+    {
+      "find": "Do you handle both the heating and the cooling side?",
+      "replace": "Does City & Suburban handle both the heating and the cooling side?",
+      "why": "MAJOR 16: second-person FAQ question"
+    },
+    {
+      "find": "If you are holding a quote from someone else, send it. We will tell you if it is fair.",
+      "replace": "A quote from another contractor can be shared to discuss the proposed scope.",
+      "why": "CRITICAL 4: general quote-fairness promise"
+    },
+    {
+      "find": "We will tell you if the quote you have is fair. Sometimes it is",
+      "replace": "Proposed equipment, sizing and scope checked against the home",
+      "why": "CRITICAL 4: general quote-fairness promise in pricing row"
+    },
+    {
+      "find": "Yes, and sometimes we tell people the quote they are holding is a fair one. A reviewer who called us as a second opinion was told their unit still had life and to come back when it did not.",
+      "replace": "Yes. City & Suburban can discuss the scope of a quote from another contractor, starting with its own diagnosis of the equipment. A useful second opinion checks the proposed sizing, matched equipment, venting and permit responsibility, and sometimes confirms that the existing quote is reasonable or that repair is the better path.",
+      "why": "CRITICAL 4: single review turned into a general promise"
+    },
+    {
+      "find": "Can you give a second opinion on a quote I already have?",
+      "replace": "Can City & Suburban give a second opinion on an existing quote?",
+      "why": "MAJOR 16: second-person FAQ question"
+    },
+    {
+      "find": "If both are near end of life, yes - one visit, matched coil and condenser, correct staging, and you pay for one installation rather than two. If only one is failing, we will tell you. Several reviewers were told to replace one and keep the other.",
+      "replace": "Often, if both are near end of life: one installation, a matched coil and condenser, and correct staging. If only one is failing, replacing that one and keeping the other can be the better call. City & Suburban diagnoses before any quote and gives an upfront written price before work, so the recommendation rests on the condition of each system.",
+      "why": "MAJOR 16: unregistered review claim and second-person voice"
+    },
+    {
+      "find": "You want a written view on remaining life so you can budget, not a sales visit.",
+      "replace": "A useful assessment gives a written view on remaining life for budgeting, not a sales pitch.",
+      "why": "MAJOR 16: second-person voice"
+    },
+    {
+      "find": "Matched replacement is not an upsell line. A new condenser on an old coil, or a two-stage furnace on a single-stage thermostat, gives you neither the efficiency nor the comfort on the label.",
+      "replace": "Matched replacement is about performance, not an upsell. A new condenser needs a coil rated to pair with it on the same refrigerant, and multi-stage equipment needs a compatible control configured for its staging; otherwise the system may not deliver the efficiency or comfort on the label.",
+      "why": "MAJOR 5/7: age alone does not decide mismatch; staging depends on configured control"
+    },
+    {
+      "find": "Multi-stage equipment on a single-stage thermostat is money left on the table",
+      "replace": "Multi-stage equipment needs a compatible, correctly configured control to deliver its rated staging",
+      "why": "MAJOR 5: single-stage thermostat does not automatically disable staging"
+    },
+    {
+      "find": "Replaced together, they match and stage properly",
+      "replace": "Replaced together, they can be matched and staged as a rated pair",
+      "why": "MAJOR 7: absolute matching claim"
+    },
+    {
+      "find": "98,849 properties heat with hot water or steam and cool some other way",
+      "replace": "Hot-water or steam heat, with cooling supplied by a separate system",
+      "why": "Unregistered numeric claim (98,849)"
+    },
+    {
+      "find": "Ten names cover most of what is installed across Chicago.",
+      "replace": "These names are examples of equipment found in Chicago homes, not dealer affiliations.",
+      "why": "MAJOR 8: unregistered universal claim in brand research note"
+    },
+    {
+      "find": "These are the configurations we install and maintain across Chicago.",
+      "replace": "These are common whole-system configurations in Chicago homes.",
+      "why": "Unregistered installation-capability claim across all configurations"
+    },
+    {
+      "find": " - about 204 a month - across 1,539 firms",
+      "replace": "",
+      "why": "Unregistered numeric claims (1,539 firms; derived monthly rate)"
+    },
+    {
+      "find": "This page is for whole-system decisions: replacing heating and cooling together, taking on a system you have just inherited with a building, or finding one company to keep both running.",
+      "replace": "Whole-system decisions include replacing heating and cooling together, taking on a system inherited with a building, or finding one company to keep both running.",
+      "why": "Hero sentence dropped for internal wording; restored in customer language"
+    },
+    {
+      "find": "The 4,888 Chicago permits mentioning HVAC work carry a median reported construction value of $100,000. That number describes renovation projects with HVAC inside them, not HVAC jobs - it is the clearest example in this whole dataset of why a permit median is not a price.",
+      "replace": "Permit values in Chicago's records describe whole renovation projects with HVAC inside them, not HVAC jobs, so a permit median is not a price.",
+      "why": "Permit statistic must never appear as a price"
+    },
+    {
+      "find": "Permit required",
+      "replace": "Permit usually required",
+      "why": "Rule 4: absolute permit claims made conditional"
+    },
+    {
+      "find": "No permit",
+      "replace": "Usually no permit",
+      "why": "Rule 4: absolute permit claims made conditional"
+    }
+  ]
+}

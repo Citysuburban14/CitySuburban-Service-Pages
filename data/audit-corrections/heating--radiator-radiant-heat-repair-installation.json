@@ -1,0 +1,40 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "One cold cast-iron radiator may be air-bound, valve-limited, pitched incorrectly, steam-trap restricted, or starved by a system balance issue.",
+      "replace": "Why one radiator stays cold depends first on the system: in a steam system the cause may be a failed air vent, poor pitch, a valve that is not fully open or, on two-pipe systems, a restricted trap, while a hot-water radiator may be air-bound, valve-limited or short of flow.",
+      "why": "MAJOR 2: make steam versus hot water the first branch; not all radiators have traps"
+    },
+    {
+      "find": "Photograph the boiler, radiator connections, valves, vents or traps, and piping before the appointment.",
+      "replace": "Photos of the boiler, radiator connections, valves, vents or traps, and piping help before the appointment; take them from a safe distance and do not touch hot or pressurized parts.",
+      "why": "MAJOR 2: add no-touch boundary for hot, pressurized fittings"
+    },
+    {
+      "find": "The cause can be air, a vent or trap, a closed or failed valve, poor pitch, low flow, or system imbalance. System type comes first.",
+      "replace": "System type comes first. In a steam system, a failed air vent, poor pitch, a valve that is not fully open or, on two-pipe systems, a failed trap are common causes. In a hot-water system, trapped air, a closed or failed valve, low flow or imbalance are more likely. Radiators, valves and pipes can be hot and under pressure, so diagnosis is best left to a technician.",
+      "why": "MAJOR 2: cold-radiator FAQ branched by system type, with no-touch boundary"
+    },
+    {
+      "find": "Water trapped by poor pitch, high pressure, fast valves, or piping problems can create steam hammer.",
+      "replace": "Banging in a steam system is usually water hammer: condensate trapped in a radiator or pipe, often because of poor pitch, meets incoming steam. Excess boiler pressure, venting that lets steam rush in too fast, or piping faults can make it worse. Hot-water systems can knock from trapped air or fast-closing valves. Noting when the noise starts and which radiator it comes from helps; pressure and valve settings are for the technician to measure and adjust.",
+      "why": "MAJOR 3: explain water hammer, replace vague 'fast valves', no DIY pressure or valve adjustment"
+    },
+    {
+      "find": "Controls, pumps, manifolds, sensors, and flow can often be tested first. A tubing leak or floor defect may still require access.",
+      "replace": "Electric and hydronic floors are diagnosed differently. An electric floor's thermostat, floor sensor and heating-cable resistance can usually be tested at the control, and a hydronic floor's pump, mixing valve, manifold and flow can be checked at the mechanical equipment. Neither path guarantees a repair without opening the floor: a damaged cable or leaking tubing may still require floor access, and a quote should state who locates the fault and who restores the floor finish.",
+      "why": "MAJOR 4: separate electric and hydronic diagnosis; no promise of non-invasive repair; name finish-restoration responsibility"
+    },
+    {
+      "find": "The first step is confirming the responsible trade and useful next action.",
+      "replace": "A good first assessment confirms the system type, the responsible trade and the useful next action.",
+      "why": "MAJOR 10: generic process promise recast as what an assessment should include"
+    },
+    {
+      "find": "No permit for repair",
+      "replace": "Usually no permit for repair",
+      "why": "Rule 4: absolute permit claim made conditional"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "The 445 Chicago permits mentioning water heater work carry a median reported construction value of $8,500. Read that carefully: it is the declared value of the whole permitted project, which frequently bundles other work, not the cost of a water heater. Context, not a quote.",
+      "replace": "The declared value of a permitted project in Chicago's records often bundles other work, so it is not a guide to the cost of a water heater. A useful written quote separates removal, venting, gas, electrical, expansion control and permit work.",
+      "why": "CRITICAL 1: unregistered $8,500 permit median shown in pricing"
+    },
+    {
+      "find": "We work the heating side of your hot water",
+      "replace": "Water heater work can involve more than one trade",
+      "why": "CRITICAL 2: unverified trade-scope claim in why title"
+    },
+    {
+      "find": "That is our trade, and we coordinate the plumbing rather than pretend it is ours.",
+      "replace": "A good quote states which contractor handles the venting, the gas connection and the plumbing, and who pulls any required permit.",
+      "why": "CRITICAL 2: unverified plumbing-coordination and trade-scope promise"
+    },
+    {
+      "find": "Confirm this with us on the phone. Our review record shows both patterns - one customer had the AC, furnace and water heater all replaced, another had us coordinate with their plumber while we handled the furnace adjustments the swap forced. Chicago licenses plumbing and ventilation separately, and we would rather tell you who does what up front.",
+      "replace": "That depends on the job, so it is worth confirming with City & Suburban at (773) 238-3838 before booking. Plumbing, gas and venting work on a water heater may fall to different trades, and a good quote states which contractor handles each part and who pulls any required permit.",
+      "why": "CRITICAL 2: review anecdotes turned into a capability promise; unverified licensing specifics"
+    },
+    {
+      "find": "Do you replace the water heater itself, or only the heating side?",
+      "replace": "Does City & Suburban replace the water heater itself, or only the heating side?",
+      "why": "MINOR 14: second-person FAQ question"
+    },
+    {
+      "find": " - about 18 a month across 439,398 assessed properties",
+      "replace": "",
+      "why": "CRITICAL 8: 439,398 assessed-properties scope error"
+    },
+    {
+      "find": "Most water heater work in this city is unpermitted repair, and most of it is a part rather than a tank.",
+      "replace": "Permit records count filed construction, not every repair, so they cannot show how often the fix is a part rather than a tank.",
+      "why": "MAJOR 3: unsupported demand inference from permit records"
+    },
+    {
+      "find": "We diagnose before we quote.",
+      "replace": "City & Suburban diagnoses before it quotes.",
+      "why": "Voice: approved diagnosis-first fact in third person (hero and meta)"
+    },
+    {
+      "find": "Heated by your boiler. The answer in steam and hot-water homes",
+      "replace": "Heated by a boiler. Can suit hot-water and some steam homes when boiler output and controls are compatible",
+      "why": "MAJOR 4: indirect water heating is not automatically suitable"
+    },
+    {
+      "find": "98,849 Chicago properties run hot water or steam heat, and in those homes an indirect cylinder off the boiler is often cheaper than a standalone tank.",
+      "replace": "In homes with a hot-water or steam boiler, an indirect cylinder can be an option, depending on boiler output, controls and the household's hot-water demand.",
+      "why": "MAJOR 4 / CRITICAL 9: unregistered 98,849 figure and 'often cheaper' claim"
+    },
+    {
+      "find": "Wall-hung, endless hot water, needs gas and venting upsized",
+      "replace": "Wall-hung, continuous hot water within its rated flow; cold winter inlet water and several taps at once reduce output, and gas and venting often need upsizing",
+      "why": "MAJOR 5: 'endless' hot water claim"
+    },
+    {
+      "find": "Same day is common in our review record and next morning is the norm. We do not publish a guaranteed response window, and you should treat any contractor who does with suspicion in a Chicago January.",
+      "replace": "City & Suburban offers same-day service when the schedule allows. Calling (773) 238-3838 is the way to check whether a water heater job fits the current schedule and service scope. A gas smell or a carbon monoxide alarm is different: leave the building and call 911 or the gas utility from outside.",
+      "why": "MAJOR 6: unregistered next-morning norm and suspicion claim; adds emergency boundary (CRITICAL 7)"
+    },
+    {
+      "find": "How fast can you get here if there is no hot water?",
+      "replace": "How fast can City & Suburban come out if there is no hot water?",
+      "why": "MINOR 14: second-person FAQ question"
+    },
+    {
+      "find": "If it is weeping from the tank seam, yes - a tank leak is not repairable. If it is dripping from the T&P valve, a fitting or the drain valve, that is a part, not a unit. Ask for the failure point in writing before you accept any replacement quote.",
+      "replace": "A leak from the tank itself generally means replacement, because a tank leak is not repairable. A drip from a fitting or the drain valve is usually a part. Water from the temperature and pressure relief valve is different: it can signal excess pressure, thermal expansion or overheating, so the valve and its discharge pipe should be kept clear, never capped or plugged, and the cause diagnosed by a professional. A good replacement quote names the failure point in writing. For a gas smell or a carbon monoxide alarm, leave the building and call 911 or the gas utility from outside.",
+      "why": "CRITICAL 7: relief-valve discharge treated as a simple part; missing keep-clear and evacuation guidance"
+    },
+    {
+      "find": "Yes. The city recorded 445 permits mentioning water heater work in the 24 months to August 2026. Repairs and part swaps do not need one. If a contractor tells you a full replacement needs no permit, get another quote.",
+      "replace": "Usually. A full replacement typically needs a permit in Chicago, while repairs and part swaps generally do not; the exact requirement depends on the scope and the municipality. Chicago's permit records show 445 permits mentioning water heater work in the 24 months to August 2026. A replacement quote should state who pulls any required permit.",
+      "why": "Rule 4: absolute legal claims made conditional; second-person voice"
+    },
+    {
+      "find": "Ask for the gas line assessment before you compare appliance prices.",
+      "replace": "A gas line assessment belongs in the quote before appliance prices are compared.",
+      "why": "MINOR 14: second-person voice"
+    },
+    {
+      "find": "Permit required",
+      "replace": "Permit usually required",
+      "why": "Rule 4: absolute permit claims made conditional"
+    },
+    {
+      "find": "No permit",
+      "replace": "Usually no permit",
+      "why": "Rule 4: absolute permit claim made conditional"
+    },
+    {
+      "find": "We do not publish a price book and we are not going to invent one here. What follows is the permit record and the cost drivers, so you can read any quote you receive - ours or anyone else's.",
+      "replace": "This is not a price book. It lists the cost drivers so any water heater quote can be read and compared on the same basis.",
+      "why": "Pricing lede pointed to the removed permit median; second-person voice"
+    },
+    {
+      "find": "These eight cover almost everything we meet, and the flue arrangement matters more than the badge.",
+      "replace": "These eight are common configurations, and the flue arrangement matters more than the brand.",
+      "why": "Rule 5: unregistered universal claim"
+    },
+    {
+      "find": "Draughts up an existing chimney. The default in Chicago basements",
+      "replace": "Drafts up an existing chimney. Common in Chicago basements",
+      "why": "Rule 5: universal claim; US spelling"
+    },
+    {
+      "find": "The parts an inspector fails you on, fitted as part of the job",
+      "replace": "Code-related parts an inspector may check; a good replacement quote states whether they are included",
+      "why": "Rule 2: unregistered company practice recast as quote guidance"
+    },
+    {
+      "find": "Ten names cover most of what is installed across Chicago.",
+      "replace": "These names are examples of equipment found in Chicago homes.",
+      "why": "Rule 5: unregistered universal claim"
+    },
+    {
+      "find": "Nobody is looking for a brand - they are looking for someone to come out. We size to your flue, gas line and draw, not to a dealership agreement.",
+      "replace": "They are not dealer affiliations. A good proposal sizes the heater to the flue, gas line and household demand rather than to a brand.",
+      "why": "Research commentary and unregistered company sizing practice"
+    },
+    {
+      "find": "Tell us what the heater is doing and we will tell you whether it is a part or a tank.",
+      "replace": "Describe what the heater is doing, its fuel and where it is installed.",
+      "why": "CRITICAL 2: phone-diagnosis promise in form subtitle"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Running cost tracks efficiency, which is rated as watts used per pint of water removed. A ducted whole-home unit usually removes a pint for fewer watts than two or three portable boxes doing the same job. Runtime matters more than the nameplate, and a right-sized unit cycles less because it meets the humidistat target sooner. Drier air also lets the cooling setpoint sit warmer, which trims compressor hours across a Chicago summer. City &amp; Suburban puts the model and its efficiency rating in the written proposal, so the running cost can be compared before anything is ordered.",
+      "replace": "Running cost tracks energy efficiency. Dehumidifiers are rated by integrated energy factor: liters of water removed per kilowatt-hour of electricity, measured under standard test conditions. A higher figure means more water removed for the same energy. Whether one ducted unit uses less energy than several portable units depends on the models compared and how long each runs. Runtime matters more than the nameplate, and a right-sized unit reaches the humidistat target without running constantly. Drier air can also let the cooling setpoint sit warmer. A homeowner can ask for the model and its rated energy factor in writing, so running costs can be compared before anything is ordered.",
+      "why": "CRITICAL: wrong efficiency metric (watts per pint); unsupported 'ducted always uses less'; unregistered proposal-deliverable practice"
+    },
+    {
+      "find": "City &amp; Suburban sends NATE-certified technicians, and the model, the duct tie-in and the drain route all go in the written proposal before work starts.",
+      "replace": "City &amp; Suburban has NATE-certified technicians and gives a written price before work starts. A useful proposal also names the model, the duct tie-in and the drain route.",
+      "why": "CRITICAL: proposal-deliverable practice not a profile fact; recast as what a proposal should include"
+    },
+    {
+      "find": "A NATE-certified technician takes humidity readings first, then traces the duct path, the drain options and the electrical circuit. Most ducted installs finish inside one day. The unit is set and leveled, tied into supply and return, drained and wired. The humidistat is mounted and set last. The system then runs under load so the drain can be watched carrying water away. City &amp; Suburban offers same-day service when the schedule allows, and the work carries a satisfaction guarantee. Edward L. wrote in June 2026, ",
+      "replace": "A good installation visit starts with humidity readings, then traces the duct path, the drain options and the electrical circuit. How long the work takes depends on the scope: duct connections, the drain route, electrical work and access all change it, so ask for an expected duration with the quote. A typical install sets and levels the unit, ties it into supply and return, then drains and wires it, with the humidistat set last. The system should then run under load so the drain can be watched carrying water away. City &amp; Suburban offers same-day service when the schedule allows; that covers the visit, not a finished installation. Edward L. wrote in June 2026, ",
+      "why": "MAJOR: universal one-day install timeframe; separate same-day availability from completion; unapproved satisfaction guarantee and procedure"
+    },
+    {
+      "find": "The drain line is run to a drain the building already uses, and the float switch is tested before the visit ends.",
+      "replace": "A sound installation runs the drain line to a drain the building already uses, and the float switch should be tested before the visit ends.",
+      "why": "Rule 2: unregistered company procedure recast as what a good install includes"
+    },
+    {
+      "find": "Equipment work in the city can fall under a City of Chicago permit, so the requirement is checked against the scope before anything is scheduled. The power hookup is electrical work for qualified trades, on a dedicated circuit rather than a cord. In a condo or a two-flat, the association or the owner usually has to approve a new drain tie-in, a wall penetration and any work in shared mechanical space.",
+      "replace": "Equipment work in the city can fall under a City of Chicago permit, so confirm the requirement for the specific scope with the City before anything is scheduled. The power hookup is electrical work for qualified trades, on a dedicated circuit rather than a cord. In a condo or a two-flat, the association or the owner usually has to approve the work. That covers a new drain tie-in, a wall penetration and any work in shared mechanical space.",
+      "why": "Legal claim made conditional; READ-01 minor: split sentence over 30 words"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, so a dehumidifier can be added to a system another contractor put in.",
+      "replace": "A dehumidifier can often be added to a system another contractor put in, once compatibility with the existing equipment and controls is confirmed.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "Pricing is upfront with no hidden fees, and finished work carries a satisfaction guarantee.",
+      "replace": "Pricing is upfront with no hidden fees, and a diagnosis comes before any quote.",
+      "why": "Rule 1: satisfaction guarantee is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban offers maintenance plans with seasonal check-ups, priority dispatch and member discounts, and the unit can be checked on the same visit as a spring AC tune-up.",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch. Ask whether the unit can be checked on the same visit as a spring AC tune-up.",
+      "why": "Rule 2: plan terms beyond priority dispatch are not approved"
+    },
+    {
+      "find": "The dehumidifier make and model is named in the written proposal, with its own warranty terms. City &amp; Suburban installs American Standard heating and cooling equipment and repairs all makes and models. Finished installs are backed by a satisfaction guarantee, and labor coverage is spelled out in the same proposal.",
+      "replace": "A written proposal should name the dehumidifier make and model, with its own warranty terms. City &amp; Suburban gives an upfront written price before work, with no hidden fees. Ask for any labor coverage to be spelled out in the same proposal.",
+      "why": "CRITICAL (same as item 2): proposal deliverable, unapproved satisfaction guarantee and brand/all-makes claims"
+    }
+  ]
+}

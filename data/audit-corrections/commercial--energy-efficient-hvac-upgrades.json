@@ -1,0 +1,135 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Every nameplate gets read, and combustion or refrigerant performance is checked where it applies. Thermostat schedules, reachable duct runs and return paths follow, with a note of which spaces run too warm or too cold. Length depends on the count, since each unit is checked on its own. Findings and options come back in writing. City &amp; Suburban offers same-day service when the schedule allows.",
+      "replace": "A useful walkthrough reads each nameplate and checks combustion or refrigerant performance where it applies. Thermostat schedules, reachable duct runs and return paths follow, with a note of which spaces run too warm or too cold. Length depends on how many units the building has and how many can be reached. Before the visit, ask what record of the findings and options will be provided, and whether every unit will be looked at. City &amp; Suburban diagnoses before anything is quoted, puts the exact price in writing before work, and offers same-day service when the schedule allows.",
+      "why": "CRITICAL 1: written site audit and all-unit inspection are not registered deliverables; recast as records to request"
+    },
+    {
+      "find": "Which rebates and incentives should a Chicago building owner ask about?",
+      "replace": "How are the savings from an efficiency upgrade checked after commissioning?",
+      "why": "MAJOR 2: duplicate incentive intent; question changed to the distinct measurement-and-verification intent"
+    },
+    {
+      "find": "Utility and manufacturer programs change from year to year, so these questions belong before equipment is ordered. Three are worth asking. Does the program cover high-efficiency equipment, controls and commissioning? Is pre-approval required before installation? What proof of the installed model and its rating does the application need? Amounts are left out here because program terms move.",
+      "replace": "Savings are checked by comparing energy use before and after the work on the same basis. That needs a baseline of utility bills across the seasons, adjusted for weather, operating hours, occupancy and rate changes. Controls deserve a second look some weeks after commissioning, because overrides and schedule edits can quietly undo the result. Where an incentive program sets its own measurement rules, those rules decide what counts. A lower bill alone does not prove the HVAC change worked, and a higher one does not prove it failed. A proposal should state which inputs its savings estimate used, so the follow-up comparison tests the same assumptions.",
+      "why": "MAJOR 2 + length: duplicate rebate answer replaced with a distinct measurement-and-verification answer (general guidance only)"
+    },
+    {
+      "find": "Zoning fixes a distribution problem, not a capacity problem. In long Chicago storefronts and converted loft floors, one thermostat reads one spot. The far end runs warm or cold, staff override the setpoint, and the system works harder. Adding capacity makes that worse. The fix is dampers and separate control zones where the duct layout allows, and ductless mini-splits where it does not.",
+      "replace": "Zoning can help when the problem is distribution rather than capacity, but it is not an automatic cure. Uneven temperature can also come from the building envelope, a changed load, too little capacity, control settings or the duct layout, so the cause needs diagnosing first. In long Chicago storefronts and converted loft floors, one thermostat reads one spot. The far end runs warm or cold, staff override the setpoint, and the system works harder. Where distribution is the cause, adding capacity tends to make that worse. The fix may then be dampers and separate control zones where the duct layout allows, or ductless mini-splits where it does not. City &amp; Suburban diagnoses before anything is quoted.",
+      "why": "MAJOR 3 + length: zoning qualified; envelope, load, capacity, controls and distribution named as possible causes"
+    },
+    {
+      "find": "Controls are the least expensive lever and the one most often left on a factory schedule. A connected thermostat saves energy only when its schedule matches the hours a space is used. Schedules, setbacks and lockouts should be set at commissioning and written down. A building then stops heating empty offices at 2 a.m. Many commercial setups still run the default schedule from the day of installation.",
+      "replace": "Controls can be a lower-cost lever, and they are often left on a factory schedule. Cost and effect depend on compatibility with the existing equipment and the installation scope, and an inexpensive change is not always enough. A connected thermostat saves energy only when its schedule matches the hours a space is used. Schedules, setbacks and lockouts should be set at commissioning and written down. A building then stops heating empty offices at 2 a.m. Many commercial setups still run the default schedule from the day of installation. Measured energy use before and after the change is the fair test of any savings claim.",
+      "why": "MAJOR 4 + length: universal cost ordering removed; compatibility, scope and measured savings compared"
+    },
+    {
+      "find": "An efficiency upgrade is any change that cuts the energy a building burns for the same comfort. Five items make the list.",
+      "replace": "An efficiency upgrade is any change that cuts the energy a building uses for the same comfort. Five items usually make the list.",
+      "why": "Length expansion (part 1)"
+    },
+    {
+      "find": "The five belong in one project, because controls and duct leaks cap what a new unit's rating delivers.",
+      "replace": "The five are worth assessing together, because controls and duct leaks cap what a new unit's rating delivers. Repairs that only restore normal operation are not efficiency gains, so a fair comparison keeps the two apart.",
+      "why": "FAQ length below 450 (433): expanded with decision factor; absolute 'belong in one project' softened"
+    },
+    {
+      "find": "City &amp; Suburban sends NATE-certified technicians and repairs all makes and models, so findings are not steered toward one brand.",
+      "replace": "City &amp; Suburban has NATE-certified technicians and diagnoses before anything is quoted, so the findings come before any equipment choice.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "Next is the scope of zoning and duct sealing, and the labor to install the equipment. Operating hours, utility rates and rebate paperwork finish the list. City &amp; Suburban works on upfront pricing with no hidden fees.",
+      "replace": "Next is the scope of zoning and duct sealing, and the labor to install the equipment, including roof access and any curb adapter. Operating hours, utility rates and rebate paperwork finish the list. Condition, controls, scope and labor set the project price; operating hours and rates decide how quickly savings could repay it, and confirmed rebates change the net cost, so a useful proposal keeps them apart. City &amp; Suburban works on upfront pricing with no hidden fees, with the exact price in writing before work.",
+      "why": "FAQ length below 450 (349): expanded with service-specific cost and payback factors"
+    },
+    {
+      "find": "Most of an efficiency project can be staged.",
+      "replace": "Much of an efficiency project can be staged, depending on access and the written scope.",
+      "why": "Rule 5: universal staging claim made conditional"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment. A high rating",
+      "replace": "City &amp; Suburban puts the exact price in writing before work, so the extra cost of a higher rating can be compared directly. A high rating",
+      "why": "Rule 1: American Standard installer claim is not an approved fact"
+    },
+    {
+      "find": "Stuck dampers and failed sensors are common, and a broken economizer can pull in humid summer air. City &amp; Suburban offers maintenance plans with seasonal check-ups.",
+      "replace": "Stuck dampers and failed sensors are common, and a broken economizer can pull in humid summer air. A maintenance agreement for a building that relies on one should list damper and sensor checks. City &amp; Suburban maintenance plan members get priority dispatch.",
+      "why": "FAQ length below 450 (438) and Rule 2: seasonal check-ups not an approved plan term; recast as what an agreement should list"
+    },
+    {
+      "find": "Sealing joints, reconnecting dropped takeoffs and fixing return paths often buys more comfort per dollar than a higher rating does. Measuring where the air goes belongs before equipment is chosen, and heavier rework becomes a commercial duct design project.",
+      "replace": "Sealing joints, reconnecting dropped takeoffs and fixing return paths can buy more comfort per dollar than a higher rating does. Sealing is not a fix for every airflow complaint, though: an undersized branch or a missing return path needs a different correction. Measuring where the air goes belongs before equipment is chosen, and heavier rework becomes a commercial duct design project. City &amp; Suburban diagnoses before anything is quoted.",
+      "why": "FAQ length below 450 (414): expanded with decision limits; comparative claim softened"
+    },
+    {
+      "find": "Replacing HVAC equipment is permitted work in Chicago. A City of Chicago permit record is public, including the declared value of the job, so similar work in nearby buildings can be looked up. Equipment replacements in Chicago generally need a City permit, and the written quote should say who pulls it.",
+      "replace": "Replacing HVAC equipment in Chicago generally needs a City permit, though the requirement depends on the scope and should be confirmed with the City. Chicago publishes building permit records, which typically show the reported value of the job, so similar work in nearby buildings can be looked up. The written quote should say who pulls the permit.",
+      "why": "Rule 4: absolute legal claim made conditional"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, so repair stays on the table when an upgrade does not pay off.",
+      "replace": "City &amp; Suburban diagnoses before quoting, so a repair can still be priced when an upgrade does not pay off.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "A gas smell or a sounding carbon monoxide alarm is an evacuate-and-call situation, not an upgrade question. Timing is the second exception. Heating work is easiest to stage outside the heating season, and cooling work outside summer. A building is then never without the system it needs.",
+      "replace": "With a gas smell or a sounding carbon monoxide alarm, everyone leaves the building first and calls 911, or the gas utility for a gas odor, from outside; it is not an upgrade question. Timing is the second exception. Heating work is easiest to stage outside the heating season, and cooling work outside summer. That keeps the building from losing the system it needs most.",
+      "why": "FAQ length below 450 (443) and safety rule 3: leave first and call from outside; absolute claim softened"
+    },
+    {
+      "find": "The record is public: a 4.98 average across 204 Google reviews and an A+ rating with the BBB.",
+      "replace": "The record is public: a 4.98 average across 204 Google reviews and an A+ rating with the BBB. Most of those reviews come from homes and condos, so they show diagnosis and communication rather than measured commercial energy savings.",
+      "why": "FAQ length below 450 (429) and Rule 6: residential reviews not presented as proof of commercial savings"
+    },
+    {
+      "find": "Wells Fargo Home Projects credit card, subject to credit approval.</p>",
+      "replace": "Wells Fargo Home Projects credit card, subject to credit approval; eligibility for business projects must be confirmed.</p>",
+      "why": "Rule 1: consumer financing must not imply commercial eligibility"
+    },
+    {
+      "find": "City &amp; Suburban maintenance plans include seasonal check-ups, priority dispatch and member discounts.",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch.",
+      "why": "Rule 2: plan terms beyond member priority dispatch are not approved"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models; an existing fault may need attention before an efficiency project.",
+      "replace": "An existing fault may need attention before an efficiency project.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, so an existing fault can be addressed before an upgrade is considered.",
+      "replace": "City &amp; Suburban diagnoses before quoting, so an existing fault can be identified before an upgrade is considered.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models. Leakage, insulation",
+      "replace": "City &amp; Suburban diagnoses before quoting. Leakage, insulation",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment and repairs all makes and models. Compare",
+      "replace": "City &amp; Suburban provides upfront pricing with no hidden fees. Compare",
+      "why": "Rule 1: American Standard and all-makes claims are not approved facts"
+    },
+    {
+      "find": "A higher rating cannot correct an unsuitable schedule or poor airflow. City &amp; Suburban installs American Standard equipment.",
+      "replace": "A higher rating cannot correct an unsuitable schedule or poor airflow.",
+      "why": "Rule 1: American Standard installer claim is not an approved fact"
+    },
+    {
+      "find": "from energy conversion efficiency. City &amp; Suburban repairs all makes and models.",
+      "replace": "from energy conversion efficiency.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "The written quote is where the model and the rating come from.",
+      "replace": "The written quote is where the model and the rating come from, so keep it with the application.",
+      "why": "FAQ length at the 450 floor: small practical addition"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "Pump flow, approach temperatures, safeties, water treatment, and control history define the call.",
+      "replace": "Pump flow, approach temperatures, safeties, water treatment, and control history define the call. Chiller plant work is a separate scope from walk-in and ice-machine refrigeration and needs its own confirmation of service fit.",
+      "why": "MAJOR: separate chillers from walk-in and ice-machine refrigeration"
+    },
+    {
+      "find": "Minimize door openings, record temperatures, protect product according to your food-safety plan, and call with the model and alarm history.",
+      "replace": "Keep doors closed, record box and product temperatures with times, and follow the business's food-safety plan and local health department guidance for the product. Whether product is kept or discarded is the operator's decision; an equipment repair does not settle food safety. For a service call, have the model and alarm history ready.",
+      "why": "MAJOR food safety: recordkeeping and escalation boundary; repair does not resolve product disposition"
+    },
+    {
+      "find": "No. Availability and travel vary. A booking should state the actual response window rather than promise 24/7 service by default.",
+      "replace": "No arrival time is guaranteed. Availability and travel vary, so a booking should state the actual response window.",
+      "why": "Voice and removal of 24/7 reference"
+    },
+    {
+      "find": "Chicago commercial refrigeration and ice machine repair and maintenance guidance from City & Suburban. Compare symptoms, equipment types, scope, permit questions, and.",
+      "replace": "Chicago commercial refrigeration and ice machine guidance on symptoms, equipment types, scope and permits. Confirm service fit with City & Suburban before booking.",
+      "why": "Truncated meta description; no implied verified capability"
+    }
+  ]
+}

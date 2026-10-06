@@ -1,0 +1,25 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "Send the fan, roof or gable exterior, attic access, control, electrical feed, and wide views of soffit and ridge ventilation.",
+      "replace": "Existing photos help when they were taken safely, such as the fan or vent seen from the ground, the wall control, and soffit or ridge vents visible from outside. No one should climb onto the roof or enter the attic to take photos; that inspection belongs to qualified personnel.",
+      "why": "MAJOR faq: do not encourage unsafe attic or roof access for photos"
+    },
+    {
+      "find": "Send a wide equipment photo, rating plate, controls, connections, and the surrounding installation.",
+      "replace": "Photos that already exist and were taken safely, such as a wide view of the equipment, its label and its controls, are helpful. No one should climb onto a roof, enter an attic or open electrical connections to take them.",
+      "why": "Safety: accept only existing, safely taken images"
+    },
+    {
+      "find": "No attic-fan-tagged permit appears in the 24-month source classification, so the dataset cannot support a price.",
+      "replace": "Chicago's permit records for the past 24 months show no attic-fan-tagged permits, so they cannot support a price.",
+      "why": "MAJOR guide: source/dataset commentary in customer copy"
+    },
+    {
+      "find": "Inspect the ceiling plane, attic bypasses, insulation, passive vent area, roof condition, controls, and electrical feed before recommending a fan.",
+      "replace": "A sound assessment checks the ceiling plane, attic bypasses, insulation, passive vent area, roof condition, controls, and electrical feed before a fan is recommended.",
+      "why": "Unverified service practice recast as assessment criteria"
+    }
+  ]
+}

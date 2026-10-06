@@ -1,0 +1,20 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "A complete check follows air from the dryer outlet",
+      "replace": "If there is smoke, a burning odor, a gas smell or an overheating dryer, stop using it, leave the building and call 911 or the gas utility from outside. A complete check follows air from the dryer outlet",
+      "why": "MAJOR problems: missing stop-use and emergency boundary"
+    },
+    {
+      "find": "The transition connector and concealed duct have different requirements. Concealed runs generally need smooth metal duct and approved joints.",
+      "replace": "Not for concealed runs. A short, exposed transition connector between the dryer and the wall outlet may be flexible only when it is listed for dryer exhaust and installed under the dryer manufacturer's instructions. Duct hidden in walls, floors or ceilings generally needs to be rigid metal with smooth interior joints; local code and the dryer's instructions set the exact requirement.",
+      "why": "MAJOR faq: distinguish listed accessible transition connector from concealed duct"
+    },
+    {
+      "find": "Send a wide equipment photo, rating plate, controls, connections, and the surrounding installation.",
+      "replace": "Photos that already exist and were taken safely, such as a wide view of the equipment, its label and its controls, are helpful. No one should climb onto a roof, enter an attic or open electrical connections to take them.",
+      "why": "Safety: accept only existing, safely taken images (roof terminations)"
+    }
+  ]
+}

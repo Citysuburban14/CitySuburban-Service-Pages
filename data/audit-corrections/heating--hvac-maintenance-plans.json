@@ -1,0 +1,120 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Priority dispatch places a member's call ahead of the general queue instead of taking it in the order it arrived. City &amp; Suburban runs emergency HVAC service every day until midnight, except Sundays, and same-day service is offered when the schedule allows. Sundays and the hours after midnight fall outside that window, so the next available slot applies. Dispatch order is still a schedule rather than a promised arrival time. A suspected gas leak is a call to the gas utility first, before any HVAC visit is booked.",
+      "replace": "Plan members get priority dispatch. Exactly how that priority is applied should be confirmed in the written plan terms, and it is not a promised arrival time. City &amp; Suburban runs emergency HVAC service every day until midnight, except Sundays, and same-day service is offered when the schedule allows. Outside those hours, the next available slot applies. Calls are still triaged by safety. For a gas smell, smoke or a carbon monoxide alarm, everyone should leave the building first and call 911, or the gas utility for a gas smell, from outside, before any HVAC visit is booked.",
+      "why": "CRITICAL 2: priority dispatch queue mechanics not registered; safety triage and evacuation first"
+    },
+    {
+      "find": "No. A plan covers the scheduled check-ups and the priority position; repairs are separate work. What membership changes is the price and the sequence, since member discounts apply to the repair. City &amp; Suburban quotes upfront with no hidden fees, so the figure is agreed in writing before a part is ordered.",
+      "replace": "That depends on the written plan, which should list what is and is not included. Questions worth settling before enrolling: are repairs, parts or refrigerant covered or billed separately, does any member pricing apply, to which services, and with what caps or exclusions. For any repair, City &amp; Suburban gives the exact price in writing with no hidden fees, so the figure is agreed before work starts.",
+      "why": "CRITICAL 3: inclusions, exclusions and discount applicability not registered; replace categorical answer with written coverage checklist"
+    },
+    {
+      "find": "Combustion safety is the part of the visit that matters most in a Chicago winter. That means the heat exchanger, the venting, the flame, and the safety switches that shut a furnace down. City &amp; Suburban technicians watch that behavior while the system runs, not only at rest.",
+      "replace": "Combustion safety is the part of the visit that matters most in a Chicago winter. That means the heat exchanger, the venting, the flame, and the safety switches that shut a furnace down. A thorough plan visit checks that behavior while the system runs, not only at rest.",
+      "why": "Rule 2: unregistered company procedure recast as what a good visit includes"
+    },
+    {
+      "find": "The first step is to leave the building and call the gas utility, then book ",
+      "replace": "The first step is to leave the building and call 911 from outside, or the gas utility for a gas smell. Return only after responders say it is safe, then book ",
+      "why": "CRITICAL 6: CO alarm needs immediate evacuation and 911 from outside, not utility-only"
+    },
+    {
+      "find": "A plan is the wrong purchase in three cases. A renter does not own the equipment, so the plan belongs to whoever owns the building.",
+      "replace": "A plan may be the wrong purchase in three cases. A renter usually does not own the equipment, so the plan decision belongs to whoever does.",
+      "why": "MAJOR 4: avoid universal ownership classification"
+    },
+    {
+      "find": "A building with units on the roof, a shared boiler, or tenants on leases needs commercial terms, which are set out on the ",
+      "replace": "Shared building equipment, such as a central boiler, or equipment used by a business may need a separate agreement, because ownership, use and scope decide coverage. That option is set out on the ",
+      "why": "MAJOR 4: do not classify every rental or rooftop residential system as commercial"
+    },
+    {
+      "find": "The equipment list decides which of the three cases applies.",
+      "replace": "The equipment list and its ownership decide which case applies, so coverage should be confirmed in writing.",
+      "why": "MAJOR 4: request coverage confirmation"
+    },
+    {
+      "find": "Two visits a year matches the way Chicago weather loads the equipment. Booking the heating visit in early fall and the cooling visit in spring avoids both peaks. Mid-September and the first hot week of June are when every contractor in the city is behind, which is when an unbooked system waits.",
+      "replace": "The written plan must specify how many visits are included; that number should not be assumed. Separately, a common recommendation for a home with heating and cooling is one visit before each season. Booking the heating visit in early fall and the cooling visit in spring can avoid the busiest weeks, when the first cold or hot spell brings a rush of calls.",
+      "why": "MAJOR 5: lead with written visit count; separate recommended timing from included entitlement"
+    },
+    {
+      "find": "Cook County Assessor records of residential property characteristics cover single-family houses and small multi-family buildings across the eight Chicago townships. Condos run one furnace and one condenser per unit, two-flats carry two of everything, and greystones often run a converted system in a basement. City &amp; Suburban enrolls equipment, so a two-flat with two furnaces and two condensers is a different plan from a one-bedroom condo.",
+      "replace": "Building type is only a starting point. A condo unit may have its own furnace and condenser, or rely on a shared boiler or central system the association owns. A two-flat may have separate equipment for each unit or shared heat, and a greystone may run a converted system in the basement. The equipment that actually serves the home, and who owns it, decides what a City &amp; Suburban plan can cover, so a two-flat with two furnaces and two condensers is a different plan from a one-bedroom condo.",
+      "why": "MAJOR 7: remove universal building configurations and Assessor inference"
+    },
+    {
+      "find": "Terms are quoted per home, so the payment schedule and renewal come with the written quote.",
+      "replace": "Before signing, the plan terms should be settled in writing: price and payment schedule, renewal and any auto-renewal, cancellation and refunds, transfer after a move, missed or unused visits, and exclusions.",
+      "why": "MAJOR 8: make contract terms explicit questions to settle in writing"
+    },
+    {
+      "find": "Payment and renewal terms come with the written quote.",
+      "replace": "Payment and renewal terms should be set out in writing.",
+      "why": "MAJOR 8: do not imply standard terms exist in a quote"
+    },
+    {
+      "find": "A City &amp; Suburban maintenance plan is built on three things: seasonal check-ups, priority dispatch, and member discounts on service work. The seasonal visits put the heating system on the calendar before the first cold snap, and the cooling system before the first humid week. Small faults then surface in a quiet month instead of a crisis one. The plan is a maintenance schedule, not an insurance policy. Repairs are quoted as separate work, with the exact price in writing before anything starts.",
+      "replace": "A City &amp; Suburban maintenance plan centers on seasonal check-ups, and plan members get priority dispatch. The seasonal visits put the heating system on the calendar before the first cold snap, and the cooling system before the first humid week, so small faults can surface in a quiet month instead of a crisis one. The number of visits, the covered equipment, any member pricing and the renewal terms should all be spelled out in the written plan. The plan is a maintenance schedule, not an insurance policy. Repairs get the exact price in writing before anything starts.",
+      "why": "Rule 2 / CRITICAL 3 related: member discounts and coverage are unregistered plan terms"
+    },
+    {
+      "find": "maintenance plans in Chicago with seasonal check-ups, priority dispatch and member discounts",
+      "replace": "maintenance plans in Chicago with seasonal check-ups and priority dispatch for members",
+      "why": "Rule 2: member discounts not an approved plan term"
+    },
+    {
+      "find": "residential maintenance plans with seasonal check-ups, priority dispatch and member discounts",
+      "replace": "residential maintenance plans with seasonal check-ups and priority dispatch for members",
+      "why": "Rule 2: member discounts not an approved plan term"
+    },
+    {
+      "find": "Member discounts apply to service work; the current rate comes with the quote. Eligible services, exclusions and the work actually needed decide their value to the household.",
+      "replace": "Whether any member pricing applies to service work, at what rate and to which services, should be stated in the written plan. Eligible services, exclusions and the work actually needed decide its value to the household.",
+      "why": "CRITICAL 3: discount applicability not registered"
+    },
+    {
+      "find": "A seasonal inspection and clean on one straightforward system typically takes about an hour, while two systems, a boiler, or a unit on a roof take longer. City &amp; Suburban technicians are NATE-certified. The technician runs the equipment through a full cycle and measures what the controls and safeties are doing. Parts that collect dirt get cleaned, and what is wearing is reported.",
+      "replace": "Time depends on the number of systems, the equipment type and access; two systems, a boiler or a unit on a roof take longer than one straightforward furnace. City &amp; Suburban technicians are NATE-certified. A thorough visit runs the equipment through a full cycle, checks how the controls and safeties respond, cleans the parts that collect dirt and reports what is wearing. The written plan should list what each visit includes.",
+      "why": "Rule 2: unregistered checklist and fixed timeframe recast as what a good visit includes"
+    },
+    {
+      "find": "Most Chicago furnaces take a one-inch filter in a 16x25 or 20x25 frame, while a media cabinet takes a four-inch or five-inch cartridge. The filter is checked at a seasonal visit and its condition reported, since a clogged one is what starves a blower and trips a limit switch.",
+      "replace": "Many furnaces take a one-inch filter, often in a 16x25 or 20x25 frame, while a media cabinet takes a thicker cartridge, commonly four or five inches. A seasonal visit should include checking the filter and reporting its condition, since a clogged one can starve a blower and trip a limit switch.",
+      "why": "Rule 2/5 and READ-01: unregistered practice and universal filter claim; long sentence split"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment, so registration and the manual come with the install.",
+      "replace": "A homeowner can ask City &amp; Suburban, or whoever installed the equipment, to confirm the registration window and the manual's maintenance terms.",
+      "why": "Rule 1/2: unapproved install claim and implied deliverable"
+    },
+    {
+      "find": "City &amp; Suburban reports the condition and the options in writing.",
+      "replace": "City &amp; Suburban diagnoses before any quote, and the homeowner can ask for the condition and the options in writing.",
+      "why": "Rule 2: unregistered written-report deliverable"
+    },
+    {
+      "find": "Yes. City &amp; Suburban installs American Standard equipment and repairs all makes and models, so the badge on the cabinet is not what decides a plan.",
+      "replace": "Yes. City &amp; Suburban repairs all makes and models, so the badge on the cabinet is not what decides a plan. The written plan should still name each covered unit, whoever installed it.",
+      "why": "Rule 1: unapproved install claim"
+    },
+    {
+      "find": "a fifteen-year-old unit under regular service often behaves better than a newer one left alone.",
+      "replace": "a fifteen-year-old unit under regular service can behave better than a newer one left alone.",
+      "why": "Rule 5: unsupported generalization softened"
+    },
+    {
+      "find": "City &amp; Suburban check-ups catch the clogged filter, weak flame, and tired capacitor that quietly eat that margin.",
+      "replace": "City &amp; Suburban check-ups can catch the clogged filter, weak flame, or tired capacitor that quietly eat that margin.",
+      "why": "Rule 5: deterministic outcome softened"
+    },
+    {
+      "find": "Equipment type matters next, since a boiler takes longer to inspect than a forced-air furnace. Then the number of visits a year includes, and access, because a rooftop condenser up five flights of stairs is a longer visit than one in a side yard.",
+      "replace": "Equipment type matters next, since a boiler inspection can take longer than a forced-air furnace check. The number of included visits matters too. So does access, because a rooftop condenser up five flights of stairs is a longer visit than one in a side yard.",
+      "why": "READ-01 minor: split long sentence; soften generalization"
+    }
+  ]
+}

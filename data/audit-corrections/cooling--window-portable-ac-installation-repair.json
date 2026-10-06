@@ -1,0 +1,65 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "The permit file recorded seven window or through-wall AC projects",
+      "replace": "Chicago's permit records show seven window or through-wall AC projects citywide",
+      "why": "Permit statistic framed as citywide market context only"
+    },
+    {
+      "find": "We confirm whether the unit needs safe installation, a building sleeve or electrical correction, or simple replacement rather than a chargeable repair visit.",
+      "replace": "Before authorizing a paid visit, it helps to share the model, age and symptom and ask whether the unit needs safe installation, a building sleeve or electrical correction, or simple replacement rather than a chargeable repair visit.",
+      "why": "CRITICAL: phone screening before dispatch is not a registered practice; recast as what the customer should provide and ask"
+    },
+    {
+      "find": " The page now earns the service fee question before the visitor asks it. It distinguishes installation and sleeve problems that benefit from skilled help from compressor or refrigerant failures that usually make replacement the financially sensible outcome.",
+      "replace": " Installation and sleeve problems often benefit from skilled help, while compressor or refrigerant failures usually make replacement the financially sensible outcome.",
+      "why": "MAJOR: delete editorial evaluation from the hero"
+    },
+    {
+      "find": "This is not a price book. It shows the scope variables and what the Chicago permit record can and cannot support so quotes can be compared on the same basis.",
+      "replace": "Room AC work is priced from the scope variables below, so quotes can be compared on the same basis.",
+      "why": "Editorial framing removed from pricing lede"
+    },
+    {
+      "find": " The $245,000 median reflects larger projects and is not remotely usable as a room-AC price. Quote from mounting, sleeve, electrical, access, and repair economics. Give the customer a stop/go threshold before diagnosis:",
+      "replace": " A fair quote reflects mounting, sleeve, electrical, access, and repair economics, and a useful one sets a stop/go threshold:",
+      "why": "CRITICAL PRICE-01: remove $245,000 construction median; recast internal quoting instruction as what a good quote includes"
+    },
+    {
+      "find": "Phone/model check",
+      "replace": "Model and symptom check",
+      "why": "Phone screening is not a registered practice"
+    },
+    {
+      "find": "Nine variants concern rentals and many swamp-cooler terms come from dry western markets, so the page stays focused on Chicago window, portable, and through-wall equipment. Parts research should happen before dispatch for control boards, fans, pumps, hoses and remotes.",
+      "replace": "Before booking a repair, it is worth asking whether parts are available for the control board, fan, pump, hose or remote involved.",
+      "why": "MAJOR: remove keyword and market research commentary from brand note"
+    },
+    {
+      "find": "We will say when replacement is the sensible repair",
+      "replace": "Replacement is sometimes the sensible repair",
+      "why": "Unregistered company promise removed"
+    },
+    {
+      "find": "A phone check protects the customer from a service fee that cannot produce an economic fix.",
+      "replace": "Sharing the model, age and symptom before booking, and asking whether repair is likely to be economic, helps avoid a service fee that cannot produce an economic fix.",
+      "why": "CRITICAL: phone screening not registered; recast as what the customer should ask"
+    },
+    {
+      "find": "We first check the model, age, symptom, and parts path. Many sealed-system failures are more economical to replace than repair.",
+      "replace": "Portable AC repair depends on the model, age, symptom and parts path, and many sealed-system failures are more economical to replace than repair. Call City & Suburban at (773) 238-3838 to confirm whether this work fits its current service scope before booking.",
+      "why": "FAQ voice (no 'we') and no implied verified capability for an unconfirmed service"
+    },
+    {
+      "find": "Unsafe mounting is possible. The sash, bracket, stops, unit weight, slope, and manufacturer instructions all matter.",
+      "replace": "Unsafe mounting is possible. The sash, bracket, stops, unit weight, slope, manufacturer instructions and building rules all matter, and the sash alone should never be relied on. If a unit looks loose or tilted, switch it off, keep people clear of the area below and arrange qualified help.",
+      "why": "MAJOR: add stop instruction for insecure mounting"
+    },
+    {
+      "find": "Follow the model instructions before opening the cabinet.",
+      "replace": "Follow the model instructions rather than opening the cabinet. If the unit trips a breaker or the cord or plug feels warm, stop using it, do not reset it repeatedly or run it from an extension strip, and arrange qualified help.",
+      "why": "MAJOR: add breaker/cord/electrical safety boundary to existing FAQ"
+    }
+  ]
+}

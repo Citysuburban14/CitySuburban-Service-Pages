@@ -1,0 +1,60 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "We verify equipment stages, voltage, common-wire options, and zoning before connecting an app.",
+      "replace": "A sound installation checks equipment stages, voltage, common-wire options and zoning before connecting an app.",
+      "why": "CRITICAL 1: unregistered compatibility-verification procedure"
+    },
+    {
+      "find": "Thermostat replacement carries most of the search demand in this cluster, but the wall control is only one part of the system.",
+      "replace": "The thermostat is the visible part of the job, but the wall control is only one part of the system.",
+      "why": "MAJOR 3: research commentary in hero"
+    },
+    {
+      "find": " because standalone control work is rarely permitted.",
+      "replace": "; standalone control work often does not require a permit.",
+      "why": "Rule 4: unsupported causal inference from permit records"
+    },
+    {
+      "find": "Photos of the wall terminals and equipment control board are more useful than wire colors alone.",
+      "replace": "Photos of the current thermostat and the equipment model plate, taken without opening any cabinet, are more useful than wire colors alone.",
+      "why": "CRITICAL 2: form helper encouraged equipment-board access"
+    },
+    {
+      "find": "Send photos of the existing terminals and the furnace, boiler, or heat-pump model plate. We will check compatibility before installation.",
+      "replace": "Photos of the current thermostat and the furnace, boiler, or heat-pump model plate, taken without opening any cabinet, help. A sound installation checks compatibility before the new control goes in.",
+      "why": "CRITICAL 1/2: unregistered procedure and terminal access in CTA"
+    },
+    {
+      "find": "We confirm compatibility before recommending a device; this is not a dealer-status list.",
+      "replace": "Compatibility depends on control voltage, communicating protocol and staging, so it should be confirmed before a device is recommended; this is not a dealer-status list.",
+      "why": "MAJOR 3 / CRITICAL 1: replace procedure claim with compatibility factors"
+    },
+    {
+      "find": "Photograph the original terminals before disconnecting anything and verify wiring at the equipment board or zone panel.",
+      "replace": "Before any wiring work, a qualified technician should isolate and verify the power, photograph the original terminals and check the wiring at the equipment board or zone panel; line-voltage and 24-volt products are not interchangeable.",
+      "why": "MAJOR 4: casual DIY wiring instruction without power isolation"
+    },
+    {
+      "find": "Many smart thermostats do, though compatible adapters or an unused conductor may solve it. We verify at the equipment, not just behind the wall plate.",
+      "replace": "Many smart thermostats need a common (C) wire for steady power. Depending on the model, the manufacturer's approved adapter or a spare conductor may solve it, but a spare wire has to be verified at the equipment, not just behind the wall plate, and power-stealing models can behave erratically on some systems. The equipment model, the existing control and any wiring notes help a technician choose the right option.",
+      "why": "MAJOR 5: model-specific adapter, spare-conductor and power-stealing guidance; pronoun before brand"
+    },
+    {
+      "find": "The mapped review set includes a challenging two-stage furnace and thermostat installation in a condo utility closet, evidence that controls have to match the equipment and space.",
+      "replace": "A two-stage furnace needs a control set up for both stages, and a condo utility closet or zone panel adds its own limits, so a sound installation tests every mode against the actual equipment.",
+      "why": "Internal review-mapping language and anecdote used as evidence"
+    },
+    {
+      "find": "Standalone installation is usually unpermitted,",
+      "replace": "Standalone installation usually does not need a permit,",
+      "why": "Rule 4: legal wording clarified"
+    },
+    {
+      "find": "No permit",
+      "replace": "Usually no permit",
+      "why": "Rule 4: absolute permit claims made conditional"
+    }
+  ]
+}
