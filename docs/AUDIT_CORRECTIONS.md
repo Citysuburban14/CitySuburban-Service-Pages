@@ -44,6 +44,8 @@ Anything else about the company (procedures, deliverables, timeframes, plan term
 
 ## Not changed by code (owner decisions)
 
+- The top bar deliberately matches the live WordPress header exactly ("Working Hours: 24/7" and the Google rating image). Owner decision, 6 October 2026. The audit flagged this against the registered emergency-hours fact (till midnight, except Sundays), which page copy still uses.
+
 - Whether to keep, confirm or withdraw services whose scope is unconfirmed (refrigeration, generator, attic fan, ceiling fan, dryer vent, exhaust fan, chimney, wood/pellet stove and others with `scopeStatus` other than `core`). Their pages now ask customers to call and confirm before booking.
 - Word-count, FAQ-depth and image targets from the audit's quality specification.
 - Registering evidence for new claims, new photos, and the "installs American Standard" statement.
