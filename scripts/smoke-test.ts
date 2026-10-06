@@ -15,7 +15,6 @@ const navigationEquipment = navigationSources.flatMap((batch) => batch.equip)
 const navigationPages = navigationSources.flatMap((batch) => batch.page)
 const taxonomy = JSON.parse(fs.readFileSync(path.resolve('data/service-taxonomy.json'), 'utf8')) as {services: Array<{serviceId: number; clusterSlug: string}>}
 const clusters = JSON.parse(fs.readFileSync(path.resolve('data/service-clusters.json'), 'utf8')) as {clusters: Array<{slug: string}>}
-const reviewContexts = JSON.parse(fs.readFileSync(path.resolve('data/review-context.json'), 'utf8')) as Record<string, Record<string, string>>
 const serviceBySlug = new Map(source.equip.map((row) => [row.slug, row]))
 const areaBySlug = new Map(source.area.map((row) => [row.slug, row]))
 const sourceIds = new Set(navigationPages.map((row) => Number(row.service_id)))
@@ -143,7 +142,7 @@ async function run() {
     expect((await imageResponse.arrayBuffer()).byteLength > 10_000, `Collection image response is unexpectedly small: ${image}`)
   }
   for (const clusterSlug of availableClusterSlugs) {
-    const clusterPage = await testDocument(`/services/${clusterSlug}`, ['HVAC service cluster', 'Available services'])
+    const clusterPage = await testDocument(`/services/${clusterSlug}`, ['services in Chicago', 'in this category'])
     expect(!clusterPage.includes('Service landing page'), `/services/${clusterSlug} still renders the removed landing-page keyword card`)
     expect(!visibleText(clusterPage).includes('monthly searches'), `/services/${clusterSlug} still exposes monthly search-volume data`)
     const panelImage = clusterPage.match(/data-panel-image="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&')
@@ -186,7 +185,7 @@ async function run() {
     }
     for (const review of reviewEntries(row.reviews)) {
       expect(renderedText.includes(review.quote), `${pathname} is missing review excerpt ${review.sourceId}`)
-      expect(renderedText.includes(reviewContexts[String(row.service_id)]?.[review.sourceId] || ''), `${pathname} is missing review summary ${row.service_id}/${review.sourceId}`)
+      // Review cards show the verbatim excerpt only (audit 2026-10-05); paraphrased summaries are not rendered.
       expect(anchorHrefs(text).includes(review.sourceUrl), `${pathname} does not link review ${review.sourceId} to Google`)
     }
     expect((text.match(/class="rev-card"/g) || []).length === 4, `${pathname} does not render four review cards`)

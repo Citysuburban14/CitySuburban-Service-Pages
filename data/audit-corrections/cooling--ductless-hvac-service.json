@@ -1,0 +1,115 @@
+{
+ "target": "html",
+ "fixes": [
+  {
+   "find": "No heat right now? Call (773) 238-3838. It's faster than the form.",
+   "replace": "No cooling right now? Call (773) 238-3838. It's faster than the form.",
+   "why": "MAJOR 6: heating emergency helper on a cooling page"
+  },
+  {
+   "find": "Read the full Read the ductless planning guide guide",
+   "replace": "Read the full ductless planning guide",
+   "why": "MAJOR 6: duplicated 'Read the full Read ... guide guide' wording"
+  },
+  {
+   "find": "A mini-split needs a three-inch sleeve through one wall. That is the whole penetration. Line set, control cable and drain share a single hole, pitched down to shed water.",
+   "replace": "A single-zone mini-split often needs only a small sleeve through one wall, sized to the manufacturer's line set and drain requirements. Multiple heads, fire-rated walls and condensate routes can need more penetrations or more work. Where the line set, control cable and drain share one hole, it is pitched down to shed water.",
+   "why": "MAJOR 1: universal sleeve size and single-hole claim"
+  },
+  {
+   "find": "The existing system is never asked to carry a load it was not sized for.",
+   "replace": "The existing system is not asked to carry a load it was not sized for.",
+   "why": "MAJOR 1 / rule 5: absolute claim"
+  },
+  {
+   "find": "Much of Chicago's older housing stock heats with steam or hot water and has no air ducts at all.",
+   "replace": "Much of Chicago's older housing stock heats with steam or hot water and may have no usable air ducts.",
+   "why": "MAJOR 2: heating type does not prove absence of ducts"
+  },
+  {
+   "find": "Cook County Assessor records put 98,849 of those residential properties on hot water or steam heat, which means no ducts in the building at all.",
+   "replace": "Cook County Assessor records put 98,849 of those residential properties on hot water or steam heat, so many of these buildings may lack usable air distribution; an inspection confirms what is actually there.",
+   "why": "MAJOR 2: heating classification does not prove absence of cooling ducts"
+  },
+  {
+   "find": " and no duct anywhere in the building. The bungalow",
+   "replace": " and often no usable duct in the building. The bungalow",
+   "why": "MAJOR 2: heating type does not prove absence of ducts"
+  },
+  {
+   "find": "A multi-zone system runs two to five heads off one outdoor unit, each with its own control.",
+   "replace": "A multi-zone system runs several heads off one outdoor unit, each with its own control; how many depends on the model, its minimum modulation and its shared-mode limits.",
+   "why": "MAJOR 3: head count is model-dependent"
+  },
+  {
+   "find": "Splits refrigerant among two to five heads",
+   "replace": "Splits refrigerant among the heads the model supports",
+   "why": "MAJOR 3: head count is model-dependent"
+  },
+  {
+   "find": "The electric bill climbs too, because resistance heat and a single-speed window unit both run flat out. None of it is controllable by the degree.",
+   "replace": "The electric bill climbs too, because resistance heat uses more electricity than a heat pump for the same warmth and a single-speed window unit cycles at full output. Some of these appliances have thermostats, but each serves only the spot where it sits.",
+   "why": "MAJOR 4: false denial of temperature control on window ACs and space heaters"
+  },
+  {
+   "find": "City &amp; Suburban installs American Standard equipment, and the building's existing heat usually stays in place as backup rather than being removed.",
+   "replace": "City &amp; Suburban installs American Standard equipment. Whether the building's existing heat stays in place as backup depends on the model's cold-weather output, the room's heat loss and the building's requirements, so confirm the winter plan in the quote.",
+   "why": "MAJOR 5: implied company design practice on backup heat"
+  },
+  {
+   "find": "Keeping the existing heat as backup is the usual call in a Chicago building.",
+   "replace": "Whether to keep the existing heat as backup depends on cold-weather output, room heat loss and building requirements, and the winter plan belongs in the written quote.",
+   "why": "MAJOR 5: implied company design practice on backup heat"
+  },
+  {
+   "find": "Keeps running at reduced output; a correctly sized zone still holds",
+   "replace": "Keeps running at reduced output; whether the zone holds depends on the model's rated cold-weather output and the room's heat loss",
+   "why": "MAJOR 5 / rule 5: deterministic outcome"
+  },
+  {
+   "find": "Heats well in October, falls short in January",
+   "replace": "Heats well in October, may fall short in January",
+   "why": "Rule 5: deterministic failure prediction"
+  },
+  {
+   "find": "Sizing for the cooling load alone is the most common reason a ductless zone disappoints in January.",
+   "replace": "Sizing for the cooling load alone is a common reason a ductless zone disappoints in January.",
+   "why": "Rule 5: universal claim"
+  },
+  {
+   "find": "Installing new equipment needs a City of Chicago permit; a repair, a diagnosis, maintenance or refrigerant work does not.",
+   "replace": "Installing new equipment generally needs a City of Chicago permit; whether other work needs one is worth confirming with the City.",
+   "why": "Current law: unverifiable permit claim made conditional"
+  },
+  {
+   "find": "Installing new equipment requires a City of Chicago permit, while a repair, a diagnosis, maintenance or refrigerant work does not.",
+   "replace": "Installing new equipment generally requires a City of Chicago permit; whether a repair or other work needs one is worth confirming with the City before work starts.",
+   "why": "Current law: unverifiable permit claim made conditional"
+  },
+  {
+   "find": " page, and the work carries a satisfaction guarantee.",
+   "replace": " page.",
+   "why": "Unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": "City &amp; Suburban installs American Standard equipment, quotes upfront with no hidden fees, and backs the work with a satisfaction guarantee.",
+   "replace": "City &amp; Suburban installs American Standard equipment and quotes upfront with no hidden fees.",
+   "why": "Unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": " The work carries a satisfaction guarantee. To ",
+   "replace": " To ",
+   "why": "Unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": "City &amp; Suburban offers a satisfaction guarantee. Equipment warranty terms come from the manufacturer",
+   "replace": "City &amp; Suburban gives an upfront written price before work, with no hidden fees. Equipment warranty terms come from the manufacturer",
+   "why": "FAQ: unapproved satisfaction-guarantee claim replaced with approved fact"
+  },
+  {
+   "find": "Rob, the second-generation owner, still runs service calls, and the company has been family-owned since 1952.",
+   "replace": "Rob is the second-generation owner, and the company has been family-owned since 1952.",
+   "why": "Approved facts: owner's field role not registered"
+  }
+ ]
+}

@@ -1,0 +1,210 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Read the full AC repair guide guide</a>",
+      "replace": "Read the full AC repair guide</a>",
+      "why": "MAJOR #6: duplicated 'guide guide' wording"
+    },
+    {
+      "find": "No heat right now? Call (773) 238-3838.",
+      "replace": "AC not cooling right now? Call (773) 238-3838.",
+      "why": "MAJOR #6: heating emergency helper on a cooling page"
+    },
+    {
+      "find": "Short cycling is a control or a safety-trip problem. Adding refrigerant to a system that cycles every few minutes usually hides the real fault.",
+      "replace": "Short cycling can come from controls, a safety trip or oversized capacity, and only measured checks separate them. Adding refrigerant without those checks can hide the real fault.",
+      "why": "MAJOR #3: timing/category-as-diagnosis softened"
+    },
+    {
+      "find": "Ice on the coil or the copper line means the system should be switched to fan only before anyone arrives. Running a compressor through ice is how a repair becomes a replacement.",
+      "replace": "Ice on the coil or the copper line means cooling should be turned off. Fan-only thawing suits only dry, safe equipment where the manual allows it; running a compressor through ice can turn a repair into a replacement.",
+      "why": "MAJOR #2: fan-only made conditional on dry, safe equipment"
+    },
+    {
+      "find": "Look for a tripped breaker and reset it once only",
+      "replace": "Leave a tripped breaker off and arrange diagnosis rather than resetting it. For a burning smell or smoke, leave the building and call 911 from outside",
+      "why": "CRITICAL #1: unqualified breaker reset instruction removed"
+    },
+    {
+      "find": "Set the system to fan only and change the air filter",
+      "replace": "Turn cooling off and let the ice melt; run the fan alone only if the equipment is dry, no water is near wiring and the manual allows it",
+      "why": "MAJOR #2: fan-only made conditional"
+    },
+    {
+      "find": "Cycle length is the first clue, because timing the on-cycles and the off-cycles narrows the cause. Pressures read through a full cycle show whether a high-pressure or low-pressure switch is tripping. Refrigerant added without that data usually hides the fault for a week.",
+      "replace": "Cycle timing is worth noting, but timing alone does not identify the fault. Pressures read through a full cycle, with control and wiring checks, show whether a pressure switch is tripping or a control is dropping out. Refrigerant added without that data can hide the fault.",
+      "why": "MAJOR #3: timing-as-diagnosis replaced with measured checks"
+    },
+    {
+      "find": "City &amp; Suburban diagnoses the cause before anything is quoted, and on this symptom the timing comes first. Two to five minutes with cold air at the register points at controls. A cycle that ends with the outdoor unit stopping, while the indoor fan runs on, points at a protection trip. Coil, filter and the wiring at both ends all belong in the same diagnostic, because each one can raise pressure.",
+      "replace": "City &amp; Suburban diagnoses the cause before anything is quoted. Short cycles with cold air at the register can come from a control fault, but measured checks have to confirm it. A cycle that ends with the outdoor unit stopping, while the indoor fan runs on, can indicate a protection trip. Coil condition, the filter and the wiring at both ends all belong in the same diagnostic.",
+      "why": "MAJOR #3: timing-as-diagnosis and 'each raises pressure' assertion removed"
+    },
+    {
+      "find": "On-cycles of two to five minutes with cold air still at the register: thermostat location and wiring come first.",
+      "replace": "On-cycles of a few minutes with cold air still at the register: thermostat location and wiring are possible causes to check, not a confirmed diagnosis.",
+      "why": "MAJOR #3: timing-as-diagnosis softened"
+    },
+    {
+      "find": "a pressure switch or an overload is tripping.",
+      "replace": "a pressure switch or an overload may be tripping.",
+      "why": "MAJOR #3: deterministic diagnosis softened"
+    },
+    {
+      "find": "The first step is fan only, so the coil can thaw, because readings taken on ice mean nothing.",
+      "replace": "The first step is to stop cooling so the coil can thaw, because readings taken on ice mean nothing. Running the fan alone helps only when the equipment is dry and the manual allows it; with overflow or water near wiring, switch the system off and keep away.",
+      "why": "MAJOR #2: fan-only made conditional; shutdown for water near wiring"
+    },
+    {
+      "find": "City &amp; Suburban diagnoses the cause before anything is quoted, and on a frozen coil that means working from a clear coil. Airflow across the evaporator coil is measured first, with filter and blower condition. Charge, superheat and subcooling are read once the coil is clear and dry.",
+      "replace": "City &amp; Suburban diagnoses the cause before anything is quoted, and on a frozen coil a sound diagnosis works from a clear coil. Airflow across the evaporator coil should be checked first, with filter and blower condition. Charge, superheat and subcooling mean something only once the coil is clear and dry.",
+      "why": "Unregistered procedure recast as good practice"
+    },
+    {
+      "find": "That decision is better made with numbers than at the end of a hot week.",
+      "replace": "Finding that leak is better done with numbers than at the end of a hot week.",
+      "why": "MAJOR #4: frame review as customer report, not leak proof"
+    },
+    {
+      "find": "never got up sold.”</a> City &amp; Suburban prices upfront, with no hidden fees.",
+      "replace": "never got up sold.”</a> That is one customer's account of pricing, not evidence of how a leak was found; repeat recharges are still a reason to ask for a leak search. City &amp; Suburban prices upfront, with no hidden fees.",
+      "why": "MAJOR #4: review kept as customer report only"
+    },
+    {
+      "find": "A frozen coil needs several hours on fan only to thaw completely. Setting the system to fan and changing the filter before the appointment leaves a clear, dry coil. Airflow and charge readings only mean something in that state.",
+      "replace": "A frozen coil can take several hours to thaw completely. Turn cooling off and let it melt; run the fan alone only if the equipment is dry, no water is near wiring and the manual allows it. Airflow and charge readings only mean something once the coil is clear and dry.",
+      "why": "MAJOR #2: fan-only pro tip made conditional"
+    },
+    {
+      "find": "Water around an air conditioner is almost always condensate that failed to drain.",
+      "replace": "Water around an air conditioner is usually condensate that failed to drain.",
+      "why": "Absolute claim softened"
+    },
+    {
+      "find": "Seasonal drain and pan checks belong to a <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a>. Those plans carry priority dispatch and member discounts.",
+      "replace": "Seasonal drain and pan checks are maintenance work; ask whether a <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a> includes them. Plan members get priority dispatch.",
+      "why": "Plan terms limited to approved fact (priority dispatch)"
+    },
+    {
+      "find": "which is why the same system fails again in August.",
+      "replace": "which is why the same system can fail again in August.",
+      "why": "Deterministic failure prediction softened"
+    },
+    {
+      "find": "because a contactor with pitted points is a second call three weeks later.",
+      "replace": "because a contactor with pitted points can become a second call weeks later.",
+      "why": "Deterministic failure prediction softened"
+    },
+    {
+      "find": "and it is better to <a href=\"https://citysuburbanheating.com/contact-us/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">book a visit</a> than to reset a breaker twice.",
+      "replace": "and calling (773) 238-3838 is safer than resetting a breaker again.",
+      "why": "GUIDE-06 unregistered contact link removed; reset-twice framing removed"
+    },
+    {
+      "find": "Chicago's code sets a minimum temperature for heat and no maximum for summer.",
+      "replace": "Chicago's code sets a minimum temperature for heat.",
+      "why": "CRITICAL: broad denial of cooling requirements removed"
+    },
+    {
+      "find": "Nothing comparable covers cooling, so a July failure is settled by scheduling rather than by ordinance.",
+      "replace": "Cooling rules are narrower: Chicago code 14X-8-803.4 requires cooling for common gathering spaces in certain large or high-rise residential buildings, not for every dwelling unit, so confirm current requirements with the City.",
+      "why": "CRITICAL: false blanket ordinance statement replaced with narrow 14X-8-803.4 distinction"
+    },
+    {
+      "find": "A breaker that trips once may be heat or a sagging supply; a breaker that trips twice is reporting a fault.",
+      "replace": "A single trip can come from heat or a sagging supply, but the cause still needs diagnosis before the circuit is used again.",
+      "why": "CRITICAL #1: implied reset-once instruction removed"
+    },
+    {
+      "find": "Reset once only. A second trip means the system stays off until the electrical side is tested.",
+      "replace": "Leave the circuit off and do not reset it. The system stays off until the electrical side is tested.",
+      "why": "CRITICAL #1: unqualified reset instruction removed"
+    },
+    {
+      "find": "Switch it off at the disconnect and book a diagnostic the same day.",
+      "replace": "For a burning smell or smoke, leave the building and call 911 from outside without approaching the unit. For noise or heat alone, turn cooling off at the thermostat and book a diagnostic.",
+      "why": "Safety: burning odor means leave and call 911, not approach the disconnect"
+    },
+    {
+      "find": "Above it, or on a system with a leaking coil and an obsolete refrigerant, replacement is the better answer.",
+      "replace": "Above it, or on a system with a leaking coil and an obsolete refrigerant, replacement is usually the better answer.",
+      "why": "Absolute claim softened"
+    },
+    {
+      "find": "</a> Both outcomes come from the same calculation.</p>",
+      "replace": "</a></p>",
+      "why": "MINOR #10: do not infer procedure from general praise"
+    },
+    {
+      "find": "City &amp; Suburban prices from the diagnostic: which part failed, and whether refrigerant must be recovered and recharged by weight.",
+      "replace": "City &amp; Suburban prices after diagnosis, and the figure depends on which part failed and whether refrigerant must be recovered and recharged.",
+      "why": "Unregistered pricing procedure restated as approved fact"
+    },
+    {
+      "find": "The first question on the phone is almost always the price,",
+      "replace": "The first question on the phone is usually the price,",
+      "why": "Absolute claim softened"
+    },
+    {
+      "find": "City &amp; Suburban quotes after the readings rather than before, and the quote names both the part and the work.",
+      "replace": "City &amp; Suburban diagnoses before quoting, and a sound repair quote should name both the part and the work.",
+      "why": "MAJOR #5: quote contents recast as what to request"
+    },
+    {
+      "find": "<a href=\"/services/cooling/air-conditioning-installation/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">new air conditioner</a>, both figures get put side by side. A satisfaction guarantee stands behind the work either way.",
+      "replace": "<a href=\"/services/cooling/air-conditioning-installation/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">new air conditioner</a>, ask for both figures side by side.",
+      "why": "MAJOR #5: practice recast; unapproved satisfaction guarantee removed"
+    },
+    {
+      "find": "A leak inside the coil of an R-22 system is priced against replacement rather than buried in a recharge.",
+      "replace": "A leak inside the coil of an R-22 system should be priced against replacement rather than buried in a recharge.",
+      "why": "Unregistered practice recast as good practice"
+    },
+    {
+      "find": "listed in the <a href=\"https://citysuburbanheating.com/service-areas/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">service areas</a>.",
+      "replace": "listed in the service areas section of this page.",
+      "why": "GUIDE-06 unregistered service-areas link removed"
+    },
+    {
+      "find": "A system topped off two summers running has a leak nobody located.",
+      "replace": "A system topped off two summers running likely has a leak nobody located.",
+      "why": "Absolute claim softened"
+    },
+    {
+      "find": "City &amp; Suburban provides upfront pricing with no hidden fees. Ask about the service-call charge, what the visit includes and any credit toward a completed repair when booking, before authorizing the visit or repair.",
+      "replace": "City &amp; Suburban provides upfront pricing with no hidden fees and diagnoses the fault before any repair is quoted. When booking, ask about the service-call charge, what the diagnostic visit includes and whether any of it is credited toward a completed repair. The repair price then comes in writing for approval before work starts.",
+      "why": "FAQ length: 215 chars expanded to 250-460 range"
+    },
+    {
+      "find": "City &amp; Suburban offers a satisfaction guarantee and puts the diagnosed fault, repair scope and exact price in writing before work.",
+      "replace": "City &amp; Suburban diagnoses the fault before quoting and puts the exact price in writing before work, with no hidden fees; the quote should also state the repair scope.",
+      "why": "FAQ: unapproved satisfaction guarantee removed"
+    },
+    {
+      "find": "For seasonal check-ups, priority dispatch and member discounts, visit cooling maintenance plans.",
+      "replace": "Plan members get priority dispatch; see cooling maintenance plans for other plan terms.",
+      "why": "Related card: plan terms limited to approved fact"
+    },
+    {
+      "find": "Stop cooling for visible ice, active overflow, unusual burning smells or repeated breaker trips.",
+      "replace": "Stop cooling for visible ice, active overflow or repeated breaker trips. For a burning smell or smoke, leave the building and call 911 from outside.",
+      "why": "Safety: burning smell means leave and call 911, not shut off equipment first"
+    },
+    {
+      "find": "stop cooling if ice, burning smells or repeated trips appear.",
+      "replace": "stop cooling if ice or repeated trips appear; for a burning smell, leave and call 911 from outside.",
+      "why": "Safety: burning smell means leave and call 911 first"
+    },
+    {
+      "find": "Report any burning smell, visible smoke or water near the equipment.",
+      "replace": "For a burning smell or visible smoke, leave the building and call 911 from outside. Report water near the equipment.",
+      "why": "Safety: smoke or burning smell means leave and call 911 first"
+    },
+    {
+      "find": "Ice, water near wiring, burning smells or repeated breaker trips are reasons to stop cooling and arrange service.",
+      "replace": "Ice, water near wiring or repeated breaker trips are reasons to stop cooling and arrange service. For a burning smell or smoke, leave the building and call 911 from outside.",
+      "why": "FAQ safety: burning smell means leave and call 911 first"
+    }
+  ]
+}

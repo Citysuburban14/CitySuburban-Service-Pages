@@ -1,0 +1,185 @@
+{
+ "target": "html",
+ "fixes": [
+  {
+   "find": "No heat right now? Call (773) 238-3838. It's faster than the form.",
+   "replace": "No cooling right now? Call (773) 238-3838. It's faster than the form.",
+   "why": "MAJOR 8: heating emergency helper on a cooling page"
+  },
+  {
+   "find": "Read the full Heat Pump Cooling Guide guide",
+   "replace": "Read the full Heat Pump Cooling Guide",
+   "why": "MAJOR 8: duplicated 'guide guide' wording"
+  },
+  {
+   "find": "Power goes to the reversing valve solenoid and the compressor circuit",
+   "replace": "The compressor circuit starts; whether the reversing valve solenoid is powered in cooling depends on the model's O/B control setup and wiring diagram",
+   "why": "CRITICAL 1: universal valve-energized-in-cooling claim"
+  },
+  {
+   "find": "The valve stays energized until the call ends",
+   "replace": "The valve holds its cooling position until the call ends, energized or not depending on the model",
+   "why": "CRITICAL 1: universal valve-energized-until-call-ends claim"
+  },
+  {
+   "find": "Thermostat output gets read at the equipment first, then the solenoid is powered by hand so the slide can be heard and felt shifting.",
+   "replace": "A qualified technician checks the thermostat output at the equipment first, then confirms whether the valve shifts using the manufacturer's test procedure; none of this is a homeowner task, and equipment panels stay closed.",
+   "why": "CRITICAL 2: remove hand-powered solenoid procedure"
+  },
+  {
+   "find": "The coil gets checked for resistance and for a magnetic field with the circuit live. A light tap on the valve body while the system runs shows whether the slide completes its travel.",
+   "replace": "A qualified technician tests the solenoid coil and its control signal and checks whether the slide completes its travel, following the manufacturer's procedure; homeowners should keep panels closed and leave live equipment alone.",
+   "why": "CRITICAL 2: remove live-circuit checks and live-equipment tapping"
+  },
+  {
+   "find": "City &amp; Suburban diagnoses before quoting, so a valve is replaced only when those readings condemn it, and the charge is weighed back in afterward.",
+   "replace": "City &amp; Suburban diagnoses before quoting; a valve should be replaced only when those readings condemn it, with the charge weighed back in afterward.",
+   "why": "CRITICAL 3 / rule 2: procedure recast as what good practice should include"
+  },
+  {
+   "find": "A valve that shifts only once the system is warm, or only after a tap, is already failing.",
+   "replace": "A valve that shifts only once the system is warm is often already failing.",
+   "why": "CRITICAL 2 / rule 5: remove tap reference and deterministic claim"
+  },
+  {
+   "find": " City &amp; Suburban repairs all makes and models and backs the work with a satisfaction guarantee.",
+   "replace": " City &amp; Suburban repairs all makes and models.",
+   "why": "Unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": "City &amp; Suburban surveys the building before quoting: duct condition and static pressure, panel capacity, the outdoor location and the line set route.",
+   "replace": "A proper heat pump quote should rest on a survey of the building: duct condition and static pressure, panel capacity, the outdoor location and the line set route.",
+   "why": "CRITICAL 3: unregistered company survey procedure"
+  },
+  {
+   "find": "When a heat pump does not suit the building, the recommendation says so.",
+   "replace": "When a heat pump does not suit the building, a sound recommendation says so.",
+   "why": "CRITICAL 3: unregistered company procedure"
+  },
+  {
+   "find": "City &amp; Suburban looks at the building first, because the building decides the system more often than the budget does.",
+   "replace": "A sound quote looks at the building first, because the building decides the system more often than the budget does.",
+   "why": "CRITICAL 3: unregistered company procedure"
+  },
+  {
+   "find": "installs American Standard equipment, and measures before quoting a part.",
+   "replace": "installs American Standard equipment, and diagnoses before any quote.",
+   "why": "CRITICAL 3: procedure restated as approved diagnosis-first fact"
+  },
+  {
+   "find": "A heat pump runs in both seasons, so the compressor, contactor, capacitor and outdoor fan motor age at roughly twice the rate. Parts that would have outlived an air conditioner now wear out mid life,",
+   "replace": "A heat pump runs in both seasons, so the compressor, contactor, capacitor and outdoor fan motor collect more run hours than on a cooling-only system; their actual run hours and condition show the wear. Parts that would have outlived an air conditioner can wear out mid life,",
+   "why": "MAJOR 4: remove twice-rate aging claim"
+  },
+  {
+   "find": "Both wear at double rate on a system that runs in two seasons",
+   "replace": "Both collect run hours in two seasons, so measured condition matters more than age",
+   "why": "MAJOR 4: remove double-rate claim from table"
+  },
+  {
+   "find": "A heat pump should be serviced twice a year, once before cooling season and once before heating season. It builds up roughly double the run hours of a cooling-only system.",
+   "replace": "Many heat pumps benefit from service twice a year, before cooling season and before heating season; the right interval depends on run hours, condition and the manufacturer's guidance. A heat pump builds up more run hours than a cooling-only system.",
+   "why": "MAJOR 4 / rule 5: fixed interval and double run-hours claim"
+  },
+  {
+   "find": "A heat pump never gets an idle season and runs more hours heating than cooling, so it needs service twice a year.",
+   "replace": "A heat pump gets no idle season and often runs more hours heating than cooling, so service before each season is worth considering.",
+   "why": "MAJOR 4 / rule 5: fixed interval"
+  },
+  {
+   "find": "A Chicago heat pump runs far more hours heating than cooling, and it never gets an idle season.",
+   "replace": "A Chicago heat pump typically runs more hours heating than cooling, and it gets no idle season.",
+   "why": "Rule 5: absolute claim"
+  },
+  {
+   "find": "A heat pump running in both seasons reaches the lower end of its range.",
+   "replace": "A heat pump running in both seasons may reach the lower end of its range, depending on run hours and condition.",
+   "why": "MAJOR 4 / rule 5: deterministic lifespan"
+  },
+  {
+   "find": "Condition and repair history; year-round operation reaches the lower end",
+   "replace": "Condition and repair history; year-round operation can mean the lower end",
+   "why": "MAJOR 4 / rule 5: deterministic lifespan"
+  },
+  {
+   "find": "A two visit cycle fits the machine. Filters are sized and changed at each visit, the outdoor coil is washed from the inside out, and the charge is verified rather than assumed.",
+   "replace": "A two visit cycle often fits the machine. A good plan should size and change filters at each visit, wash the outdoor coil from the inside out, and verify the charge rather than assume it.",
+   "why": "Rule 2: procedure recast as what a good plan should include"
+  },
+  {
+   "find": "priority dispatch and member discounts, and the same ",
+   "replace": "priority dispatch and member discounts; ask which equipment the ",
+   "why": "Rule 2: plan coverage is a written term to confirm"
+  },
+  {
+   "find": " cover furnaces and air conditioners.",
+   "replace": " list in writing, including any furnace or air conditioner.",
+   "why": "Rule 2: plan coverage is a written term to confirm"
+  },
+  {
+   "find": "seasonal check-ups and priority dispatch, and a ",
+   "replace": "seasonal check-ups and priority dispatch; confirm in writing which visits a ",
+   "why": "Rule 2: plan visit scope is a written term to confirm"
+  },
+  {
+   "find": " covers the spring visit.",
+   "replace": " includes, such as a spring visit.",
+   "why": "Rule 2: plan visit scope is a written term to confirm"
+  },
+  {
+   "find": "Correct practice recovers the charge, weighs it, and recharges to the amount the maker states, with the leak found before any gas goes in.",
+   "replace": "A routine charge check uses the manufacturer's method and operating conditions without recovering the refrigerant. Where a leak or a wrong charge is diagnosed, correct practice finds and repairs the leak, then recovers and weighs in the charge to the amount the maker states.",
+   "why": "MAJOR 5: recovery and recharge are not required for every charge check"
+  },
+  {
+   "find": "A charge that was topped off instead of weighed in is worth correcting early in cooling season. Recovering and recharging to weight takes one visit and removes a variable from every repair after it.",
+   "replace": "A charge that was topped off instead of weighed in is worth checking early in cooling season. If the readings show it is wrong, recovering and recharging to weight removes a variable from every repair after it.",
+   "why": "MAJOR 5: recovery reserved for diagnosed work"
+  },
+  {
+   "find": "A charge set by feel in one season reads wrong in the other.",
+   "replace": "A charge set by feel in one season can read wrong in the other.",
+   "why": "Rule 5: deterministic claim"
+  },
+  {
+   "find": "Fall: backup heat staging checked, so it does not run alongside the compressor",
+   "replace": "Fall: backup heat staging checked against the manufacturer setup; electric auxiliary heat can run with the compressor, while dual-fuel furnace interlocks differ",
+   "why": "MAJOR 6: electric auxiliary heat can legitimately run with the compressor"
+  },
+  {
+   "find": "That crossover point is the balance point, and it decides running cost. It sets how many hours run on the electric rate and how many on the gas rate.",
+   "replace": "That switchover temperature is a configured setting. It is related to, but not the same as, the thermal balance point, where the heat pump alone just meets the home's heat loss, or the economic crossover, where gas becomes the cheaper heat. The setting drives running cost, because it decides how many hours run on the electric rate and how many on the gas rate.",
+   "why": "MAJOR 7: separate thermal balance point, economic crossover and configured lockout"
+  },
+  {
+   "find": "City &amp; Suburban gives upfront pricing with no hidden fees once the diagnosis is done, and prices the repair against the age of the equipment before recommending it.",
+   "replace": "City &amp; Suburban gives upfront pricing with no hidden fees once the diagnosis is done, and a sound recommendation weighs the repair against the age of the equipment.",
+   "why": "Rule 2: procedure recast as what a good recommendation includes"
+  },
+  {
+   "find": "On an older system the repair is priced beside an ",
+   "replace": "On an older system it is worth asking for the repair price beside an ",
+   "why": "Rule 2: procedure recast as what the homeowner should ask"
+  },
+  {
+   "find": " quote. The age of the unit and the cost of the fix go into that comparison, so the choice is not a guess. A satisfaction guarantee covers the work either way.",
+   "replace": " quote. The age of the unit and the cost of the fix belong in that comparison, so the choice is not a guess.",
+   "why": "Unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": "A City of Chicago permit is required to replace equipment, but repair, diagnosis, maintenance and refrigerant work need none.",
+   "replace": "A City of Chicago permit is generally required to replace equipment; whether other work needs one is worth confirming with the City.",
+   "why": "Current law: unverifiable permit claim made conditional"
+  },
+  {
+   "find": "Replacing equipment needs a permit; a repair does not.",
+   "replace": "Replacing equipment generally needs a permit; confirm with the City whether a repair does.",
+   "why": "Current law: unverifiable permit claim made conditional"
+  },
+  {
+   "find": "Repair, diagnosis and refrigerant work need no permit at all, so the invoice is the only record a homeowner keeps.",
+   "replace": "Repair, diagnosis and refrigerant work generally do not appear in permit records (confirm any permit question with the City), so the invoice is often the only record a homeowner keeps.",
+   "why": "Current law: unverifiable permit claim made conditional"
+  }
+ ]
+}

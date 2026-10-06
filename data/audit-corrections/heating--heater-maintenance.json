@@ -1,0 +1,75 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "No. A steam or hot water system has no blower, no filter and no condensate trap. Maintenance there is about water level controls, the low-water cutoff and operating pressure. Venting at the radiators and flushing sediment out of the boiler belong on the same list.",
+      "replace": "Not the same. A radiator system generally has no furnace air filter or blower, but boiler designs vary, and a condensing hot water boiler has its own condensate drain and trap. Depending on the system, maintenance there centers on water level controls, the low-water cutoff on steam equipment and operating pressure. Radiator venting and sediment flushing can belong on the list when the equipment and manufacturer instructions call for them.",
+      "why": "CRITICAL: universal 'no condensate trap' claim; condensing boilers have condensate drainage, designs vary"
+    },
+    {
+      "find": "City &amp; Suburban says which of the three applies on the phone rather than selling a visit that cannot help. A second opinion is a fair reason to call either way.",
+      "replace": "Describing the symptoms when booking helps sort which case applies, though some need a diagnosis first. City &amp; Suburban diagnoses before any quote, and a second opinion is a fair reason to call either way.",
+      "why": "CRITICAL: unregistered phone triage and refusal-to-sell claim; convert to booking advice, diagnosis may be needed"
+    },
+    {
+      "find": "A furnace installed weeks ago is usually still inside its installer's first-season check.",
+      "replace": "For a furnace installed weeks ago, the installation agreement is the first place to look for follow-up terms.",
+      "why": "CRITICAL (item 3): invented installer first-season check"
+    },
+    {
+      "find": "It usually does. Most manufacturer warranties on heating equipment require documented annual heater maintenance, and a missed year is a common reason a parts claim gets refused.",
+      "replace": "It can. Some manufacturer warranties on heating equipment set maintenance conditions, and the terms vary by brand and model, so the warranty certificate for the specific equipment is the place to check what is required.",
+      "why": "MAJOR: unsupported prevalence and implied automatic warranty loss"
+    },
+    {
+      "find": "Registration deadlines are a separate matter, and that clock generally starts at the install date rather than the first service visit.",
+      "replace": "Registration deadlines are a separate matter, and when that clock starts depends on the manufacturer terms for the model.",
+      "why": "MAJOR (item 4): universal warranty start-date claim"
+    },
+    {
+      "find": "The calendar is set by code.",
+      "replace": "The heating season is set by code.",
+      "why": "MAJOR (item 5): separate the heat ordinance from a tune-up deadline"
+    },
+    {
+      "find": "Mid-September is a deadline rather than a suggestion. A furnace that fails its first hard run in October is a furnace nobody tested in August. City &amp; Suburban books heater maintenance through late summer and early fall for that reason. Maintenance calls keep coming all winter for systems that were never checked.",
+      "replace": "The ordinance sets heat minimums, not a tune-up deadline. Booking maintenance before mid-September lowers the chance of finding a fault on the first cold night, though a recently checked furnace can still fail later. Late-summer calendars also tend to have more open slots than the first cold week.",
+      "why": "MAJOR: false certainty ('nobody tested in August') and supposed legal tune-up deadline; unregistered booking practice removed"
+    },
+    {
+      "find": "Cleaning then removes the carbon and dust that foul those parts, and the filter gets changed.",
+      "replace": "Cleaning then removes the carbon and dust that foul those parts. The written scope should say whether a filter is supplied, which readings are recorded and how any extra repair is priced.",
+      "why": "MAJOR: included filter change not verified; direct written scope to specify filter, readings and extra repairs"
+    },
+    {
+      "find": "City &amp; Suburban sends NATE-certified technicians, and findings are explained in plain terms before anything beyond the tune-up begins.",
+      "replace": "City &amp; Suburban technicians are NATE-certified, and the price of anything beyond the tune-up is put in writing before that work begins.",
+      "why": "MAJOR (item 6): unregistered procedure restated with approved fact (written price before work)"
+    },
+    {
+      "find": "City &amp; Suburban prices upfront with no hidden fees, so a safety finding arrives with the repair cost already in writing.",
+      "replace": "A finding like that should be reported right away, with clear advice on whether the furnace is safe to keep running, before any repair is priced. City &amp; Suburban prices upfront with no hidden fees, and any repair is quoted in writing for approval before work begins.",
+      "why": "MAJOR: safety disclosure must be immediate, not tied to a priced proposal"
+    },
+    {
+      "find": "<strong>Safety concerns need prompt attention</strong> Gas odors, carbon monoxide alarms, or a loss of heat should not wait for a routine heater maintenance appointment. Report the concern promptly.",
+      "replace": "<strong>Safety concerns need prompt attention</strong> For a gas odor or a carbon monoxide alarm, leave the building first and call 911, or the gas utility for a gas odor, from outside. A loss of heat should not wait for a routine heater maintenance appointment either; report it promptly.",
+      "why": "Safety rule: gas odor and CO alarm callout must lead with leaving and calling from outside"
+    },
+    {
+      "find": "Most single-furnace tune-ups take about an hour to ninety minutes once the technician reaches the equipment.",
+      "replace": "A single-furnace tune-up often takes about an hour to ninety minutes once the technician reaches the equipment.",
+      "why": "Minor: timeframe made conditional"
+    },
+    {
+      "find": "The house does not go cold during the visit.",
+      "replace": "The house does not usually go cold during the visit.",
+      "why": "Minor: absolute claim softened"
+    },
+    {
+      "find": "Technicians are NATE-certified, and the work carries a satisfaction guarantee. On heater",
+      "replace": "Technicians are NATE-certified. On heater",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    }
+  ]
+}

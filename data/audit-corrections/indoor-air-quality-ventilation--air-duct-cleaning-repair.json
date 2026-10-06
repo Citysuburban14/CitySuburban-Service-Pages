@@ -1,0 +1,55 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "We test the airflow path before selling a treatment.",
+      "replace": "A sound assessment tests the airflow path before any treatment is sold.",
+      "why": "CRITICAL systems: unverified company practice recast as assessment criteria"
+    },
+    {
+      "find": "Cleaning is not our automatic answer",
+      "replace": "Cleaning is not the automatic answer",
+      "why": "CRITICAL: unverified company practice in why title"
+    },
+    {
+      "find": "We identify the source before recommending cleaning or sealing.",
+      "replace": "A good assessment identifies where the dust comes from before cleaning or sealing is recommended.",
+      "why": "CRITICAL: unverified company practice recast as assessment criteria"
+    },
+    {
+      "find": "The 299 ductwork permits carry a $72,500 median reported construction value, but that is the value of the whole permitted project, not a duct-cleaning or sealing price. Use it only as construction context. ",
+      "replace": "",
+      "why": "PRICE-01 critical: permit construction value shown near pricing; never as a price"
+    },
+    {
+      "find": "An effective page has to protect the reader from paying for clean ducts while a return leak, dirty coil or crushed branch remains untouched.",
+      "replace": "A useful assessment keeps a homeowner from paying for clean ducts while a return leak, dirty coil or crushed branch remains untouched.",
+      "why": "MAJOR hero: page/marketing vocabulary in customer copy"
+    },
+    {
+      "find": "new trunks and major alterations do.",
+      "replace": "new trunks and major alterations usually do.",
+      "why": "Absolute permit claim made conditional"
+    },
+    {
+      "find": "Permit required",
+      "replace": "Permit usually required",
+      "why": "Absolute permit claim made conditional"
+    },
+    {
+      "find": "We will separate cleaning, leakage, and equipment problems before recommending work.",
+      "replace": "City & Suburban diagnoses before quoting, and a useful assessment separates cleaning, leakage, and equipment problems before any work is recommended.",
+      "why": "Unverified company promise in CTA recast to approved fact plus assessment criteria"
+    },
+    {
+      "find": "Can you remove mold from ducts?",
+      "replace": "Can mold be removed from ducts?",
+      "why": "FAQ voice: second person; avoids implying unverified mold capability"
+    },
+    {
+      "find": "Confirm that scope when you book.",
+      "replace": "That scope should be confirmed when booking.",
+      "why": "FAQ voice: second-person answer"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+ "target": "html",
+ "fixes": [
+  {
+   "find": "No heat right now? Call (773) 238-3838. It's faster than the form.",
+   "replace": "No cooling right now? Call (773) 238-3838. It's faster than the form.",
+   "why": "MAJOR 7: heating emergency helper on a cooling page"
+  },
+  {
+   "find": "Read the full Cooling Plan Guide guide",
+   "replace": "Read the full Cooling Plan Guide",
+   "why": "MAJOR 7: duplicated 'guide guide' wording"
+  },
+  {
+   "find": "Two-flat owners, landlords and owners of systems past their first decade gain the most, because a plan covers every system in the building and catches small faults early.",
+   "replace": "Two-flat owners, landlords and owners of systems past their first decade often gain the most, provided the written plan lists every system they want covered and a scheduled check-up catches small faults early.",
+   "why": "CRITICAL 1: universal multi-system coverage claim"
+  },
+  {
+   "find": "A plan visit is set in spring, before the first stretch of 90-degree days fills service calendars across the city.",
+   "replace": "A spring visit booked before the first stretch of 90-degree days fills service calendars across the city is the part of the plan schedule worth confirming.",
+   "why": "CRITICAL 2: implied fixed, pre-set appointment"
+  },
+  {
+   "find": "The check-up itself is the same inspection sold as a one-off tune-up. What membership adds is a place in the calendar before the heat arrives, and a known price when something breaks.",
+   "replace": "The written plan should state what each check-up covers, so it can be compared with a one-off tune-up quote. What membership can add is a place in the calendar before the heat arrives, with upfront pricing when something breaks.",
+   "why": "CRITICAL 3: identical inspection scope not an approved fact"
+  },
+  {
+   "find": "The check-up is the ordinary ",
+   "replace": "Each check-up is worth comparing with an ordinary ",
+   "why": "CRITICAL 3: identical inspection scope not an approved fact"
+  },
+  {
+   "find": " visit, booked ahead rather than in a rush. It works through the coil, the refrigerant charge, the electrical parts, airflow, the drain, the filter and the thermostat. Membership changes when that visit happens and what later repair work costs.",
+   "replace": " visit, which typically works through the coil, the refrigerant charge, the electrical parts, airflow, the drain, the filter and the thermostat; the written plan should list which of those each check-up includes. Membership can change when that visit happens and, under the written discount terms, what later repair work costs.",
+   "why": "CRITICAL 3: company inspection procedure recast as what the written plan should list"
+  },
+  {
+   "find": "Has the member discount applied to the repair quote",
+   "replace": "Asks whether the member discount applies to the repair quote",
+   "why": "CRITICAL 2 / MAJOR 6: discount scope is a term to confirm"
+  },
+  {
+   "find": "Books the fall check-up under the same plan",
+   "replace": "Asks whether a fall heating check-up can join the same plan",
+   "why": "MAJOR 6: combined cooling and heating plan not confirmed"
+  },
+  {
+   "find": "Both buy the same inspection. A one-off tune-up gets booked when the homeowner remembers, which in Chicago is often after the first hot weekend. A City &amp; Suburban plan fixes the date in advance, adds priority dispatch when the schedule allows, and discounts whatever repair the check-up finds.",
+   "replace": "Both can buy a similar inspection, so compare the written scope of each. A one-off tune-up gets booked when the homeowner remembers, which in Chicago is often after the first hot weekend. A City &amp; Suburban plan adds seasonal check-ups, priority dispatch when the schedule allows and member discounts; ask whether the company or the homeowner books each visit, and which repairs the discount covers.",
+   "why": "CRITICAL 2: 'fixes the date in advance' and same-inspection claim"
+  },
+  {
+   "find": "Membership changes the default rather than the work. Tracking the date moves from the homeowner to the contractor, and the homeowner only confirms it. Across three summers that tends to produce three completed check-ups instead of one or two.",
+   "replace": "Membership can change the default rather than the work. Where the plan has the contractor schedule each visit, tracking the date moves from the homeowner to the contractor. Across three summers that can produce three completed check-ups instead of one or two.",
+   "why": "CRITICAL 2: automatic scheduling not established"
+  },
+  {
+   "find": "City &amp; Suburban builds plans on seasonal check-ups rather than a single annual visit, and adds priority dispatch and member discounts on top.",
+   "replace": "City &amp; Suburban builds plans on seasonal check-ups, priority dispatch and member discounts; the number of visits and who schedules them are written terms to confirm.",
+   "why": "MAJOR 6: visit count not a confirmed plan term"
+  },
+  {
+   "find": "Plan: the date is already set and confirmed.",
+   "replace": "Plan: ask whether the company or the homeowner books each visit.",
+   "why": "CRITICAL 2: promised pre-set date"
+  },
+  {
+   "find": "Plan: quoted with the member discount applied.",
+   "replace": "Plan: quoted with any member discount the written terms allow.",
+   "why": "CRITICAL 2: discount scope is a term to confirm"
+  },
+  {
+   "find": "Plan: one schedule covering both systems.",
+   "replace": "Plan: one schedule, if the written plan lists both systems.",
+   "why": "CRITICAL 1: multi-system coverage must be confirmed in writing"
+  },
+  {
+   "find": "A City &amp; Suburban plan earns its fee there,",
+   "replace": "A City &amp; Suburban plan is most worth pricing there,",
+   "why": "MAJOR 4: guaranteed value claim"
+  },
+  {
+   "find": "Plans run for owner-occupied houses, two-flats and small rental buildings across that area.",
+   "replace": "Plans can be discussed for owner-occupied houses, two-flats and small rental buildings across that area.",
+   "why": "CRITICAL 1: coverage stated as practice; recast as a discussion"
+  },
+  {
+   "find": "Two or more of either, and membership usually earns the fee.",
+   "replace": "Two or more of either is a good reason to price a plan against separate visits.",
+   "why": "MAJOR 4: unsupported break-even claim"
+  },
+  {
+   "find": "Usually yes, for a different reason than on new equipment. On a system past its first decade a plan buys early warning and a planned exit, not extra years. A City &amp; Suburban check-up each spring shows what is drifting,",
+   "replace": "Often, though for a different reason than on new equipment. On a system past its first decade a plan can buy early warning and a planned exit, not extra years. A City &amp; Suburban seasonal check-up can show what is drifting,",
+   "why": "MAJOR 4: absolute value claim for older systems"
+  },
+  {
+   "find": "Equipment near the end signals before it quits.",
+   "replace": "Equipment near the end often signals before it quits.",
+   "why": "MAJOR 4: deterministic failure prediction"
+  },
+  {
+   "find": "Plan members get the seasonal check-up plus the member discount on whatever repair follows.",
+   "replace": "Plan members get seasonal check-ups plus member discounts on the work the written terms list.",
+   "why": "MAJOR 4: discount on any repair not an approved term"
+  },
+  {
+   "find": "Age alone does not decide it. Two repairs in two seasons, or a system past twelve years, is the point where a scheduled check-up plus a member discount usually pays for itself.",
+   "replace": "Age alone does not decide it. Whether a plan pays depends on the fee, the visits it actually covers, its exclusions and how much service the system is likely to need; two repairs in two seasons are a good reason to run that comparison.",
+   "why": "MAJOR 4: remove twelve-year break-even threshold"
+  },
+  {
+   "find": " quote carries the member discount. Pricing stays upfront",
+   "replace": " quote may carry the member discount, depending on the written plan terms. Pricing stays upfront",
+   "why": "CRITICAL 2: discount scope is a term to confirm"
+  },
+  {
+   "find": "City &amp; Suburban works on rooftop and flat-roof systems across 21 service areas, with NATE-certified technicians and upfront pricing.",
+   "replace": "Reviews describe City &amp; Suburban work on rooftop and flat-roof systems, and the company serves 21 areas with NATE-certified technicians and upfront pricing.",
+   "why": "Approved facts: rooftop capability stated only as review evidence"
+  },
+  {
+   "find": "City &amp; Suburban handles rooftop and flat-roof systems, and the ",
+   "replace": "Reviews describe City &amp; Suburban rooftop and flat-roof work, and the ",
+   "why": "Approved facts: rooftop capability stated only as review evidence"
+  },
+  {
+   "find": "Adding a fall heating check-up moves it again.",
+   "replace": "Whether a fall heating check-up can be added, and how that changes the fee, is a term to confirm.",
+   "why": "MAJOR 6: combined plan fee structure not confirmed"
+  },
+  {
+   "find": "A cooling-only plan is a smaller commitment than one carrying a fall heating check-up as well.",
+   "replace": "The number of visits and the seasons a plan covers are terms to confirm; more visits generally mean more time.",
+   "why": "MAJOR 6: cooling-only versus combined plan not confirmed"
+  },
+  {
+   "find": " work, with the member discount applied on that quote. There is a satisfaction guarantee behind the work, and financing through Wells Fargo Home Projects stays available for replacements, subject to credit approval.",
+   "replace": " work; whether the member discount applies to that quote is a written plan term. Financing through Wells Fargo Home Projects is available for replacements, subject to credit approval.",
+   "why": "Plan term and unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": "One cost a plan never carries is permitting. City of Chicago permit records cover equipment replacement, while maintenance, diagnosis and refrigerant work need no permit at all.",
+   "replace": "Permitting is generally tied to equipment replacement rather than routine maintenance. City of Chicago permit records cover equipment replacement; whether any other work needs a permit is worth confirming with the City.",
+   "why": "Current law: unverifiable absolute permit claim made conditional"
+  },
+  {
+   "find": " Work is backed by a satisfaction guarantee, and technicians are NATE-certified.",
+   "replace": " Technicians are NATE-certified.",
+   "why": "Unapproved satisfaction-guarantee claim"
+  },
+  {
+   "find": "A spring cooling visit in April or May, booked at signup.",
+   "replace": "The months of each visit, and who books it, stated in writing.",
+   "why": "CRITICAL 2 / MAJOR 5: invented plan term"
+  },
+  {
+   "find": "An older system will reach that point during the plan.",
+   "replace": "An older system may reach that point during the plan.",
+   "why": "MAJOR 4: deterministic failure prediction"
+  },
+  {
+   "find": "Replacement quoted separately, with the plan continuing on the new equipment.",
+   "replace": "A written answer on whether the plan continues on new equipment, transfers or ends.",
+   "why": "MAJOR 5: invented plan term"
+  },
+  {
+   "find": "A notice before the renewal charge, and cancellation by a phone call.",
+   "replace": "Written terms for the renewal notice, the cancellation method and notice period, refunds and transfer.",
+   "why": "MAJOR 5: 'cancellation by a phone call' presented as policy"
+  },
+  {
+   "find": "City &amp; Suburban builds plans on seasonal check-ups rather than one annual visit, and also offers a ",
+   "replace": "City &amp; Suburban builds plans on seasonal check-ups and also offers a ",
+   "why": "MAJOR 6: visit count not a confirmed plan term"
+  },
+  {
+   "find": "Both seasons can therefore be settled in one conversation, with the packaging quoted upfront.",
+   "replace": "Whether both seasons can sit in one plan is a term to confirm in the same conversation, with pricing quoted upfront.",
+   "why": "MAJOR 6: combined plan not confirmed"
+  }
+ ]
+}

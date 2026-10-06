@@ -1,0 +1,70 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Quickly, when stock and the calendar allow. City &amp; Suburban offers same-day service when the schedule allows. Emergency HVAC coverage runs every day till midnight except Sundays. A no-heat call in January can get a technician on site and a decision made the same day. A replacement that uses commonly stocked equipment often follows within a day or two of the quote. Chicago cold snaps fill the schedule fast, so an early call matters.",
+      "replace": "It depends on equipment availability, approval of the written quote, the installation scope and the calendar. City &amp; Suburban offers same-day service when the schedule allows, and emergency HVAC service every day till midnight, except Sundays, so a no-heat call may get a same-day diagnosis. The quote should state the expected replacement timing. Chicago cold snaps fill the schedule fast, so an early call matters.",
+      "why": "CRITICAL: replacement lead-time promise ('within a day or two of the quote'); availability depends on equipment, approval, scope and calendar"
+    },
+    {
+      "find": "Lena H. described that sequence in January 2026:",
+      "replace": "Lena H. described her own replacement in January 2026:",
+      "why": "CRITICAL (item 4): keep Lena's timeline as attributed experience, not a forecast"
+    },
+    {
+      "find": "Often it is too small to keep a tall masonry chimney warm. Cool flue gas then condenses inside the chimney. That damages the liner over years",
+      "replace": "The remaining appliance may not produce enough heat to keep a tall masonry chimney warm, and the flue may now be oversized for it. Cool flue gas can then condense inside the chimney. That can damage the liner over years",
+      "why": "MAJOR: ambiguous 'it is too small'; the remaining appliance may not heat an oversized shared flue"
+    },
+    {
+      "find": "A straightforward furnace installation in a Chicago home is usually a one-day job. The crew shuts off gas and power, then drains and disconnects the old unit. The new cabinet is set, the plenum and gas line adapted, the vent and condensate run, the controls wired.",
+      "replace": "A straightforward furnace installation in a Chicago home is often a one-day job, and the written quote should state the expected schedule. A typical scope shuts off gas and power, then disconnects and removes the old unit. The new cabinet is set, the plenum and gas line adapted, the vent run, condensate piped where the equipment produces it, and the controls wired.",
+      "why": "MAJOR: furnaces are not drained; workflow presented as typical scope, condensate only where applicable"
+    },
+    {
+      "find": "Add a day when the vent route changes",
+      "replace": "Expect more time when the vent route changes",
+      "why": "MAJOR (item 3): fixed timeframe softened"
+    },
+    {
+      "find": "City &amp; Suburban books the install once the quote is accepted.",
+      "replace": "City &amp; Suburban puts the exact price in writing before work begins.",
+      "why": "MAJOR (item 3): unregistered booking practice replaced with approved fact"
+    },
+    {
+      "find": "A building heated by steam or hot water has no duct system for a furnace to feed. That replacement path differs and calls for boiler services. A home with no ducts at all is usually better served by wall-mounted equipment. Cutting a full duct run into an older frame building is rarely the cheaper answer. A system only a few years old with one failed part is a repair, which belongs with ",
+      "replace": "A building heated by steam or hot water usually has no duct system for a furnace to feed, so its replacement options start with boiler services. A home with no ducts at all may suit wall-mounted ductless equipment; adding a full duct run to an older frame building depends on construction, access and wall and ceiling restoration, which a quote should spell out. A system only a few years old with one failed part may only need a repair, which belongs with ",
+      "why": "MAJOR: unsupported price ranking ('rarely the cheaper answer') and categorical recommendations"
+    },
+    {
+      "find": "Age, running cost and the count of recent failures decide which group a house falls into.",
+      "replace": "Age, running cost, the diagnosed condition and the count of recent failures help decide which group a house falls into.",
+      "why": "MAJOR (item 5): categorical decision rule softened"
+    },
+    {
+      "find": "Three things. City &amp; Suburban offers a satisfaction guarantee on its work. Manufacturer registration for the American Standard equipment should be completed promptly, because the parts warranty runs from the install date. Labor coverage and its duration sit with the installation agreement and should be read before signing.",
+      "replace": "Three things. First, the paperwork: the manufacturer warranty certificate for the specific model sets any registration deadline and when parts coverage starts, so check it soon after installation. Second, labor coverage and its duration sit with the installation agreement and should be read before signing.",
+      "why": "MAJOR: universal warranty start-date claim; model-specific certificate first, parts warranty, labor terms and guarantee distinguished"
+    },
+    {
+      "find": "visit also keeps a future warranty claim defensible.",
+      "replace": "visit can also support a future warranty claim where the terms require maintenance.",
+      "why": "MAJOR (item 6): implied warranty outcome made conditional"
+    },
+    {
+      "find": "Heater installation and replacement in the City of Chicago is permitted work.",
+      "replace": "Heater installation and replacement in the City of Chicago is generally permitted work, and the written quote should say who pulls the permit.",
+      "why": "Minor: unqualified legal claim made conditional"
+    },
+    {
+      "find": "The record follows the building and surfaces when the property is sold or refinanced.",
+      "replace": "The record follows the building and can surface when the property is sold or refinanced.",
+      "why": "Minor: deterministic claim softened"
+    },
+    {
+      "find": "Upfront pricing, no hidden fees and a satisfaction guarantee</li>",
+      "replace": "Upfront pricing and no hidden fees</li>",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    }
+  ]
+}

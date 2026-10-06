@@ -1,0 +1,130 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "City &amp; Suburban treats a commercial no-heat call as priority work, with same-day service when the schedule allows. Where a landlord supplies the heat, the Chicago Heat Ordinance sets a general rule from September 15 to June 1. The minimum is 68 degrees from 8:30 a.m. to 10:30 p.m. and 66 degrees overnight (Chicago Municipal Code 13-196-410). The code lists exceptions. Where the same system also heats apartments above the shop, the dwelling units carry the ordinance minimums. The repair therefore has a legal deadline attached to the residential space.",
+      "replace": "City &amp; Suburban offers same-day service when the schedule allows and emergency HVAC service every day till midnight, except Sundays; maintenance plan members get priority dispatch. The Chicago Heat Ordinance sets minimums for dwelling units, not a blanket temperature for commercial-only space. Where the same system also heats apartments above the shop and the landlord supplies that heat, those units must reach 68 degrees from 8:30 a.m. to 10:30 p.m. and 66 degrees overnight from September 15 to June 1 (Chicago Municipal Code 13-196-410), subject to the code's exceptions. That puts a legal minimum on the residential space.",
+      "why": "CRITICAL 1: unconditional commercial no-heat priority removed (only member priority dispatch is approved); Rule 4: Heat Ordinance scoped to dwelling units"
+    },
+    {
+      "find": "Four checks are safe for staff and often shorten the visit. Confirm the thermostat is calling for heat or cool, not fan only. Look for a tripped breaker. Check whether a service switch near the furnace or air handler was flipped off. Pull the filter and see whether it is packed with dust. Anything past that is technician work: opening a gas-fired unit, repeatedly resetting a locked-out control, or climbing onto a roof. A smell of gas is a different call, to the utility and the fire department first. City &amp; Suburban diagnoses before quoting, and those four answers give the technician a head start.",
+      "replace": "A gas smell, smoke or a carbon monoxide alarm comes first: everyone leaves the building and calls 911, or the gas utility for a gas odor, from outside. Otherwise, four checks are reasonable for staff. Confirm the thermostat is calling for heat or cool, not fan only. Look for a tripped breaker. Check whether a service switch near the furnace or air handler was flipped off. Where the filter sits in an accessible indoor slot, shut the system off as the manufacturer directs before checking whether it is packed with dust. Anything past that is technician work: opening energized or gas-fired equipment, repeatedly resetting a locked-out control, or going onto a roof. City &amp; Suburban diagnoses before quoting, and those answers give the technician a head start.",
+      "why": "MAJOR 4 + safety rule 3: evacuate-and-call first; filter check only after manufacturer-safe shutdown at an accessible filter; no energized equipment or roof access"
+    },
+    {
+      "find": "City &amp; Suburban states the failure, the repair price and the realistic remaining life.",
+      "replace": "City &amp; Suburban diagnoses the failure and puts the repair price in writing before work. An owner can also ask for a view of the unit's remaining life, which is an estimate rather than a certainty.",
+      "why": "CRITICAL 2: remaining-life statement recast as an owner request with uncertainty"
+    },
+    {
+      "find": "An older rooftop unit may be charged with R-22, which is no longer produced for new equipment.",
+      "replace": "An older rooftop unit may be charged with R-22, which is no longer produced in the US.",
+      "why": "Factual precision: R-22 production has ended, not only for new equipment"
+    },
+    {
+      "find": "new equipment ships with lower-global-warming blends instead.",
+      "replace": "new equipment ships with lower-global-warming refrigerants instead.",
+      "why": "Factual precision: not all replacement refrigerants are blends"
+    },
+    {
+      "find": "City &amp; Suburban names the refrigerant type, the repair price and the realistic remaining life before the owner decides.",
+      "replace": "City &amp; Suburban puts the repair price in writing before work. The owner can ask which refrigerant the unit uses and how firm any remaining-life estimate is before deciding.",
+      "why": "CRITICAL 2 (repeat): remaining-life statement recast as an owner request"
+    },
+    {
+      "find": "City &amp; Suburban prices upfront with no hidden fees and backs the job with a satisfaction guarantee. An operator",
+      "replace": "City &amp; Suburban prices upfront with no hidden fees. An operator",
+      "why": "Rule 1: satisfaction guarantee is not an approved fact"
+    },
+    {
+      "find": "Wells Fargo Home Projects financing is available, subject to credit approval, which spreads a large repair instead of taking it out of one month of trading.",
+      "replace": "Wells Fargo Home Projects financing is a consumer credit product subject to credit approval, so whether it can be used for a business repair, and by which applicant, must be confirmed before relying on it.",
+      "why": "MAJOR 3: consumer financing must not imply it covers a business expense; eligibility must be confirmed"
+    },
+    {
+      "find": "Wells Fargo Home Projects credit card, subject to credit approval.</p>",
+      "replace": "Wells Fargo Home Projects credit card, subject to credit approval; eligibility for business projects must be confirmed.</p>",
+      "why": "MAJOR 3 (pricing card): consumer financing eligibility for business projects must be confirmed"
+    },
+    {
+      "find": "A replacement part usually carries the manufacturer's own warranty, and the labor that installed it is covered separately by the contractor. Those terms belong in writing on the invoice rather than in a conversation. City &amp; Suburban works on upfront pricing with no hidden fees and backs the job with a satisfaction guarantee.",
+      "replace": "A replacement part usually carries the manufacturer's own warranty, and the labor that installed it may be covered separately under the contractor's own terms. Those terms belong in writing on the invoice rather than in a conversation, so ask for them before approving the work. City &amp; Suburban works on upfront pricing with no hidden fees.",
+      "why": "Rule 1/2: satisfaction guarantee not approved; labor warranty recast as written terms to request"
+    },
+    {
+      "find": "Emergency and routine commercial HVAC repairs follow four visit steps. The technician confirms the complaint with the person who reported it. The equipment and its controls are inspected, and electrical and refrigerant values measured. The failure and the price are named before work starts. A repair that needs no ordered part is usually finished in the first visit; City &amp; Suburban names the expected sequence at the quote rather than afterward.",
+      "replace": "Emergency and routine commercial HVAC repairs usually follow four steps. The complaint is confirmed with the person who reported it. The equipment and its controls are inspected, with electrical and refrigerant values measured where the fault calls for it. City &amp; Suburban diagnoses the failure and puts the price in writing before work starts. A repair that needs no ordered part can often be finished in the first visit, depending on access and the fault. The quote is the place to ask for the expected sequence.",
+      "why": "Rule 2: unregistered visit procedure and first-visit completion recast as conditional; READ-01 long sentence split"
+    },
+    {
+      "find": "City &amp; Suburban diagnoses before quoting, so the fault and the price land in the same visit.",
+      "replace": "City &amp; Suburban diagnoses before quoting and puts the price in writing before any work.",
+      "why": "Rule 2: same-visit price promise is not approved"
+    },
+    {
+      "find": "City &amp; Suburban runs maintenance plans with seasonal check-ups, priority dispatch and member discounts. That is the route for filter changes, coil cleaning, belt checks and control calibration.",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch. A written plan agreement should list what each visit covers, such as filter changes, coil cleaning, belt checks and control calibration.",
+      "why": "Rule 2: plan terms beyond member priority dispatch recast as what an agreement should list"
+    },
+    {
+      "find": "Buildings with several rooftop units usually move onto a commercial maintenance plan after the first failure.",
+      "replace": "Buildings with several rooftop units often consider a commercial maintenance plan after a first failure.",
+      "why": "Rule 5: universal claim made conditional"
+    },
+    {
+      "find": "The visit was booked for the Monday of Labor Day weekend.",
+      "replace": "That review comes from a condo building, so it shows roof-mounted work rather than a commercial account. The visit was booked for the Monday of Labor Day weekend.",
+      "why": "Rule 6: residential review not presented as proof of commercial capability"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models and installs American Standard equipment, so an aging rooftop unit of another make still gets repaired rather than written off.",
+      "replace": "Whether an aging rooftop unit is worth repairing depends on its condition and parts availability, not on its brand.",
+      "why": "Rule 1: all-makes and American Standard claims are not approved facts; READ-01 long sentence removed"
+    },
+    {
+      "find": "When a part has to be sourced, the useful answer names where it is coming from, the likely wait, and what the business can run meanwhile.",
+      "replace": "When a part has to be sourced, a useful answer names where it is coming from and the likely wait. It also says what the business can run meanwhile.",
+      "why": "READ-01 minor: long sentence split"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models and prices the work upfront with no hidden fees, so a sourced part does not reopen the price.",
+      "replace": "City &amp; Suburban prices the work upfront with no hidden fees, so confirm that the written price already includes the sourced part.",
+      "why": "Rule 1: all-makes claim removed; sourced-part promise recast as what to confirm"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, so the diagnosis favors no single manufacturer.",
+      "replace": "A diagnosis built on those readings keeps the repair tied to the failure rather than to a brand.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "Request the certificate when booking, so it arrives before the visit.",
+      "replace": "Ask at booking whether a certificate can be issued and how long it takes, so any paperwork arrives before the visit.",
+      "why": "Rule 2: certificate issuance is not a registered company practice; recast as what to ask"
+    },
+    {
+      "find": "NATE-certified technicians repair all makes and models, with upfront pricing and no hidden fees.",
+      "replace": "NATE-certified technicians diagnose before quoting, with upfront pricing and no hidden fees.",
+      "why": "Rule 1: 'repair all makes and models' is not an approved fact"
+    },
+    {
+      "find": "All makes and models</span>\n            <span style=\"font-size: 14px; color: rgba(255,255,255,0.9);\">Emergency &amp; routine repairs</span>",
+      "replace": "Diagnosis first</span>\n            <span style=\"font-size: 14px; color: rgba(255,255,255,0.9);\">Before any quote</span>",
+      "why": "Rule 1: 'All makes and models' fact card replaced with approved diagnosis-first fact"
+    },
+    {
+      "find": "Distinguish the same unresolved fault from a new problem. City &amp; Suburban repairs all makes and models. Ask",
+      "replace": "Distinguish the same unresolved fault from a new problem. Ask",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "disruption of a replacement project. City &amp; Suburban repairs all makes and models. For a larger decision",
+      "replace": "disruption of a replacement project. City &amp; Suburban diagnoses before quoting. For a larger decision",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models and installs American Standard equipment. The product cards show equipment categories. For emergency",
+      "replace": "City &amp; Suburban diagnoses before quoting and puts the price in writing before work. For emergency",
+      "why": "Install intro: unapproved all-makes/American Standard claims and stale reference to the removed product cards"
+    }
+  ]
+}

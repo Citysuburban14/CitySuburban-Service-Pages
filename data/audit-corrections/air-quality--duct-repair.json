@@ -1,0 +1,75 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "Note which rooms collect dust fastest.",
+      "replace": "Note which rooms collect dust most quickly.",
+      "why": "HYG-06 minor: superlative 'fastest'"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models. Closet equipment connections",
+      "replace": "Closet equipment connections",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban sends NATE-certified technicians and repairs all makes and models. Duct sealing closes leaks;",
+      "replace": "City &amp; Suburban has NATE-certified technicians. Duct sealing closes leaks;",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban sends NATE-certified technicians and works on ducts feeding all makes and models of furnace, air handler and coil.",
+      "replace": "City &amp; Suburban has NATE-certified technicians, and the repair method should match the duct material and connection type.",
+      "why": "Rule 1: 'all makes and models' is not an approved fact"
+    },
+    {
+      "find": "Airflow and air temperature are read at the register in the room that is complaining, then compared against a room that heats normally. Static pressure across the air handler is read as well,",
+      "replace": "A useful assessment reads airflow and air temperature at the register in the room that is complaining, then compares them with a room that heats normally. It reads static pressure across the air handler as well,",
+      "why": "CRITICAL (item 2 pattern): diagnostic sequence recast as what a useful assessment includes"
+    },
+    {
+      "find": "Where the landlord supplies heat, the Chicago Heat Ordinance sets a minimum of 68 degrees from 8:30 a.m. to 10:30 p.m.",
+      "replace": "Where the landlord supplies heat, the Chicago Heat Ordinance applies. It sets a minimum of 68 degrees from 8:30 a.m. to 10:30 p.m.",
+      "why": "READ-01 minor: split sentence over 30 words"
+    },
+    {
+      "find": "A City &amp; Suburban technician starts in the room that is complaining and works back along its branch. Readings at the register and at the air handler set the scope before anything is opened. How long the visit takes depends on access and the number of joints opened. Sealing seams, re-securing a dropped branch and swapping a length of flex are reachable repairs where the run is exposed in a basement or crawlspace. Work behind finished plaster, or a fitting that must be fabricated for an odd gravity trunk, needs a second trip. The written price comes before the work, and same-day appointments are available when the schedule allows.",
+      "replace": "A useful duct repair visit starts in the room that is complaining and works back along its branch. Readings at the register and at the air handler should set the scope before anything is opened. How long the visit takes depends on access and the number of joints opened. On an exposed basement or crawlspace run, sealing seams, re-securing a dropped branch and swapping flex are reachable repairs. Work behind finished plaster, or a fitting that must be fabricated for an odd gravity trunk, may need a second trip. City &amp; Suburban gives a written price before the work, and same-day appointments are available when the schedule allows.",
+      "why": "CRITICAL: unregistered diagnostic sequence recast as what a useful visit includes; READ-01 sentence shortened"
+    },
+    {
+      "find": "Warning signs include a sooty draft hood, heavy window condensation near the appliance, and a carbon monoxide alarm that sounds only while the blower runs. Illinois requires carbon monoxide alarms near sleeping areas under the Carbon Monoxide Alarm Detector Act (430 ILCS 135). If an alarm sounds, the household should leave and call 911 and the gas utility first.",
+      "replace": "Warning signs include a sooty draft hood and heavy window condensation near the appliance. A carbon monoxide alarm, even one that sounds only while the blower runs, means leaving the building first and calling 911 from outside, then the gas utility. Illinois requires carbon monoxide alarms near sleeping areas under the Carbon Monoxide Alarm Detector Act (430 ILCS 135).",
+      "why": "Safety rule: CO alarm instruction is to leave the building and call 911 from outside"
+    },
+    {
+      "find": "The ductwork and air handler inside the unit belong to the owner.",
+      "replace": "The ductwork and air handler inside a unit often belong to the unit owner, but the condominium declaration and governing documents decide it.",
+      "why": "MAJOR: condo ownership qualified by declarations and governing documents"
+    },
+    {
+      "find": "That is the kind of job City of Chicago permit records cover, and where a permit applies the contractor performing the work files it rather than the homeowner. Repairs in kind and alterations also price differently, so the distinction is worth settling at the quote. City &amp; Suburban sets out the scope in writing before work starts, so a repair is not rescoped as an alteration later.",
+      "replace": "Those are the jobs that appear in City of Chicago permit records. Whether a permit applies, and who files it, is worth confirming with the City and the contractor. Repairs in kind and alterations also price differently, so the distinction is worth settling at the quote. City &amp; Suburban gives a written price before work starts. If opening a run reveals concealed damage, the scope and price should be revised in writing and approved before extra work goes ahead.",
+      "why": "CRITICAL: written price does not prevent rescoping; changed findings need revised written scope and approval; legal claim made conditional; READ-01"
+    },
+    {
+      "find": "One more step pays off before a remodel: photograph the duct routes while the joists and chases are still open, so nobody is guessing behind new drywall later. City &amp; Suburban offers maintenance plans with seasonal check-ups, priority dispatch and member discounts.",
+      "replace": "One more step pays off before a remodel. Photograph the duct routes while the joists and chases are still open, so nobody guesses behind new drywall later. City &amp; Suburban maintenance plan members get priority dispatch.",
+      "why": "READ-01 minor; Rule 2: plan terms beyond priority dispatch are not approved"
+    },
+    {
+      "find": "Three things, in order. Airflow at the repaired register improves the same day. The temperature spread between rooms evens out over a day or two as the building catches up. Runtime depends on the heat load as well as duct losses, so a sealed system asks the furnace for fewer minutes on the same cold night. A duct system that no longer leaks also loads its air filter more slowly, which keeps static pressure down. Rooms that were starved stop being the reason the thermostat is pushed higher. City &amp; Suburban stands behind duct repair with a satisfaction guarantee.",
+      "replace": "Results depend on the home, so measure rather than assume. Where access allows, airflow at the repaired register can be read before and after the repair, so the change is documented. The temperature spread between rooms may narrow, but branch length, returns and insulation also affect balance. Runtime depends on the heat load as well as duct losses, so sealing can reduce furnace minutes on a cold night, though the saving varies. A return side that leaks less can also load the air filter more slowly. If a room stays starved after the repair, the remaining restriction needs its own diagnosis. City &amp; Suburban diagnoses before quoting any further work.",
+      "why": "MAJOR: outcome and time promises replaced with measured before/after airflow; unapproved satisfaction guarantee removed"
+    },
+    {
+      "find": "1.2;\">Satisfaction guarantee</span>",
+      "replace": "1.2;\">Diagnosis first</span>",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    },
+    {
+      "find": "0.9);\">City &amp; Suburban service</span>",
+      "replace": "0.9);\">Before any quote</span>",
+      "why": "Satisfaction guarantee is not an approved, registered company fact (removed site-wide)"
+    }
+  ]
+}

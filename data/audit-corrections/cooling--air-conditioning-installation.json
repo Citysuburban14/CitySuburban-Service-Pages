@@ -1,0 +1,155 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "No heat right now? Call (773) 238-3838.",
+      "replace": "Replacing an AC that has stopped cooling? Call (773) 238-3838.",
+      "why": "MAJOR #6: heating emergency helper on a cooling page"
+    },
+    {
+      "find": "The proposal should cover removal and handover. City &amp; Suburban offers a satisfaction guarantee and financing subject to credit approval.",
+      "replace": "The proposal should cover removal and handover. City &amp; Suburban offers financing through Wells Fargo Home Projects, subject to credit approval.",
+      "why": "Unapproved warranty term (satisfaction guarantee) removed"
+    },
+    {
+      "find": "Replacing the air conditioner and the furnace or air handler in one visit avoids a second disruption and keeps the blower, coil and refrigerant metering matched.",
+      "replace": "Where the furnace or air handler is also worn or cannot supply the airflow a new coil needs, replacing both in one visit avoids a second disruption; a sound blower may stay.",
+      "why": "MAJOR #3: lead with condition and compatibility, not replacement preference"
+    },
+    {
+      "find": "Most single-system replacements in a Chicago house or condo finish in one working day.",
+      "replace": "Many single-system replacements can finish in one working day, depending on access and scope; the written plan should state the expected timing.",
+      "why": "Unapproved timeframe made conditional"
+    },
+    {
+      "find": "That shortcut shows up later as short cycling, humidity that never drops and a flat cooling bill.",
+      "replace": "That shortcut can show up later as short cycling, humidity that stays high and a cooling bill that does not improve.",
+      "why": "MINOR: deterministic outcome softened"
+    },
+    {
+      "find": "City &amp; Suburban sends a technician to the building before quoting, then puts the price in writing with no hidden fees.",
+      "replace": "City &amp; Suburban diagnoses before any quote, then puts the price in writing with no hidden fees.",
+      "why": "Procedure claim restated as approved fact (diagnosis before quote)"
+    },
+    {
+      "find": "City &amp; Suburban sends a technician to see the space and the existing coil and ductwork before quoting a replacement.",
+      "replace": "A sound replacement quote should follow a look at the space, the existing coil and the ductwork.",
+      "why": "Unregistered sizing procedure recast as what a quote should include"
+    },
+    {
+      "find": "Short cycling is the mechanism behind most complaints about a new air conditioner.",
+      "replace": "Short cycling is the mechanism behind many complaints about a new air conditioner.",
+      "why": "MINOR: universal claim softened"
+    },
+    {
+      "find": "City &amp; Suburban looks at the building before quoting, including the indoor coil, the return and supply ducts and the electrical.",
+      "replace": "A replacement assessment should look at the building, including the indoor coil, the return and supply ducts and the electrical.",
+      "why": "Unregistered assessment procedure recast as good practice"
+    },
+    {
+      "find": "Reviewers describe the sizing conversation going the same way at City &amp; Suburban. ",
+      "replace": "",
+      "why": "MINOR #10: do not infer a sizing procedure from general praise"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard cooling equipment in single-stage, two-stage and variable-speed configurations. The efficiency options are quoted side by side upfront, so the trade-off is visible before anything is ordered.",
+      "replace": "City &amp; Suburban installs American Standard cooling equipment, which comes in single-stage, two-stage and variable-speed configurations. A homeowner can ask for the efficiency options to be quoted side by side, so the trade-off is visible before anything is ordered.",
+      "why": "Unregistered quoting practice recast as homeowner request"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard cooling equipment and can quote a baseline single-stage system against a two-stage or variable-speed option for the same house.",
+      "replace": "City &amp; Suburban installs American Standard cooling equipment. A homeowner can ask for a baseline single-stage system to be priced against a two-stage or variable-speed option for the same house.",
+      "why": "Unregistered quoting practice recast as homeowner request"
+    },
+    {
+      "find": "carries a BBB A+ rating and offers maintenance plans with seasonal check-ups, priority dispatch and member discounts.",
+      "replace": "carries a BBB A+ rating, and its maintenance plan members get priority dispatch.",
+      "why": "Plan terms limited to approved fact (priority dispatch)"
+    },
+    {
+      "find": "A top-tier variable-speed system pays back faster in a sun-exposed top-floor condo than in a shaded garden unit that already stays cool.",
+      "replace": "A top-tier variable-speed system is more likely to recover its extra cost in a sun-exposed top-floor condo than in a shaded garden unit, but payback depends on equipment price, electric rates and run hours. A written life-cycle comparison for the actual building shows whether it pays.",
+      "why": "MAJOR #5: categorical payback promise removed"
+    },
+    {
+      "find": "City &amp; Suburban installs matched American Standard pairs and checks that the existing furnace or air handler can move the airflow the new coil needs before the equipment is ordered.",
+      "replace": "City &amp; Suburban installs American Standard equipment. A sound proposal should name the matched pair and confirm that the existing furnace or air handler can move the airflow the new coil needs before anything is ordered.",
+      "why": "CRITICAL #2: company matching and airflow-check procedure not registered"
+    },
+    {
+      "find": "City &amp; Suburban installs matched American Standard cooling equipment, with the coil sized to the condenser and seated on the furnace or air handler that will move the air.",
+      "replace": "City &amp; Suburban installs American Standard cooling equipment. A matched proposal should identify a coil sized to the condenser and the furnace or air handler that will move the air.",
+      "why": "CRITICAL #2: matching procedure recast as what a proposal should identify"
+    },
+    {
+      "find": "quoted at the same time rather than a coil forced onto an unsuitable cabinet. NATE-certified technicians make that call on site.",
+      "replace": "quoted at the same time rather than a coil forced onto an unsuitable cabinet. The homeowner should ask how that airflow was checked.",
+      "why": "CRITICAL #2: on-site matching procedure claim removed"
+    },
+    {
+      "find": "City &amp; Suburban handles these connections on American Standard installations and documents the charge against the manufacturer specification for the actual line length.",
+      "replace": "The quote should confirm that these connections are included and that the charge will be recorded against the manufacturer specification for the actual line length.",
+      "why": "CRITICAL #1: installation procedure recast as quote requirement"
+    },
+    {
+      "find": "City &amp; Suburban pressure tests and evacuates the lines, insulates the suction line, routes the condensate to an approved drain and connects the outdoor disconnect as part of the installation. Technicians are NATE-certified, the work carries a satisfaction guarantee, and the company repairs",
+      "replace": "A sound installation quote should confirm that the lines are pressure tested and evacuated, the suction line is insulated, the condensate is routed to an approved drain and the outdoor disconnect is connected. City &amp; Suburban technicians are NATE-certified, and the company repairs",
+      "why": "CRITICAL #1: pressure test/evacuation procedure recast; unapproved guarantee removed"
+    },
+    {
+      "find": "A condensate drain that worked for a decade can still fail on a new system, because a higher-efficiency coil produces more water. Any installation above a finished ceiling deserves a float switch.",
+      "replace": "A condensate drain that worked for a decade can still fail on a new system, since water volume depends on humidity, airflow and run time. Drainage should be verified on any replacement, and an installation above a finished ceiling deserves a float switch.",
+      "why": "MAJOR #4: efficiency-to-more-water claim removed"
+    },
+    {
+      "find": "City &amp; Suburban installs in these buildings across 13 Chicago neighborhoods and 8 suburbs. That includes rooftop locations where the unit has to be lifted, mounted on rails and isolated from the structure below.",
+      "replace": "City &amp; Suburban serves 13 Chicago neighborhoods and 8 suburbs. For a rooftop location, the proposal should cover how the unit is lifted, mounted on rails and isolated from the structure below.",
+      "why": "Rooftop installation procedure recast as proposal scope"
+    },
+    {
+      "find": "Often yes, because the blower and the indoor coil work as one airflow system and the labor overlaps. One combined visit avoids a second teardown of the same plenum. That matters when the furnace is also near the end of its service life, or cannot move the airflow a new coil needs. City &amp; Suburban quotes both scopes together and prices each line upfront.",
+      "replace": "It depends on the condition and compatibility of the furnace or air handler. A sound blower that can move the airflow the new coil needs may stay. When the furnace is near the end of its service life or cannot supply that airflow, one combined visit avoids a second teardown of the same plenum. City &amp; Suburban puts the price in writing upfront.",
+      "why": "MAJOR #3: 'Often yes' replaced with condition and compatibility"
+    },
+    {
+      "find": "City &amp; Suburban installs matched American Standard systems and quotes a cooling-only replacement against a combined system in the same written estimate. Where the heating side is the weaker half, <a href=\"/services/heating/heater-installation/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">replacing the furnace</a>",
+      "replace": "City &amp; Suburban installs American Standard systems, and a homeowner can ask for a cooling-only replacement to be priced against a combined system. Where the heating side is the weaker half, a <a href=\"/services/heating/heater-installation/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">heater installation</a>",
+      "why": "Unregistered quoting practice recast; GUIDE-06 anchor text names target page"
+    },
+    {
+      "find": "Works, and a second project follows within a few seasons",
+      "replace": "Works; the furnace may need its own project later, depending on its condition",
+      "why": "MAJOR #3: inevitable second-project prediction removed"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard cooling equipment and heat pumps, and can quote both against each other for the same building during a replacement.",
+      "replace": "City &amp; Suburban installs American Standard cooling equipment and heat pumps. A homeowner can ask for both to be priced against each other for the same building during a replacement.",
+      "why": "Unregistered quoting practice recast as homeowner request"
+    },
+    {
+      "find": "Those figures reflect wider project scope, not a City &amp; Suburban price, and the company quotes each option separately.",
+      "replace": "Those figures reflect wider project scope, not a City &amp; Suburban price.",
+      "why": "Unregistered quoting practice removed"
+    },
+    {
+      "find": "Replacing mechanical equipment in the City of Chicago is permitted work, and City of Chicago permit records show equipment replacements filed that way.",
+      "replace": "City of Chicago permit records show equipment replacements filed as permitted work; confirm the current permit requirement for the address with the City.",
+      "why": "Unverified legal claim made conditional"
+    },
+    {
+      "find": "Equipment replacements in Chicago generally need a City permit, and the written quote should say who pulls it.",
+      "replace": "Equipment replacements in Chicago often appear in City permit records; confirm the current requirement with the City, and the written quote should say who pulls the permit.",
+      "why": "Unverified legal claim made conditional (FAQ)"
+    },
+    {
+      "find": "A quote can be arranged through the <a href=\"https://citysuburbanheating.com/contact-us/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">contact</a> page, and warranty conditions are easier to meet under a <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a> with seasonal check-ups and priority dispatch.",
+      "replace": "A quote can be arranged by calling (773) 238-3838. Manufacturer warranty terms may call for documented maintenance, and <a href=\"/services/cooling/cooling-maintenance-plans/\" style=\"color: #186AA4; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;\">cooling maintenance plan</a> members get priority dispatch.",
+      "why": "GUIDE-06 unregistered contact link removed; plan terms limited to approved fact"
+    },
+    {
+      "find": "The company offers same-day service when the schedule allows, backs the work with a satisfaction guarantee, and serves 13 Chicago neighborhoods and 8 suburbs.",
+      "replace": "The company offers same-day service when the schedule allows and serves 13 Chicago neighborhoods and 8 suburbs.",
+      "why": "Unapproved warranty term (satisfaction guarantee) removed"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "This draft excludes filling stations, kerosene sales, and tank delivery.",
+      "replace": "Fuel sales, kerosene, tank filling and fuel delivery are separate from appliance service and belong to the fuel supplier.",
+      "why": "CRITICAL 2: visible draft language in hero; state the scope boundary in plain customer terms"
+    },
+    {
+      "find": ", and the keyword file is dominated by fuel-retail searches rather than heating service.",
+      "replace": ".",
+      "why": "CRITICAL 1/2: research-demand note in hero; keep only the customer-facing context"
+    },
+    {
+      "find": "The permit source has only one oil/propane-tagged project. Do not quote a median.",
+      "replace": "Chicago's permit records contain too few oil and propane projects to give a meaningful typical price.",
+      "why": "CRITICAL 2/6: editor instruction and data-pipeline wording in pricing note"
+    },
+    {
+      "find": "Confirm fuel level, supplier responsibility, appliance model, burner model, lockout code, and visible soot or odor before dispatch.",
+      "replace": "Before booking, it helps to know the fuel level, who supplies the fuel, the appliance and burner model, and any lockout code. A fuel or gas odor, smoke or a carbon monoxide alarm is not a booking question: leave the building and call 911 or the fuel supplier from outside.",
+      "why": "MAJOR 3/10: unapproved dispatch procedure and missing evacuation boundary for odor"
+    },
+    {
+      "find": "Soot or odor is present",
+      "replace": "Soot is present",
+      "why": "MAJOR 3: an odor is an evacuate-first situation, not a booking option"
+    },
+    {
+      "find": "No fuel-delivery or filling-station service is represented by this page.",
+      "replace": "No. City & Suburban does not deliver heating oil or propane. Fuel delivery, tank filling and supplier-owned tanks and regulators are handled by the fuel supplier.",
+      "why": "MAJOR 9/11: preserve the genuine scope boundary in third person"
+    },
+    {
+      "find": "Do you deliver propane or heating oil?",
+      "replace": "Does City & Suburban deliver propane or heating oil?",
+      "why": "MINOR 11: second-person FAQ question"
+    },
+    {
+      "find": "Do not repeatedly press reset. Record the code, check fuel level safely, and call for qualified diagnosis if the burner does not start normally.",
+      "replace": "If there is a fuel or gas smell, smoke or a carbon monoxide alarm, leave the building first and call 911 or the fuel supplier from outside. Otherwise, a locked-out burner should not be reset repeatedly. Note the lockout code and the fuel gauge reading, and arrange qualified diagnosis if the burner does not restart normally.",
+      "why": "MAJOR 3: lockout answer lacked the evacuate-first boundary for odor, smoke and CO"
+    },
+    {
+      "find": "Shut down unsafe equipment and arrange inspection.",
+      "replace": "Soot is a reason to stop relying on the appliance and arrange a prompt qualified assessment. If soot comes with fumes, a fuel or gas smell, smoke or a carbon monoxide alarm, leave the building and call 911 from outside before anything else.",
+      "why": "MAJOR 3: soot answer told occupants to shut down equipment; add stop-use and evacuation boundary"
+    },
+    {
+      "find": "Typical work includes filter and nozzle condition, electrodes, burner cleaning, draft, smoke, combustion readings, and heat-exchanger inspection.",
+      "replace": "A thorough annual service follows the burner and appliance manufacturer's instructions and typically covers the filter and nozzle, electrodes, burner cleaning, draft, smoke and combustion readings, and heat-exchanger inspection. A good service record lists the readings in writing. Tank, fuel and regulator issues usually belong to the fuel supplier.",
+      "why": "MAJOR 4: checklist presented as company practice; recast as what a good service should include and separate supplier responsibility"
+    },
+    {
+      "find": "No permit",
+      "replace": "Usually no permit",
+      "why": "Rule 4: absolute permit claims made conditional"
+    }
+  ]
+}

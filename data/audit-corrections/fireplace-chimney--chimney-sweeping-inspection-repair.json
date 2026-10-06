@@ -1,0 +1,90 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "but that construction record does not establish sweeping capability.",
+      "replace": "a citywide construction figure, not a sweeping price or a record of City & Suburban's work.",
+      "why": "Permit statistic framed as citywide market context only"
+    },
+    {
+      "find": "The improved draft separates three questions that weak pages blend together: is the symptom at the appliance",
+      "replace": "Three questions decide the next step: is the symptom at the appliance",
+      "why": "CRITICAL: remove draft and editorial language from the hero"
+    },
+    {
+      "find": "That distinction gives the page value even while the service remains outside scope.",
+      "replace": "Chimney sweeping, relining and masonry repair sit outside City & Suburban's confirmed HVAC services and belong with a qualified chimney professional.",
+      "why": "CRITICAL: state the service boundary plainly; no implied sweeping, liner or masonry capability"
+    },
+    {
+      "find": "Need annual sweeping",
+      "replace": "Need chimney sweeping",
+      "why": "Unsourced sweeping interval removed"
+    },
+    {
+      "find": "Need a qualified referral",
+      "replace": "Not sure which trade is needed",
+      "why": "CRITICAL: do not imply a vetted referral partner exists"
+    },
+    {
+      "find": "Chimney sweeping, masonry, liner certification, and structural repair remain a specialist trade unless a documented partner owns the scope.",
+      "replace": "Chimney sweeping, masonry, liner certification, and structural repair remain a specialist trade. If a chimney fire is suspected, such as a roaring sound, heavy smoke or flames at the top of the chimney, leave the building and call 911 from outside.",
+      "why": "Remove implied partner; add missing chimney-fire safety boundary"
+    },
+    {
+      "find": " unless the project team is documented.",
+      "replace": ".",
+      "why": "Remove implied documented project team"
+    },
+    {
+      "find": "We separate appliance venting from chimney trade work",
+      "replace": "Appliance venting and chimney trade work are separate",
+      "why": "Unregistered company practice recast as general guidance"
+    },
+    {
+      "find": "This is not a price book. It shows the scope variables and what the Chicago permit record can and cannot support so quotes can be compared on the same basis.",
+      "replace": "Chimney and venting work is priced from the scope variables below, so quotes can be compared on the same basis.",
+      "why": "Editorial framing removed from pricing lede"
+    },
+    {
+      "find": "The permit file has 214 chimney/flue/vent-stack projects with cost, but the $10,800 median is the whole declared construction value and categories overlap. It is not a sweep, liner, or masonry price.",
+      "replace": "Chicago's permit records show 214 chimney, flue or vent-stack projects citywide with a declared cost, but those values cover whole construction projects and are not a sweep, liner, or masonry price.",
+      "why": "CRITICAL PRICE-01: remove $10,800 median; permit data as citywide context only"
+    },
+    {
+      "find": "Not as a verified service. The source roadmap marks chimney sweeping outside HVAC scope, so this draft should route to a qualified chimney professional.",
+      "replace": "Not as a confirmed service. Chimney sweeping sits outside City & Suburban's confirmed HVAC scope, so sweeping, relining and masonry work should go to a qualified chimney professional. Call City & Suburban at (773) 238-3838 to confirm whether an appliance venting question fits its scope before booking.",
+      "why": "CRITICAL: remove draft/source language; no implied capability"
+    },
+    {
+      "find": "An HVAC technician can test appliance combustion and draught at the connector. A chimney specialist should assess",
+      "replace": "An HVAC check covers combustion and draft at the appliance connector only. It is not a chimney inspection and does not certify the liner or structure. A qualified chimney specialist with access to the flue, exterior and crown should assess",
+      "why": "MAJOR: explain limits of an appliance-side check versus a chimney inspection"
+    },
+    {
+      "find": "Stop use if a carbon-monoxide alarm activates.",
+      "replace": "If a carbon monoxide alarm sounds or fumes are noticed, leave the building and call 911 from outside. Do not stay to shut off equipment or open windows, and do not re-enter until emergency responders say it is safe.",
+      "why": "CRITICAL safety: CO alarm means leave and call 911 from outside"
+    },
+    {
+      "find": "Often yes when tied to appliance venting or material changes.",
+      "replace": "Permit requirements depend on the municipality and the scope, and relining tied to appliance venting or material changes often needs one.",
+      "why": "Legal claim made conditional"
+    },
+    {
+      "find": "Frequency depends on fuel, use, and inspection findings. A qualified provider should document deposits and condition rather than sell solely from a calendar.",
+      "replace": "Inspection timing and sweeping are separate questions: sweeping depends on fuel, use and the deposits found at inspection. A qualified provider should document deposits and condition rather than sell solely from a calendar, and should state in writing which findings, such as heavy deposits, a cracked or missing liner or signs of a past chimney fire, mean the appliance should not be used until repaired.",
+      "why": "MAJOR: distinguish inspection from sweeping and show stop-use findings without an unsourced interval"
+    },
+    {
+      "find": "What evidence should a chimney referral provide?",
+      "replace": "What should a chimney inspection report provide?",
+      "why": "Do not imply a referral service exists"
+    },
+    {
+      "find": "Ask for dated photos or video,",
+      "replace": "A useful report includes dated photos or video,",
+      "why": "FAQ voice: named-noun third person"
+    }
+  ]
+}

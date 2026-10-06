@@ -1,0 +1,50 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "Chicago search demand is real, but this is electrical-trade work rather than verified HVAC scope for City & Suburban.",
+      "replace": "Much of this work, especially new wiring, a new box or a new switch location, is electrical-trade work, so the responsible trade should be confirmed before booking.",
+      "why": "CRITICAL hero: search-demand and internal scope commentary; no capability implied"
+    },
+    {
+      "find": "The city source contains only two ceiling-fan-tagged permits",
+      "replace": "Chicago's permit records contain only two ceiling-fan-tagged permits",
+      "why": "Source commentary reworded as citywide context (grammar)"
+    },
+    {
+      "find": " Do not publish this service until City & Suburban confirms that it can legally and operationally perform the electrical work.",
+      "replace": "",
+      "why": "MAJOR guide: publishing/workflow note in customer copy"
+    },
+    {
+      "find": "City & Suburban should not accept this work until the responsible electrical scope is verified.",
+      "replace": "The responsible electrical trade should be confirmed before this work is booked.",
+      "why": "Internal scope note in customer copy"
+    },
+    {
+      "find": "Send the entire fan, canopy, wall controls, ceiling height, and any accessible box label.",
+      "replace": "Photos taken from the floor help: the whole fan, the canopy, the wall controls and the ceiling height. No one should open the canopy or the box to photograph wiring or labels.",
+      "why": "Safety: no opening electrical connections for photos"
+    },
+    {
+      "find": "Send a wide equipment photo, rating plate, controls, connections, and the surrounding installation.",
+      "replace": "Photos that already exist and were taken safely, such as a wide view of the equipment, its label and its controls, are helpful. No one should climb onto a roof, enter an attic or open electrical connections to take them.",
+      "why": "Safety: accept only existing, safely taken images"
+    },
+    {
+      "find": "Can you add a fan where there is no fixture?",
+      "replace": "Can a fan be added where there is no fixture?",
+      "why": "FAQ voice: second person"
+    },
+    {
+      "find": "Do you repair portable floor fans?",
+      "replace": "Does ceiling fan service cover portable floor fans?",
+      "why": "FAQ voice: second person"
+    },
+    {
+      "find": "No. This draft concerns permanently mounted ceiling fans, not retail portable appliances.",
+      "replace": "No. Ceiling fan service concerns permanently mounted fans, not retail portable appliances.",
+      "why": "Draft vocabulary in customer copy"
+    }
+  ]
+}

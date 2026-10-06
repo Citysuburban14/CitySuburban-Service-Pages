@@ -1,0 +1,70 @@
+{
+  "target": "source",
+  "fixes": [
+    {
+      "find": "and code-required testing.",
+      "replace": "and the testing local codes may require.",
+      "why": "Code claim made conditional"
+    },
+    {
+      "find": "The source confirms that this is outside City & Suburban’s verified HVAC scope. This document is retained only as an architecture and content draft; it must not be published as an offered service unless the company adds the required licensed capability and defines responsibility with the gas trade.",
+      "replace": "Standby generator work is electrical and fuel-trade scope that sits outside City & Suburban's confirmed HVAC services, so it belongs with a qualified electrical contractor.",
+      "why": "CRITICAL: remove source/draft language and licensing reference; state the service boundary plainly"
+    },
+    {
+      "find": "Describe the symptom, equipment type, controls, access, and when the problem began for standby generator service.",
+      "replace": "Describe the generator type, the symptom, and when the problem began.",
+      "why": "Form subtitle no longer implies generator service is offered"
+    },
+    {
+      "find": "A standby system is not an HVAC accessory page.",
+      "replace": "A standby system is electrical work, not an HVAC accessory.",
+      "why": "Remove editorial page reference"
+    },
+    {
+      "find": "City & Suburban should refer this work until that capability is documented.",
+      "replace": "That work belongs with a qualified electrical contractor.",
+      "why": "CRITICAL: remove internal capability note and implied referral service"
+    },
+    {
+      "find": " This is not a City & Suburban price page.",
+      "replace": "",
+      "why": "Remove editorial page commentary"
+    },
+    {
+      "find": "Licensed scope required",
+      "replace": "Qualified electrical scope",
+      "why": "Licensing not verified; no licensing references"
+    },
+    {
+      "find": "Service scope still must be verified",
+      "replace": "Qualified electrical scope",
+      "why": "Remove internal verification note"
+    },
+    {
+      "find": "Electrical and fuel permits required",
+      "replace": "Electrical and fuel permits usually required",
+      "why": "Legal claim made conditional"
+    },
+    {
+      "find": "No verified capability is documented. This page is marked out of scope and must remain unpublished unless licensed electrical responsibility is added and confirmed.",
+      "replace": "Not as a confirmed service. Standby generator work is electrical and fuel-trade scope outside City & Suburban's confirmed HVAC services, so installation, repair and maintenance belong with a qualified electrical contractor.",
+      "why": "CRITICAL: remove draft/publishing language and licensing reference; no implied capability"
+    },
+    {
+      "find": "Yes, a permanent standby system commonly involves electrical and fuel permits plus utility and siting requirements.",
+      "replace": "Usually. A permanent standby system commonly involves electrical and fuel permits plus utility and siting requirements, which vary by municipality.",
+      "why": "Absolute legal claim made conditional"
+    },
+    {
+      "find": "No. Portable units, extension cords, interlocks, and temporary operation are a different safety and service category.",
+      "replace": "No. Portable units, extension cords, interlocks, and temporary operation are a different safety and service category. A generator running indoors or in an attached garage can cause carbon monoxide poisoning; if a carbon monoxide alarm sounds, leave the building and call 911 from outside.",
+      "why": "Safety boundary for carbon monoxide"
+    },
+    {
+      "find": "Chicago standby generator installation, repair and maintenance guidance from City & Suburban. Compare symptoms, equipment types, scope, permit questions, and quote dr.",
+      "replace": "Chicago standby generator guidance: equipment types, permits and what a qualified electrical contractor's quote should cover. Outside City & Suburban's HVAC scope.",
+      "why": "Truncated meta description; no implied capability for out-of-scope service"
+    }
+  ]
+}

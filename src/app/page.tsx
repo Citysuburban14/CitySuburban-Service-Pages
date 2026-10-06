@@ -7,8 +7,8 @@ import {referenceNavigation, type ReferenceOverride} from '@/lib/reference-pages
 
 export const revalidate = 60
 export const metadata: Metadata = {
-  title: 'HVAC Services in Chicago',
-  description: 'Explore City & Suburban heating, cooling, indoor-air-quality, and commercial HVAC service pages.',
+  title: 'HVAC Services in Chicago | City & Suburban',
+  description: 'Choose a heating, cooling, air quality or commercial HVAC service in Chicago. Family owned since 1952, rated 4.98 across 204 Google reviews.',
   alternates: {canonical: 'https://citysuburbanheating.com/services/'},
 }
 
@@ -26,11 +26,11 @@ export default async function HomePage() {
               <h1>Trusted HVAC experts for Chicago homes</h1>
               <p>Explore dependable heating, cooling, indoor-air-quality, and commercial HVAC services for Chicago homes and buildings.</p>
               <div className="collection-hero-actions">
-                <a href="#service-directory-title">Explore service clusters</a>
+                <a href="#service-directory-title">Explore service categories</a>
                 <a href="https://citysuburbanheating.com/contact-us/">Schedule service</a>
               </div>
             </div>
-            <div className="collection-hero-panel" aria-label={`${clusters.length} HVAC service clusters`}>
+            <div className="collection-hero-panel" aria-label={`${clusters.length} HVAC service categories`}>
               <span className="collection-hero-panel-kicker">Whole-home comfort</span>
               <div className="collection-hero-panel-count">
                 <strong>{clusters.length}</strong>

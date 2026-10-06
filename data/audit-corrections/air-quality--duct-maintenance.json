@@ -1,0 +1,100 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "<li>Record the room and when the odor appears.</li><li>Look for visible moisture without opening enclosed sections.</li><li>Avoid sprays or fragrances inside the duct.</li><li>Treat gas odor, smoke or an alarm as an immediate safety concern.</li>",
+      "replace": "<li>For a gas odor, smoke, a burning smell or a carbon monoxide alarm, leave the building first and call 911 from outside, or the gas utility for a gas odor.</li><li>Record the room and when the odor appears.</li><li>Look for visible moisture without opening enclosed sections.</li><li>Avoid sprays or fragrances inside the duct.</li>",
+      "why": "Safety rule: leaving the building and calling 911 must be the first instruction for gas, smoke or CO alarm"
+    },
+    {
+      "find": "Leave the affected space and contact emergency services or the gas utility as appropriate.",
+      "replace": "Leave the building and call 911 from outside, or the gas utility for a gas odor.",
+      "why": "Safety rule: leave the building (not just the space) and call from outside"
+    },
+    {
+      "find": "Where duct interiors are clean, or the real fault is leakage, filtration and sealing are the better spend.",
+      "replace": "Where duct interiors are clean, or the real fault is leakage, filtration and sealing are the better spend. The inspection findings, not a coupon, should set the scope.",
+      "why": "MAJOR: FAQ answer under 450 characters (447)"
+    },
+    {
+      "find": "A maintenance visit starts at the filter and blower compartment, then follows the accessible supply and return runs. Registers and grilles come off, airflow is measured at the furnace, and loose joints, crushed flex, closed dampers and blocked returns get noted. Most single-family inspections run one to two hours. City &amp; Suburban inspects the accessible duct runs and quotes any cleaning scope after that inspection, with upfront pricing and no hidden fees.",
+      "replace": "A thorough duct maintenance visit should start at the filter and blower compartment, then follow the accessible supply and return runs. A good assessment removes registers and grilles where needed, checks airflow at the equipment, and notes loose joints, crushed flex, closed dampers and blocked returns. Visit length depends on the number of runs, access and finished ceilings, so ask for an estimate when booking. City &amp; Suburban diagnoses before any quote and gives an upfront written price before work, with no hidden fees. Ask which runs the inspection covers and whether cleaning would be quoted separately.",
+      "why": "CRITICAL: unregistered duct inspection protocol recast as assessment scope to request; fixed visit duration removed"
+    },
+    {
+      "find": "A closer survey of the runs makes sense every three to five years. That survey comes sooner after a remodel, after signs of rodents, or in a building with no service records. City &amp; Suburban maintenance plans include seasonal check-ups, priority dispatch and member discounts.",
+      "replace": "When a closer survey of the runs makes sense depends on condition, not a fixed interval. Triggers include a remodel, signs of rodents, dust returning soon after a filter change, or a building with no service records. Finished ceilings limit what any inspection can reach, and an inspection is not a full cleaning. City &amp; Suburban maintenance plan members get priority dispatch.",
+      "why": "MAJOR: fixed three-to-five-year interval replaced with condition triggers; unapproved plan terms removed"
+    },
+    {
+      "find": "Chemical fogging and whole-house coupon pricing quoted without an inspection are both warning signs.",
+      "replace": "Chemical fogging and whole-house coupon pricing quoted without an inspection are both warning signs. A good quote also separates cleaning from any repair finding, such as a loose joint or crushed run.",
+      "why": "MAJOR: FAQ answer under 450 characters (420)"
+    },
+    {
+      "find": "A long branch to a back bedroom starves one room, and so does a crushed flex run, a damper left closed, or a sofa parked over a return.",
+      "replace": "A long branch to a back bedroom can starve one room. So can a crushed flex run, a damper left closed, or a sofa parked over a return.",
+      "why": "READ-01 minor: shorten 26-30 word sentence"
+    },
+    {
+      "find": "Where the imbalance survives balancing, leakage or an undersized run is the usual cause, which is duct repair work.",
+      "replace": "Where the imbalance survives balancing, leakage or an undersized run is the usual cause, which is duct repair work. City &amp; Suburban diagnoses before quoting, so the cause is found before any repair is priced.",
+      "why": "MAJOR: FAQ answer under 450 characters (449)"
+    },
+    {
+      "find": "One-inch filters generally need replacing every one to three months, and four-inch media filters often run six to twelve.",
+      "replace": "One-inch filters often need replacing every one to three months, and four-inch media filters often run six to twelve, depending on dust, pets, runtime and the equipment instructions.",
+      "why": "Rule 5: fixed filter interval made conditional"
+    },
+    {
+      "find": "Dust that reappears within days usually arrives through leaky returns, which pull air from a basement, crawl space or wall cavity, not off the duct walls.",
+      "replace": "Dust that reappears within days usually arrives through leaky returns, not off the duct walls. Those returns pull air from a basement, crawl space or wall cavity.",
+      "why": "READ-01 minor: shorten 26-30 word sentence"
+    },
+    {
+      "find": "Mold odor, vermin evidence or post-renovation debris makes cleaning the correct call.",
+      "replace": "Mold odor, vermin evidence or post-renovation debris can make cleaning worthwhile, once the source is addressed.",
+      "why": "Rule 5: categorical claim made conditional"
+    },
+    {
+      "find": "Fiberglass duct board and brittle old flex need light handling or replacement.",
+      "replace": "Fiberglass duct board and brittle old flex need light handling or replacement. Before approving the work, ask how debris will be contained and which tools suit the duct material.",
+      "why": "MAJOR: FAQ answer under 450 characters (428)"
+    },
+    {
+      "find": "Aggressive cleaning is the wrong call on a duct run like that, because agitation puts whatever the wrap is made of into the air the household breathes.",
+      "replace": "Aggressive cleaning is the wrong call on a duct run like that, because agitation puts whatever the wrap is made of into the air the household breathes. Older wraps can contain asbestos, so testing by a qualified lab comes before any duct work.",
+      "why": "MAJOR: FAQ answer under 450 characters (433)"
+    },
+    {
+      "find": "Four situations should not wait. A sewer or exhaust odor from the vents is one, and soot marks around registers another. So are a carbon monoxide alarm that sounds and a return duct left open near a gas appliance. Each can pull combustion air into living space. Illinois regulates home alarms through the Carbon Monoxide Alarm Detector Act, and an alarm means fresh air and a phone call. City &amp; Suburban offers same-day service when the schedule allows.",
+      "replace": "If a carbon monoxide alarm sounds, or there is a gas smell, smoke, or an exhaust or burning odor, leave the building first and call 911 from outside, or the gas utility for a gas smell. Do not stop to check vents or equipment. Soot marks around registers, a sewer odor from the vents and a return duct left open near a gas appliance also should not wait, because each can pull combustion air into living space. Illinois regulates home alarms through the Carbon Monoxide Alarm Detector Act. City &amp; Suburban offers emergency HVAC service every day till midnight, except Sundays.",
+      "why": "Safety rule: CO alarm / gas / smoke answer must start with leaving the building and calling 911 from outside"
+    },
+    {
+      "find": "Inspection, cleaning, filter changes and balancing are not permit work.",
+      "replace": "Inspection, cleaning, filter changes and balancing are generally treated as maintenance rather than permit work; confirm with the City for a specific job.",
+      "why": "Rule 4: unverifiable legal claim made conditional"
+    },
+    {
+      "find": "Findings like that belong in writing, so an owner or manager has something to act on.",
+      "replace": "Findings like that belong in writing, so an owner or manager has something to act on. Tenants and condo owners should also confirm who controls the equipment and shared ducts, since access and approval sit with the owner or association.",
+      "why": "MAJOR: FAQ answer under 450 characters (429)"
+    },
+    {
+      "find": "Cook County Assessor records for the eight Chicago townships put the median build year near 1927 for single-family and small multi-family homes, so many systems here are later retrofits.",
+      "replace": "Cook County Assessor records for the eight Chicago townships put the median build year near 1927 for single-family and small multi-family homes. Many systems here are therefore later retrofits.",
+      "why": "READ-01 minor: split sentence over 30 words"
+    },
+    {
+      "find": "Technicians are NATE-certified, pricing is upfront with no hidden fees, and the work carries a satisfaction guarantee.",
+      "replace": "Technicians are NATE-certified, pricing is upfront with no hidden fees, and a diagnosis comes before any quote. Reviewers describe semi-annual maintenance visits and clear communication, and the full Google and Yelp reviews can be read before booking.",
+      "why": "MAJOR: FAQ answer under 450 characters (392); unapproved satisfaction guarantee removed"
+    },
+    {
+      "find": "City &amp; Suburban offers seasonal check-ups, priority dispatch and member discounts through maintenance plans.",
+      "replace": "City &amp; Suburban maintenance plan members get priority dispatch.",
+      "why": "Rule 2: plan terms beyond priority dispatch are not approved"
+    }
+  ]
+}

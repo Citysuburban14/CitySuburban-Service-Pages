@@ -1,0 +1,135 @@
+{
+  "target": "html",
+  "fixes": [
+    {
+      "find": "<li>Identify whether the source is indoors or outdoors.</li><li>Note whether the concern is visible particles or odor.</li><li>Treat an active fire or alarm as an emergency.</li>",
+      "replace": "<li>For an active fire, a burning smell or a sounding alarm, leave the building first and call 911 from outside.</li><li>Identify whether the source is indoors or outdoors.</li><li>Note whether the concern is visible particles or odor.</li>",
+      "why": "Safety rule: leaving the building and calling 911 must be the first instruction for fire, burning odor or alarm"
+    },
+    {
+      "find": "Smoke from an active fire, a burning smell or an alarm requires an immediate safety response.",
+      "replace": "Smoke from an active fire, a burning smell or an alarm means leaving the building and calling 911 from outside.",
+      "why": "Safety rule: state the evacuation instruction explicitly"
+    },
+    {
+      "find": "An active fire, smoke alarm or carbon monoxide alarm needs an immediate safety response. Humidifiers and air cleaners cannot correct those hazards. Leave the building when an alarm or unsafe condition calls for evacuation.",
+      "replace": "An active fire, smoke alarm or carbon monoxide alarm means leaving the building first and calling 911 from outside. Humidifiers and air cleaners cannot correct those hazards.",
+      "why": "Safety rule: evacuation and 911 from outside come first, unconditionally"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models. An existing humidifier may need service,",
+      "replace": "An existing humidifier may need service,",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models. Water delivery, control settings",
+      "replace": "City &amp; Suburban diagnoses before quoting. Water delivery, control settings",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models. Replacement deserves consideration",
+      "replace": "City &amp; Suburban diagnoses the cause before quoting. Replacement deserves consideration",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment and has NATE-certified technicians.",
+      "replace": "City &amp; Suburban has NATE-certified technicians.",
+      "why": "Rule 1: American Standard installer claim is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban provides upfront pricing and repairs all makes and models.</p>",
+      "replace": "City &amp; Suburban provides upfront pricing with no hidden fees.</p>",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "A whole-home humidifier mounts on the furnace plenum or the return duct, not in one room. A small water line feeds a wet panel or a rotating drum. Warm furnace air passes across that media, and the moisture travels through the ducts that already carry heat. A humidistat and a low-voltage transformer wire into the furnace board, so the unit runs only while the blower runs. A flow-through panel unit also needs a pitched drain for the water the media does not absorb; a drum unit instead holds water in a reservoir that needs cleaning. Because the tie-in is to the duct system, the whole house gains moisture and nothing sits in the living space.",
+      "replace": "A whole-home humidifier mounts on the furnace plenum or the return duct, not in one room. Evaporative models use a small water line to feed a wet panel or a rotating drum, and warm furnace air passes across that media. Steam models boil water in their own canister and inject steam into the duct, so they need a dedicated electrical circuit and do not rely on warm furnace air. Water, drain and control needs depend on the product: a flow-through panel needs a pitched drain, a drum holds water in a reservoir that needs cleaning, and a steam canister needs draining or flushing. Because the tie-in is to the duct system, the whole house gains moisture and nothing sits in the living space.",
+      "why": "MAJOR: answer explained only evaporative designs; added steam humidifiers and product-dependent water/control requirements"
+    },
+    {
+      "find": "Cold outdoor air holds very little moisture. A forced-air furnace heats that air without putting any back.",
+      "replace": "Cold outdoor air holds very little moisture. When a furnace warms that air, its relative humidity drops, even though no water is removed. How dry the house gets depends on how much outdoor air leaks in and how much moisture cooking, bathing and occupants add.",
+      "why": "MAJOR: explain that heating lowers relative humidity; infiltration and moisture sources set the load"
+    },
+    {
+      "find": "So the heat runs for months, and every hour of run time pushes dry air through the rooms.",
+      "replace": "So the heat runs for months.",
+      "why": "MAJOR: remove 'every hour of run time pushes dry air through the rooms'"
+    },
+    {
+      "find": "Dry air is the most common <a href=\"/services/air-quality/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">indoor air quality</a> complaint of the season.",
+      "replace": "Dryness is one <a href=\"/services/air-quality/\" target=\"_self\" style=\"color: #186AA4; font-weight: 600;\">indoor air quality</a> concern of the season, alongside dust and particles.",
+      "why": "MAJOR: remove unsupported 'most common complaint' claim"
+    },
+    {
+      "find": "City &amp; Suburban maintenance plans include seasonal check-ups, which is when the setting gets revisited as the weather turns.",
+      "replace": "The setting is worth revisiting as the weather turns, and City &amp; Suburban maintenance plan members get priority dispatch.",
+      "why": "Rule 2: plan terms beyond priority dispatch are not approved"
+    },
+    {
+      "find": "The assessment starts at the furnace and the duct system, because both products hang off it.",
+      "replace": "A useful assessment starts at the furnace and the duct system, because both products hang off it.",
+      "why": "Rule 2: assessment described as what a useful assessment includes"
+    },
+    {
+      "find": "City &amp; Suburban sends NATE-certified technicians and repairs all makes and models. The age or the brand of an existing furnace does not by itself rule out the work. Findings and options get explained at the house before anything is ordered.",
+      "replace": "City &amp; Suburban has NATE-certified technicians and diagnoses before any quote. The age or the brand of an existing furnace does not by itself rule out the work. Ask for the findings and options to be explained before anything is ordered.",
+      "why": "Rule 1/2: 'all makes and models' and unregistered explanation practice"
+    },
+    {
+      "find": "A humidifier then needs a tee into the cold water line, a pitched drain, a humidistat and low-voltage wiring to the furnace board.",
+      "replace": "A humidifier then needs a tee into the cold water line, a drain where the model requires one, a humidistat and control wiring; a steam unit also needs a dedicated circuit.",
+      "why": "MAJOR (item 3): water/control requirements are product-dependent; steam units"
+    },
+    {
+      "find": "Most single accessory installs are a one-visit job of a few hours, finishing with the system run and tested. City &amp; Suburban offers same-day service when the schedule allows, and every job carries a satisfaction guarantee.",
+      "replace": "Duration depends on the product, access and the water, drain and electrical work, so ask for an estimate with the quote. The job should finish with the system run and tested. City &amp; Suburban offers same-day service when the schedule allows.",
+      "why": "Rule 5: universal install duration removed; unapproved satisfaction guarantee removed"
+    },
+    {
+      "find": "Accessory work is not the same thing as an equipment replacement. A humidifier or a filter cabinet tied into existing ducts replaces no appliance. City of Chicago permit records bear that out. The permits on file describe equipment replacements, including furnaces and heat pumps, rather than accessory tie-ins to a system that stays in place. Where a dedicated circuit or a plumbing change forms part of the job, the trade involved decides what is required. City &amp; Suburban confirms what the specific job requires before work starts, and prices upfront with no hidden fees.",
+      "replace": "Accessory work is not the same thing as an equipment replacement, but that alone does not make it permit-exempt. City of Chicago permit records on file mostly describe equipment replacements, including furnaces and heat pumps, and a sample of records cannot show what a specific accessory job requires. A dedicated circuit, a plumbing change or a new duct opening can each change the answer. Confirm the requirement for the specific scope with the City of Chicago and the responsible trade before work starts. City &amp; Suburban prices upfront with no hidden fees.",
+      "why": "CRITICAL: permit determination is not a company practice; no exemption inferred from permit-record sample"
+    },
+    {
+      "find": "City &amp; Suburban installs American Standard equipment, and cabinet choice follows the furnace airflow rather than the widest slot available.",
+      "replace": "Cabinet choice should follow the furnace airflow rather than the widest slot available.",
+      "why": "Rule 1: American Standard installer claim is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, including accessories a previous contractor installed.",
+      "replace": "City &amp; Suburban diagnoses before any quote, so these faults can be identified on an existing installation before repair is priced.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban runs same-day service when the schedule allows, so an October call rarely waits long.",
+      "replace": "City &amp; Suburban offers same-day service when the schedule allows.",
+      "why": "Rule 5: remove implied scheduling promise"
+    },
+    {
+      "find": "A humidifier pad or drum sleeve is a yearly item in Chicago, because hard water scales the media and a scaled pad evaporates almost nothing. Deep-media air cleaner cartridges usually run one to two years,",
+      "replace": "A humidifier pad or drum sleeve is often replaced yearly in Chicago, because hard water scales the media and a scaled pad evaporates almost nothing; the model's schedule and water hardness decide it. Deep-media air cleaner cartridges often run one to two years,",
+      "why": "Rule 5: fixed replacement intervals made conditional"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, which covers units fitted by a previous contractor or left behind by a seller.",
+      "replace": "For a unit fitted by a previous contractor or left behind by a seller, share the make and model with City &amp; Suburban when booking.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact (owner to confirm other-installer service)"
+    },
+    {
+      "find": "adds seasonal check-ups, priority dispatch and member discounts.</p>",
+      "replace": "gives members priority dispatch.</p>",
+      "why": "Rule 2: plan terms beyond priority dispatch are not approved"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models, so brand and age alone do not rule out a furnace.",
+      "replace": "Brand and age alone do not rule out a furnace; City &amp; Suburban diagnoses its condition before any quote.",
+      "why": "Rule 1: 'repairs all makes and models' is not an approved fact"
+    },
+    {
+      "find": "City &amp; Suburban repairs all makes and models and backs every job with a satisfaction guarantee.</p>",
+      "replace": "Technicians are NATE-certified, and pricing is upfront with no hidden fees.</p>",
+      "why": "Rule 1: 'all makes and models' and satisfaction guarantee are not approved facts"
+    }
+  ]
+}
